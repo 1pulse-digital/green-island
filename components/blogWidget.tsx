@@ -22,9 +22,11 @@ const strapiLoader = (params: strapiLoaderParams) => {
 export const BlogWidget = (props: BlogWidgetProps) => {
   return (
     <div
-      className={" pt-8 pb-32 bg-white-100 justify-center items-center pl-48 "}
+      className={
+        " bg-white flex flex-wrap  flex-row  pt-20 pb-20 pl-32 pr-32   w-full"
+      }
     >
-      <div className={" flex p-10 "}>
+      <div className={"bg-blue-50 rounded-md p-2  "}>
         <Image
           loader={strapiLoader}
           width={props.article.image.formats.thumbnail.width}
@@ -32,7 +34,16 @@ export const BlogWidget = (props: BlogWidgetProps) => {
           src={props.article.image.formats.thumbnail.url}
           alt={props.article.image.alternativeText}
         />
-        <div>Title: {props.article.title}</div>
+        <div className={" text-4xl text-bol"}>Title: {props.article.title}</div>
+        <div className={"  text-bol"}>{props.article.content}</div>
+
+        <div
+          className={
+            "bg-transparent hover:bg-blue text-blue-dark font-semibold uppercase hover:text-white py-2 px-8 border border-black hover:border-blue rounded    flex-auto w-1/2  justify-center "
+          }
+        >
+          <button>Read M</button>
+        </div>
       </div>
     </div>
   );

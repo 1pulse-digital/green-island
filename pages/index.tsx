@@ -17,6 +17,9 @@ export interface HomeProps {
 }
 
 export default function Home(props: HomeProps) {
+  // Use the first 4 articles as featured articles
+  const featuredArticles = props.articles ? props.articles.slice(0, 4) : [];
+
   return (
     <div>
       <Head>
@@ -30,12 +33,15 @@ export default function Home(props: HomeProps) {
       <About />
       <Products />
       <Featured />
-      <Blogs articles={props.articles} />
+      {/* <Blogs articles={props.articles} /> */}
 
       {/* Featured Blogs? */}
-      {props.articles?.map((entry) => {
-        return <BlogWidget key={entry.id} article={entry} />;
-      })}
+      <div className={"flex  bg-white-800 p-2"}>
+        {featuredArticles.map((entry) => {
+          return <BlogWidget key={entry.id} article={entry} />;
+        })}
+      </div>
+
       {/* <Contact / */}
       <Footer address={"Sign up for our monthly newsletter"} />
       <Bottom />
@@ -46,7 +52,7 @@ export default function Home(props: HomeProps) {
 export async function getStaticProps() {
   // Run API calls in parallel
   const [articles, categories, homepage] = await Promise.all([
-    fetchAPI("/articles"),
+    fetchAPI("/articles?featured=true"),
     fetchAPI("/categories"),
     fetchAPI("/homepage"),
   ]);
