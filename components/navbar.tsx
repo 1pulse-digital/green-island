@@ -1,5 +1,4 @@
 import React from "react";
-import home from "../pages/home";
 import Image from "next/image";
 import logo from "../images/logo.png";
 
@@ -21,15 +20,15 @@ export const Navbar = () => {
           <a>About Us</a>
         </Link>
 
-        <Link href="/blog/hello-world">
+        <Link href="/shop">
           <a>Shop</a>
         </Link>
 
-        <Link href="/blog/hello-world">
+        <Link href="/blogs">
           <a>Blog </a>
         </Link>
 
-        <Link href="/blog/hello-world">
+        <Link href="/contact">
           <a>Contact</a>
         </Link>
       </div>
