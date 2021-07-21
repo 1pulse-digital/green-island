@@ -42,7 +42,7 @@ export const BlogWidget = (props: BlogWidgetProps) => {
             "bg-transparent hover:bg-blue text-blue-dark font-semibold uppercase hover:text-white py-2 px-8 border border-black hover:border-blue rounded    flex-auto w-1/2  justify-center "
           }
         >
-          <button>Read M</button>
+          <button>Read More</button>
         </div>
       </div>
     </div>
