@@ -4,14 +4,17 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
-      gridTemplateColumns: {
-        // navbar
-        navbar: "1fr auto 1fr",
-      },
+      fontFamily: {
+        karla: "'Karla', sans-serif"
+      }
     },
   },
   variants: {
-    extend: {},
+    extend: {
+
+    },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
 };

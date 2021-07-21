@@ -42,7 +42,11 @@ export const BlogWidget = (props: BlogWidgetProps) => {
             "bg-transparent text-blue-dark font-semibold uppercase hover:text-white hover:border-blue rounded flex-auto w-1/2  justify-center "
           }
         >
+<<<<<<< .merge_file_a17960
+          <button>Read More</button>
+=======
           <button className={"text-blue-200"  }>Read More</button>
+>>>>>>> .merge_file_a11864
         </div>
       </div>
     </div>

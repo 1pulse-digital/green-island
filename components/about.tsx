@@ -1,5 +1,4 @@
 import React from "react";
-import home from "../pages/home";
 import Image from "next/image";
 import bottle from "../images/bottle.png";
 

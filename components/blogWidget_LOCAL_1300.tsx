@@ -23,10 +23,10 @@ export const BlogWidget = (props: BlogWidgetProps) => {
   return (
     <div
       className={
-        " p-2 w-full"
+        " bg-white flex flex-wrap  flex-row  pt-20 pb-20 pl-32 pr-32   w-full"
       }
     >
-      <div className={" rounded-md p-2"}>
+      <div className={"bg-blue-50 rounded-md p-2  "}>
         <Image
           loader={strapiLoader}
           width={props.article.image.formats.thumbnail.width}
@@ -34,15 +34,15 @@ export const BlogWidget = (props: BlogWidgetProps) => {
           src={props.article.image.formats.thumbnail.url}
           alt={props.article.image.alternativeText}
         />
-        <div className={" text-lg text-bol font-semibold  pt-4"}>Title: {props.article.title}</div>
-        <div className={" text-sm py-4"}>{props.article.description}</div>
+        <div className={" text-4xl text-bol"}>Title: {props.article.title}</div>
+        <div className={"  text-bol"}>{props.article.content}</div>
 
         <div
           className={
-            "bg-transparent text-blue-dark font-semibold uppercase hover:text-white hover:border-blue rounded flex-auto w-1/2  justify-center "
+            "bg-transparent hover:bg-blue text-blue-dark font-semibold uppercase hover:text-white py-2 px-8 border border-black hover:border-blue rounded    flex-auto w-1/2  justify-center "
           }
         >
-          <button className={"text-blue-200"  }>Read More</button>
+          <button>Read More</button>
         </div>
       </div>
     </div>

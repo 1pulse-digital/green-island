@@ -1,10 +1,11 @@
 import React from "react";
 import Link from "next/link";
-import home from "../pages/home";
+
 
 export interface FooterProps {
-  address?: string;
+ 
 }
+
 export const Footer = (props: FooterProps) => {
   return (
     <div
@@ -12,7 +13,7 @@ export const Footer = (props: FooterProps) => {
         "  bg-gray-600  text-white flex flex-row justify-between pt-20 pb-20 pl-32 pr-32"
       }
     >
-      <div>{props.address}</div>
+      <div>Sign up for our monthly newsletter</div>
       <ul>
         <li>
           <Link href="/about">
@@ -113,6 +114,16 @@ export const Footer = (props: FooterProps) => {
       </div>
 
       <div>Follow Us</div>
+      <div
+      className={
+        " bg-gray-600  text-white flex flex-row justify-between  pb-20 pl-32 pr-32 relative  px-4 sm:px-6 lg:px-8   "
+      }
+    >
+      <div className={"pl-20 "}>
+        © 2021 Perfect Health Practice • Sitemap • Privacy Policy
+      </div>
+      <div className={"pr-20 "}>Developed and design by 1Pulse Digital</div>
+    </div>
 
       {/* <div>33 Highland Ave Bryanston Ext 8 Johannesburg South Africa</div>
       <div>Mon - Thurs:08:00 - 17:00 Fridays:08:00 - 13:00</div> */}
