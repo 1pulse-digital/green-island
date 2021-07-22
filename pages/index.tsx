@@ -41,7 +41,7 @@ const Home = (props: HomeProps) => {
       {/* <Blogs articles={props.articles} /> */}
 
       {/* Featured Blogs? */}
-      <div className={"flex  bg-white-800 p-2"}>
+      <div className={"bg-white-800 p-2 grid grid-cols-3 gap-8"}>
         {featuredArticles.map((entry) => {
           return <BlogWidget key={entry.id} article={entry} />;
         })}
@@ -51,7 +51,10 @@ const Home = (props: HomeProps) => {
     </MainLayout>
   );
 };
+
 export default Home;
+
+
 export async function getStaticProps() {
   // Run API calls in parallel
   const [articles, categories, homepage] = await Promise.all([

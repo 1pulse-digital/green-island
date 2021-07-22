@@ -8,4 +8,10 @@ export interface Article {
   title: string;
   image: Picture;
   description: string;
+  tags: Tag[];
+}
+
+export interface Tag {
+  id: number;
+  name: string;
 }

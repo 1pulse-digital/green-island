@@ -4,6 +4,10 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      colors: {
+        'primary': '#445661',
+        'secondary':'#8AA4B9',
+      },
       fontFamily: {
         karla: "'Karla', sans-serif"
       }
@@ -16,5 +20,6 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/typography'),
-  ],
+    require('@tailwindcss/line-clamp'),
+  ]
 };
