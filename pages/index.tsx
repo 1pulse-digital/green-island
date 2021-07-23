@@ -10,6 +10,7 @@ import { BlogWidget } from "../components/blogWidget";
 import { fetchAPI } from "../lib/api";
 import { Article } from "../types/article";
 import MainLayout from "../layouts/MainLayout";
+import { Message } from "../components/message";
 
 export interface HomeProps {
   articles?: Article[];
@@ -53,7 +54,6 @@ const Home = (props: HomeProps) => {
 };
 
 export default Home;
-
 
 export async function getStaticProps() {
   // Run API calls in parallel

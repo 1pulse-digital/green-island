@@ -5,21 +5,19 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'primary': '#445661',
-        'secondary':'#8AA4B9',
+        primary: "#445661",
+        secondary: "#8AA4B9",
       },
       fontFamily: {
-        karla: "'Karla', sans-serif"
-      }
+        karla: "'Karla', sans-serif",
+      },
     },
   },
   variants: {
-    extend: {
-
-    },
+    extend: {},
   },
   plugins: [
-    require('@tailwindcss/typography'),
-    require('@tailwindcss/line-clamp'),
-  ]
+    require("@tailwindcss/typography"),
+    require("@tailwindcss/line-clamp"),
+  ],
 };
