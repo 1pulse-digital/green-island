@@ -4,44 +4,43 @@ import bottle from "../images/bottle.png";
 
 export const About = () => {
   return (
-    <div
-      className={
-        " bg-gray-100 pt-6 px-4 sm:px-6 lg:px-8 grid grid-cols-2 p-0"
-      }
-    >
-      <div className={"h-[700px] grid content-center"}>
-      <div className={"h-[500px] relative"}>
-        <Image
-          src={bottle}
-          alt="logo"
-          layout={"fill"}
-          objectFit={"contain"}
-        />
+    <div className={" h-[750px] sm:grid-cols-2 "}>
+      <div className={"grid bg-gray-50"}>
+        <div className={"grid sm:grid-cols-1 md:grid-cols-2 h-[700px]  "}>
+          {/* Left column */}
+          <div className={"  grid content-center justify-center"}>
+            <div className={"  top-20 bottom-32 right-0  "}>
+              <Image
+                layout=""
+                objectFit=""
+                src={bottle}
+                alt="homeropath icon"
+              />
+            </div>
+          </div>
+          <div className={" content-center  px-10  grid"}>
+            <h1 className={"md:text-5xl pb-4 font-bold  grid sm: text-3xl"}>
+              Your body is incredible.
+            </h1>
+            <p
+              className={"mr-32 content-center  grid sm:max-w-sm md:max-w-md "}
+            >
+              It is capable of healing itself. To access this power ​you must
+              remove the obstacles in its way, provide the tools it needs for
+              the job. That’s what we help you to do!
+            </p>
+            <div className="flex items-center">
+              <button
+                type="submit"
+                className="inline-flex items-center justify-items-start h-12 px-6 mr-6 font-medium tracking-wide text-white transition duration-200  shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none  absolute bg-gray-800 text-gray p-2 rounded-full hover:bg-gray-400  mt-32  "
+              >
+                More about us
+              </button>
+            </div>
+          </div>
+        </div>
+        {/* Right column */}
       </div>
-      </div>
-
-      <div className={"grid content-center px-12"}>
-        <h1
-          className={
-            "font-sans md:font-serif h-full text-5xl  text-gray-500   font-bold  "
-          }
-        >
-          Your body is incredible
-        </h1>
-        <p>
-          It’s capable of extraordinary repair and self-healing. But to access
-          that power ​you must remove the obstacles slowing it down and provide
-          the tools it needs for the job. That’s precisely what we HELP YOU TO
-          do!
-        </p>
-      </div>
-      {/* <div
-          className={
-            "bg-transparent hover:bg-blue text-blue-dark font-semibold uppercase hover:text-white py-2 px-8 border border-black hover:border-blue rounded    flex-auto w-1/2  justify-center pl-96"
-          }
-        >
-          <button>Shop All</button>
-        </div> */}
     </div>
   );
 };

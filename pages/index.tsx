@@ -11,6 +11,7 @@ import { fetchAPI } from "../lib/api";
 import { Article } from "../types/article";
 import MainLayout from "../layouts/MainLayout";
 import { Message } from "../components/message";
+import { Categories } from "../components/categories";
 
 export interface HomeProps {
   articles?: Article[];
@@ -37,12 +38,17 @@ const Home = (props: HomeProps) => {
 
       <Hero />
       <About />
-      <Products />
+      <Categories />
+      {/* <Products /> */}
       <Featured />
       {/* <Blogs articles={props.articles} /> */}
 
       {/* Featured Blogs? */}
-      <div className={"bg-white-800 p-2 grid grid-cols-3 gap-8"}>
+      <div
+        className={
+          "bg-white-800 p-2 md:grid grid-cols-4 gap-8 md:px-28 py-2 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4  "
+        }
+      >
         {featuredArticles.map((entry) => {
           return <BlogWidget key={entry.id} article={entry} />;
         })}

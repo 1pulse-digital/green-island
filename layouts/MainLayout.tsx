@@ -1,5 +1,6 @@
 import { Footer } from "../components/footer";
-import { Navbar } from "../components/navbar";
+//import { Navbar } from "../components/navbar";
+import Navbar2 from "../components/navbar2";
 
 export interface MainLayoutProps {
   children: React.ReactNode;
@@ -8,7 +9,8 @@ export interface MainLayoutProps {
 const MainLayout = (props: MainLayoutProps) => {
   return (
     <div>
-      <Navbar />
+      {/* <Navbar /> */}
+      <Navbar2 />
 
       {/* Content goes here */}
       <div> {props.children}</div>

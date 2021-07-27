@@ -66,7 +66,7 @@ export const BlogWidget = (props: BlogWidgetProps) => {
                 </span>
               ))}
             </div> */}
-            <div className={"sm:absolute bottom-6 left-6"}>
+            <div className={"sm:absolute bottom-6 left-6 "}>
               <Button>Read More</Button>
             </div>
           </div>
