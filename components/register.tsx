@@ -9,7 +9,7 @@ export const Register = () => {
     >
       {/* Left column */}
 
-      <div className={" px-10  "}>
+      <div className={" px-10   "}>
         <div>
           <h6 className={"text-4xl pb-2 grid  "}>Create an Account</h6>
 
@@ -22,7 +22,7 @@ export const Register = () => {
               placeholder="First name"
             />
           </div>
-          <div className=" inline-block ">
+          <div className=" inline-block gap-x-10 ">
             <input
               type="text"
               id="contact-form-email"

@@ -1,4 +1,4 @@
-//import MainLayout from "../layouts/MainLayout";
+import MainLayout from "../layouts/MainLayout";
 import { Contact } from "../components/contact";
 import { Message } from "../components/message";
 //import { Map } from "../components/map";
@@ -8,14 +8,14 @@ import { Login } from "../components/login";
 
 const contact = () => {
   return (
-    //<MainLayout>
-    <div>
-      <Contact />
-      <Message />
+    <MainLayout>
+      <div>
+        <Contact />
+        <Message />
 
-      {/* <Map /> */}
-    </div>
-    //</MainLayout>
+        {/* <Map /> */}
+      </div>
+    </MainLayout>
   );
 };
 

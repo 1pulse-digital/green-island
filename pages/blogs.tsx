@@ -1,6 +1,7 @@
 import MainLayout from "../layouts/MainLayout";
 import Image from "next/image";
 
+
 import blondeLady from "../images/blond-lady.jpg";
 import fruit from "../images/fruits.jpg";
 

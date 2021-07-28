@@ -12,3 +12,11 @@ export async function fetchAPI(path: string) {
   const data = await response.json();
   return data;
 }
+
+export async function registerUser(username: string, password: string) {
+  const requestUrl = getStrapiURL("/auth/local/register");
+
+  const response = await fetch(requestUrl, {});
+  const data = await response.json();
+  return data;
+}
