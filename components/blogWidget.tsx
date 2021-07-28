@@ -20,6 +20,9 @@ const strapiLoader = (params: strapiLoaderParams) => {
   return `${urlBase}${params.src}`;
 };
 
+// Blog widget - 
+
+
 export const BlogWidget = (props: BlogWidgetProps) => {
   return (
     <div
@@ -48,14 +51,14 @@ export const BlogWidget = (props: BlogWidgetProps) => {
           </div>
           <div
             className={
-              "bg-transparent text-blue-dark font-semibold uppercase hover:text-white hover:border-blue rounded flex-auto w-1/2  justify-center "
+              " inline-block bg-transparent text-blue-dark font-semibold uppercase hover:text-white hover:border-blue rounded "
             }
           >
-            <div className={"flex gap-2 py-4 bg"}>
+            <div className={"grid grid-auto gap-2 py-4"}>
               {props.article.tags.map((item) => (
                 <span
                   className={
-                    "inline-block rounded-full text-gray-700 bg-gray-200 px-2 py-1 text-sm"
+                    " rounded-full text-gray-700 bg-gray-200 px-2 py-1 text-sm"
                   }
                 >
                   #{item.name}
