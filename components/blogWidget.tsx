@@ -43,7 +43,11 @@ export const BlogWidget = (props: BlogWidgetProps) => {
           />
         </div>
         <div className={" p-6"}>
-          <div className={"text-primary text-lg text-bol font-semibold line-clamp-2"}>
+          <div
+            className={
+              "text-primary text-lg text-bol font-semibold line-clamp-2"
+            }
+          >
             {props.article.title}
           </div>
           <div className={"text-sm line-clamp-3"}>
@@ -64,8 +68,8 @@ export const BlogWidget = (props: BlogWidgetProps) => {
                   #{item.name}
                 </span>
               ))}
-            </div>
-            <div className={"sm:absolute bottom-6 left-6"}>
+            </div> 
+            <div className={"sm:absolute bottom-6 left-6 "}>
               <Button>Read More</Button>
             </div>
           </div>

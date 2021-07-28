@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import logo from "../images/logo.png";
+import useRouter from "next/router";
 
 import Link from "next/link";
 import avatar from "../images/avatar.png";
@@ -15,9 +16,7 @@ export const Navbar = () => {
           className={"inline-flex items-center justify-center text-primary "}
         >
           <div className={"pr-10"}>
-            <Link href="/">
-              <a>Home</a>
-            </Link>
+            <a>Home</a>
           </div>
           <div className={"pr-10"}>
             <Link href="/about">

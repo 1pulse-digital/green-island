@@ -10,6 +10,15 @@ import { BlogWidget } from "../components/blogWidget";
 import { fetchAPI } from "../lib/api";
 import { Article } from "../types/article";
 import MainLayout from "../layouts/MainLayout";
+import { Message } from "../components/message";
+import { Categories } from "../components/categories";
+import algoliasearch from "algoliasearch/lite";
+import { InstantSearch, SearchBox, Hits } from "react-instantsearch-dom";
+
+const searchClient = algoliasearch(
+  "7Y0X9GZGW7",
+  "0ca2a76d622ef2f1b18dbb275e716e85"
+);
 
 export interface HomeProps {
   articles?: Article[];
@@ -32,16 +41,32 @@ const Home = (props: HomeProps) => {
           href="https://fonts.googleapis.com/css2?family=Karla:wght@300;400;500;600;700display=swap"
           rel="stylesheet"
         />
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.3.1/themes/reset-min.css"
+          integrity="sha256-t2ATOGCtAIZNnzER679jwcFcKYfLlw01gli6F6oszk8="
+        ></link>
       </Head>
 
       <Hero />
+
+      <InstantSearch searchClient={searchClient} indexName="test_1pulse">
+        <SearchBox />
+        <Hits />
+      </InstantSearch>
+
       <About />
-      <Products />
+      <Categories />
+      {/* <Products /> */}
       <Featured />
       {/* <Blogs articles={props.articles} /> */}
 
       {/* Featured Blogs? */}
-      <div className={"bg-white-800 p-2 grid grid-cols-3 gap-8"}>
+      <div
+        className={
+          "bg-white-800 p-2 md:grid grid-cols-4 gap-8 md:px-28 py-2 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4  "
+        }
+      >
         {featuredArticles.map((entry) => {
           return <BlogWidget key={entry.id} article={entry} />;
         })}
@@ -53,7 +78,6 @@ const Home = (props: HomeProps) => {
 };
 
 export default Home;
-
 
 export async function getStaticProps() {
   // Run API calls in parallel
