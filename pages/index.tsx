@@ -1,8 +1,6 @@
 import Head from "next/head";
-import { Footer } from "../components/footer";
 import Hero from "../components/hero";
 import { About } from "../components/about";
-import { Products } from "../components/products";
 import { Featured } from "../components/featured";
 
 import { BlogWidget } from "../components/blogWidget";
@@ -10,10 +8,9 @@ import { BlogWidget } from "../components/blogWidget";
 import { fetchAPI } from "../lib/api";
 import { Article } from "../types/article";
 import MainLayout from "../layouts/MainLayout";
-import { Message } from "../components/message";
 import { Categories } from "../components/categories";
 import algoliasearch from "algoliasearch/lite";
-import { InstantSearch, SearchBox, Hits } from "react-instantsearch-dom";
+// import { InstantSearch, SearchBox, Hits } from "react-instantsearch-dom";
 
 const searchClient = algoliasearch(
   "7Y0X9GZGW7",
@@ -50,10 +47,10 @@ const Home = (props: HomeProps) => {
 
       <Hero />
 
-      <InstantSearch searchClient={searchClient} indexName="test_1pulse">
+      {/* <InstantSearch searchClient={searchClient} indexName="test_1pulse">
         <SearchBox />
         <Hits />
-      </InstantSearch>
+      </InstantSearch> */}
 
       <About />
       <Categories />
