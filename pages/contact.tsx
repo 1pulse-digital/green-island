@@ -3,6 +3,7 @@ import { Contact } from "../components/contact";
 import { Message } from "../components/message";
 //import { Map } from "../components/map";
 import { Login } from "../components/login";
+import { Footer } from "../components/footer";
 
 // import Background from "../components/background";
 
@@ -14,6 +15,7 @@ const contact = () => {
         <Message />
 
         {/* <Map /> */}
+        <Footer />
       </div>
     </MainLayout>
   );

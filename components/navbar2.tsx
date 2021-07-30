@@ -114,7 +114,7 @@ export default function Navbar2() {
                   href="#"
                   className="text-base font-medium text-gray-500 hover:text-gray-900"
                 >
-                  <Link href="/about">
+                  <Link href="/shop">
                     <a>Shop</a>
                   </Link>
                 </a>
