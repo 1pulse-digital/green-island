@@ -44,9 +44,9 @@ const solutions = [
     icon: ShieldCheckIcon,
   },
   {
-    name: "Blog",
+    name: "Blogs",
 
-    href: "blog",
+    href: "blogs",
     icon: ViewGridIcon,
   },
   {
@@ -78,9 +78,9 @@ const recentPosts = [
   { id: 3, name: "Improve your customer experience", href: "#" },
 ];
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
+// function classNames(...classes) {
+//   return classes.filter(Boolean).join(" ");
+// }
 
 export default function Navbar2() {
   return (
@@ -123,7 +123,7 @@ export default function Navbar2() {
                   href="#"
                   className="text-base font-medium text-gray-500 hover:text-gray-900"
                 >
-                  <Link href="/about">
+                  <Link href="/blogs">
                     <a>Blog</a>
                   </Link>
                 </a>
@@ -134,7 +134,7 @@ export default function Navbar2() {
 
               <div className="flex justify-center lg:w-0 lg:flex-1">
                 <a href="#">
-                  <Image layout="" objectFit="" src={logo} />
+                  <Image src={logo} />
                 </a>
               </div>
               <div className=" md:flex items-center justify-end md:flex-1 lg:w-0 space-x-8 gap-x-8    ">
