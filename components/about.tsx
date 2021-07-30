@@ -11,8 +11,6 @@ export const About = () => {
           <div className={"  grid content-center justify-center"}>
             <div className={"  top-20 bottom-32 right-0  "}>
               <Image
-                layout=""
-                objectFit=""
                 src={bottle}
                 alt="homeropath icon"
               />
