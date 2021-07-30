@@ -7,13 +7,13 @@ export interface FooterProps {}
 export const Footer = (props: FooterProps) => {
   return (
     <div className="bg-gray-500">
-      <div className="px-4 pt-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
-        <div className="grid row-gap-10 mb-8 lg:grid-cols-6 bg-red-800 justify-items-end  ">
-          <div className="md:max-w-md lg:col-span-2 bg-gray-900">
-            <span className="text-base font-medium tracking-wide text-white">
-              Sign up for our monthly newsletter
-            </span>
-            <form className="flex flex-col mt-4 md:flex-row">
+      <div className=" pt-16     ">
+        <div className="grid row-gap-10 mb-8 lg:grid-cols-4  bg-gray-500    ">
+          <p className={"pl-16 py-4  text-white text-lg "}>
+            Sign up for our monthly newsletter
+          </p>
+          <div className="grid grid-cols-1 gap-10 row-gap-8 lg:col-span-4 md:grid-cols-4 md:justify-items-center sm: justify-items-center  ">
+            <form className=" ">
               <input
                 placeholder="Email Address"
                 required
@@ -22,15 +22,12 @@ export const Footer = (props: FooterProps) => {
               />
               <button
                 type="submit"
-                className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded-full shadow-md bg-gray-700 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                className="  h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded-full shadow-md bg-gray-700 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none mt-4 "
               >
                 Subscribe
               </button>
             </form>
-          </div>
-
-          <div className="grid grid-cols-2 gap-5 row-gap-8 lg:col-span-4 md:grid-cols-4  ml-32 space-x-8">
-            <div>
+            <div className={"justify-end"}>
               <p className="font-medium tracking-wide text-white">Shop</p>
               <ul className="mt-2 space-y-2">
                 <li>
@@ -118,7 +115,8 @@ export const Footer = (props: FooterProps) => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col justify-between pt-5 pb-10 border-t border-gray-800 sm:flex-row">
+
+        <div className="flex flex-col justify-between pt-5 pb-10 border-t border-gray-800 sm:flex-row px-10">
           <p className="text-sm text-white">
             © 2021 Perfect Health Practice • Sitemap • Privacy Policy
           </p>

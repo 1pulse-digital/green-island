@@ -20,8 +20,7 @@ const strapiLoader = (params: strapiLoaderParams) => {
   return `${urlBase}${params.src}`;
 };
 
-// Blog widget - 
-
+// Blog widget -
 
 export const BlogWidget = (props: BlogWidgetProps) => {
   return (
@@ -58,17 +57,19 @@ export const BlogWidget = (props: BlogWidgetProps) => {
               " inline-block bg-transparent text-blue-dark font-semibold uppercase hover:text-white hover:border-blue rounded "
             }
           >
-            <div className={"grid grid-auto gap-2 py-4"}>
-              {props.article.tags.map((item) => (
-                <span
-                  className={
-                    " rounded-full text-gray-700 bg-gray-200 px-2 py-1 text-sm"
-                  }
-                >
-                  #{item.name}
-                </span>
-              ))}
-            </div> 
+            {/*  {
+              <div className={"grid grid-auto gap-2 py-4"}>
+                {props.article.tags.map((item) => (
+                  <span
+                    className={
+                      " rounded-full text-gray-700 bg-gray-200 px-2 py-1 text-sm"
+                    }
+                  >
+                    #{item.name}
+                  </span>
+                ))}
+              </div>
+            } */}
             <div className={"sm:absolute bottom-6 left-6 "}>
               <Button>Read More</Button>
             </div>
