@@ -18,7 +18,7 @@ export const Categories = () => {
 
         <button
           className={
-            "absolute bg-secondary px-10 py-5 justify-self-center	self-center	rounded-full"
+            "absolute bg-secondary px-10 py-3 justify-self-center	self-center	rounded-full text-white hover:bg-white hover:text-secondary"
           }
         >
           Infection Management
@@ -29,7 +29,7 @@ export const Categories = () => {
 
         <button
           className={
-            "absolute bg-secondary px-10 py-5 justify-self-center	self-center	rounded-full"
+            "absolute bg-secondary px-10 py-3 justify-self-center	self-center	rounded-full text-white hover:bg-white hover:text-secondary"
           }
         >
           Mental Health
@@ -41,7 +41,7 @@ export const Categories = () => {
 
         <button
           className={
-            "absolute bg-secondary px-10 py-5 justify-self-center	self-center	rounded-full"
+            "absolute bg-secondary px-10 py-3 justify-self-center	self-center	rounded-full text-white hover:bg-white hover:text-secondary"
           }
         >
           Digestive Health
@@ -52,7 +52,7 @@ export const Categories = () => {
         <Image objectFit="cover" src={daily} alt="infection management" />
         <button
           className={
-            "absolute bg-secondary px-10 py-5 justify-self-center	self-center	rounded-full"
+            "absolute bg-secondary px-10 py-3 justify-self-center	self-center	rounded-full text-white hover:bg-white hover:text-secondary"
           }
         >
           Daily Self Care
@@ -62,7 +62,7 @@ export const Categories = () => {
         <Image objectFit="cover" src={stress} alt="infection management" />
         <button
           className={
-            "absolute bg-secondary px-10 py-5 justify-self-center	self-center	rounded-full"
+            "absolute bg-secondary px-10 py-3 justify-self-center	self-center	rounded-full text-white hover:bg-white hover:text-secondary"
           }
         >
           Stress Management

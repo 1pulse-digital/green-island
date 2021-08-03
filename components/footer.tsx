@@ -40,7 +40,7 @@ export const Footer = (props: FooterProps) => {
                 </li>
                 <li>
                   <a
-                    href="/"
+                    href="/shop"
                     className="text-white transition-colors duration-300 hover:text-deep-purple-accent-200"
                   >
                     All Products
@@ -57,13 +57,10 @@ export const Footer = (props: FooterProps) => {
               </ul>
             </div>
             <div>
-              <p className="font-medium tracking-wide text-white">
-                Practice info
-              </p>
               <ul className="mt-2 space-y-2">
                 <li>
                   <a
-                    href="/"
+                    href="/about"
                     className="text-white transition-colors duration-300 hover:text-deep-purple-accent-200"
                   >
                     About
@@ -71,7 +68,7 @@ export const Footer = (props: FooterProps) => {
                 </li>
                 <li>
                   <a
-                    href="/"
+                    href="/contact"
                     className="text-white transition-colors duration-300 hover:text-deep-purple-accent-200"
                   >
                     Contact Us
@@ -79,7 +76,7 @@ export const Footer = (props: FooterProps) => {
                 </li>
                 <li>
                   <a
-                    href="/"
+                    href="/blogs"
                     className="text-white transition-colors duration-300 hover:text-deep-purple-accent-200"
                   >
                     Blogs
@@ -127,6 +124,9 @@ export const Footer = (props: FooterProps) => {
             >
               <p className="text-sm text-white">
                 Developed and design by 1Pulse Digital
+              </p>
+              <p className="text-sm text-white">
+                Photography by Dane Drevin
               </p>
             </a>
           </div>
