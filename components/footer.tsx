@@ -6,9 +6,9 @@ export interface FooterProps {}
 
 export const Footer = (props: FooterProps) => {
   return (
-    <div className="bg-gray-500">
+    <div className="bg-primary">
       <div className=" pt-16     ">
-        <div className="grid row-gap-10 mb-8 lg:grid-cols-4  bg-gray-500    ">
+        <div className="grid row-gap-10 mb-8 lg:grid-cols-4  bg-primary   ">
           <p className={"pl-16 py-4  text-white text-lg "}>
             Sign up for our monthly newsletter
           </p>
@@ -22,7 +22,7 @@ export const Footer = (props: FooterProps) => {
               />
               <button
                 type="submit"
-                className="  h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded-full shadow-md bg-gray-700 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none mt-4 "
+                className="  h-12 px-12 font-medium tracking-wide text-white transition duration-200 rounded-full shadow-md bg-secondary hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none mt-4  "
               >
                 Subscribe
               </button>
@@ -33,7 +33,7 @@ export const Footer = (props: FooterProps) => {
                 <li>
                   <a
                     href="/"
-                    className="text-white transition-colors duration-300 hover:text-deep-purple-accent-200"
+                    className="text-white transition-colors duration-300 hover:text-deep-purple-accent-200 "
                   >
                     Shop Account
                   </a>
@@ -93,7 +93,7 @@ export const Footer = (props: FooterProps) => {
                 >
                   <a
                     href="/"
-                    className="text-white-500 transition-colors duration-300 hover:text-teal-accent-400"
+                    className="text-white-500 transition-colors duration-300 hover:text-teal-accent-400 "
                   >
                     <svg
                       viewBox="0 0 24 24"
@@ -113,7 +113,7 @@ export const Footer = (props: FooterProps) => {
           </div>
         </div>
 
-        <div className="flex flex-col justify-between pt-5 pb-10 border-t border-gray-800 sm:flex-row px-10">
+        <div className="flex flex-col justify-between pt-5 pb-10 border-t border-white-800 sm:flex-row px-10">
           <p className="text-sm text-white">
             © 2021 Perfect Health Practice • Sitemap • Privacy Policy
           </p>
@@ -125,9 +125,7 @@ export const Footer = (props: FooterProps) => {
               <p className="text-sm text-white">
                 Developed and design by 1Pulse Digital
               </p>
-              <p className="text-sm text-white">
-                Photography by Dane Drevin
-              </p>
+              <p className="text-sm text-white">Photography by Dane Drevin</p>
             </a>
           </div>
         </div>

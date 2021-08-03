@@ -10,11 +10,11 @@ export const Suppliers = () => {
   return (
     <div
       className={
-        " grid-cols-5  h-[150px] w-full bg-white-900 relative py-6 px-4 gap-x-26  "
+        " grid-cols-5  md:h-[150px]  sm:h-96  w-full sm:space-y-10 bg-white-900 relative py-6 px-4 gap-x-26  "
       }
     >
-      <div className={"grid grid-cols-1 md:grid-cols-5 lg:grid-cols-5 p-5"}>
-        <div className={""}>
+      <div className={"grid grid-cols-1 md:grid-cols-5   lg:grid-cols-5 p-5"}>
+        <div className={" "}>
           <Image src={idexis} alt="idexis" />
         </div>
         <div>

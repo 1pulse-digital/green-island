@@ -137,13 +137,13 @@ export default function Navbar2() {
                   <Image src={logo} />
                 </a>
               </div>
-              <div className=" md:flex items-center justify-end md:flex-1 lg:w-0 space-x-8 gap-x-8    ">
-                <Image src={wishlist} alt="logo" />
+              <div className=" md:flex items-center justify-end md:flex-1 lg:w-0 space-x-8 gap-x-8     ">
                 <Image src={cart} alt="cart" />
+                <Image src={wishlist} alt="logo" />
 
                 <a
-                  href="#"
-                  className=" hidden sm:block md:ml-8 whitespace-nowrap inline-flex items-center px-8 justify-center  py-2 border border-transparent rounded-full shadow-sm text-base font-medium text-white bg-gray-600 hover:bg-indigo-700"
+                  href="http://localhost:3000/logins"
+                  className=" hidden sm:block md:ml-8 whitespace-nowrap inline-flex items-center px-8 justify-center  py-2 border border-transparent rounded-full shadow-sm text-base font-medium text-white bg-primary  hover:bg-secondary"
                 >
                   Sign in
                 </a>
