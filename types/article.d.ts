@@ -9,6 +9,7 @@ export interface Article {
   image: Picture;
   description: string;
   tags: Tag[];
+  slug: string;
 }
 
 export interface Tag {

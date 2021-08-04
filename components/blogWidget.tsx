@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Article } from "../types/article";
 import { getStrapiURL } from "../lib/api";
 import Button from "./button";
+import { useRouter } from "next/router";
 
 export interface BlogWidgetProps {
   article: Article;
@@ -23,13 +24,18 @@ const strapiLoader = (params: strapiLoaderParams) => {
 // Blog widget -
 
 export const BlogWidget = (props: BlogWidgetProps) => {
+  const router = useRouter();
+
+  const viewBlog = () => {
+    router.push(`/blogs/${props.article.slug}`);
+  };
   return (
     <div
       className={
         "relative overflow-hidden w-full max-w-sm sm:h-[490px] md:h-[570px] bg-white shadow-sm rounded-lg"
       }
     >
-      <div className={"h-full "}>
+      <div className={"h-full "} onClick={viewBlog}>
         <div className={"relative w-full h-72 bg-white mx-auto "}>
           <Image
             layout="fill"

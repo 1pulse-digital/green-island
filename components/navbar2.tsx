@@ -89,7 +89,7 @@ export default function Navbar2() {
         <>
           <div className="max-w-8xl mx-auto px-4 sm:px-6">
             <div className="flex justify-between items-center  border-gray-100 py-2 md:justify-start md:space-x-20 ">
-              <div className="-mr-2 -my-2 md:hidden">
+              <div className="-mr-2 -my-2 lg:hidden">
                 <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500">
                   <span className="sr-only">Open menu</span>
                   <MenuIcon className="h-6 w-6" aria-hidden="true" />
@@ -97,7 +97,7 @@ export default function Navbar2() {
               </div>
               <Popover.Group
                 as="nav"
-                className="hidden md:flex space-x-10 z-10 text-base font-medium text-gray-500 hover:text-gray-900"
+                className="hidden lg:flex space-x-10 z-10 text-base font-medium text-gray-500 hover:text-gray-900"
               >
                 <Link href="/">
                   <a>Home</a>
@@ -132,18 +132,18 @@ export default function Navbar2() {
                 </Link>
               </Popover.Group>
 
-              <div className="flex justify-center lg:w-0 lg:flex-1">
+              <div className="flex justify-center  lg:w-0 lg:flex-1 md:w-0 md:flex-1">
                 <a href="#">
                   <Image src={logo} />
                 </a>
               </div>
-              <div className=" md:flex items-center justify-end md:flex-1 lg:w-0 space-x-8 gap-x-8     ">
+              <div className=" flex items-center justify-end sm:flex-1 lg:w-0  gap-x-4    ">
                 <Image src={cart} alt="cart" />
                 <Image src={wishlist} alt="logo" />
 
                 <a
                   href="http://localhost:3000/logins"
-                  className=" hidden sm:block md:ml-8 whitespace-nowrap inline-flex items-center px-8 justify-center  py-2 border border-transparent rounded-full shadow-sm text-base font-medium text-white bg-primary  hover:bg-secondary"
+                  className=" hidden md:block md:ml-6 whitespace-nowrap inline-flex items-center px-8 justify-center  py-2 border border-transparent rounded-full shadow-sm text-base font-medium text-white bg-primary  hover:bg-secondary"
                 >
                   Sign in
                 </a>
