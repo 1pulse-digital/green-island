@@ -1,14 +1,12 @@
 import React from "react";
-import MainLayout from "../layouts/MainLayout";
-import { AboutPage } from "../components/aboutPage";
 import { CheckoutPage } from "../components/checkoutPage";
 import { Footer } from "../components/footer";
-import Navbar2 from "../components/navbar2";
+import Navbar from "../components/navbar";
 
 const Checkout = () => {
   return (
     <div>
-      <Navbar2 />
+      <Navbar />
       <CheckoutPage />
       <Footer />
     </div>
