@@ -4,6 +4,7 @@ import { Suppliers } from "../components/suppliers";
 import { Product } from "../types/product";
 import useSWR from "swr";
 import { fetchAPI } from "../lib/api";
+import ProductWidget from "../components/productWidget";
 
 export interface ShopProps {}
 
@@ -31,10 +32,12 @@ const Shop = (props: ShopProps) => {
   return (
     <MainLayout>
       <ShopBanner />
-      There are some products
-      {products.map((p: Product) => {
-        return <div key={p.id}>{p.name}</div>;
-      })}
+
+      <div className="flex gap-8">
+        {products.map((p: Product) => {
+          return <ProductWidget product={p} />;
+        })}
+      </div>
       <Suppliers />
     </MainLayout>
   );
