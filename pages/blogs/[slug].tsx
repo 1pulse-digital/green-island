@@ -3,7 +3,6 @@ import { fetchAPI } from "../../lib/api";
 import { Article } from "../../types/article";
 import Markdown from "markdown-to-jsx";
 import MainLayout from "../../layouts/MainLayout";
-import { SingleBlogHero } from "../../components/singleBlogHero";
 import Image from "next/image";
 import human from "../../images/human.jpg";
 import { GetStaticProps, GetStaticPropsContext } from "next";
@@ -21,7 +20,7 @@ const SingleBlogPost = (props: SingleBlogPostProps) => {
   }
   return (
     <MainLayout>
-      <div className={"bg-red-300 "}>
+      <div className={"bg-red-300"}>
         <div
           className={
             "grid sm:grid-col-1 lg:grid-cols-2 h-screen px-10 sm:px-10 lg:h-[550px] bg-gray-50 lg:px-2  "
@@ -65,7 +64,7 @@ const SingleBlogPost = (props: SingleBlogPostProps) => {
 export default SingleBlogPost;
 
 export const getStaticProps: GetStaticProps = async (
-  context: GetStaticPropsContext
+  context: GetStaticPropsContext,
 ) => {
   if (!context.params) {
     return {
