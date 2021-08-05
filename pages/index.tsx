@@ -67,6 +67,9 @@ const Home = (props: HomeProps) => {
         {featuredArticles.map((entry) => {
           return <BlogWidget key={entry.id} article={entry} />;
         })}
+        {featuredArticles.length === 0 && (
+          <div>Check back soon for some featured articles</div>
+        )}
       </div>
 
       {/* <Contact / */}
