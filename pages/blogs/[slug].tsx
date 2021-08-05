@@ -20,21 +20,17 @@ const SingleBlogPost = (props: SingleBlogPostProps) => {
   }
   return (
     <MainLayout>
-      <div className={"bg-red-300"}>
+      <div className={""}>
         <div
           className={
             "grid sm:grid-col-1 lg:grid-cols-2 h-screen px-10 sm:px-10 lg:h-[550px] bg-gray-50 lg:px-2  "
-          }
-        >
+          }>
           {/* Left column - Text introduction goes here*/}
 
-          <div
-            className={
-              "grid  sm:px-0 md:px-24 content-center bg-yellow-200 max-h-full"
-            }
-          >
+          <div className={"grid  sm:px-0 md:px-24 content-center  max-h-full"}>
             <h1 className={"lg:text-5xl  md:text-4xl text-2xl text-primary"}>
               <h1 className="text-4xl font-bold ">{props.article.title}</h1>
+              <h1 className="text-4xl font-bold ">{props.article.category}</h1>
               <h1 className="text-lg pb-5 pt-10 ">
                 {props.article.description}
               </h1>
@@ -49,7 +45,7 @@ const SingleBlogPost = (props: SingleBlogPostProps) => {
             </div>
           </div>
         </div>
-        <div className={"bg-yellow-400"}>
+        <div className={""}>
           <div className="prose-sm">
             <article className=" md:py-20 py-10 px-10 sm:py-10">
               <Markdown>{props.article.content}</Markdown>
@@ -64,7 +60,7 @@ const SingleBlogPost = (props: SingleBlogPostProps) => {
 export default SingleBlogPost;
 
 export const getStaticProps: GetStaticProps = async (
-  context: GetStaticPropsContext,
+  context: GetStaticPropsContext
 ) => {
   if (!context.params) {
     return {

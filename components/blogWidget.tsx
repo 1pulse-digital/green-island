@@ -17,8 +17,9 @@ type strapiLoaderParams = {
 };
 
 const strapiLoader = (params: strapiLoaderParams) => {
-  const urlBase = getStrapiURL();
-  return `${urlBase}${params.src}`;
+  // const urlBase = getStrapiURL();
+  // return `${urlBase}${params.src}`;
+  return params.src;
 };
 
 // Blog widget -
@@ -33,8 +34,7 @@ export const BlogWidget = (props: BlogWidgetProps) => {
     <div
       className={
         "relative overflow-hidden w-full max-w-sm sm:h-[490px] md:h-[570px] bg-white shadow-sm rounded-lg"
-      }
-    >
+      }>
       <div className={"h-full "} onClick={viewBlog}>
         <div className={"relative w-full h-72 bg-white mx-auto "}>
           <Image
@@ -51,8 +51,7 @@ export const BlogWidget = (props: BlogWidgetProps) => {
           <div
             className={
               "text-primary text-lg text-bol font-semibold line-clamp-2"
-            }
-          >
+            }>
             {props.article.title}
           </div>
           <div className={"text-sm line-clamp-3"}>
@@ -61,8 +60,7 @@ export const BlogWidget = (props: BlogWidgetProps) => {
           <div
             className={
               " inline-block bg-transparent text-blue-dark font-semibold uppercase hover:text-white hover:border-blue rounded "
-            }
-          >
+            }>
             {/*  {
               <div className={"grid grid-auto gap-2 py-4"}>
                 {props.article.tags.map((item) => (

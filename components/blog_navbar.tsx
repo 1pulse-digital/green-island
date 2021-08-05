@@ -1,27 +1,33 @@
-
-  const BlogNav = () => {
-    return (
-     <div className={"grid grid-cols-5"}>
-     <button className={"text-primary font-bold "}>
-     All Posts
-      </button>
-      <button className={"text-primary px-28 py-10 grid grid-cols-5 "}>
-      Microbiome
-      </button>
-      <button className={"text-primary px-28 py-10 grid grid-cols-5"}>
-      Recipe
-      </button>
-      <button className={"text-primary px-28 py-10 grid grid-cols-5"}>
-      Functional Health
-      </button>
-      <button className={"text-primary px-28 py-10 grid grid-cols-5"}>
-      Personal Transformation
-      </button>
+const BlogNav = () => {
+  return (
+    <div className={"md:grid grid-cols-5 sm:grid grid-cols-1 "}>
+      <div>
+        <a href=" " className=" text-primary font-bold px-24 py-10 grid">
+          All Posts
+        </a>
       </div>
-      
-    );
-  };
-  
-  export default BlogNav;
+      <div>
+        <a href=" " className=" text-primary font-bold px-24 py-10 grid">
+          Microbiome
+        </a>
+      </div>
+      <div>
+        <a href=" " className=" text-primary font-bold px-24 py-10 grid">
+          Recipe
+        </a>
+      </div>
+      <div>
+        <a href=" " className=" text-primary font-bold px-24 py-10 grid">
+          Functional Health
+        </a>
+      </div>
+      <div>
+        <a href=" " className=" text-primary font-bold px-24 py-10 grid">
+          Personal Transformation
+        </a>
+      </div>
+    </div>
+  );
+};
 
-  
+export default BlogNav;

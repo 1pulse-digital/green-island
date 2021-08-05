@@ -10,6 +10,7 @@ export interface Article {
   description: string;
   tags: Tag[];
   slug: string;
+  category: string;
 }
 
 export interface Tag {

@@ -15,7 +15,7 @@ export const Categories = () => {
         }
       >
         <Image objectFit="cover" src={infection} alt="infection management" />
-
+ 
         <button
           className={
             "absolute bg-secondary px-10 py-3 justify-self-center	self-center	rounded-full text-white hover:bg-white hover:text-secondary"
