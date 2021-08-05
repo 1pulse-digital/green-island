@@ -2,13 +2,13 @@
 import { Login } from "../components/login";
 // import Background from "../components/background";
 import { Footer } from "../components/footer";
-import Navbar2 from "../components/navbar2";
+import Navbar from "../components/navbar";
 
 const Logins = () => {
   return (
     //<MainLayout>
     <div>
-      <Navbar2 />
+      <Navbar />
       <Login />
       <Footer />
     </div>
