@@ -41,8 +41,6 @@ export const BlogWidget = (props: BlogWidgetProps) => {
             layout="fill"
             objectFit="cover"
             loader={strapiLoader}
-            // width={props.article.image.formats.thumbnail.width}
-            // height={props.article.image.formats.thumbnail.height}
             src={props.article.image.formats.thumbnail.url}
             alt={props.article.image.alternativeText}
           />
