@@ -1,70 +1,61 @@
 import { Product } from "../types/product";
 import Image from "next/image";
-import product1 from "../images/Amipro - Citricidal Liquid.jpg";
-import product2 from "../images/Amipro - Daily Vita Life.jpg";
-import product3 from "../images/Amipro - Magnazone Powder.jpg";
-import product4 from "../images/Amipro - Malic Acid Extra Strength.jpg";
 
 export interface ProductWidgetProps {
   product: Product;
 }
 
+type strapiLoaderParams = {
+  src: string;
+  width: number;
+  quality?: number;
+};
+
+const strapiLoader = (params: strapiLoaderParams) => {
+  // const urlBase = getStrapiURL();
+  // return `${urlBase}${params.src}`;
+  return params.src;
+};
+
+const prettyPrice = (price: number): string => {
+  return new Intl.NumberFormat("en-ZA", {
+    style: "currency",
+    currency: "ZAR",
+  }).format(price);
+};
+
 const ProductWidget = (props: ProductWidgetProps) => {
+  const { product } = props;
+
+  if (!product) {
+    return null;
+  }
+
   return (
-    <div className="  py-16  ">
-      <div className=" ">
+    <div className="w-[300px] h-[536px] rounded-md border-gray-100 border-2 overflow-hidden ">
+      <div className={"relative w-[300px] h-[300px] "}>
         <Image
-          className={""}
-          src={product1}
-          alt="cart"
-          height="250"
-          width="250"
+          layout="fill"
+          objectFit="cover"
+          loader={strapiLoader}
+          src={product.image.formats.small.url}
+          alt={product.image.alternativeText}
         />
-        {props.product.name}
-        {props.product.price}
+      </div>
+
+      <div className="px-5 py-6">
+        <p>{prettyPrice(product.price)}</p>
+        <p className="text-[#96A629]">In stock</p>
+        <span className="truncate">{product.name}</span>
+      </div>
+
+      <div className="">
         <button
           type="submit"
-          className="  h-12 px-20 font-medium tracking-wide text-white transition duration-200 rounded-full shadow-md bg-secondary hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none mt-4 ">
+          className="truncate h-12 px-20 font-medium tracking-wide text-white transition duration-200 rounded-full shadow-md bg-secondary hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none mt-4 ">
           Add to cart
         </button>
       </div>
-
-      {/* <div className={""}>
-        <Image
-          className={""}
-          src={product1}
-          alt="cart"
-          height="250"
-          width="250"
-        />
-        <p className={" font-semibold pt-2 px-4"}>R1234,55</p>
-        <p className={" text-green-400 px-4"}>In stock</p>
-        <p className={" font-semibold px-4"}>HelicoX</p>
-        <button
-          type="submit"
-          className="  h-12 px-20 font-medium tracking-wide text-white transition duration-200 rounded-full shadow-md bg-secondary hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none mt-4 ">
-          Add to cart
-        </button>
-      </div> */}
-
-      {/* <div>
-        <Image
-          className={" "}
-          src={product4}
-          alt="logo"
-          height="250"
-          width="250"
-        />
-        <p className={" font-semibold pt-2 px-4"}>R1234,55</p>
-        <p className={" text-green-400 px-4"}>In stock</p>
-        <p className={" font-semibold px-4"}>HelicoX</p>
-        <button
-          type="submit"
-          className="  h-12 px-20 font-medium tracking-wide text-white transition duration-200 rounded-full shadow-md bg-secondary hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none mt-4 ">
-          Add to cart
-        </button>
-      </div> */}
-      {/* next four products */}
     </div>
   );
 };
