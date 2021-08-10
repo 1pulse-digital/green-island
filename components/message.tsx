@@ -10,8 +10,7 @@ export const Message = () => {
       <div
         className={
           "grid  content-center   bg-gray-100  lg:px-12  text-lg pl-4 md:px-5  md:py-8  "
-        }
-      >
+        }>
         <p className={"text-md lg:pr-48 md:pr-32 grid sm:pt-8 "}>
           33 Highland Avenue<br></br> Bryanston Ext 8 <br></br>Johannesburg,
           Gauteng
@@ -92,22 +91,20 @@ export const Message = () => {
                 </div>
               </div>
               <div className="col-span-2">
-                <label className="text-gray-700" for="name">
+                <label className="text-gray-700" htmlFor="name">
                   <textarea
                     className=" border-b-2 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 "
                     id="comment"
                     placeholder="Message Here"
                     name="comment"
-                    rows="5"
-                    cols="40"
-                  ></textarea>
+                    rows={5}
+                    cols={40}></textarea>
                 </label>
               </div>
               <div className=" text-right">
                 <button
                   type="submit"
-                  className="py-2 px-4  bg-gray-600 hover:bg-gray-00 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
-                >
+                  className="py-2 px-4  bg-gray-600 hover:bg-gray-00 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
                   Submit
                 </button>
               </div>
@@ -123,9 +120,7 @@ export const Message = () => {
             width="2000"
             height="450"
             style={{ border: 0 }}
-            allowfullscreen=""
-            loading="lazy"
-          ></iframe>
+            loading="lazy"></iframe>
         </div>
       </div>
     </div>
