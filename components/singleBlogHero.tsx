@@ -2,8 +2,6 @@ import MainLayout from "../layouts/MainLayout";
 import Image from "next/image";
 import human from "../images/human.jpg";
 import { useRouter } from "next/router";
-import { fetchAPI } from "../../lib/api";
-import { Article } from "../../types/article";
 import Markdown from "markdown-to-jsx";
 
 export const SingleBlogHero = () => {
@@ -11,8 +9,7 @@ export const SingleBlogHero = () => {
     <div
       className={
         "grid sm:grid-col-1 lg:grid-cols-2 h-[350px] lg:h-[550px] bg-gray-50 lg:px-32 md:px-10 px-4 "
-      }
-    >
+      }>
       {/* Left column - Text introduction goes here*/}
 
       <div className={"grid  sm:px-0 content-center"}>

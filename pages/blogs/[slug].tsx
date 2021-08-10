@@ -4,12 +4,21 @@ import { Article } from "../../types/article";
 import Markdown from "markdown-to-jsx";
 import MainLayout from "../../layouts/MainLayout";
 import Image from "next/image";
-import human from "../../images/human.jpg";
 import { GetStaticProps, GetStaticPropsContext } from "next";
 
 export interface SingleBlogPostProps {
   article: Article;
 }
+
+type strapiLoaderParams = {
+  src: string;
+  width: number;
+  quality?: number;
+};
+
+const strapiLoader = (params: strapiLoaderParams) => {
+  return params.src;
+};
 
 const SingleBlogPost = (props: SingleBlogPostProps) => {
   const router = useRouter();
@@ -41,7 +50,13 @@ const SingleBlogPost = (props: SingleBlogPostProps) => {
 
           <div className={"relative grid content-center max-h-full"}>
             <div className={"lg:absolute top-0 bottom-0 right-0  w-full"}>
-              <Image layout="fill" objectFit="cover" src={human} />
+              <Image
+                layout="fill"
+                objectFit="cover"
+                loader={strapiLoader}
+                src={props.article.image.formats.small.url}
+                alt={props.article.image.alternativeText}
+              />
             </div>
           </div>
         </div>

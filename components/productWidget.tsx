@@ -12,8 +12,6 @@ type strapiLoaderParams = {
 };
 
 const strapiLoader = (params: strapiLoaderParams) => {
-  // const urlBase = getStrapiURL();
-  // return `${urlBase}${params.src}`;
   return params.src;
 };
 
