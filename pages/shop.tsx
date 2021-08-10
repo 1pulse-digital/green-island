@@ -33,13 +33,15 @@ const Shop = (props: ShopProps) => {
   return (
     <MainLayout>
       <ShopBanner />
+      <div className={"flex "}>
+        <ShopSidebar />
 
-      <div className="flex gap-8">
-        {products.map((p: Product) => {
-          return <ProductWidget key={p.id} product={p} />;
-        })}
+        <div className="p-2 md:grid grid-cols-4  md:px-32 py-2 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4   ">
+          {products.map((p: Product) => {
+            return <ProductWidget key={p.id} product={p} />;
+          })}
+        </div>
       </div>
-      <ShopSidebar />
       <Suppliers />
     </MainLayout>
   );
