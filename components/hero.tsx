@@ -16,28 +16,32 @@ export const Hero = () => {
           <div className={"grid"}>
             <h1
               className={
-                "md:text-5xl pb-4 z-10  sm: text-3xl   md:px-2 text-primary font-bold"
-              }
-            >
-              Perfect health is within your grasp.
+                "md:text-7xl z-10  sm: text-3xl   md:px-2 text-primary font-medium"
+              }>
+              Perfect health is
             </h1>
-            <p className={"z-10 text-2xl mt-8 text-gray-700"}>
+            <h1
+              className={
+                "md:text-7xl z-10  sm: text-3xl   md:px-2 text-primary font-medium"
+              }>
+              within your grasp.
+            </h1>
+            <p className={"z-10 text-[20px] mt-8 text-gray-700 font-light"}>
               We empower our patients with the tools to heal themselves,{" "}
               <br></br>and the knowledge to own their health.
             </p>
             <div className="relative  my-8 sm:w-1/2 ">
               <input
                 type="search"
-                className="bg-white shadow rounded-full border-0 p-3 sm:w-1/2 md:w-1/2 "
-                placeholder="Search products by: symptoms..."
-              ></input>
+                className="bg-white shadow rounded-full border-0 p-3 w-1/2"
+                placeholder="Search products by: symptoms..."></input>
               <div className="absolute pin-r pin-t mt-3  text-purple-lighter"></div>
             </div>
             <div className=" text-right z-10 justify-self-start">
+             
               <button
                 type="submit"
-                className="py-2 px-10 mt-8 sm:w-full bg-primary hover:bg-secondary focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white  transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-full  hover:text-white"
-              >
+                className="py-2 px-8 sm:w-full bg-primary hover:bg-secondary focus:ring-secondary focus:ring-offset-indigo-200 text-white  transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-full  hover:text-white">
                 Shop all
               </button>
             </div>
