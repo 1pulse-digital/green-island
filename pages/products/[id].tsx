@@ -2,23 +2,16 @@ import React from "react";
 import { GetStaticProps, GetStaticPropsContext } from "next";
 import { fetchAPI } from "../../lib/api";
 
-
-interface SingleProductProps {
-}
+interface SingleProductProps {}
 
 const SingleProduct = (props: SingleProductProps) => {
-  return (
-    <div>
-
-    </div>
-  );
+  return <div></div>;
 };
-
 
 export default SingleProduct;
 
 export const getStaticProps: GetStaticProps = async (
-  context: GetStaticPropsContext,
+  context: GetStaticPropsContext
 ) => {
   if (!context.params) {
     return {
@@ -26,21 +19,19 @@ export const getStaticProps: GetStaticProps = async (
     };
   }
 
-  const [article] = await Promise.all([
-    fetchAPI(`/products/${context.params.slug}`),
+  const [products] = await Promise.all([
+    fetchAPI(`/products/${context.params.id}`),
   ]);
 
   return {
-    props: { article },
+    props: { products },
     revalidate: 1,
   };
 };
 
 export async function getStaticPaths() {
   return {
-    paths: [
-      { params: { id: 1 } }, // See the "paths" section below
-    ],
-    fallback: true, //true or false // See the "fallback" section below
+    paths: [{ params: { id: "1" } }],
+    fallback: true,
   };
 }

@@ -1,6 +1,11 @@
 import { Author } from "./author";
 import { Picture } from "./picture";
 
+export interface Category {
+  name: string;
+  slug: string;
+}
+
 export interface Article {
   id: number;
   author: Author;
@@ -10,7 +15,7 @@ export interface Article {
   description: string;
   tags: Tag[];
   slug: string;
-  category: string;
+  category: Category;
 }
 
 export interface Tag {

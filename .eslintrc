@@ -5,8 +5,6 @@
     "react/no-unknown-property": "off",
     "jsx-a11y/alt-text": "off",
     "@next/next/no-html-link-for-pages": "off",
-    "@next/next/no-img-element": "off",
-    "@next/next/google-font-display": "off",
-    "@next/next/no-page-custom-font": "off"
+    "@next/next/no-img-element": "off"
   }
 }

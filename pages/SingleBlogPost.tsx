@@ -12,6 +12,10 @@ const SingleBlogPost = (props: SingleBlogPostProps) => {
   const router = useRouter();
   const { slug } = router.query;
 
+  if (!props.article) {
+    return <div>Loading</div>;
+  }
+
   return (
     <MainLayout>
       <div>
@@ -27,24 +31,3 @@ const SingleBlogPost = (props: SingleBlogPostProps) => {
 };
 
 export default SingleBlogPost;
-
-export async function getStaticProps() {
-  // Run API calls in parallel
-  const [article] = await Promise.all([
-    fetchAPI("/articles/this-shrimp-is-awesome"),
-  ]);
-
-  return {
-    props: { article },
-    revalidate: 1,
-  };
-}
-
-export async function getStaticPaths() {
-  return {
-    paths: [
-      { params: { slug: "this-shrimp-is-awesome" } }, // See the "paths" section below
-    ],
-    fallback: false, //true or false // See the "fallback" section below
-  };
-}
