@@ -9,7 +9,6 @@ export const Map = () => {
         width="2000"
         height="450"
         style={{ border: 0 }}
-        allowfullscreen=""
         loading="lazy"
       ></iframe>
     </div>
