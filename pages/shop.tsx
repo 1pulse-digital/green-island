@@ -20,7 +20,6 @@ const useProducts = () => {
 
 const Shop = (props: ShopProps) => {
   const { products, isLoading, error } = useProducts();
-  console.log({ products });
 
   if (isLoading) {
     return <div>Loading</div>;
