@@ -3,25 +3,48 @@ import link from "next/link";
 
 export const UserProfile = () => {
   return (
-    <div className={"bg-gray-200 h-[1000px]"}>
+    <div className={"bg-gray-100 h-[1000px]"}>
       <h6 className={"text-4xl pb-8 grid px-24 py-12   "}>Edit Profile</h6>
-      <div className={"grid grid-cols-2"}>
+      <div className={"grid md:grid-cols-3 sm:grid grid-cols-1"}>
         {/* Left column with profile menu */}
-        <div className={"bg-gray-400 h-[400px] w-1/4  ml-24 semibold"}>
-          <div className={"py-10 px-10 "}>
-            My Details<br></br>
-            <br></br>
-            My Orders <br></br>
-            <br></br>
-            Wish List<br></br>
-            <br></br>
-            Medical Aid Details
+        <div className={"bg-gray-300 h-[250px] w-2/3 ml-24 semibold py-12"}>
+          <div className={"py-2"}>
+            <a
+              href=" "
+              className=" text-primary text-lg font-semi-bold px-10 py-10  ">
+              My Details
+            </a>
+          </div>
+          <div className={"py-2"}>
+            <a
+              href=" "
+              className=" text-primary text-lg font-semi-bold px-10  ">
+              My Orders
+            </a>
+          </div>
+          <div className={"py-2"}>
+            <a
+              href=" "
+              className=" text-primary text-lg font-semi-bold px-10   ">
+              Wish List
+            </a>
+          </div>
+          <div className={"py-2"}>
+            <a
+              href=" "
+              className=" text-primary text-lg font-semi-bold px-10  ">
+              Medical Aid Details
+            </a>
           </div>
         </div>
+
         {/* Right column with form */}
 
-        <div className={" "}>
-          <div className="grid  grid-cols-2 gap-6  mr-24 w-11/12  px-10 bg-white py-12  ">
+        <div
+          className={
+            " md:grid-cols-3 col-span-2 md:mr-24 sm:mr sm:grid-cols-1  "
+          }>
+          <div className="grid  grid-cols-2 gap-6  mr-24  w-full px-10 bg-white py-12   ">
             <div className="col-span-2 lg:col-span-1">
               <div className=" relative ">
                 First Name *

@@ -22,8 +22,7 @@ export const Footer = (props: FooterProps) => {
               />
               <button
                 type="submit"
-                className="  h-12 px-12 font-medium tracking-wide text-white transition duration-200 rounded-full shadow-md bg-secondary hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none mt-4  "
-              >
+                className="  h-12 px-12 font-medium tracking-wide text-white transition duration-200 rounded-full shadow-md bg-secondary hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none mt-4  ">
                 Subscribe
               </button>
             </form>
@@ -33,24 +32,21 @@ export const Footer = (props: FooterProps) => {
                 <li>
                   <a
                     href="/"
-                    className="text-white transition-colors duration-300 hover:text-deep-purple-accent-200 "
-                  >
+                    className="text-white transition-colors duration-300 hover:text-deep-purple-accent-200 ">
                     Shop Account
                   </a>
                 </li>
                 <li>
                   <a
                     href="/shop"
-                    className="text-white transition-colors duration-300 hover:text-deep-purple-accent-200"
-                  >
+                    className="text-white transition-colors duration-300 hover:text-deep-purple-accent-200">
                     All Products
                   </a>
                 </li>
                 <li>
                   <a
                     href="/"
-                    className="text-white transition-colors duration-300 hover:text-deep-purple-accent-200"
-                  >
+                    className="text-white transition-colors duration-300 hover:text-deep-purple-accent-200">
                     COVID-19 Kit
                   </a>
                 </li>
@@ -61,24 +57,21 @@ export const Footer = (props: FooterProps) => {
                 <li>
                   <a
                     href="/about"
-                    className="text-white transition-colors duration-300 hover:text-deep-purple-accent-200"
-                  >
+                    className="text-white transition-colors duration-300 hover:text-deep-purple-accent-200">
                     About
                   </a>
                 </li>
                 <li>
                   <a
                     href="/contact"
-                    className="text-white transition-colors duration-300 hover:text-deep-purple-accent-200"
-                  >
+                    className="text-white transition-colors duration-300 hover:text-deep-purple-accent-200">
                     Contact Us
                   </a>
                 </li>
                 <li>
                   <a
                     href="/blogs"
-                    className="text-white transition-colors duration-300 hover:text-deep-purple-accent-200"
-                  >
+                    className="text-white transition-colors duration-300 hover:text-deep-purple-accent-200">
                     Blogs
                   </a>
                 </li>
@@ -89,17 +82,14 @@ export const Footer = (props: FooterProps) => {
                 Follow us
                 <a
                   href="/"
-                  className="text-white-500 transition-colors duration-300 hover:text-teal-accent-400 flex py-4 space-x-3"
-                >
+                  className="text-white-500 transition-colors duration-300 hover:text-teal-accent-400 flex py-4 space-x-3">
                   <a
                     href="/"
-                    className="text-white-500 transition-colors duration-300 hover:text-teal-accent-400 "
-                  >
+                    className="text-white-500 transition-colors duration-300 hover:text-teal-accent-400 ">
                     <svg
                       viewBox="0 0 24 24"
                       fill="currentColor"
-                      className="h-5"
-                    >
+                      className="h-5">
                       <path d="M22,0H2C0.895,0,0,0.895,0,2v20c0,1.105,0.895,2,2,2h11v-9h-3v-4h3V8.413c0-3.1,1.893-4.788,4.659-4.788 c1.325,0,2.463,0.099,2.795,0.143v3.24l-1.918,0.001c-1.504,0-1.795,0.715-1.795,1.763V11h4.44l-1,4h-3.44v9H22c1.105,0,2-0.895,2-2 V2C24,0.895,23.105,0,22,0z" />
                     </svg>
                   </a>
@@ -114,14 +104,20 @@ export const Footer = (props: FooterProps) => {
         </div>
 
         <div className="flex flex-col justify-between pt-5 pb-10 border-t border-white-800 sm:flex-row px-10">
-          <p className="text-sm text-white">
-            © 2021 Perfect Health Practice • Sitemap • Privacy Policy
+          <p className="text-sm text-white ">
+            © 2021 Perfect Health Practice • Sitemap
+            <div>
+              <a href=" " className=" text-primary font-bold px-24 py-10 grid">
+                Functional Health
+              </a>
+            </div>
+            <div className={""}>• Privacy Policy</div>
+            <div>• Terms and Conditions</div>
           </p>
           <div className="flex items-center mt-4 space-x-4 sm:mt-0">
             <a
               href="/"
-              className="text-white transition-colors duration-300 hover:text-teal-accent-400"
-            >
+              className="text-white transition-colors duration-300 hover:text-teal-accent-400">
               <p className="text-sm text-white">
                 Developed and design by 1Pulse Digital
               </p>
