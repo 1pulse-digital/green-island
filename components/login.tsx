@@ -5,8 +5,7 @@ export const Login = () => {
     <div
       className={
         " sm:grid  grid-cols-2 md:h-[700px] sm:h-96  w-full bg-gray-100 content-center"
-      }
-    >
+      }>
       <div className={" px-10  mr-10  text-lg  "}>
         <h6 className={"text-4xl pb-8 grid  "}>Login or create an account</h6>
         <div className={"bg-white py-10 px-10 "}>
@@ -20,14 +19,12 @@ export const Login = () => {
             <div className=" relative md:w-1/3 sm:1/2 ">
               <a
                 href="http://localhost:3000/reg"
-                className=" py-2 mt-16 px-4  border border-secondary  bg-white-600 hover:bg-gray-00 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-gray  transition ease-in duration-200 text-center text-base font-semibold focus:outline-none focus:ring-2 focus:ring-offset-2 flex "
-              >
+                className=" py-2 mt-16 px-4  border border-secondary  bg-white-600 hover:bg-gray-00 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-gray  transition ease-in duration-200 text-center text-base font-semibold focus:outline-none focus:ring-2 focus:ring-offset-2 flex ">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="h-5 w-5 "
+                  className="h-5 w-5 "
                   viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
+                  fill="currentColor">
                   <path
                     fill-rule="evenodd"
                     d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
@@ -82,14 +79,12 @@ export const Login = () => {
                 <div className=" text-right">
                   <button
                     type="submit"
-                    className="py-2 px-20 rounded-full  bg-secondary hover:bg-gray-00 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white  transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 flex justify-start   mt-2"
-                  >
+                    className="py-2 px-20 rounded-full  bg-secondary hover:bg-gray-00 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white  transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 flex justify-start   mt-2">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="h-5 w-5"
                       viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
+                      fill="currentColor">
                       <path d="M10 2a5 5 0 00-5 5v2a2 2 0 00-2 2v5a2 2 0 002 2h10a2 2 0 002-2v-5a2 2 0 00-2-2H7V7a3 3 0 015.905-.75 1 1 0 001.937-.5A5.002 5.002 0 0010 2z" />
                     </svg>
                     Login
