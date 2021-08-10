@@ -1,9 +1,10 @@
 import Head from "next/head";
 import Hero from "../components/hero";
 import { About } from "../components/about";
-import { Featured } from "../components/featured";
+import { FeaturedProducts } from "../components/featuredProducts";
 
 import { BlogWidget } from "../components/blogWidget";
+import { Product } from "../types/product";
 
 import { fetchAPI } from "../lib/api";
 import { Article } from "../types/article";
@@ -19,11 +20,13 @@ const searchClient = algoliasearch(
 
 export interface HomeProps {
   articles?: Article[];
+  featuredProducts?: Product[];
 }
 
 const Home = (props: HomeProps) => {
   // Use the first 4 articles as featured articles
   const featuredArticles = props.articles ? props.articles.slice(0, 4) : [];
+  const featuredProducts = props.featuredProducts?.slice(0, 4);
 
   return (
     <MainLayout>
@@ -41,8 +44,7 @@ const Home = (props: HomeProps) => {
         <link
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.3.1/themes/reset-min.css"
-          integrity="sha256-t2ATOGCtAIZNnzER679jwcFcKYfLlw01gli6F6oszk8="
-        ></link>
+          integrity="sha256-t2ATOGCtAIZNnzER679jwcFcKYfLlw01gli6F6oszk8="></link>
       </Head>
 
       <Hero />
@@ -55,15 +57,14 @@ const Home = (props: HomeProps) => {
       <About />
       <Categories />
       {/* <Products /> */}
-      <Featured />
+      <FeaturedProducts products={featuredProducts} />
       {/* <Blogs articles={props.articles} /> */}
 
       {/* Featured Blogs? */}
       <div
         className={
           "bg-white-800 p-2 md:grid grid-cols-4 gap-8 md:px-28 py-2 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4  "
-        }
-      >
+        }>
         {featuredArticles.map((entry) => {
           return <BlogWidget key={entry.id} article={entry} />;
         })}
@@ -81,14 +82,15 @@ export default Home;
 
 export async function getStaticProps() {
   // Run API calls in parallel
-  const [articles, categories, homepage] = await Promise.all([
+  const [articles, featuredProducts, categories, homepage] = await Promise.all([
     fetchAPI("/articles?featured=true"),
+    fetchAPI("/products?featured=true"),
     fetchAPI("/categories"),
     fetchAPI("/homepage"),
   ]);
 
   return {
-    props: { articles, categories, homepage },
+    props: { articles, featuredProducts, categories, homepage },
     revalidate: 1,
   };
 }
