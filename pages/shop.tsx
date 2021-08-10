@@ -20,6 +20,7 @@ const useProducts = () => {
 
 const Shop = (props: ShopProps) => {
   const { products, isLoading, error } = useProducts();
+  console.log({ products });
 
   if (isLoading) {
     return <div>Loading</div>;
@@ -36,10 +37,12 @@ const Shop = (props: ShopProps) => {
       <div className={"flex "}>
         <ShopSidebar />
 
-        <div className="p-2 md:grid grid-cols-4  md:px-32 py-2 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4   ">
-          {products.map((p: Product) => {
-            return <ProductWidget key={p.id} product={p} />;
-          })}
+        <div className="p-4">
+          <div className="flex flex-wrap gap-4">
+            {products.map((p: Product) => {
+              return <ProductWidget key={p.id} product={p} />;
+            })}
+          </div>
         </div>
       </div>
       <Suppliers />
