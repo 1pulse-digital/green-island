@@ -32,16 +32,10 @@ const Home = (props: HomeProps) => {
 
       <Hero />
 
-      {/* <InstantSearch searchClient={searchClient} indexName="test_1pulse">
-        <SearchBox />
-        <Hits />
-      </InstantSearch> */}
-
       <About />
       <Categories />
       {/* <Products /> */}
       <FeaturedProducts products={featuredProducts} />
-      {/* <Blogs articles={props.articles} /> */}
 
       {/* Featured Blogs? */}
       <div
@@ -65,15 +59,14 @@ export default Home;
 
 export async function getStaticProps() {
   // Run API calls in parallel
-  const [articles, featuredProducts, categories, homepage] = await Promise.all([
+  const [articles, featuredProducts, categories] = await Promise.all([
     fetchAPI("/articles?featured=true"),
     fetchAPI("/products?featured=true"),
-    fetchAPI("/categories"),
-    fetchAPI("/homepage"),
+    fetchAPI("/article-categories"),
   ]);
 
   return {
-    props: { articles, featuredProducts, categories, homepage },
+    props: { articles, featuredProducts, categories },
     revalidate: 1,
   };
 }

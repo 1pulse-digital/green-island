@@ -11,6 +11,8 @@ import { BlogWidget } from "../components/blogWidget";
 import { fetchAPI } from "../lib/api";
 import { Article } from "../types/article";
 import BlogNav from "../components/blog_navbar";
+import { ArticleCategory } from "../types/articleCategory";
+import { useState } from "react";
 
 // Blog Hero Banner
 
@@ -68,37 +70,46 @@ const MobileBanner = () => {
 
 export interface BlogsProps {
   articles: Article[];
+  articleCategories: ArticleCategory[];
 }
 
 const Blogs = (props: BlogsProps) => {
+  const [articles, setArticles] = useState(props.articles);
+  const [selectedCategory, setSelectedCategory] = useState("All Posts");
+
+  const selectCategory = (name: string) => {
+    // setSelectedCategory(name);
+    console.log(`selectCategory: ${name}`);
+  };
+
   return (
     <MainLayout>
-    <div>
-      <Banner />
-
-      <MobileBanner />
       <div>
-        {/* <h1>Latest recipes</h1> */}
-        {/* Blog cards goes here */}
-        {/* <div className="grid grid-cols-1 gap-x-4 lg:gap-x-12 gap-y-12 sm:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-4 justify-items-center "> */}
+        <Banner />
+        <MobileBanner />
+
         <div>
-     
-        <BlogNav />
 
-          <div className={"px-28 py-10 grid grid-cols-5"}>
+          <div>
+            <BlogNav
+              categories={props.articleCategories}
+              onSelect={selectCategory}
+            />
+
+            <div className={"px-28 py-10 grid grid-cols-5"}>
+            </div>
+            <div className="flex justify-center flex-wrap gap-x-4 lg:gap-x-12 gap-y-12 ">
+              {articles.map((item) => (
+                <BlogWidget key={item.id} article={item} />
+              ))}
+            </div>
           </div>
-          <div className="flex justify-center flex-wrap gap-x-4 lg:gap-x-12 gap-y-12 ">
-            {props.articles.map((item) => (
-              <BlogWidget key={item.id} article={item} />
-            ))}
-          </div>
+          {/* <h1>Most popular</h1> */}
+          <div>{/* Blog cards goes here */}</div>
+
+          <div>{/* <div>Load more</div> */}</div>
         </div>
-        {/* <h1>Most popular</h1> */}
-        <div>{/* Blog cards goes here */}</div>
-
-        <div>{/* <div>Load more</div> */}</div>
       </div>
-    </div>
     </MainLayout>
   );
 };
@@ -107,10 +118,16 @@ export default Blogs;
 
 export async function getStaticProps() {
   // Run API calls in parallel
-  const [articles] = await Promise.all([fetchAPI("/articles")]);
+  const [articles, articleCategories] = await Promise.all([
+    fetchAPI("/articles"),
+    fetchAPI("/article-categories"),
+  ]);
 
   return {
-    props: { articles },
+    props: {
+      articles,
+      articleCategories,
+    },
     revalidate: 1,
   };
 }

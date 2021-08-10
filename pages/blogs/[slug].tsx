@@ -75,7 +75,7 @@ const SingleBlogPost = (props: SingleBlogPostProps) => {
 export default SingleBlogPost;
 
 export const getStaticProps: GetStaticProps = async (
-  context: GetStaticPropsContext
+  context: GetStaticPropsContext,
 ) => {
   if (!context.params) {
     return {

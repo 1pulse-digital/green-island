@@ -1,5 +1,4 @@
 import { useRouter } from "next/router";
-import { fetchAPI } from "../lib/api";
 import { Article } from "../types/article";
 import Markdown from "markdown-to-jsx";
 import MainLayout from "../layouts/MainLayout";
@@ -9,9 +8,6 @@ export interface SingleBlogPostProps {
 }
 
 const SingleBlogPost = (props: SingleBlogPostProps) => {
-  const router = useRouter();
-  const { slug } = router.query;
-
   if (!props.article) {
     return <div>Loading</div>;
   }

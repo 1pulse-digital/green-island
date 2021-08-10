@@ -98,33 +98,26 @@ export default function Navbar() {
                 <Link href="/">
                   <a>Home</a>
                 </Link>
-                <a
-                  href="#"
-                  className="text-base font-medium text-gray-500 hover:text-gray-900"
-                >
-                  <Link href="/about">
-                    <a>About</a>
-                  </Link>
-                </a>
-                <a
-                  href="#"
-                  className="text-base font-medium text-gray-500 hover:text-gray-900"
-                >
-                  <Link href="/shop">
-                    <a>Shop</a>
-                  </Link>
-                </a>
+                <Link href="/about">
+                  <a className="text-base font-medium text-gray-500 hover:text-gray-900">
+                    About
+                  </a>
+                </Link>
+                <Link href="/shop">
+                  <a className="text-base font-medium text-gray-500 hover:text-gray-900">
+                    Shop
+                  </a>
+                </Link>
 
-                <a
-                  href="#"
-                  className="text-base font-medium text-gray-500 hover:text-gray-900"
-                >
-                  <Link href="/blogs">
-                    <a>Blog</a>
-                  </Link>
-                </a>
+                <Link href="/blogs">
+                  <a className="text-base font-medium text-gray-500 hover:text-gray-900">
+                    Blog
+                  </a>
+                </Link>
                 <Link href="/contact">
-                  <a>Contact</a>
+                  <a className="text-base font-medium text-gray-500 hover:text-gray-900">
+                    Contact
+                  </a>
                 </Link>
               </Popover.Group>
 
