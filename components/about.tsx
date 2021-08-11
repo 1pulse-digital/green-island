@@ -4,50 +4,49 @@ import bottle from "../images/bottle.png";
 
 export const About = () => {
   return (
-    <div className={" h-[750px] sm:grid-cols-2 "}>
-      <div className={"grid bg-gray-50"}>
-        <div className={"grid sm:grid-cols-1 md:grid-cols-2 h-[700px]  "}>
-          {/* Left column */}
-          <div className={"  grid content-center justify-center"}>
-            <div >
-              <Image src={bottle} alt="homeropath icon" />
-            </div>
-          </div>
-          <div className={" content-center  px-10  grid"}>
-            <h1
-              className={
-                "md:text-5xl pb-4 font-medium  grid sm: text-3xl text-primary"
-              }
-            >
-              Your body is incredible.
-            </h1>
-            <p
-              className={
-                "mr-32 content-center  grid sm:max-w-sm md:max-w-md text-gray-700 font-light"
-              }
-            >
-              It is capable of healing itself. To access this power ​you must
-              remove the obstacles in its way, provide the tools it needs for
-              the job.
-            </p>
-            <p
-              className={
-                "mr-32 content-center  grid sm:max-w-sm md:max-w-md text-gray-700 font-light pt-4"
-              }
-            >
-              That’s what we help you to do!
-            </p>
-            <div className="flex items-center">
+    <div className={"grid h-full md:h-[700px] w-full content-center"}>
+      <div className={"grid grid-cols-1 md:grid-cols-2 "}>
+        {/* Left column - Bottle icon */}
+
+        <div className={"grid justify-self-center py-10"}>
+          <Image src={bottle} alt="homeopath bottle icon" />
+        </div>
+
+        {/* Right column text */}
+
+        <div className={" grid content-center font-karla p-10 md:max-w-prose "}>
+          <h1
+            className={
+              "md:text-5xl py-4 font-medium text-4xl text-primary text-center md:text-left"
+            }>
+            Your body is incredible.
+          </h1>
+          <p
+            className={
+              "text-gray-700 text-center md:text-left font-karla text-[18px]"
+            }>
+            It is capable of healing itself. To access this power ​you must
+            remove the obstacles in its way, provide the tools it needs for the
+            job.
+          </p>
+          <p
+            className={
+              "content-center text-gray-700 font-karla pt-4 text-center md:text-left text-[18px]"
+            }>
+            That’s what we help you to do!
+          </p>
+          <div className="pt-5">
+            <a href="/about" className={"flex items-center justify-center md:justify-start"}>
               <button
                 type="submit"
-                className="inline-flex items-center justify-items-start h-12 px-6 mr-6 font-medium tracking-wide text-white transition duration-200  shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none  absolute bg-primary text-gray p-2 rounded-full hover:bg-secondary  mt-32  "
-              >
+                className=" font-karla px-6 mr-6 font-normal tracking-wide text-white transition duration-200 shadow-md 
+                bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none bg-primary 
+                text-gray p-2 rounded-full hover:bg-secondary  ">
                 More about us
               </button>
-            </div>
+            </a>
           </div>
         </div>
-        {/* Right column */}
       </div>
     </div>
   );
