@@ -1,11 +1,32 @@
 import React from "react";
 import { GetStaticProps, GetStaticPropsContext } from "next";
 import { fetchAPI } from "../../lib/api";
+import { Product } from "../../types/product";
+import MainLayout from "../../layouts/MainLayout";
+import ProductWidget1 from "../../components/ProductWidget1";
+import { FeaturedProducts } from "../../components/featuredProducts";
 
-interface SingleProductProps {}
+interface SingleProductProps {
+  product: Product;
+  featuredProducts?: Product[];
+}
 
 const SingleProduct = (props: SingleProductProps) => {
-  return <div></div>;
+  const { product, featuredProducts } = props;
+
+  if (!product) {
+    return <div>Still loading</div>;
+  }
+  return (
+    <MainLayout>
+      <div className=" ">
+        {/* array slice */}
+        {/* array slice */}
+        <ProductWidget1 product={product} />
+        <FeaturedProducts products={featuredProducts} />
+      </div>
+    </MainLayout>
+  );
 };
 
 export default SingleProduct;
@@ -19,12 +40,13 @@ export const getStaticProps: GetStaticProps = async (
     };
   }
 
-  const [products] = await Promise.all([
+  const [product, featuredProducts] = await Promise.all([
     fetchAPI(`/products/${context.params.id}`),
+    fetchAPI("/products?featured=true"),
   ]);
 
   return {
-    props: { products },
+    props: { product, featuredProducts },
     revalidate: 1,
   };
 };

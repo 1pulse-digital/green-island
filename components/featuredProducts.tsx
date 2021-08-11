@@ -21,14 +21,13 @@ export const FeaturedProducts = (props: FeaturedProductsProps) => {
   const { products } = props;
 
   if (!products) {
-    return <div>No featured products at this time. Check back soon</div>
+    return <div>No featured products at this time. Check back soon</div>;
   }
 
   return (
-    <div
-      className={" pt-8 pb-32 bg-gray-100 justify-center items-center pl-48 "}>
+    <div className={" pt-8  bg-gray-100 justify-center items-center px-10 "}>
       <div className={" flex p-10 "}>
-        <div className="flex flex-wrap gap-4">
+        <div className="flex flex-wrap gap-20">
           {products.map((p: Product) => {
             return <ProductWidget key={p.id} product={p} />;
           })}
