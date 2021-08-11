@@ -67,13 +67,13 @@ const DesktopBanner = () => {
         <div className={"grid"}>
           <h1
             className={
-              "text-5xl lg:text-7xl z-10  text-primary font-normal font-karla"
+              "text-5xl lg:text-7xl z-10 text-primary font-normal font-karla"
             }>
             Perfect health is
           </h1>
           <h1
             className={
-              "text-5xl lg:text-7xl z-10  text-primary font-normal font-karla"
+              "text-5xl lg:text-7xl z-10 text-primary font-normal font-karla"
             }>
             within your grasp.
           </h1>
@@ -87,7 +87,7 @@ const DesktopBanner = () => {
           <div className="relative py-4 w-[650px]">
             <input
               type="search"
-              className="bg-white shadow rounded-full border-0 py-2 px-8 w-[320px] font-karla"
+              className="bg-white rounded-full py-2 px-8 w-[320px] font-karla"
               placeholder="Search products by: symptoms"></input>
           </div>
           <div className=" text-right z-10 justify-self-start">
@@ -107,7 +107,7 @@ const DesktopBanner = () => {
 
 export const Hero = () => {
   return (
-    <div className={"h-[500px] md:h-[800px] bg-gray-500"}>
+    <div className={"h-[700px] bg-gray-500"}>
      
       {/* <div
         className={
