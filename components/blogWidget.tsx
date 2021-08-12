@@ -2,8 +2,11 @@ import React from "react";
 import Image from "next/image";
 
 import { Article } from "../types/article";
-import { getStrapiURL } from "../lib/api";
 import { useRouter } from "next/router";
+import Link from "next/link";
+
+import { Button } from "../components/button";
+
 
 export interface BlogWidgetProps {
   article: Article;
@@ -32,7 +35,7 @@ export const BlogWidget = (props: BlogWidgetProps) => {
   return (
     <div
       className={
-        "relative overflow-hidden w-full max-w-sm sm:h-[490px] md:h-[450px] bg-white rounded-lg"
+        "relative overflow-hidden w-full max-w-sm sm:h-[490px] md:h-[500px] bg-white rounded-lg hover:shadow-2xl cursor-pointer "
       }>
       <div className={"h-full "} onClick={viewBlog}>
         <div className={"relative w-full h-64 bg-white "}>
@@ -60,9 +63,12 @@ export const BlogWidget = (props: BlogWidgetProps) => {
             }>
 
             <div className={"sm:absolute bottom-1 "}>
-              <button className={"text-secondary uppercase text-sm"}>
-              Read More
-              </button>
+            <Link href="/blogs">
+            <a>
+              <button className={"text-secondary hover:text-primary py-5"}
+              >Read more</button>
+            </a>
+          </Link>
             </div>
           </div>
         </div>
