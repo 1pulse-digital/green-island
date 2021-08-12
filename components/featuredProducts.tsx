@@ -5,6 +5,7 @@ import { fetchAPI } from "../lib/api";
 import { Product } from "../types/product";
 import ProductWidget from "./productWidget";
 
+
 const useProducts = () => {
   const { data, error } = useSWR("/products?featured=true", fetchAPI);
   return {
@@ -25,9 +26,17 @@ export const FeaturedProducts = (props: FeaturedProductsProps) => {
   }
 
   return (
-    <div className={" pt-8  bg-gray-100 justify-center items-center px-10 "}>
-      <div className={" flex p-10 "}>
-        <div className="flex flex-wrap gap-20">
+    <div className={" px-4 md:py-20 md:px-20  bg-gray-100  "}>
+      <div className={"font-karla"}>
+        <h1
+          className={
+            "pt-20 md:pt-0 md:text-5xl pb-20 font-medium text-4xl text-primary md:text-left"
+          }>
+          Featured products
+        </h1>
+      </div>
+      <div>
+        <div className="flex flex-wrap gap-4 justify-center">
           {products.map((p: Product) => {
             return <ProductWidget key={p.id} product={p} />;
           })}

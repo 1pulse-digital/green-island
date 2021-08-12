@@ -4,7 +4,7 @@ import bottle from "../images/bottle.png";
 
 export const About = () => {
   return (
-    <div className={"grid h-full md:h-[700px] w-full content-center"}>
+    <div className={"grid h-full md:h-[700px] w-full content-center bg-gray-50"}>
       <div className={"grid grid-cols-1 md:grid-cols-2 "}>
         {/* Left column - Bottle icon */}
 

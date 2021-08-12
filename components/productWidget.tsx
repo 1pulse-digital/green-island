@@ -1,5 +1,6 @@
 import { Product } from "../types/product";
 import Image from "next/image";
+import { Button } from "../components/button";
 
 export interface ProductWidgetProps {
   product: Product;
@@ -30,8 +31,9 @@ const ProductWidget = (props: ProductWidgetProps) => {
   }
 
   return (
-    <div className="ml-16 my-10 w-[300px] h-[536px] rounded-md border-gray-100 border-2 overflow-hidden  ">
-      <div className={"relative w-[300px] h-[300px] "}>
+    <div className=" w-[200px] md:w-auto md:h-auto rounded-md border-gray-100 overflow-hidden bg-white ">
+      <div
+        className={"relative w-[200px] h-[200px] md:w-[290px] md:h-[290px] "}>
         <Image
           layout="fill"
           objectFit="cover"
@@ -41,18 +43,15 @@ const ProductWidget = (props: ProductWidgetProps) => {
         />
       </div>
 
-      <div className="px-5 py-6">
+      <div className="px-5 py-6 text-center md:text-left">
         <p>{prettyPrice(product.price)}</p>
         <p className="text-[#96A629]">In stock</p>
         <span className="truncate">{product.name}</span>
       </div>
 
-      <div className="">
-        <button
-          type="submit"
-          className="truncate h-12 px-20 font-medium tracking-wide text-white transition duration-200 rounded-full shadow-md bg-secondary hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none mt-4 ">
-          Add to cart
-        </button>
+      <div className="p-5">
+        <Button className={" w-full"}> Add to cart</Button>
+
       </div>
     </div>
   );

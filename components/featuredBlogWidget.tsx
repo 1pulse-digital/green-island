@@ -5,6 +5,9 @@ import { Article } from "../types/article";
 import { getStrapiURL } from "../lib/api";
 import { useRouter } from "next/router";
 
+import { Button } from "../components/button";
+
+
 export interface BlogWidgetProps {
   article: Article;
 }
@@ -30,12 +33,13 @@ export const BlogWidget = (props: BlogWidgetProps) => {
     router.push(`/blogs/${props.article.slug}`);
   };
   return (
+    
     <div
       className={
-        "relative overflow-hidden w-full max-w-sm sm:h-[490px] md:h-[450px] bg-white rounded-lg"
+        "relative overflow-hidden w-full max-w-sm sm:h-[490px] md:h-[570px] bg-white shadow-sm rounded-lg"
       }>
       <div className={"h-full "} onClick={viewBlog}>
-        <div className={"relative w-full h-64 bg-white "}>
+        <div className={"relative w-full h-72 bg-white mx-auto "}>
           <Image
             layout="fill"
             objectFit="cover"
@@ -58,11 +62,21 @@ export const BlogWidget = (props: BlogWidgetProps) => {
             className={
               " inline-block bg-transparent text-blue-dark font-semibold uppercase hover:text-white hover:border-blue rounded "
             }>
-
-            <div className={"sm:absolute bottom-1 "}>
-              <button className={"text-secondary uppercase text-sm"}>
-              Read More
-              </button>
+            {/*  {
+              <div className={"grid grid-auto gap-2 py-4"}>
+                {props.article.tags.map((item) => (
+                  <span
+                    className={
+                      " rounded-full text-gray-700 bg-gray-200 px-2 py-1 text-sm"
+                    }
+                  >
+                    #{item.name}
+                  </span>
+                ))}
+              </div>
+            } */}
+            <div className={"sm:absolute bottom-6 left-6 "}>
+              <Button>Read More</Button>
             </div>
           </div>
         </div>
