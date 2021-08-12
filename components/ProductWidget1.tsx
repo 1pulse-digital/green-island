@@ -31,7 +31,7 @@ const ProductWidget1 = (props: ProductWidget1Props) => {
 
   return (
     <div className={"bg-gray-100-200 h-[1200px] w-full py-10"}>
-      <div className={"grid grid-cols-5 bg-gray-100   "}>
+      <div className={"grid grid-cols-5 bg-gray-50   "}>
         <div className={"relative col-span-1 h-[400px] bg-red-600 "}>
           <Image
             layout="fill"
@@ -51,12 +51,14 @@ const ProductWidget1 = (props: ProductWidget1Props) => {
           />
         </div>
         {/* product description */}
-        <div className=" px-20 py-20 col-span-2 bg-gray-100">
+        <div className=" px-20 py-20 col-span-2 bg-gray-50">
           <span className="truncate font-semibold text-3xl">
             {product.name}
           </span>
 
           <p className={"py-10 "}>{product.description}</p>
+          <p className={"py-2 font-semibold "}>{product.directions}</p>
+          <p className={"py-2 font-semibold pb-10"}>{product.warning}</p>
           <p className={"font-semibold text-2xl"}>
             <div className="relative inline-block text-left px-2">
               <div>
@@ -105,26 +107,45 @@ const ProductWidget1 = (props: ProductWidget1Props) => {
           </button>
         </div>
       </div>
-      <div className={"bg-white py-10 h-[400px] px-48 "}>
+      <div
+        className={
+          "bg-white py-10 h-[400px] px-20 grid grid-cols-1 sm:grid-cols-1 "
+        }>
         {/* accordion start */}
-        <div class="w-full flex sm:border-b sm:border-gray-300 relative flex-col sm:flex-row">
-          <div class="flex-1 sm:text-center font-medium pb-3 cursor-pointer hover:text-blue-400 false">
-            International
+        <div className="p-8">
+          <ul className="list-reset flex border-b">
+            <li class="p-0">
+              <a
+                className="bg-primary inline-block  py-4 px-32   hover:text-secondary focus:outline-none text-white border-b-2 font-medium border-primary"
+                data-select="one"
+                id="one"
+                href="javascript:void(1)">
+                MORE INFORMATION
+              </a>
+            </li>
+            <li className="p-0">
+              <a
+                className="bg-secondary inline-block  py-4 px-48  ml-10  hover:text-primary focus:outline-none text-white border-b-2 font-medium border-secondary"
+                data-select="two"
+                id="two"
+                href="javascript:void(0)">
+                REVIEWS
+              </a>
+            </li>
+          </ul>
+          <div className="content py-6">
+            <div id="tabs1">
+              <p className={" "}>{product.benefits}</p>
+            </div>
+            <div id="tabs2" className="d-none">
+              <p className={" "}>{product.benefits}</p>
+            </div>
           </div>
-          <p></p>
-          <div class="flex-1 sm:text-center font-medium pb-3 cursor-pointer hover:text-blue-400 false">
-            Local
-          </div>
-          <div class="flex-1 sm:text-center font-medium pb-3 cursor-pointer hover:text-blue-400 text-blue-400">
-            Global
-          </div>
-          <div class="flex-1 sm:text-center font-medium pb-3 cursor-pointer hover:text-blue-400 false">
-            Pencil
-          </div>
-          <div class="hidden sm:block absolute bottom-0 left-0 h-1 bg-blue-400 transition-transform duration-300 ease-out w-1/4 transform translate-x-double"></div>
         </div>
+
+        <div class="bg-white"></div>
+
         {/* acoordion end */}
-        <p className={"px-60 "}>{product.benefits}</p>
       </div>
     </div>
   );
