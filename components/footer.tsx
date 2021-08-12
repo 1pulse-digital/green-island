@@ -106,13 +106,16 @@ export const Footer = (props: FooterProps) => {
         <div className="flex flex-col justify-between pt-5 pb-10 border-t border-white-800 sm:flex-row px-10">
           <p className="text-sm text-white ">
             © 2021 Perfect Health Practice • Sitemap
-            <div>
-              <a href=" " className=" text-primary font-bold px-24 py-10 grid">
-                Functional Health
+            <div className={"py-2"}>
+              <a href="http://localhost:3000/privacy " className=" py-4 ">
+                Privacy Policy
               </a>
             </div>
-            <div className={""}>• Privacy Policy</div>
-            <div>• Terms and Conditions</div>
+            <div className={""}>
+              <a href="http://localhost:3000/terms " className="  ">
+                Terms and Conditions
+              </a>
+            </div>
           </p>
           <div className="flex items-center mt-4 space-x-4 sm:mt-0">
             <a

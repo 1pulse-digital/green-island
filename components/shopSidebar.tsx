@@ -56,186 +56,37 @@ export const ShopSidebar = () => {
           </div>
 
           {/* Shop by Prouct Type */}
-          <div>
+          <div className={"ml-6"}>
             <p className="text-black-900  pt-6 ml-2 w-full border-b-2 pb-2 border-gray-100 mb-4 text-md font-bold">
               Shop by product type
             </p>
-            <a
-              className="hover:text-gray-800 font-thin text-gray-500 dark:text-gray-400 hover:bg-gray-100 flex items-center p-2 my-4 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200 justify-start"
-              href="#">
-              <span className="text-left">
-                <svg
-                  width="20"
-                  height="20"
-                  fill="currentColor"
-                  viewBox="0 0 2048 1792"
-                  xmlns="http://www.w3.org/2000/svg"></svg>
-              </span>
-              {/* test1 */}
-              <div>
-                {/* TODO: Replace these repeating items with the <SingleItem /> component */}
-                <label className="flex items-center space-x-3 mb-3">
-                  <input
-                    type="checkbox"
-                    name="checked-demo"
-                    className=" bg-white bg-check h-6 w-6 border border-gray-300 rounded-md checked:bg-blue-500 checked:border-transparent focus:outline-none"
-                  />
-                  <span className="text-gray-700 dark:text-white font-normal">
-                    Multivitamins
-                  </span>
-                </label>
-                <label className="flex items-center space-x-3 mb-3">
-                  <input
-                    type="checkbox"
-                    name="checked-demo"
-                    className=" bg-white bg-check h-6 w-6 border border-gray-300 rounded-md checked:bg-pink-500 checked:border-transparent focus:outline-none"
-                  />
-                  <span className="text-gray-700 dark:text-white font-normal">
-                    Individual Nutrients
-                  </span>
-                </label>
-                <label className="flex items-center space-x-3 mb-3">
-                  <input
-                    type="checkbox"
-                    name="checked-demo"
-                    className=" bg-white bg-check h-6 w-6 border border-gray-300 rounded-md checked:bg-green-500 checked:border-transparent focus:outline-none"
-                  />
-                  <span className="text-gray-700 dark:text-white font-normal">
-                    Digestive Aids
-                  </span>
-                </label>
-                <label className="flex items-center space-x-3 mb-3">
-                  <input
-                    type="checkbox"
-                    name="checked-demo"
-                    className=" bg-white bg-check h-6 w-6 border border-gray-300 rounded-md checked:bg-yellow-500 checked:border-transparent focus:outline-none"
-                  />
-                  <span className="text-gray-700 dark:text-white font-normal">
-                    Probiotics
-                  </span>
-                </label>
-                <label className="flex items-center space-x-3 mb-3">
-                  <input
-                    type="checkbox"
-                    name="checked-demo"
-                    className=" bg-white bg-check h-6 w-6 border border-gray-300 rounded-md checked:bg-purple-500 checked:border-transparent focus:outline-none"
-                  />
-                  <span className="text-gray-700 dark:text-white font-normal">
-                    Prebiotics
-                  </span>
-                </label>
-                <label className="flex items-center space-x-3 mb-3">
-                  <input
-                    type="checkbox"
-                    name="checked-demo"
-                    className=" bg-white bg-check h-6 w-6 border border-gray-300 rounded-md checked:bg-black checked:border-transparent focus:outline-none"
-                  />
-                  <span className="text-gray-700 dark:text-white font-normal">
-                    Essential Fatty Acids
-                  </span>
-                </label>
-                <label className="flex items-center space-x-3 mb-3">
-                  <input
-                    type="checkbox"
-                    name="checked-demo"
-                    className=" bg-white bg-check h-6 w-6 border border-gray-300 rounded-md checked:bg-indigo-500 checked:border-transparent focus:outline-none"
-                  />
-                  <span className="text-gray-700 dark:text-white font-normal">
-                    Immune Enhancers
-                  </span>
-                </label>
-                <label className="flex items-center space-x-3 mb-3">
-                  <input
-                    type="checkbox"
-                    name="checked-demo"
-                    className=" bg-white bg-check h-6 w-6 border border-gray-300 rounded-md checked:bg-red-500 checked:border-transparent focus:outline-none"
-                  />
-                  <span className="text-gray-700 dark:text-white font-normal">
-                    Kid's health
-                  </span>
-                </label>
-              </div>
-              {/* tesst */}
-            </a>
+            <div>
+              <SingleItem title="Multivitamins" />
+              <SingleItem title=" Individual Nutrients" />
+              <SingleItem title="Digestive Aids" />
+              <SingleItem title=" Probiotics" />
+              <SingleItem title=" Prebiotics" />
+              <SingleItem title="Essential Fatty Acids" />
+              <SingleItem title="Immune Enhancers" />
+              <SingleItem title="Kid's health" />
+            </div>
           </div>
 
           {/* Forms */}
+
           <div className={"ml-6"}>
             <p className="text-black-900  w-full border-b-2 pb-2 border-gray-100 mb-4 text-md font-bold">
               Forms
             </p>
             {/* test1 */}
             <div>
-              <label className="flex items-center space-x-3 mb-3">
-                <input
-                  type="checkbox"
-                  name="checked-demo"
-                  className=" bg-white bg-check h-6 w-6 border border-gray-300 rounded-md checked:bg-blue-500 checked:border-transparent focus:outline-none"
-                />
-                <span className="text-gray-700 dark:text-white font-normal">
-                  Capsule
-                </span>
-              </label>
-              <label className="flex items-center space-x-3 mb-3">
-                <input
-                  type="checkbox"
-                  name="checked-demo"
-                  className=" bg-white bg-check h-6 w-6 border border-gray-300 rounded-md checked:bg-pink-500 checked:border-transparent focus:outline-none"
-                />
-                <span className="text-gray-700 dark:text-white font-normal">
-                  Softgel
-                </span>
-              </label>
-              <label className="flex items-center space-x-3 mb-3">
-                <input
-                  type="checkbox"
-                  name="checked-demo"
-                  className=" bg-white bg-check h-6 w-6 border border-gray-300 rounded-md checked:bg-green-500 checked:border-transparent focus:outline-none"
-                />
-                <span className="text-gray-700 dark:text-white font-normal">
-                  Tablet
-                </span>
-              </label>
-              <label className="flex items-center space-x-3 mb-3">
-                <input
-                  type="checkbox"
-                  name="checked-demo"
-                  className=" bg-white bg-check h-6 w-6 border border-gray-300 rounded-md checked:bg-yellow-500 checked:border-transparent focus:outline-none"
-                />
-                <span className="text-gray-700 dark:text-white font-normal">
-                  Powder
-                </span>
-              </label>
-              <label className="flex items-center space-x-3 mb-3">
-                <input
-                  type="checkbox"
-                  name="checked-demo"
-                  className=" bg-white bg-check h-6 w-6 border border-gray-300 rounded-md checked:bg-purple-500 checked:border-transparent focus:outline-none"
-                />
-                <span className="text-gray-700 dark:text-white font-normal">
-                  Shake
-                </span>
-              </label>
-              <label className="flex items-center space-x-3 mb-3">
-                <input
-                  type="checkbox"
-                  name="checked-demo"
-                  className=" bg-white bg-check h-6 w-6 border border-gray-300 rounded-md checked:bg-black checked:border-transparent focus:outline-none"
-                />
-                <span className="text-gray-700 dark:text-white font-normal">
-                  Liquid
-                </span>
-              </label>
-              <label className="flex items-center space-x-3 mb-3">
-                <input
-                  type="checkbox"
-                  name="checked-demo"
-                  className=" bg-white bg-check h-6 w-6 border border-gray-300 rounded-md checked:bg-indigo-500 checked:border-transparent focus:outline-none"
-                />
-                <span className="text-gray-700 dark:text-white font-normal">
-                  Granules
-                </span>
-              </label>
+              <SingleItem title=" Capsule" />
+              <SingleItem title=" Softgel" />
+              <SingleItem title=" Tablet" />
+              <SingleItem title="  Powder" />
+              <SingleItem title="Shake" />
+              <SingleItem title=" Liquid" />
+              <SingleItem title="Granules" />
             </div>
           </div>
         </nav>

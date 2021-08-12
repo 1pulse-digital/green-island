@@ -30,7 +30,7 @@ const ProductWidget = (props: ProductWidgetProps) => {
   }
 
   return (
-    <div className="w-[300px] h-[536px] rounded-md border-gray-100 border-2 overflow-hidden ">
+    <div className="ml-16 my-10 w-[300px] h-[536px] rounded-md border-gray-100 border-2 overflow-hidden  ">
       <div className={"relative w-[300px] h-[300px] "}>
         <Image
           layout="fill"
