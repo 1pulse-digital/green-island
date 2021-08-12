@@ -17,32 +17,31 @@ const SingleItem = ({ title }: { title: string }) => {
 
 export const ShopSidebar = () => {
   return (
-    <div className={"bg-gray-200 w-96 semibold h-full"}>
-      <div className="flex flex-col sm:flex-row sm:justify-start ">
-        <nav className="px-6">
+    <div className={"bg-gray-50 w-1/4 semibold h-full py-5"}>
+      <div className="flex flex-col sm:flex-row justify-center ">
+        <nav>
           {/* Search box */}
-          <div className="my-8">
+          <div className="my-8 ">
             <input
               type="search"
-              className="bg-white  border-2 p-3 w-full "
+              className="bg-white p-3 w-full"
               placeholder="Search products..."></input>
-            <div className=" pin-r pin-t mt-3 text-purple-lighter"></div>
           </div>
 
           {/* Shop by Category */}
-          <div className={"ml-6"}>
-            <p className="text-black-900 font-bold  w-full border-b-2 pb-2 border-gray-100  mb-4 text-md ">
+          <div>
+            <p className="text-primary font-bold  w-full pb-2   mb-4 text-2xl font-karla">
               Shop by Category
             </p>
 
             {/*  test */}
 
-            <div>
+            <div className={"font-karla"}>
               <SingleItem title="Hormonal Health" />
               <SingleItem title="Gut Health" />
               <SingleItem title="Skin Health" />
               <SingleItem title="Mental Health" />
-              <SingleItem title="Weight & Metabolism" />
+              <SingleItem title="Weight and Metabolism" />
               <SingleItem title="Detoxification" />
               <SingleItem title="Daily Care" />
               <SingleItem title="Immune Support" />
@@ -56,8 +55,8 @@ export const ShopSidebar = () => {
           </div>
 
           {/* Shop by Prouct Type */}
-          <div className={"ml-6"}>
-            <p className="text-black-900  pt-6 ml-2 w-full border-b-2 pb-2 border-gray-100 mb-4 text-md font-bold">
+          <div>
+            <p className="text-primary font-bold w-full my-10 text-2xl font-karla">
               Shop by product type
             </p>
             <div>
@@ -74,8 +73,8 @@ export const ShopSidebar = () => {
 
           {/* Forms */}
 
-          <div className={"ml-6"}>
-            <p className="text-black-900  w-full border-b-2 pb-2 border-gray-100 mb-4 text-md font-bold">
+          <div>
+            <p className="text-primary font-bold w-full my-10 text-2xl font-karla">
               Forms
             </p>
             {/* test1 */}
