@@ -6,6 +6,9 @@ import RobinKohler from "../images/drrobinkohler.jpg";
 import Bio from "../components/team_bios";
 import SimonWorkman from "../images/SimonWorkman.jpg";
 import BronwynKohler from "../images/BronwynKohler.jpg";
+import SindiNtozini from "../images/SindiNtozini.jpg";
+
+import Button from "../components/button";
 
 const about = () => {
   return (
@@ -15,8 +18,7 @@ const about = () => {
           <div
             className={
               "grid sm:grid-col-1 lg:grid-cols-2 h-[350px] lg:h-[550px] bg-gray-50 lg:px-32 md:px-10 px-4 "
-            }
-          >
+            }>
             {/* Left column - Text introduction goes here*/}
 
             <div className={"grid  sm:px-0 content-center"}>
@@ -28,82 +30,82 @@ const about = () => {
             {/* Right column - Hero image goes here*/}
 
             <div className={"relative grid content-center"}>
-              <div className={"lg:absolute top-0 bottom-0 right-0 left-28 w-full"}>
-                <Image layout="fill" objectFit="cover" src={running}/>
+              <div
+                className={"lg:absolute top-0 bottom-0 right-0 left-28 w-full"}>
+                <Image layout="fill" objectFit="cover" src={running} />
               </div>
             </div>
           </div>
 
           {/* Perfect Healh Story goes here*/}
+          <div className={"py-10  md:py-40 "}>
+            <div
+              className={"lg:px-32 md:px-10 px-4 pt-20 pb-10  text-gray-700"}>
+              <p>
+                After completing his Masters in Homeopathy at the University of
+                Johannesburg, Dr Kohler started consulting from the practice
+                rooms of a health shop. While these humble beginnings taught him
+                a great deal, the commercial environment was frenetic and he
+                could sense that his patients often felt harried. As he built up
+                his practice, he dreamed of having his own space, where he could
+                offer a calm, welcoming environment where patients would feel at
+                home. He and his wife Bronwyn searched for a place that felt
+                right, and finally found it in the quiet leafy suburb of
+                Bryanston.
+              </p>
+              <p>
+                They started Perfect Health together in 2010, with Robin
+                consulting, Bronwyn running the practice and their family
+                playing just across the garden. When Sindi Ntozini took over
+                reception in 2012, our core team was complete.
+              </p>
+              <br />
 
-          <div className={"lg:px-32 md:px-10 px-4 pt-20 pb-10  text-gray-700"}>
-            <p>
-              After completing his Masters in Homeopathy at the University of
-              Johannesburg, Dr Kohler started consulting from the practice rooms of
-              a health shop. While these humble beginnings taught him a great deal,
-              the commercial environment was frenetic and he could sense that his
-              patients often felt harried. As he built up his practice, he dreamed
-              of having his own space, where he could offer a calm, welcoming
-              environment where patients would feel at home. He and his wife Bronwyn
-              searched for a place that felt right, and finally found it in the
-              quiet leafy suburb of Bryanston.
-            </p>
-            <br/>
-            <p>
-              They started Perfect Health together in 2010, with Robin consulting,
-              Bronwyn running the practice and their family playing just across the
-              garden. When Sindi Ntozini took over reception in 2012, our core team
-              was complete.
-            </p>
-            <br/>
+              <p>
+                Our mission at Perfect Health is to help our patients understand
+                and master their own healing and health. Robin devotes many
+                hours to studying the deepest root causes of disease. He has
+                added the modalities of iridology, live blood analysis, genetic
+                analysis and functional testing to his skillset, and built up a
+                dispensary of the most effective herbal, nutritional, metabolic
+                and homeopathic tools available. Over the past 11 years, we have
+                built a highly regarded and successful Functional Health
+                practice that caters to patients from birth to old age.
+              </p>
+            </div>
 
-            <p>
-              Our mission at Perfect Health is to help our patients understand and
-              master their own healing and health. Robin devotes many hours to
-              studying the deepest root causes of disease. He has added the
-              modalities of iridology, live blood analysis, genetic analysis and
-              functional testing to his skillset, and built up a dispensary of the
-              most effective herbal, nutritional, metabolic and homeopathic tools
-              available. Over the past 11 years, we have built a highly regarded and
-              successful Functional Health practice that caters to patients from
-              birth to old age.
-            </p>
+            <div className={"flex content-center pb-10 lg:px-32 md:px-10 px-4"}>
+              <Button color={"primary"}> Meet the team</Button>
+
+              <button
+                className={
+                  "text-primary rounded-full py-2 px-4 hover:bg-primary"
+                }>
+                Our services
+              </button>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-4 w-4 self-center"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path
+                  strokeLinecap={"round"}
+                  strokeLinejoin={"round"}
+                  strokeWidth={"2"}
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </div>
           </div>
-
-          <div className={"flex content-center pb-10 lg:px-32 md:px-10 px-4"}>
-            <button
-              className={
-                "text-white font-light rounded-full py-2 px-4 hover:bg-primary bg-gray-600"
-              }
-            >
-              Meet the team
-            </button>
-            <button
-              className={"text-primary rounded-full py-2 px-4 hover:bg-primary"}
-            >
-              Our services
-            </button>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-4 w-4 self-center"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap={"round"}
-                strokeLinejoin={"round"}
-                strokeWidth={"2"}
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
-          </div>
-
           {/* Our Services goes here*/}
 
           <div className={"bg-gray-50 lg:px-32 md:px-10 px-4 pt-20 "}>
             <div>
-              <h1 className={"grid col-span-2 text-4xl pb-5 mg:pb-20 text-primary"}>
+              <h1
+                className={
+                  "grid col-span-2 text-4xl pb-5 mg:pb-20 text-primary"
+                }>
                 Our Services
               </h1>
             </div>
@@ -153,23 +155,22 @@ const about = () => {
             <div
               className={
                 "grid sm:grid-col-1 lg:grid-cols-2 md:mx-10 lg:mx-20 px-4 py-20"
-              }
-            >
+              }>
               <div className={"lg:text-right md:text-left lg:pr-10"}>
                 <h2
                   className={
                     "grid col-span-2 text-2xl pb-10 md:pb-20 text-primary "
-                  }
-                >
+                  }>
                   Tailorblend Shake Formulation
                 </h2>
               </div>
               <div>
                 <p className={"text-gray-700"}>
-                  Dr Kohler has teamed up with innovative nutritional specialists
-                  Tailorblend. Based on your consultation, Tailorblend can formulate
-                  an ideal blend of nutrients and natural medicines into a delicious
-                  shake or drink. Taking your supplements has never been easier.
+                  Dr Kohler has teamed up with innovative nutritional
+                  specialists Tailorblend. Based on your consultation,
+                  Tailorblend can formulate an ideal blend of nutrients and
+                  natural medicines into a delicious shake or drink. Taking your
+                  supplements has never been easier.
                 </p>
               </div>
             </div>
@@ -180,7 +181,7 @@ const about = () => {
           <div className={"grid grid-cols-1 md:grid-cols-2"}>
             <div className={"py-20 w-full"}>
               <div className={" lg:px-32"}>
-                <Image src={RobinKohler}/>
+                <Image src={RobinKohler} />
               </div>
             </div>
 
@@ -203,8 +204,7 @@ const about = () => {
           <div
             className={
               "grid grid-cols-1 md:grid-cols-2 bg-secondary py-20 content-center px-4"
-            }
-          >
+            }>
             {/* Dr Kohler's Mission Statement*/}
 
             <div>
@@ -214,15 +214,15 @@ const about = () => {
             </div>
             <div>
               <p className={"text-white"}>
-                “As a dad, I appreciate the weight that disease can put on a family.
-                Whether you’re trying to cope with a relentlessly sick toddler,
-                buckling under the weight of fatigue and stress, or watching your
-                health slip away to chronic illness far too soon, I will hear you. I
-                want to know your story, because you know yourself and your family
-                better than anyone. Once I understand where you have come from, I
-                can try to piece together the story of your health, discover the
-                root of your ailments and help you chart a course that will free you
-                from your disease burden.”
+                “As a dad, I appreciate the weight that disease can put on a
+                family. Whether you’re trying to cope with a relentlessly sick
+                toddler, buckling under the weight of fatigue and stress, or
+                watching your health slip away to chronic illness far too soon,
+                I will hear you. I want to know your story, because you know
+                yourself and your family better than anyone. Once I understand
+                where you have come from, I can try to piece together the story
+                of your health, discover the root of your ailments and help you
+                chart a course that will free you from your disease burden.”
               </p>
             </div>
           </div>
@@ -247,11 +247,10 @@ const about = () => {
             athletes, his practice offers treatment for the whole family, from the young to the elderly. Simon has a special interest in pain management
             and rehabilitation and works closely with other health professionals to ensure a rounded care model."
               />
-            </div>
-            {" "}
+            </div>{" "}
             <div className={"py-20 w-full"}>
               <div className={" lg:px-32"}>
-                <Image src={SimonWorkman}/>
+                <Image src={SimonWorkman} />
               </div>
             </div>
           </div>
@@ -261,7 +260,7 @@ const about = () => {
           <div className={"grid grid-cols-1 md:grid-cols-2 bg-gray-100"}>
             <div className={"py-20 w-full"}>
               <div className={" lg:px-32"}>
-                <Image src={BronwynKohler}/>
+                <Image src={BronwynKohler} />
               </div>
             </div>
             <div className={"grid content-center"}>
@@ -278,7 +277,6 @@ const about = () => {
 
           {/*Sindi Ntozini Bio */}
 
-
           <div className={"grid grid-cols-1 md:grid-cols-2"}>
             <div className={"grid content-center"}>
               <Bio
@@ -289,11 +287,10 @@ const about = () => {
             gets what they need when they need it, whether its an appointment, medication or a kind word. Her warmth and friendliness
             are part of what make Perfect Health a welcoming family practice."
               />
-            </div>
-            {" "}
+            </div>{" "}
             <div className={"py-20 w-full"}>
               <div className={" lg:px-32"}>
-                <Image src={SimonWorkman}/>
+                <Image src={SindiNtozini} />
               </div>
             </div>
           </div>
