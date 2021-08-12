@@ -30,7 +30,7 @@ export const FeaturedProducts = (props: FeaturedProductsProps) => {
       <div className={"font-karla "}>
         <h1
           className={
-            "pt-20 md:pt-0 md:text-5xl pb-20 font-medium text-4xl text-primary md:text-left"
+            "flex flex-col items-center pt-20 md:pt-0 md:text-5xl pb-20 font-medium text-4xl text-primary md:text-left"
           }>
           Featured products
         </h1>

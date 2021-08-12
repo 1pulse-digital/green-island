@@ -31,9 +31,9 @@ const ProductWidget = (props: ProductWidgetProps) => {
   }
 
   return (
-    <div className=" w-[160px] md:w-auto md:h-auto rounded-md border-gray-50 overflow-hidden bg-white hover:shadow-xl cursor-pointer ">
+    <div className="sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 rounded-md border-gray-50 overflow-hidden bg-white hover:shadow-xl cursor-pointer ">
       <div
-        className={"relative w-[160px] h-[160px] md:w-[290px] md:h-[290px] "}>
+        className={"relative h-[160px] md:w-[270px] md:h-[290px] "}>
         <Image
           layout="fill"
           objectFit="cover"
