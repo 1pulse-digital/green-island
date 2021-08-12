@@ -5,7 +5,6 @@ import mobileHero from "../images/perfect-health-mobile-banner.jpg";
 
 import { BeakerIcon } from "@heroicons/react/solid";
 
-
 const MobileBanner = () => {
   return (
     <div
@@ -48,7 +47,8 @@ const MobileBanner = () => {
           <a href="/shop">
             <button
               type="submit"
-              className="py-2 px-8 sm:w-full bg-primary hover:bg-secondary focus:ring-secondary focus:ring-offset-indigo-200 text-white  transition ease-in duration-200 text-center text-base font-normal shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-full  hover:text-white">
+              className="py-2 px-8 sm:w-full bg-primary hover:bg-secondary focus:ring-secondary focus:ring-offset-indigo-200 text-white 
+              transition ease-in duration-200 text-center text-base font-normal shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-full  hover:text-white">
               Shop all
             </button>
           </a>
@@ -95,9 +95,7 @@ const DesktopBanner = () => {
             <input
               type="search"
               className="bg-white rounded-full py-2 px-8 w-[320px] font-karla"
-              placeholder="Search products by: symptoms">
-            </input>
-
+              placeholder="Search products by: symptoms"></input>
           </div>
           <div className=" text-right z-10 justify-self-start">
             <a href="/shop">
@@ -117,20 +115,14 @@ const DesktopBanner = () => {
 export const Hero = () => {
   return (
     <div className={"h-[700px] bg-gray-500"}>
-      {/* <div
-        className={
-          "grid sm:h-full relative px-[50px] lg:px-[100px] content-center "
-        }> */}
 
       <div className="hidden md:block h-full">
         <DesktopBanner />
       </div>
 
-      <div className={"md:hidden bg-red-500 h-full"}>
+      <div className={"md:hidden h-full"}>
         <MobileBanner />
       </div>
-
-      {/* </div> */}
     </div>
   );
 };
