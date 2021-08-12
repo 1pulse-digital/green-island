@@ -3,9 +3,28 @@ import Image from "next/image";
 import hero from "../images/perfect-health-banner.jpg";
 import mobileHero from "../images/perfect-health-mobile-banner.jpg";
 
+import { BeakerIcon } from "@heroicons/react/solid";
+
+const MyComponent = () => {
+  return (
+    <div>
+      <input
+        type="search"
+        className="bg-white rounded-full py-2 px-8 w-[320px] font-karla"
+        placeholder="Search products by:symptoms"></input>
+      <BeakerIcon className="h-5 w-5 text-blue-500" />
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+</svg>
+      <p>This is the search icon</p>
+    </div>
+  );
+};
+
 const MobileBanner = () => {
   return (
-    <div className={"grid relative px-[50px] h-full lg:px-[100px] content-center"}>
+    <div
+      className={"grid relative px-[50px] h-full lg:px-[100px] content-center"}>
       <div>
         <Image
           layout="fill"
@@ -56,7 +75,10 @@ const MobileBanner = () => {
 
 const DesktopBanner = () => {
   return (
-    <div className={"grid relative px-[50px] h-full lg:px-[100px] content-center "}>
+    <div
+      className={
+        "grid relative px-[50px] h-full lg:px-[100px] content-center "
+      }>
       <div>
         <Image
           layout="fill"
@@ -67,13 +89,13 @@ const DesktopBanner = () => {
         <div className={"grid"}>
           <h1
             className={
-              "text-5xl lg:text-7xl z-10 text-primary font-normal font-karla"
+              "text-5xl lg:text-7xl z-10 text-primary font-medium font-karla"
             }>
             Perfect health is
           </h1>
           <h1
             className={
-              "text-5xl lg:text-7xl z-10 text-primary font-normal font-karla"
+              "text-5xl lg:text-7xl z-10 text-primary font-medium font-karla"
             }>
             within your grasp.
           </h1>
@@ -84,11 +106,14 @@ const DesktopBanner = () => {
             We empower our patients with the tools to heal themselves,
             <br></br>and the knowledge to own their health.
           </p>
-          <div className="relative py-4 w-[650px]">
+          <div className="relative flex py-4 w-[650px]">
             <input
               type="search"
               className="bg-white rounded-full py-2 px-8 w-[320px] font-karla"
-              placeholder="Search products by: symptoms"></input>
+              placeholder="Search products by: symptoms">
+            </input>
+            <BeakerIcon className="h-5 w-5 text-blue-500" />
+
           </div>
           <div className=" text-right z-10 justify-self-start">
             <a href="/shop">
@@ -108,22 +133,20 @@ const DesktopBanner = () => {
 export const Hero = () => {
   return (
     <div className={"h-[700px] bg-gray-500"}>
-     
       {/* <div
         className={
           "grid sm:h-full relative px-[50px] lg:px-[100px] content-center "
         }> */}
 
-        <div className="hidden md:block h-full">
-          <DesktopBanner />
-        </div>
+      <div className="hidden md:block h-full">
+        <DesktopBanner />
+      </div>
 
-        <div className={"md:hidden bg-red-500 h-full"}>
-          <MobileBanner />
-        </div>
+      <div className={"md:hidden bg-red-500 h-full"}>
+        <MobileBanner />
+      </div>
 
       {/* </div> */}
-
     </div>
   );
 };
