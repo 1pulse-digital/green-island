@@ -26,3 +26,7 @@ The app will auto build and deploy when the `main` branch is pushed to.
 ```bash
 git push
 ```
+
+## Useful links
+- [TailwindCSS](https://tailwindcss.com/) - Tailwind css website
+- [HeadlessUI](https://headlessui.dev/) - Tailwind React helpers
