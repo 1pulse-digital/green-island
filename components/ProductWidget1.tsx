@@ -1,6 +1,5 @@
 import { Product } from "../types/product";
 import Image from "next/image";
-import Example from "./example";
 
 export interface ProductWidget1Props {
   product: Product;
@@ -114,9 +113,9 @@ const ProductWidget1 = (props: ProductWidget1Props) => {
         }>
         {/* accordion start */}
 
-        <div>
-          <Example />
-        </div>
+        {/*<div>*/}
+        {/*  <Example />*/}
+        {/*</div>*/}
         {/* <div className="p-8">
           <ul className="list-reset flex border-b">
             <li className="p-0">

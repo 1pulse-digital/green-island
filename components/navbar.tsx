@@ -1,7 +1,7 @@
 import React from "react";
 
 import Link from "next/link";
-import cart from "../images/cart.png";
+
 import wishlist from "../images/wishlist.png";
 import Image from "next/image";
 import logo from "../images/logo.png";
@@ -19,6 +19,7 @@ import {
   XIcon,
 } from "@heroicons/react/outline";
 import { useCartContext } from "../contexts/cartContext";
+import { ShoppingCart } from "./shoppingCart";
 
 const solutions = [
   {
@@ -88,7 +89,7 @@ export default function Navbar() {
           {/* MAIN SECTION */}
 
           <div className="max-w-full px-4 sm:px-6 ">
-            <div className="flex justify-between items-center  border-gray-100 py-2 md:justify-start md:space-x-20 ">
+            <div className="flex justify-between items-center border-gray-100 py-2 md:justify-start md:space-x-20 ">
               {/* MOBILE HAMBURGER MENU - WE STILL NEED TO MAKE THE NAVBAR WORK */}
 
               <div className="lg:hidden">
@@ -134,15 +135,9 @@ export default function Navbar() {
 
               {/* SHOP MENU */}
 
-              <div className=" flex items-center justify-end sm:flex-1 lg:w-0  gap-x-4 ">
-                <span className={"relative"}>
-                  <Image src={cart} alt="cart" />
-                    <span
-                      className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">
-                      {cartCount}
-                    </span>
+              <div className="flex items-center justify-end sm:flex-1 lg:w-0 gap-x-8">
 
-                </span>
+                <ShoppingCart />
 
                 <Image src={wishlist} alt="logo" />
                 <a
