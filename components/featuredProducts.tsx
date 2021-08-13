@@ -26,17 +26,17 @@ export const FeaturedProducts = (props: FeaturedProductsProps) => {
   }
 
   return (
-    <div className={" px-4 md:py-20 md:px-20  bg-gray-100  "}>
-      <div className={"font-karla"}>
+    <div className={"px-4 md:py-20 md:px-20 bg-gray-100 "}>
+      <div className={"font-karla "}>
         <h1
           className={
-            "pt-20 md:pt-0 md:text-5xl pb-20 font-medium text-4xl text-primary md:text-left"
+            "flex flex-col items-center pt-20 md:pt-0 md:text-5xl pb-20 font-medium text-4xl text-primary md:text-left"
           }>
           Featured products
         </h1>
       </div>
-      <div>
-        <div className="flex flex-wrap gap-4 justify-center">
+      <div className={"w-full"}>
+        <div className="flex flex-wrap gap-4">
           {products.map((p: Product) => {
             return <ProductWidget key={p.id} product={p} />;
           })}

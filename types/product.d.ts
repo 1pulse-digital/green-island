@@ -14,4 +14,7 @@ export interface Product {
   updated_at: Date;
   variation: boolean;
   image: Picture;
+  directions: string;
+  warning: string;
+  benefits: string;
 }

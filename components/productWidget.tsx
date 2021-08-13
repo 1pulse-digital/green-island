@@ -33,9 +33,10 @@ const ProductWidget = (props: ProductWidgetProps) => {
   }
 
   return (
-    <div className=" w-[200px] md:w-auto md:h-auto rounded-md border-gray-100 overflow-hidden bg-white ">
+    <div
+      className="sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 rounded-md border-gray-50 overflow-hidden bg-white hover:shadow-xl cursor-pointer ">
       <div
-        className={"relative w-[200px] h-[200px] md:w-[290px] md:h-[290px] "}>
+        className={"relative h-[160px] md:w-[270px] md:h-[290px] "}>
         <Image
           layout="fill"
           objectFit="cover"
@@ -53,13 +54,12 @@ const ProductWidget = (props: ProductWidgetProps) => {
 
       <div className="p-5">
         <Button
+          color="secondary"
           className={" w-full"}
           onClick={() => {
             addToCart(product, 1);
           }}
-        >
-          Add to cart
-        </Button>
+        >Add to cart</Button>
       </div>
     </div>
   );
