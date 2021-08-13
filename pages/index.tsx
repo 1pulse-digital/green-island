@@ -21,7 +21,7 @@ export interface HomeProps {
 const Home = (props: HomeProps) => {
   // Use the first 4 articles as featured articles
   const featuredArticles = props.articles ? props.articles.slice(0, 4) : [];
-  const featuredProducts = props.featuredProducts?.slice(0, 4);
+  const featuredProducts = props.featuredProducts;
 
   return (
     <MainLayout>
@@ -39,6 +39,27 @@ const Home = (props: HomeProps) => {
       <FeaturedProducts products={featuredProducts} />
 
       {/* Featured Blogs? */}
+
+      <div
+        className={
+          "h-[700px] bg-primary flex  justify-center items-center text-center"
+        }>
+        <div>
+          <h1
+            className={
+              "text-5xl md:text-5xl z-10 text-white font-medium font-karla pb-10"
+            }>
+            What our clients have to say
+          </h1>
+          <div className={""}>
+          <p className={"italic text-2xl text-white font-light"}>
+            “Dr Robin is passionate about healing people, finding the cause of <br />
+            the problem and then addressing it. He explains everything so well <br />
+            really feel that at last there is hope.”
+          </p>
+          </div>
+        </div>
+      </div>
 
       <div className={"h-auto mlg:h-[700px] py-20 "}>
         <div className={"font-karla"}>
@@ -61,8 +82,11 @@ const Home = (props: HomeProps) => {
             <div>Check back soon for some featured articles</div>
           )}
         </div>
-        <div className={"flex flex-col items-start md:items-center pt-10 px-10 md:pt-20 "}>
-          <Button>Learn more</Button>
+        <div
+          className={
+            "flex flex-col items-start md:items-center pt-10 px-10 md:pt-20 "
+          }>
+          <Button color="primary">Learn more</Button>
         </div>
       </div>
     </MainLayout>
