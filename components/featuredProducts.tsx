@@ -26,7 +26,7 @@ export const FeaturedProducts = (props: FeaturedProductsProps) => {
   }
 
   return (
-    <div className={"px-4 md:py-20 md:px-20 bg-gray-100 "}>
+    <div className={"px-4 md:py-20 md:px-20 bg-gray-50 "}>
       <div className={"font-karla "}>
         <h1
           className={
