@@ -1,6 +1,10 @@
 import { Product } from "../types/product";
 import Image from "next/image";
 import Example from "./example";
+import { useState } from "react";
+import { Tab } from "@headlessui/react";
+import classnames from "classnames";
+import { ProductAdditionalInfo } from "./productAdditionalInfo";
 
 export interface ProductWidget1Props {
   product: Product;
@@ -32,8 +36,11 @@ const ProductWidget1 = (props: ProductWidget1Props) => {
 
   return (
     <div className={"bg-gray-100-200 h-[1200px] w-full py-10"}>
-      <div className={"grid grid-cols-5 bg-gray-50   "}>
-        <div className={"relative col-span-1 h-[400px] bg-red-600 "}>
+      <div
+        className={
+          "grid lg:grid-cols-5 sm:grid-cols-1 md:grid-cols-2 bg-gray-50   "
+        }>
+        <div className={"relative col-span-1 h-[400px]  "}>
           <Image
             layout="fill"
             objectFit="cover"
@@ -42,7 +49,7 @@ const ProductWidget1 = (props: ProductWidget1Props) => {
             alt={product.image.alternativeText}
           />
         </div>
-        <div className=" col-span-2 px-5 py-6 bg-yellow-500 relative  h-[700px]">
+        <div className=" col-span-2 px-5 py-6  relative  h-[700px]">
           <Image
             layout="fill"
             objectFit="cover"
@@ -52,7 +59,7 @@ const ProductWidget1 = (props: ProductWidget1Props) => {
           />
         </div>
         {/* product description */}
-        <div className=" px-20 py-20 col-span-2 bg-gray-50">
+        <div className=" lg:h-[700px] sm:h-[1500px] px-20 py-20 col-span-2 bg-gray-50">
           <span className="truncate font-semibold text-3xl">
             {product.name}
           </span>
@@ -110,45 +117,15 @@ const ProductWidget1 = (props: ProductWidget1Props) => {
       </div>
       <div
         className={
-          "bg-white py-10 h-[400px] px-20 grid grid-cols-1 sm:grid-cols-1 "
+          "bg-white py-2 h-[400px] px-20 grid grid-cols-1 sm:grid-cols-1 "
         }>
         {/* accordion start */}
 
         <div>
-          <Example />
+          <ProductAdditionalInfo product={product} />
         </div>
         {/* <div className="p-8">
-          <ul className="list-reset flex border-b">
-            <li className="p-0">
-              <a
-                className="bg-primary inline-block  py-4 px-32   hover:text-secondary focus:outline-none text-white border-b-2 font-medium border-primary"
-                data-select="one"
-                id="one"
-                href="javascript:void(1)">
-                MORE INFORMATION
-              </a>
-            </li>
-            <li className="p-0">
-              <a
-                className="bg-secondary inline-block  py-4 px-48  ml-10  hover:text-primary focus:outline-none text-white border-b-2 font-medium border-secondary"
-                data-select="two"
-                id="two"
-                href="javascript:void(0)">
-                REVIEWS
-              </a>
-            </li>
-          </ul>
-          <div className="content py-6">
-            <div id="tabs1">
-              <p className={" "}>{product.benefits}</p>
-            </div>
-            <div id="tabs2" className="d-none">
-              <p className={" "}>{product.benefits}</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-white"></div> */}
+         
 
         {/* acoordion end */}
       </div>
