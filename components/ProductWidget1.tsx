@@ -114,7 +114,7 @@ const ProductWidget1 = (props: ProductWidget1Props) => {
         {/* accordion start */}
         <div className="p-8">
           <ul className="list-reset flex border-b">
-            <li class="p-0">
+            <li className="p-0">
               <a
                 className="bg-primary inline-block  py-4 px-32   hover:text-secondary focus:outline-none text-white border-b-2 font-medium border-primary"
                 data-select="one"
@@ -143,7 +143,7 @@ const ProductWidget1 = (props: ProductWidget1Props) => {
           </div>
         </div>
 
-        <div class="bg-white"></div>
+        <div className="bg-white"></div>
 
         {/* acoordion end */}
       </div>

@@ -41,7 +41,7 @@ const MobileBanner = () => {
         <div className=" text-right z-10 justify-self-start">
           <Link href="/shop">
             <a>
-              <Button>Shop all</Button>
+              <Button color="primary">Shop all</Button>
             </a>
           </Link>
         </div>
@@ -68,7 +68,7 @@ const DesktopBanner = () => {
             className={
               "text-5xl lg:text-7xl z-10 text-primary font-medium font-karla"
             }>
-            Desktop Perfect health is <br />  within your grasp.
+            Desktop Perfect health is <br /> within your grasp.
           </h1>
           <p
             className={

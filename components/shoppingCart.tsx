@@ -143,7 +143,7 @@ export const ShoppingCart = () => {
                 </div>
                 <div className="p-4 py-10 justify-center flex">
                   <button
-                    class="text-base  undefined  hover:scale-110 focus:outline-none flex justify-center px-8 py-2 rounded font-bold cursor-pointer 
+                    className="text-base  undefined  hover:scale-110 focus:outline-none flex justify-center px-8 py-2 rounded font-bold cursor-pointer 
         hover:bg-teal-700 hover:text-white 
         bg-secondary 
         text-teal-700 

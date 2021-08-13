@@ -37,7 +37,7 @@ const Shop = (props: ShopProps) => {
         <ShopSidebar />
 
         <div className="p-20">
-          <p className={"font-karla pb-10"}>Home > Digestive</p>
+          <p className={"font-karla pb-10"}>Home Digestive</p>
           <div className="flex flex-wrap gap-4">
             {products.map((p: Product) => {
               return <ProductWidget key={p.id} product={p} />;
