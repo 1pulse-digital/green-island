@@ -1,6 +1,7 @@
 import { Product } from "../types/product";
 import Image from "next/image";
-import { Button } from "../components/button";
+import { Button } from "./button";
+import { useCartContext } from "../contexts/cartContext";
 
 export interface ProductWidgetProps {
   product: Product;
@@ -25,6 +26,7 @@ const prettyPrice = (price: number): string => {
 
 const ProductWidget = (props: ProductWidgetProps) => {
   const { product } = props;
+  const { addToCart, removeFromCart, clearCart } = useCartContext();
 
   if (!product) {
     return null;
@@ -50,8 +52,14 @@ const ProductWidget = (props: ProductWidgetProps) => {
       </div>
 
       <div className="p-5">
-        <Button className={" w-full"}> Add to cart</Button>
-
+        <Button
+          className={" w-full"}
+          onClick={() => {
+            addToCart(product, 1);
+          }}
+        >
+          Add to cart
+        </Button>
       </div>
     </div>
   );

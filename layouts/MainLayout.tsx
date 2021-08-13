@@ -1,8 +1,9 @@
 import { Footer } from "../components/footer";
 import Navbar from "../components/navbar";
+import { ReactNode } from "react";
 
 export interface MainLayoutProps {
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 const MainLayout = (props: MainLayoutProps) => {

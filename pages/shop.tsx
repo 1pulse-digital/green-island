@@ -29,7 +29,6 @@ const Shop = (props: ShopProps) => {
     return <div>Error: {JSON.stringify(error)}</div>;
   }
 
-  console.log("The products:", products);
   return (
     <MainLayout>
       <ShopBanner />
