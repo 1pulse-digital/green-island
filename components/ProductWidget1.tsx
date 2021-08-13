@@ -1,5 +1,6 @@
 import { Product } from "../types/product";
 import Image from "next/image";
+import Example from "./example";
 
 export interface ProductWidget1Props {
   product: Product;
@@ -112,7 +113,11 @@ const ProductWidget1 = (props: ProductWidget1Props) => {
           "bg-white py-10 h-[400px] px-20 grid grid-cols-1 sm:grid-cols-1 "
         }>
         {/* accordion start */}
-        <div className="p-8">
+
+        <div>
+          <Example />
+        </div>
+        {/* <div className="p-8">
           <ul className="list-reset flex border-b">
             <li className="p-0">
               <a
@@ -143,7 +148,7 @@ const ProductWidget1 = (props: ProductWidget1Props) => {
           </div>
         </div>
 
-        <div className="bg-white"></div>
+        <div className="bg-white"></div> */}
 
         {/* acoordion end */}
       </div>
