@@ -26,8 +26,8 @@ export const SecondFooter = (props: secondFooterProps) => {
         <div className="text-left md:text-right ">
           <a
             href="/"
-            className="text-white transition-colors duration-300 hover:text-teal-accent-400">
-            <p className="text-sm text-white pt-5 md:pt-0">
+            className="text-white transition-colors duration-300 hover:text-teal-accent-400 text-right">
+            <p className="text-sm text-white pt-5 md:pt-0 ">
               Developed and design by 1Pulse Digital
             </p>
             <p className="text-sm text-white">Photography by Dane Drevin</p>
