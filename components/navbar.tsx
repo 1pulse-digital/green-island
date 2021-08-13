@@ -1,5 +1,3 @@
-import React from "react";
-
 import Link from "next/link";
 
 import wishlist from "../images/wishlist.png";
@@ -7,80 +5,40 @@ import Image from "next/image";
 import logo from "../images/logo.png";
 import { Fragment } from "react";
 import { Popover, Transition } from "@headlessui/react";
-import {
-  ChartBarIcon,
-  CursorClickIcon,
-  MenuIcon,
-  PhoneIcon,
-  PlayIcon,
-  RefreshIcon,
-  ShieldCheckIcon,
-  ViewGridIcon,
-  XIcon,
-} from "@heroicons/react/outline";
-import { useCartContext } from "../contexts/cartContext";
+import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import { ShoppingCart } from "./shoppingCart";
+import { Button } from "./button";
+import { useRouter } from "next/router";
 
-const solutions = [
+const navigationItems = [
   {
     name: "Home",
     href: "/",
-
-    icon: ChartBarIcon,
   },
   {
     name: "About",
-
     href: "/about",
-    icon: CursorClickIcon,
   },
   {
     name: "Shop",
-
     href: "shop",
-    icon: ShieldCheckIcon,
   },
   {
     name: "Blogs",
-
     href: "blogs",
-    icon: ViewGridIcon,
   },
   {
     name: "Contact",
-
     href: "contact",
-    icon: RefreshIcon,
   },
 ];
-const callsToAction = [
-  { name: "Watch Demo", href: "#", icon: PlayIcon },
-  { name: "Contact Sales", href: "#", icon: PhoneIcon },
-];
-const resources = [
-  {
-    name: "",
 
-    href: "#",
-    icon: ShieldCheckIcon,
-  },
-];
-const recentPosts = [
-  { id: 1, name: "Boost your conversion rate", href: "#" },
-  {
-    id: 2,
-    name: "How to use search engine optimization to drive traffic to your site",
-    href: "#",
-  },
-  { id: 3, name: "Improve your customer experience", href: "#" },
-];
+const MobileNavMenu = () => {};
 
-// function classNames(...classes) {
-//   return classes.filter(Boolean).join(" ");
-// }
+const DesktopNavMenu = () => {};
 
-export default function Navbar() {
-  const { cartCount } = useCartContext();
+export const Navbar = () => {
+  const router = useRouter();
 
   return (
     <Popover className="relative bg-white z-20">
@@ -93,37 +51,25 @@ export default function Navbar() {
               {/* MOBILE HAMBURGER MENU - WE STILL NEED TO MAKE THE NAVBAR WORK */}
 
               <div className="lg:hidden">
-                <Popover.Button
-                  className=" rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-white hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500">
+                <Popover.Button className=" rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-white hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500">
                   <span className="sr-only">Open menu</span>
                   <MenuIcon className="h-6 w-6" aria-hidden="true" />
                 </Popover.Button>
               </div>
 
-              {/* DESKTOP MENU - WE STILL NEED TO MAKE THE NAVBAR WORK */}
-
-              <Popover.Group
-                as="nav"
-                className="hidden text-base lg:flex space-x-10 z-10 font-medium text-primary hover:font-bold ">
-                <Link href="/">
-                  <a>Home</a>
-                </Link>
-                <Link href="/about">
-                  <a className="font-medium hover:font-bold">About</a>
-                </Link>
-                <Link href="/shop">
-                  <a className="text-base font-medium hover:font-bold">Shop</a>
-                </Link>
-
-                <Link href="/blogs">
-                  <a className="text-base font-medium hover:font-bold">Blog</a>
-                </Link>
-                <Link href="/contact">
-                  <a className="text-base font-medium hover:font-bold">
-                    Contact
-                  </a>
-                </Link>
-              </Popover.Group>
+              {/* DESKTOP MENU */}
+              <nav className="hidden text-base lg:flex space-x-9 text-primary">
+                {/* Render all the navigationItems as <Link /> components */}
+                {navigationItems.map((item, idx) => {
+                  return (
+                    <Link key={idx} href={item.href}>
+                      <a className="bg-yellow-300 font-medium hover:font-bold">
+                        {item.name}
+                      </a>
+                    </Link>
+                  );
+                })}
+              </nav>
 
               {/* LOGO */}
 
@@ -136,15 +82,18 @@ export default function Navbar() {
               {/* SHOP MENU */}
 
               <div className="flex items-center justify-end sm:flex-1 lg:w-0 gap-x-8">
-
                 <ShoppingCart />
 
                 <Image src={wishlist} alt="logo" />
-                <a
-                  href="http://localhost:3000/logins"
-                  className=" hidden md:block md:ml-6 whitespace-nowrap  items-center px-8 justify-center  py-2 border border-transparent rounded-full shadow-sm text-base font-medium text-white bg-primary  hover:bg-secondary">
+
+                <Button
+                  className="hidden md:block md:ml-6 whitespace-nowrap"
+                  onClick={() => {
+                    router.push("/logins");
+                  }}
+                  color="primary">
                   Sign in
-                </a>
+                </Button>
               </div>
             </div>
           </div>
@@ -168,8 +117,7 @@ export default function Navbar() {
                     <Image src={logo} alt="logo" />
 
                     <div className="-mr-2">
-                      <Popover.Button
-                        className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                      <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
                         <span className="sr-only">Close menu</span>
                         <XIcon className="h-6 w-6" aria-hidden="true" />
                       </Popover.Button>
@@ -177,7 +125,7 @@ export default function Navbar() {
                   </div>
                   <div className="mt-6">
                     <nav className="grid gap-y-8">
-                      {solutions.map((item) => (
+                      {navigationItems.map((item) => (
                         <a
                           key={item.name}
                           href={item.href}
@@ -196,7 +144,7 @@ export default function Navbar() {
                 </div>
                 <div className="py-6 px-5 space-y-6">
                   <div className="grid grid-cols-2 gap-y-4 gap-x-8">
-                    {resources.map((item) => (
+                    {navigationItems.map((item) => (
                       <a
                         key={item.name}
                         href={item.href}
@@ -229,4 +177,4 @@ export default function Navbar() {
       )}
     </Popover>
   );
-}
+};

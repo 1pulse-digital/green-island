@@ -2,14 +2,16 @@
 import { Login } from "../components/login";
 // import Background from "../components/background";
 import { Footer } from "../components/footer";
-import Navbar from "../components/navbar";
+import { Navbar } from "../components/navbar";
 
 const Logins = () => {
   return (
     //<MainLayout>
-    <div>
+    <div className="flex flex-col h-screen">
       <Navbar />
-      <Login />
+      <div className="flex-grow">
+        <Login />
+      </div>
       <Footer />
     </div>
     //</MainLayout>

@@ -21,7 +21,6 @@ const strapiLoader = (params: strapiLoaderParams) => params.src;
 
 const CartItem = ({ item }: { item: CartItemType }) => {
   const { removeFromCart } = useCartContext();
-
   return (
     <div className="grid grid-cols-8 h-24 transition duration-150 ease-in-out rounded-lg hover:bg-gray-50">
       <div className="relative ring-primary ring-1 rounded-lg ring-offset-1">
@@ -73,7 +72,8 @@ export const ShoppingCart = () => {
               className={`p-2 inline-flex rounded-sm hover:ring-2 ring-primary`}>
               <Image src={cart} alt="cart" />
               {cartCount > 0 && (
-                <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/3 -translate-y-1/3 bg-secondary rounded-full">
+                <span
+                  className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/3 -translate-y-1/3 bg-secondary rounded-full">
                   {cartCount}
                 </span>
               )}
@@ -87,7 +87,8 @@ export const ShoppingCart = () => {
               leave="transition ease-in duration-150"
               leaveFrom="opacity-100 translate-y-0"
               leaveTo="opacity-0 translate-y-1">
-              <Popover.Panel className="absolute z-10 w-screen max-w-sm px-4 mt-3 -translate-x-3/4 sm:px-0 lg:max-w-3xl">
+              <Popover.Panel
+                className="absolute z-10 w-screen max-w-sm px-4 mt-3 -translate-x-3/4 sm:px-0 lg:max-w-3xl">
                 <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
                   {/* Cart Items */}
                   <div className="relative grid gap-4 bg-white p-4">
@@ -105,7 +106,8 @@ export const ShoppingCart = () => {
 
                   {/*  Cart summary */}
                   <div className="p-4 bg-gray-50">
-                    <div className="flow-root px-2 py-2 transition duration-150 ease-in-out rounded-md hover:bg-gray-100 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50">
+                    <div
+                      className="flow-root px-2 py-2 transition duration-150 ease-in-out rounded-md hover:bg-gray-100 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50">
                       <span className="flex items-center">
                         <span className="text-sm font-medium text-gray-900">
                           Cart Total
