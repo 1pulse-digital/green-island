@@ -9,7 +9,7 @@ export const Message = () => {
       {/* Left column */}
       <div
         className={
-          "grid  content-center   bg-gray-100  lg:px-12  text-lg pl-4 md:px-5  md:py-8  "
+          "grid content-center   bg-gray-100  lg:px-12  text-lg pl-4 md:px-5  md:py-8  "
         }>
         <p className={"text-md lg:pr-48 md:pr-32 grid sm:pt-8 "}>
           33 Highland Avenue<br></br> Bryanston Ext 8 <br></br>Johannesburg,
@@ -98,7 +98,7 @@ export const Message = () => {
                     placeholder="Message Here"
                     name="comment"
                     rows={5}
-                    cols={40}></textarea>
+                    cols={40} />
                 </label>
               </div>
               <div className=" text-right">
@@ -120,7 +120,7 @@ export const Message = () => {
             width="2000"
             height="450"
             style={{ border: 0 }}
-            loading="lazy"></iframe>
+            loading="lazy" />
         </div>
       </div>
     </div>

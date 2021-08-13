@@ -1,7 +1,7 @@
 import { Product } from "../types/product";
 import Image from "next/image";
-import { Button } from "../components/button";
-import { useRouter } from "next/router";
+import { Button } from "./button";
+import { useCartContext } from "../contexts/cartContext";
 
 export interface ProductWidgetProps {
   product: Product;
@@ -26,19 +26,17 @@ const prettyPrice = (price: number): string => {
 
 const ProductWidget = (props: ProductWidgetProps) => {
   const { product } = props;
-  const router = useRouter();
+  const { addToCart, removeFromCart, clearCart } = useCartContext();
 
   if (!product) {
     return null;
   }
-  const goToProduct = () => {
-    router.push(`/products/${product.id}`);
-  };
+
   return (
     <div
-      onClick={goToProduct}
       className="sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 rounded-md border-gray-50 overflow-hidden bg-white hover:shadow-xl cursor-pointer ">
-      <div className={"relative h-[160px] md:w-[270px] md:h-[290px] "}>
+      <div
+        className={"relative h-[160px] md:w-[270px] md:h-[290px] "}>
         <Image
           layout="fill"
           objectFit="cover"
@@ -55,10 +53,13 @@ const ProductWidget = (props: ProductWidgetProps) => {
       </div>
 
       <div className="p-5">
-        <Button color="secondary" className={" w-full"}>
-          {" "}
-          Add to cart
-        </Button>
+        <Button
+          color="secondary"
+          className={" w-full"}
+          onClick={() => {
+            addToCart(product, 1);
+          }}
+        >Add to cart</Button>
       </div>
     </div>
   );
