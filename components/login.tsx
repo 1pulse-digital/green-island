@@ -16,6 +16,7 @@ export const Login = () => {
             addresses, view and track your orders in your account and more.
             <div className=" relative py-7">
               <Button
+              color={"primary"}
                 className={
                   "flex flex-row items-center hover:bg-secondary hover:text-white"
                 }>
@@ -74,7 +75,7 @@ export const Login = () => {
                 </div>
 
                 <div className=" text-left">
-              <Button
+              <Button color={"primary"}
                 className={
                   "flex flex-row items-center hover:bg-secondary hover:text-white"
                 }>
