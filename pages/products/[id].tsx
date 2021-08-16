@@ -3,7 +3,8 @@ import { GetStaticProps, GetStaticPropsContext } from "next";
 import { fetchAPI } from "../../lib/api";
 import { Product } from "../../types/product";
 import MainLayout from "../../layouts/MainLayout";
-import ProductWidget1 from "../../components/ProductWidget1";
+import ProductWidget1 from "../../components/productWidget1";
+
 import { FeaturedProducts } from "../../components/featuredProducts";
 
 interface SingleProductProps {

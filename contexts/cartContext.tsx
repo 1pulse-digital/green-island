@@ -8,6 +8,12 @@ interface ContextType {
   clearCart: () => void;
   cartCount: number;
   cartItems: CartItemType[];
+
+  addToWishlist: (product: Product) => void;
+  removeFromWishlist: (productID: number) => void;
+  clearWishlist: () => void;
+  wishlistCount: number;
+  wishlistItems: WishlistItemType[];
 }
 
 const Context = React.createContext({} as ContextType);
@@ -17,9 +23,45 @@ export interface CartItemType {
   quantity: number;
 }
 
+export interface WishlistItemType {
+  product: Product;
+}
+
 function CartContext({ children }: { children?: React.ReactNode }) {
   const [cartItems, setCartItems] = useState<CartItemType[]>([]);
   const [cartCount, setCartCount] = useState(0);
+
+  const [wishlistCount, setWishlistCount] = useState(0);
+  const [wishlistItems, setWishlistItems] = useState<WishlistItemType[]>([]);
+
+  const addToWishlist = (product: Product) => {
+    // check if the item is already in the list
+    const existingItemIdx = wishlistItems.findIndex(
+      (item) => item.product.id === product.id
+    );
+    if (existingItemIdx >= 0) {
+      // do nothing
+    } else {
+      // add the new item (it's not in the list yet)
+      const updatedList = [...wishlistItems, { product: product }];
+      setWishlistItems(updatedList);
+      setWishlistCount(updatedList.length);
+    }
+  };
+
+  const removeFromWishlist = (productID: number) => {
+    //  Remove from cart completely
+    const updatedList = wishlistItems.filter(
+      (item) => item.product.id !== productID
+    );
+    setWishlistItems(updatedList);
+    setWishlistCount(updatedList.length);
+  };
+
+  const clearWishlist = () => {
+    setWishlistItems([]);
+    setWishlistCount(0);
+  };
 
   const addToCart = (product: Product, quantity: number) => {
     // check if the item is already in the list
@@ -72,6 +114,7 @@ function CartContext({ children }: { children?: React.ReactNode }) {
 
   const clearCart = () => {
     setCartItems([]);
+    setCartCount(0);
   };
 
   return (
@@ -82,6 +125,12 @@ function CartContext({ children }: { children?: React.ReactNode }) {
         removeFromCart: removeFromCart,
         cartCount: cartCount,
         cartItems: cartItems,
+
+        addToWishlist: addToWishlist,
+        clearWishlist: clearWishlist,
+        removeFromWishlist: removeFromWishlist,
+        wishlistCount: wishlistCount,
+        wishlistItems: wishlistItems,
       }}>
       {children}
     </Context.Provider>

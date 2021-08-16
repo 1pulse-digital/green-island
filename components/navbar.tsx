@@ -20,6 +20,7 @@ import {
 } from "@heroicons/react/outline";
 import { useCartContext } from "../contexts/cartContext";
 import { ShoppingCart } from "./shoppingCart";
+import { ProductWishlist } from "./ProductWishlist";
 
 const solutions = [
   {
@@ -93,8 +94,7 @@ export default function Navbar() {
               {/* MOBILE HAMBURGER MENU - WE STILL NEED TO MAKE THE NAVBAR WORK */}
 
               <div className="lg:hidden">
-                <Popover.Button
-                  className=" rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-white hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500">
+                <Popover.Button className=" rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-white hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500">
                   <span className="sr-only">Open menu</span>
                   <MenuIcon className="h-6 w-6" aria-hidden="true" />
                 </Popover.Button>
@@ -136,10 +136,9 @@ export default function Navbar() {
               {/* SHOP MENU */}
 
               <div className="flex items-center justify-end sm:flex-1 lg:w-0 gap-x-8">
-
                 <ShoppingCart />
+                <ProductWishlist />
 
-                <Image src={wishlist} alt="logo" />
                 <a
                   href="http://localhost:3000/logins"
                   className=" hidden md:block md:ml-6 whitespace-nowrap  items-center px-8 justify-center  py-2 border border-transparent rounded-full shadow-sm text-base font-medium text-white bg-primary  hover:bg-secondary">
@@ -168,8 +167,7 @@ export default function Navbar() {
                     <Image src={logo} alt="logo" />
 
                     <div className="-mr-2">
-                      <Popover.Button
-                        className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                      <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
                         <span className="sr-only">Close menu</span>
                         <XIcon className="h-6 w-6" aria-hidden="true" />
                       </Popover.Button>

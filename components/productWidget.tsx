@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Button } from "./button";
 import { useCartContext } from "../contexts/cartContext";
 import { useRouter } from "next/router";
+import wishlist from "../images/wishlist.png";
 
 export interface ProductWidgetProps {
   product: Product;
@@ -27,7 +28,13 @@ const prettyPrice = (price: number): string => {
 
 const ProductWidget = (props: ProductWidgetProps) => {
   const { product } = props;
-  const { addToCart, removeFromCart, clearCart } = useCartContext();
+  const {
+    addToCart,
+    removeFromCart,
+    clearCart,
+    addToWishlist,
+    removeFromWishlist,
+  } = useCartContext();
   const router = useRouter();
 
   if (!product) {
@@ -51,11 +58,34 @@ const ProductWidget = (props: ProductWidgetProps) => {
           alt={product.image.alternativeText}
         />
       </div>
+      <div className={" grid grid-cols-3  w-[250px]"}>
+        <div className={" px-4 py-6 text-center md:text-left col-span-2"}>
+          <span className={"text-primary text-xl"}>{product.name}</span>
 
-      <div className="px-4 py-6 text-center md:text-left">
-        <span className="text-primary text-xl">{product.name}</span>
-        <p className="text-green-500">In stock</p>
-        <p className={"text-primary "}>{prettyPrice(product.price)}</p>
+          <p className="text-green-500">In stock</p>
+          <p className={"text-primary "}>{prettyPrice(product.price)}</p>
+        </div>
+        <div
+          className={"grid justify-items-end py-6 px-6 "}
+          onClick={(event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            addToWishlist(props.product);
+          }}>
+          {/* Add product to wishlist start */}
+          <svg
+            className="w-6 h-6  "
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg">
+            <path
+              fillRule="evenodd"
+              d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
+              clipRule="evenodd"
+            />
+          </svg>
+          {/* Add product to wishlist end */}
+        </div>
       </div>
 
       <div className=" p-4">
