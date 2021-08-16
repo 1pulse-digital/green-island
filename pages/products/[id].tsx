@@ -3,7 +3,7 @@ import { GetStaticProps, GetStaticPropsContext } from "next";
 import { fetchAPI } from "../../lib/api";
 import { Product } from "../../types/product";
 import MainLayout from "../../layouts/MainLayout";
-import ProductWidget1 from "../../components/ProductWidget1";
+import ProductWidget from "../../components/productWidget";
 import { FeaturedProducts } from "../../components/featuredProducts";
 
 interface SingleProductProps {
@@ -22,7 +22,7 @@ const SingleProduct = (props: SingleProductProps) => {
       <div className=" ">
         {/* array slice */}
         {/* array slice */}
-        <ProductWidget1 product={product} />
+        <ProductWidget product={product} />
         <FeaturedProducts products={featuredProducts} />
       </div>
     </MainLayout>
