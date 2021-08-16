@@ -23,7 +23,7 @@ export const SecondFooter = (props: secondFooterProps) => {
             </a>
           </div>
         </p>
-        <div className="text-left md:text-right ">
+        <div className="text-left md:text-right">
           <a
             href="/"
             className="text-white transition-colors duration-300 hover:text-teal-accent-400 text-right">
