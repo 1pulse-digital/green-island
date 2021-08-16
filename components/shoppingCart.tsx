@@ -1,165 +1,127 @@
-import React from "react";
+import { Popover, Transition } from "@headlessui/react";
+import { Fragment } from "react";
+import cart from "../images/cart.png";
+import { CartItemType, useCartContext } from "../contexts/cartContext";
 import Image from "next/image";
-import pills1 from "../images/pills1.png";
-import pills2 from "../images/pills2.png";
-import pills3 from "../images/pills3.png";
-//import ProductWidget1 from "./ProductWidget1"; */
 
-export const ShoppingCart = () => {
+type strapiLoaderParams = {
+  src: string;
+  width: number;
+  quality?: number;
+};
+
+const prettyPrice = (price: number): string => {
+  return new Intl.NumberFormat("en-ZA", {
+    style: "currency",
+    currency: "ZAR",
+  }).format(price);
+};
+
+const strapiLoader = (params: strapiLoaderParams) => params.src;
+
+const CartItem = ({ item }: { item: CartItemType }) => {
+  const { removeFromCart } = useCartContext();
+
   return (
-    <div className={" bg-gray-200 h-[700px]  "}>
-      <div className="p-10  py-6  ">
-        <div className="flex  justify-center">
-          <div className="relative ">
-            <div className="absolute w-full  rounded-b border-t-0 z-10">
-              <div className="shadow-xl w-96">
-                <div className=" justify-start py-10 flex bg-white hover:bg-gray-100 cursor-pointer border-b border-gray-100">
-                  <div className="p-2 w-20"> </div>
-                  <div className="flex-auto text-sm w-32">
-                    <div className={"font-bold text-2xl  "}>
-                      <p>Order Summary</p>
-                    </div>
-                  </div>
-                  <div className="flex flex-row cursor-pointer truncate p-2 px-4  rounded">
-                    <div className="flex flex-row-reverse ml-4 w-full">
-                      <div slot="icon" className="relative">
-                        <div className=" absolute text-xs rounded-full -mt-1 -mr-2 px-1 font-bold top-0 right-0 bg-red-700 text-white">
-                          3
-                        </div>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="100%"
-                          height="100%"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          className="feather feather-shopping-cart w-6 h-6 mt-2">
-                          <circle cx="9" cy="21" r="1"></circle>
-                          <circle cx="20" cy="21" r="1"></circle>
-                          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="p-2 py-4 flex bg-white hover:bg-gray-100 cursor-pointer border-b border-gray-100">
-                  <div className="p-2 w-20">
-                    {" "}
-                    <Image src={pills1} />
-                  </div>
-                  <div className="flex-auto text-sm w-32">
-                    <div className="font-bold">Headache Pills</div>
-                    <div className="truncate">Product 1 description</div>
-                    <div className="text-gray-400">Qty: 4</div>
-                  </div>
-                  <div className="flex flex-col w-18 font-medium items-end">
-                    <div className="w-4 h-4 mb-6 hover:bg-red-200 rounded-full cursor-pointer text-red-700">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="100%"
-                        height="100%"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        className="feather feather-trash-2 ">
-                        <polyline points="3 6 5 6 21 6"></polyline>
-                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                        <line x1="10" y1="11" x2="10" y2="17"></line>
-                        <line x1="14" y1="11" x2="14" y2="17"></line>
-                      </svg>
-                    </div>
-                    R12.22
-                  </div>
-                </div>
-                <div className="p-2 py-4 flex bg-white hover:bg-gray-100 cursor-pointer border-b border-gray-100">
-                  <div className="p-2 w-20">
-                    {" "}
-                    <Image src={pills2} />
-                  </div>
-                  <div className="flex-auto text-sm w-32">
-                    <div className="font-bold">Cough Syrup</div>
-                    <div className="truncate">Product 2 description</div>
-                    <div className="text-gray-400">Qty: 2</div>
-                  </div>
-                  <div className="flex flex-col w-18 font-medium items-end">
-                    <div className="w-4 h-4 mb-6 hover:bg-red-200 rounded-full cursor-pointer text-red-700">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="100%"
-                        height="100%"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        className="feather feather-trash-2 ">
-                        <polyline points="3 6 5 6 21 6"></polyline>
-                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                        <line x1="10" y1="11" x2="10" y2="17"></line>
-                        <line x1="14" y1="11" x2="14" y2="17"></line>
-                      </svg>
-                    </div>
-                    R12.22
-                  </div>
-                </div>
-                <div className="p-2 py-4 flex bg-white  hover:bg-gray-100 cursor-pointer border-b border-gray-100">
-                  <div className="p-2 w-20">
-                    {" "}
-                    <Image src={pills3} />
-                  </div>
-                  <div className="flex-auto text-sm w-32">
-                    <div className="font-bold">Ointment</div>
-                    <div className="truncate">Product 3 description</div>
-                    <div className="text-gray-400">Qty: 2</div>
-                  </div>
-                  <div className="flex flex-col w-18 font-medium items-end">
-                    <div className="w-4 h-4 mb-6 hover:bg-red-200 rounded-full cursor-pointer text-red-700">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="100%"
-                        height="100%"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        className="feather feather-trash-2 ">
-                        <polyline points="3 6 5 6 21 6"></polyline>
-                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                        <line x1="10" y1="11" x2="10" y2="17"></line>
-                        <line x1="14" y1="11" x2="14" y2="17"></line>
-                      </svg>
-                    </div>
-                    R12.22
-                  </div>
-                </div>
-                <div className="p-4 py-10 justify-center flex">
-                  <button
-                    className="text-base  undefined  hover:scale-110 focus:outline-none flex justify-center px-8 py-2 rounded font-bold cursor-pointer 
-        hover:bg-teal-700 hover:text-white 
-        bg-secondary 
-        text-teal-700 
-        border duration-200 ease-in-out 
-        border-teal-600 transition">
-                    Checkout R36.66
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="h-32"></div>
+    <div className="grid grid-cols-8 h-24 transition duration-150 ease-in-out rounded-lg hover:bg-gray-50">
+      <div className="relative ring-primary ring-1 rounded-lg ring-offset-1">
+        <Image
+          layout="fill"
+          objectFit="contain"
+          loader={strapiLoader}
+          src={item.product.image.formats.thumbnail.url}
+          alt={item.product.image.alternativeText}
+        />
       </div>
 
-      <div></div>
+      <div className="col-span-5 px-4">
+        <p className="text-sm font-medium text-gray-900">{item.product.name}</p>
+        <p className="text-sm text-gray-800 line-clamp-3">
+          {item.product.description}
+        </p>
+      </div>
+
+      <div className="col-span-2 border-l-2 border-dashed pl-4">
+        <p>Total: {item.quantity}</p>
+        <p>{prettyPrice(item.quantity * item.product.price)}</p>
+        <button
+          className="text-red-500"
+          onClick={() => {
+            removeFromCart(item.product.id, 1);
+          }}>
+          remove
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export const ShoppingCart = () => {
+  const { cartCount, cartItems } = useCartContext();
+
+  // calculate the total price for all items in the
+  const cartTotal = cartItems
+    .map((item) => item.product.price * item.quantity)
+    .reduce((total, item) => (total += item), 0);
+
+  return (
+    <div className="max-w-sm relative">
+      <Popover className="relative">
+        {({ open }) => (
+          <>
+            <Popover.Button
+              className={`p-2 inline-flex rounded-sm hover:ring-2 ring-primary`}>
+              <Image src={cart} alt="cart" />
+              {cartCount > 0 && (
+                <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/3 -translate-y-1/3 bg-secondary rounded-full">
+                  {cartCount}
+                </span>
+              )}
+            </Popover.Button>
+
+            <Transition
+              as={Fragment}
+              enter="transition ease-out duration-200"
+              enterFrom="opacity-0 translate-y-1"
+              enterTo="opacity-100 translate-y-0"
+              leave="transition ease-in duration-150"
+              leaveFrom="opacity-100 translate-y-0"
+              leaveTo="opacity-0 translate-y-1">
+              <Popover.Panel className="absolute z-10 w-screen max-w-sm px-4 mt-3 -translate-x-3/4 sm:px-0 lg:max-w-3xl">
+                <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
+                  {/* Cart Items */}
+                  <div className="relative grid gap-4 bg-white p-4">
+                    {cartItems.map((item, idx) => (
+                      <CartItem key={idx} item={item} />
+                    ))}
+                  </div>
+
+                  {/*  Message to display for empty cart */}
+                  {cartCount === 0 && (
+                    <div className="p-4 bg-gray-50">
+                      <span>Your cart is empty</span>
+                    </div>
+                  )}
+
+                  {/*  Cart summary */}
+                  <div className="p-4 bg-gray-50">
+                    <div className="flow-root px-2 py-2 transition duration-150 ease-in-out rounded-md hover:bg-gray-100 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50">
+                      <span className="flex items-center">
+                        <span className="text-sm font-medium text-gray-900">
+                          Cart Total
+                        </span>
+                      </span>
+                      <span className="block text-sm text-gray-500">
+                        {prettyPrice(cartTotal)}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </Popover.Panel>
+            </Transition>
+          </>
+        )}
+      </Popover>
     </div>
   );
 };

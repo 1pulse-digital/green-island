@@ -1,6 +1,7 @@
 import { Footer } from "../components/footer";
 import Navbar from "../components/navbar";
 import { ReactNode } from "react";
+import { SecondFooter } from "../components/secondFooter";
 
 export interface MainLayoutProps {
   children: ReactNode;
@@ -16,6 +17,7 @@ const MainLayout = (props: MainLayoutProps) => {
       <div>{props.children}</div>
 
       <Footer />
+      <SecondFooter/>
     </div>
   );
 };

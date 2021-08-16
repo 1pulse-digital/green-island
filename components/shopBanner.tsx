@@ -6,9 +6,8 @@ import Button from "./button";
 export const ShopBanner = () => {
   return (
     <div
-      className={"grid sm:grid-col-1 lg:grid-cols-1 h-[470px]  bg-gray-50   "}>
-      <div className={"relative px-[100px] grid content-center  "}>
-        ]
+      className={"grid sm:grid-col-1 lg:grid-cols-1  h-[450px] bg-gray-50   "}>
+      <div className={"relative lg:px-[100px] px-10 grid content-center "}>
         <Image
           layout="fill"
           objectFit="cover"
@@ -31,8 +30,8 @@ export const ShopBanner = () => {
               coupon code.
             </div>
           </p>
-          <div className={" "}>
-            <form className="absolute   grid-cols-3 sm:grid-cols-1  ">
+          <div className={"flex "}>
+            <form className="absolute ">
               <input
                 placeholder="Full Name"
                 required

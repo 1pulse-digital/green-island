@@ -17,7 +17,7 @@ const SingleItem = ({ title }: { title: string }) => {
 
 export const ShopSidebar = () => {
   return (
-    <div className={"bg-gray-50 w-1/4 semibold h-full py-5"}>
+    <div className={"bg-gray-50 lg:w-1/3 semibold h-full md:px-10 py-5"}>
       <div className="flex flex-col sm:flex-row justify-center ">
         <nav>
           {/* Search box */}

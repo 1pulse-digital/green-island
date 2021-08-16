@@ -12,7 +12,6 @@ const MobileBanner = () => {
     <div className={" grid h-full relative px-[50px] content-center"}>
       <div className={"absolute inset-0"}>
         <Image
-          // className={"opacity-20"}
           layout="fill"
           objectFit="cover"
           src={mobileHero}
@@ -22,12 +21,12 @@ const MobileBanner = () => {
 
       <div className={"grid z-10 "}>
         <h1 className={"text-5xl  text-primary font-normal font-karla"}>
-          Mobile Perfect health is within your grasp.
+          Perfect health is within your grasp.
         </h1>
 
         <p className={"text-xl mt-8 text-gray-600 font-light font-karla"}>
           <div className="bg-white/90 inline ">
-            We empower our patients with the tools to heal <br></br>themselves,
+            We empower our patients with the tools to heal themselves,
             and the knowledge to own their health.
           </div>
         </p>
@@ -68,7 +67,7 @@ const DesktopBanner = () => {
             className={
               "text-5xl lg:text-7xl z-10 text-primary font-medium font-karla"
             }>
-            Desktop Perfect health is <br /> within your grasp.
+            Perfect health is <br /> within your grasp.
           </h1>
           <p
             className={

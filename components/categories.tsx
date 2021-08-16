@@ -4,7 +4,7 @@ import infection from "../images/infection_management.jpg";
 import digestive from "../images/digestive_health.jpg";
 import daily from "../images/daily-self-care.jpg";
 import mental from "../images/mental_health.jpg";
-import stress from "../images/stress.jpeg";
+import stress from "../images/stress-management.jpg";
 import cn from "classnames";
 
 import { Button } from "../components/button";

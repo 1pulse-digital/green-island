@@ -52,11 +52,13 @@ const Home = (props: HomeProps) => {
             What our clients have to say
           </h1>
           <div className={""}>
-          <p className={"italic text-2xl text-white font-light"}>
-            “Dr Robin is passionate about healing people, finding the cause of <br />
-            the problem and then addressing it. He explains everything so well <br />
-            really feel that at last there is hope.”
-          </p>
+            <p className={"italic text-2xl text-white font-light"}>
+              “Dr Robin is passionate about healing people, finding the cause of{" "}
+              <br />
+              the problem and then addressing it. He explains everything so well{" "}
+              <br />
+              really feel that at last there is hope.”
+            </p>
           </div>
         </div>
       </div>
@@ -86,7 +88,9 @@ const Home = (props: HomeProps) => {
           className={
             "flex flex-col items-start md:items-center pt-10 px-10 md:pt-20 "
           }>
-          <Button color="primary">Learn more</Button>
+          <Button color="primary">
+            Learn more
+          </Button>
         </div>
       </div>
     </MainLayout>
