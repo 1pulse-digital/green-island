@@ -2,15 +2,16 @@ import React from "react";
 
 export const Map = () => {
   return (
-    <div className={"grid absolute  "}>
+    <div className=" grid cols-1 relative  width: 100%">
       <iframe
-        className={""}
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3584.557930203964!2d28.003619614979353!3d-26.04801658350764!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e957411c227358d%3A0x7718f4d138de9d9a!2s33%20Highland%20Ave%2C%20Bryanston%2C%20Sandton%2C%202191!5e0!3m2!1sen!2sza!4v1627045925998!5m2!1sen!2sza"
-        width="2000"
-        height="450"
-        style={{ border: 0 }}
-        loading="lazy"
-      ></iframe>
+        width="100%"
+        height="400"
+        frameborder="0"
+        scrolling="no"
+        marginheight="0"
+        marginwidth="0"
+        src="https://maps.google.com/maps?width=100%25&amp;height=400&amp;hl=en&amp;q=33%20Highland%20Avenue%20Bryanston%20Ext%208%20Johannesburg,%20Gauteng+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
+      <a href="https://www.maps.ie/draw-radius-circle-map/"></a>
     </div>
   );
 };

@@ -7,7 +7,6 @@ import Link from "next/link";
 
 import { Button } from "../components/button";
 
-
 export interface BlogWidgetProps {
   article: Article;
 }
@@ -61,14 +60,26 @@ export const BlogWidget = (props: BlogWidgetProps) => {
             className={
               " inline-block bg-transparent text-blue-dark font-semibold uppercase hover:text-white hover:border-blue rounded "
             }>
-
             <div className={"sm:absolute bottom-1 "}>
-            <Link href="/blogs">
-            <a>
-              <button className={"text-secondary hover:text-primary py-5"}
-              >Read more</button>
-            </a>
-          </Link>
+              <Link href="/blogs">
+                <a>
+                  <button
+                    className={"flex text-secondary hover:text-primary py-5"}>
+                    Read more{" "}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className={"h-6 w-6 self-center pl-2"}
+                      viewBox="0 0 20 20"
+                      fill="currentColor">
+                      <path
+                        fill-rule="evenodd"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                  </button>
+                </a>
+              </Link>
             </div>
           </div>
         </div>

@@ -38,7 +38,7 @@ const about = () => {
           </div>
 
           {/* Perfect Healh Story goes here*/}
-          <div className={"py-10  md:py-40 "}>
+          <div className={"py-10  md:py-20 "}>
             <div
               className={"lg:px-32 md:px-10 px-4 pt-20 pb-10  text-gray-700"}>
               <p>
@@ -179,7 +179,7 @@ const about = () => {
           {/*Robin Kohler Bio */}
 
           <div className={"grid grid-cols-1 md:grid-cols-2"}>
-            <div className={"py-20 w-full"}>
+            <div className={" md:py-20 w-full"}>
               <div className={" lg:px-32"}>
                 <Image src={RobinKohler} />
               </div>

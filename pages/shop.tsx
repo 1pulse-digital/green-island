@@ -35,7 +35,7 @@ const Shop = (props: ShopProps) => {
       <div className={"flex "}>
         <ShopSidebar />
 
-        <div className="p-20">
+        <div className="p-10">
           <p className={"font-karla pb-10"}>Home Digestive</p>
           <div className="flex flex-wrap gap-4">
             {products.map((p: Product) => {
