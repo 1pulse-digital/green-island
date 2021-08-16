@@ -2,11 +2,11 @@ import React from "react";
 
 const SingleItem = ({ title }: { title: string }) => {
   return (
-    <label className="flex items-center space-x-3 mb-3">
+    <label className="flex items-center space-x-3 mb-3 ">
       <input
         type="checkbox"
         name="checked-demo"
-        className=" bg-white bg-check h-6 w-6 border border-gray-300 rounded-md checked:bg-blue-500 checked:border-transparent focus:outline-none"
+        className=" bg-white bg-check h-6 w-6 border border-gray-300 checked:bg-blue-500 checked:border-transparent focus:outline-none"
       />
       <span className="truncate text-gray-700 dark:text-white font-normal">
         {title}
@@ -17,8 +17,8 @@ const SingleItem = ({ title }: { title: string }) => {
 
 export const ShopSidebar = () => {
   return (
-    <div className={"bg-gray-50 lg:w-1/3 semibold h-full md:px-10 py-5"}>
-      <div className="flex flex-col sm:flex-row justify-center ">
+    <div className={"bg-gray-100 h-full py-5 px-10 md:px-10 lg:px-20 "}>
+      <div className="flex flex-col sm:justify-center">
         <nav>
           {/* Search box */}
           <div className="my-8 ">

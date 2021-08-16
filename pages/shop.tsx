@@ -32,10 +32,10 @@ const Shop = (props: ShopProps) => {
   return (
     <MainLayout>
       <ShopBanner />
-      <div className={"flex "}>
+      <div className={"grid grid-cols-1  md:grid-cols-3  xl:grid-cols-4 justify-center"}>
         <ShopSidebar />
 
-        <div className="p-10">
+        <div className="p-5 md:p-7 col-span-2 xl:col-span-3">
           <p className={"font-karla pb-10"}>Home Digestive</p>
           <div className="flex flex-wrap gap-4">
             {products.map((p: Product) => {
@@ -44,6 +44,8 @@ const Shop = (props: ShopProps) => {
           </div>
         </div>
       </div>
+
+      {/* </div> */}
       <Suppliers />
     </MainLayout>
   );
