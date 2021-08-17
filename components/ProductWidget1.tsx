@@ -1,10 +1,6 @@
 import { Product } from "../types/product";
 import Image from "next/image";
 
-import Example from "./example";
-import { useState } from "react";
-import { Tab } from "@headlessui/react";
-import classnames from "classnames";
 import { ProductAdditionalInfo } from "./productAdditionalInfo";
 
 export interface ProductWidget1Props {
