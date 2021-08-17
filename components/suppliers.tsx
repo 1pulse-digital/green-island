@@ -8,14 +8,8 @@ import prime from "../images/prime.jpg";
 
 export const Suppliers = () => {
   return (
-    <div
-      className={
-        " lg:grid-cols-5 md:grid-cols-2 sm:grid-cols-1  py-40 px-20  w-full sm:space-y-10 bg-white-900 relative   "
-      }>
-      <div
-        className={
-          "grid grid-cols-1 lg:grid-cols-5 md:grid-cols-2   sm:grid-cols-1 p-5"
-        }>
+
+      <div className={"grid grid-cols-2 md:grid-cols-3 md:grid-rows-2 lg:grid-cols-5 p-10 sm:px-10 sm:pt-20"}>
         <div className={" "}>
           <Image src={idexis} alt="idexis" />
         </div>
@@ -32,6 +26,5 @@ export const Suppliers = () => {
           <Image src={prime} alt="prime" />
         </div>
       </div>
-    </div>
   );
 };
