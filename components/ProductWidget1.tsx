@@ -173,7 +173,7 @@ const ProductWidget1 = (props: ProductWidget1Props) => {
         </div>
 
         {/*<div>*/}
-        {/*  <Example />*/}
+        {/* <Example /> */}
         {/*</div>*/}
 
         {/* <div className="p-8">

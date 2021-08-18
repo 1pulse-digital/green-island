@@ -7,8 +7,7 @@ export interface FooterProps {}
 
 export const Footer = (props: FooterProps) => {
   return (
-    <div
-      className="grid row-gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 py-10 px-10 md:px-20 font-karla bg-primary">
+    <div className="grid row-gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 py-10 px-10 md:px-20 font-karla bg-primary">
       <div>
         <p className={"  text-white text-lg pb-2"}>
           Sign up for our monthly newsletter
@@ -19,15 +18,13 @@ export const Footer = (props: FooterProps) => {
             required
             type="text"
             className=" h-12 px-4 transition duration-200 bg-white rounded shadow-lg 
-               focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
+               focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline mr-4"
           />
-          <Button color={"secondary"}>
-            Subscribe
-          </Button>
+          <Button color={"secondary"}>Subscribe</Button>
         </form>
       </div>
 
-      <div >
+      <div>
         <p className="font-medium  text-white cursor-pointer hover:text-secondary">
           Shop
         </p>
