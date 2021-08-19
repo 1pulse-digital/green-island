@@ -49,7 +49,7 @@ const ProductWidget = (props: ProductWidgetProps) => {
       onClick={goToProduct}
       className="sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 rounded-lg border-gray-50 overflow-hidden bg-white hover:shadow-xl cursor-pointer font-karla">
       <div
-        className={"relative h-[170px] w-[170px] md:w-[240px] md:h-[240px]   "}>
+        className={"relative h-[170px] w-[170px] md:w-full md:h-[240px]   "}>
         <Image
           layout="fill"
           objectFit="cover"

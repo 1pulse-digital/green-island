@@ -35,7 +35,7 @@ export const FeaturedProducts = (props: FeaturedProductsProps) => {
           Featured products
         </h1>
       </div>
-      <div className={"w-full"}>
+      <div className={"flex justify-center"}>
         <div className="flex flex-wrap gap-4">
           {products.map((p: Product) => {
             return <ProductWidget key={p.id} product={p} />;
