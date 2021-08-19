@@ -16,7 +16,7 @@ export const Login = () => {
             addresses, view and track your orders in your account and more.
             <div className=" relative py-7">
               <Button
-              color={"primary"}
+                color={"primary"}
                 className={
                   "flex flex-row items-center hover:bg-secondary hover:text-white"
                 }>
@@ -31,7 +31,7 @@ export const Login = () => {
                     clip-rule="evenodd"
                   />
                 </svg>
-                CREATE AN ACCOUNT
+                <a href="http://localhost:3000/reg"> CREATE AN ACCOUNT</a>
               </Button>
             </div>
           </p>
@@ -39,7 +39,7 @@ export const Login = () => {
       </div>
       {/* New Customers - right column */}
 
-      <div >
+      <div>
         <div>
           <form className="mt-10 sm:mt-10 md:ml-0 lg:ml-10  lg:mt-0 text-primary">
             <div className="bg-white p-20">
@@ -75,23 +75,24 @@ export const Login = () => {
                 </div>
 
                 <div className=" text-left">
-              <Button color={"primary"}
-                className={
-                  "flex flex-row items-center hover:bg-secondary hover:text-white"
-                }>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6 pr-1"
-                  viewBox="0 0 20 20"
-                  fill="currentColor">
-                  <path
-                    fill-rule="evenodd"
-                    d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-                Log in
-              </Button>
+                  <Button
+                    color={"primary"}
+                    className={
+                      "flex flex-row items-center hover:bg-secondary hover:text-white"
+                    }>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-6 w-6 pr-1"
+                      viewBox="0 0 20 20"
+                      fill="currentColor">
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                    <a href="http://localhost:3000/profile">Log in</a>
+                  </Button>
                   {/* <button
                     type="submit"
                     className="py-2 px-20 bg-secondary hover:bg-gray-00 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white  transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 flex justify-start   mt-2">
