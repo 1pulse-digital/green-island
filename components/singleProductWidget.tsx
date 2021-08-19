@@ -32,21 +32,12 @@ const ProductWidget1 = (props: ProductWidget1Props) => {
   }
 
   return (
-    <div className={"bg-gray-100-200 h-[1200px] w-full py-10"}>
+    <div className={"h-full w-full"}>
       <div
         className={
-          "grid lg:grid-cols-5 sm:grid-cols-1 md:grid-cols-2 bg-gray-50   "
+          "grid grid-cols-1 md:grid-cols-2 font-karla bg-gray-50  "
         }>
-        <div className={"relative col-span-1 h-[400px]  "}>
-          <Image
-            layout="fill"
-            objectFit="cover"
-            loader={strapiLoader}
-            src={product.image.formats.small.url}
-            alt={product.image.alternativeText}
-          />
-        </div>
-        <div className=" col-span-2 px-5 py-6  relative  h-[700px]">
+        <div className=" relative self-center h-[600px] w-[600px]">
           <Image
             layout="fill"
             objectFit="cover"
@@ -56,7 +47,7 @@ const ProductWidget1 = (props: ProductWidget1Props) => {
           />
         </div>
         {/* product description */}
-        <div className=" lg:h-[700px] md:h-[100px]sm:h-[1500px] px-20 py-20 col-span-2 bg-gray-50">
+        <div className="  md:h-[100px]sm:h-[1500px] px-10 py-10  ">
           <span className="truncate font-semibold text-4xl">
             {product.name}
           </span>
@@ -161,25 +152,6 @@ const ProductWidget1 = (props: ProductWidget1Props) => {
             Add to cart
           </button>
         </div>
-      </div>
-      <div
-        className={
-          "bg-white py-2 h-[400px] px-20 grid grid-cols-1 sm:grid-cols-1 "
-        }>
-        {/* accordion start */}
-
-        <div>
-          <ProductAdditionalInfo product={product} />
-        </div>
-
-        {/*<div>*/}
-        {/* <Example /> */}
-        {/*</div>*/}
-
-        {/* <div className="p-8">
-         
-
-        {/* acoordion end */}
       </div>
     </div>
   );
