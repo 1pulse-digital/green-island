@@ -140,7 +140,7 @@ export default function Navbar() {
                 <ProductWishlist />
 
                 <a
-                  href="http://localhost:3000/logins"
+                  href="/logins"
                   className=" hidden md:block md:ml-6 whitespace-nowrap  items-center px-8 justify-center  py-2 border border-transparent rounded-full shadow-sm text-base font-medium text-white bg-primary  hover:bg-secondary">
                   Sign in
                 </a>
