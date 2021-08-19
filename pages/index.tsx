@@ -12,6 +12,7 @@ import MainLayout from "../layouts/MainLayout";
 import { Categories } from "../components/categories";
 
 import { Button } from "../components/button";
+import Link from "next/link";
 
 export interface HomeProps {
   articles?: Article[];
@@ -65,7 +66,9 @@ const Home = (props: HomeProps) => {
           <div className={""}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className={"h-7 w-7 bg-white rounded-full float-right	 fill-current text-primary"}
+              className={
+                "h-7 w-7 bg-white rounded-full float-right	 fill-current text-primary"
+              }
               viewBox="0 0 20 20"
               fill="currentColor">
               <path
@@ -133,7 +136,11 @@ const Home = (props: HomeProps) => {
           className={
             "flex flex-col items-start md:items-center pt-10 px-10 md:pt-20 "
           }>
-          <Button color="primary">Learn more</Button>
+          <Link href="/blogs">
+            <a>
+              <Button color="primary">Learn more</Button>
+            </a>
+          </Link>
         </div>
       </div>
     </MainLayout>
