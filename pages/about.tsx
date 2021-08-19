@@ -79,7 +79,7 @@ const about = () => {
 
               <button
                 className={
-                  "text-primary rounded-full py-2 px-4 hover:bg-primary"
+                  "text-primary rounded-full py-2 px-4 "
                 }>
                 Our services
               </button>
