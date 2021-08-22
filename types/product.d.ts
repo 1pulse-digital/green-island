@@ -13,7 +13,7 @@ export interface Product {
   created_at: Date;
   updated_at: Date;
   variation: boolean;
-  image: Picture;
+  image?: Picture;
   directions: string;
   warning: string;
   benefits: string;
