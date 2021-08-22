@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Button } from "./button";
 import { useCartContext } from "../contexts/cartContext";
 import { useRouter } from "next/router";
-import placeholder from "../images/2.jpg"
+import placeholder from "../images/2.jpg";
 
 export interface ProductWidgetProps {
   product: Product;
@@ -49,14 +49,25 @@ const ProductWidget = (props: ProductWidgetProps) => {
       onClick={goToProduct}
       className="sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 rounded-lg border-gray-50 overflow-hidden bg-white hover:shadow-xl cursor-pointer font-karla">
       <div
-        className={"relative h-[170px] w-[170px] md:w-full md:h-[240px]   "}>
-        <Image
-          layout="fill"
-          objectFit="cover"
-          loader={strapiLoader}
-          src={product.image?.formats.small.url || placeholder}
-          alt={product.image?.alternativeText}
-        />
+        className={"relative h-[170px] w-[170px] md:w-full md:h-[240px]"}>
+        {product.image && (
+          <Image
+            layout="fill"
+            objectFit="cover"
+            loader={strapiLoader}
+            src={product.image?.formats.small.url}
+            alt={product.image?.alternativeText}
+          />
+        )}
+        {!product.image && (
+          <Image
+            layout="fill"
+            objectFit="cover"
+            src={placeholder}
+            alt={"Placeholder image for product"}
+          />
+        )}
+
       </div>
       <div className={" grid grid-cols-3  w-[250px]"}>
         <div className={" px-4 py-6 text-center md:text-left col-span-2"}>
