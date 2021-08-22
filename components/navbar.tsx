@@ -7,6 +7,7 @@ import { Fragment } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import { ShoppingCart } from "./shoppingCart";
+import { ProductWishlist } from "./ProductWishlist";
 import { Button } from "./button";
 import { useRouter } from "next/router";
 
@@ -21,15 +22,15 @@ const navigationItems = [
   },
   {
     name: "Shop",
-    href: "shop",
+    href: "/shop",
   },
   {
     name: "Blogs",
-    href: "blogs",
+    href: "/blogs",
   },
   {
     name: "Contact",
-    href: "contact",
+    href: "/contact",
   },
 ];
 
@@ -83,6 +84,7 @@ export const Navbar = () => {
 
               <div className="flex items-center justify-end sm:flex-1 lg:w-0 gap-x-8">
                 <ShoppingCart />
+                <ProductWishlist />
 
                 <Image src={wishlist} alt="logo" />
 

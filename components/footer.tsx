@@ -13,13 +13,13 @@ export const Footer = (props: FooterProps) => {
         <p className={"  text-white text-lg pb-2"}>
           Sign up for our monthly newsletter
         </p>
-        <form className="w-1/2">
+        <form className="">
           <input
             placeholder="Email Address"
             required
             type="text"
-            className=" h-12 px-4  transition duration-200 bg-white rounded shadow-lg 
-               mb-2 focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
+            className=" h-12 px-4 transition duration-200 bg-white rounded shadow-lg 
+               focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
           />
           <Button color={"secondary"}>
             Subscribe
