@@ -3,11 +3,16 @@ import link from "next/link";
 
 export const UserProfile = () => {
   return (
-    <div className={"bg-gray-100 h-[1000px]"}>
-      <h6 className={"text-4xl pb-8 grid px-24 py-12   "}>Edit Profile</h6>
+    <div className={"bg-gray-100 h-[1000px] font-karla text-primary"}>
+      <h6 className={"text-4xl pb-8 grid px-24 py-12 text-primary  "}>
+        Edit Profile
+      </h6>
       <div className={"grid md:grid-cols-3 sm:grid grid-cols-1"}>
         {/* Left column with profile menu */}
-        <div className={"bg-gray-300 h-[250px] w-2/3 ml-24 semibold py-12"}>
+        <div
+          className={
+            "bg-gray-300 h-[250px] w-2/3 ml-24 semibold py-12 font-karla"
+          }>
           <div className={"py-2"}>
             <a
               href=" "

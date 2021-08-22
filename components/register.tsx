@@ -4,9 +4,8 @@ export const Register = () => {
   return (
     <div
       className={
-        " sm:grid  grid-cols-2 md:h-[800px] sm:h-96 w-full bg-gray-100 content-center"
-      }
-    >
+        " sm:grid  grid-cols-2 md:h-[800px] sm:h-96 w-full bg-gray-100 content-center font-karla px-16 text-primary "
+      }>
       {/* Left column */}
 
       <div className={" px-10  grid-cols-2   "}>
@@ -86,9 +85,8 @@ export const Register = () => {
           <div className="col-span-2  bg-white py-8 px-10">
             <button
               type="submit"
-              className="py-2 px-4 border border-gray-700 hover:bg-gray-500 focus:ring-indigo-500 focus:ring-offset-indigo-200  text-black justify-items justify-items-start  transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2   "
-            >
-              Register
+              className="py-2 px-4 border border-primary hover:bg-secondary focus:ring-indigo-500 focus:ring-offset-indigo-200  text-black justify-items justify-items-start  transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2   ">
+              <a href="http://localhost:3000/logins"> Register</a>
             </button>
           </div>
         </div>

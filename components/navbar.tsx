@@ -34,9 +34,11 @@ const navigationItems = [
   },
 ];
 
-const MobileNavMenu = () => {};
+const MobileNavMenu = () => {
+};
 
-const DesktopNavMenu = () => {};
+const DesktopNavMenu = () => {
+};
 
 export const Navbar = () => {
   const router = useRouter();
@@ -52,7 +54,8 @@ export const Navbar = () => {
               {/* MOBILE HAMBURGER MENU - WE STILL NEED TO MAKE THE NAVBAR WORK */}
 
               <div className="lg:hidden">
-                <Popover.Button className=" rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-white hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500">
+                <Popover.Button
+                  className=" rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-white hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500">
                   <span className="sr-only">Open menu</span>
                   <MenuIcon className="h-6 w-6" aria-hidden="true" />
                 </Popover.Button>
@@ -86,16 +89,11 @@ export const Navbar = () => {
                 <ShoppingCart />
                 <ProductWishlist />
 
-                <Image src={wishlist} alt="logo" />
-
-                <Button
-                  className="hidden md:block md:ml-6 whitespace-nowrap"
-                  onClick={() => {
-                    router.push("/logins");
-                  }}
-                  color="primary">
+                <a
+                  href="/logins"
+                  className=" hidden md:block md:ml-6 whitespace-nowrap  items-center px-8 justify-center  py-2 border border-transparent rounded-full shadow-sm text-base font-medium text-white bg-primary  hover:bg-secondary">
                   Sign in
-                </Button>
+                </a>
               </div>
             </div>
           </div>
@@ -119,7 +117,8 @@ export const Navbar = () => {
                     <Image src={logo} alt="logo" />
 
                     <div className="-mr-2">
-                      <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                      <Popover.Button
+                        className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
                         <span className="sr-only">Close menu</span>
                         <XIcon className="h-6 w-6" aria-hidden="true" />
                       </Popover.Button>

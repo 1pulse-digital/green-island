@@ -14,8 +14,11 @@ export const Contact = () => {
             src={contacts}
             alt="this is an image"
           />
-          <div className={"grid ml-0 content-center  px-10 "}>
-            <h1 className={"text-5xl pb-4 font-bold z-10 md:w-3/4  "}>
+          <div className={"grid ml-0 content-center  px-4 "}>
+            <h1
+              className={
+                "text-5xl pb-4 font-bold z-10 md:w-3/4 font-karla text-primary  "
+              }>
               Get in touch
             </h1>
           </div>

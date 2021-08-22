@@ -18,7 +18,7 @@ import { useState } from "react";
 
 const Banner = () => {
   return (
-    <div className={"hidden sm:grid  grid-cols-2 h-[700px] bg-gray-50 "}>
+    <div className={"hidden sm:grid  grid-cols-2 h-[700px] bg-gray-50 font-karla text-primary"}>
       {/* Left column */}
       <div className={"grid ml-20 content-center w-full px-10"}>
         <h1 className={"text-5xl pb-4 font-bold"}>Our Blogs</h1>
@@ -44,7 +44,7 @@ const Banner = () => {
 
 const MobileBanner = () => {
   return (
-    <div className={"sm:hidden grid h-[450px] bg-white"}>
+    <div className={"sm:hidden grid h-[450px] bg-white font-karla text-primary"}>
       <div className={"relative grid content-center"}>
         <div className={"absolute top-0 bottom-0 right-0 left-40"}>
           <Image layout="fill" objectFit="cover" src={fruit} />
@@ -90,15 +90,12 @@ const Blogs = (props: BlogsProps) => {
 
         <div>
 
-          <div>
+          <div className={"font-karla"}>
             <BlogNav
               categories={props.articleCategories}
               onSelect={selectCategory}
             />
-
-            <div className={"px-28 py-10 grid grid-cols-5"}>
-            </div>
-            <div className="flex justify-center flex-wrap gap-x-4 lg:gap-x-12 gap-y-12 ">
+            <div className="flex justify-center flex-wrap gap-x-4 lg:gap-x-12 gap-y-12 pb-10">
               {articles.map((item) => (
                 <BlogWidget key={item.id} article={item} />
               ))}

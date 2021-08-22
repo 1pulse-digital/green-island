@@ -31,7 +31,7 @@ export const Login = () => {
                     clip-rule="evenodd"
                   />
                 </svg>
-                CREATE AN ACCOUNT
+                <a href="http://localhost:3000/reg"> CREATE AN ACCOUNT</a>
               </Button>
             </div>
           </p>
@@ -74,8 +74,9 @@ export const Login = () => {
                 <div className=" text-left">
                   <Button
                     color={"primary"}
-                    className="flex flex-row items-center hover:bg-secondary hover:text-white"
-                  >
+                    className={
+                      "flex flex-row items-center hover:bg-secondary hover:text-white"
+                    }>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="h-5 w-5"
@@ -84,7 +85,7 @@ export const Login = () => {
                       <path
                         d="M10 2a5 5 0 00-5 5v2a2 2 0 00-2 2v5a2 2 0 002 2h10a2 2 0 002-2v-5a2 2 0 00-2-2H7V7a3 3 0 015.905-.75 1 1 0 001.937-.5A5.002 5.002 0 0010 2z" />
                     </svg>
-                    Login
+                    <a href="http://localhost:3000/profile">Log in</a>
                   </Button>
                 </div>
               </div>

@@ -5,6 +5,8 @@ import { Product } from "../../types/product";
 import MainLayout from "../../layouts/MainLayout";
 import ProductWidget from "../../components/productWidget";
 import { FeaturedProducts } from "../../components/featuredProducts";
+import { ProductAdditionalInfo } from "../../components/productAdditionalInfo";
+import SingleProductWidget from "../../components/singleProductWidget";
 
 interface SingleProductProps {
   product: Product;
@@ -19,10 +21,12 @@ const SingleProduct = (props: SingleProductProps) => {
   }
   return (
     <MainLayout>
-      <div className=" ">
-        {/* array slice */}
-        {/* array slice */}
-        <ProductWidget product={product} />
+      <div className="">
+
+        <SingleProductWidget product={product} />
+
+        <ProductAdditionalInfo product={product} />
+
         <FeaturedProducts products={featuredProducts} />
       </div>
     </MainLayout>
