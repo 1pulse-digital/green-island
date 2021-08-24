@@ -1,6 +1,5 @@
 import Link from "next/link";
 
-import wishlist from "../images/wishlist.png";
 import Image from "next/image";
 import logo from "../images/logo.png";
 import { Fragment } from "react";
@@ -8,8 +7,7 @@ import { Popover, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import { ShoppingCart } from "./shoppingCart";
 import { ProductWishlist } from "./ProductWishlist";
-import { Button } from "./button";
-import { useRouter } from "next/router";
+import { useAuthContext } from "../contexts/authContext";
 
 const navigationItems = [
   {
@@ -41,7 +39,7 @@ const DesktopNavMenu = () => {
 };
 
 export const Navbar = () => {
-  const router = useRouter();
+  const { user } = useAuthContext();
 
   return (
     <Popover className="relative bg-white z-20">
@@ -55,7 +53,7 @@ export const Navbar = () => {
 
               <div className="lg:hidden">
                 <Popover.Button
-                  className=" rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-white hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500">
+                  className="rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-white hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500">
                   <span className="sr-only">Open menu</span>
                   <MenuIcon className="h-6 w-6" aria-hidden="true" />
                 </Popover.Button>
@@ -77,7 +75,7 @@ export const Navbar = () => {
 
               {/* LOGO */}
 
-              <div className="flex justify-center  lg:w-0 lg:flex-1 md:w-0 md:flex-1">
+              <div className="flex justify-center lg:w-0 lg:flex-1 md:w-0 md:flex-1">
                 <a href="#">
                   <Image src={logo} />
                 </a>
@@ -89,11 +87,15 @@ export const Navbar = () => {
                 <ShoppingCart />
                 <ProductWishlist />
 
-                <a
-                  href="/logins"
-                  className=" hidden md:block md:ml-6 whitespace-nowrap  items-center px-8 justify-center  py-2 border border-transparent rounded-full shadow-sm text-base font-medium text-white bg-primary  hover:bg-secondary">
-                  Sign in
-                </a>
+                {user && (<div>{user.username}</div>)}
+                {!user && (
+                  // TODO: Replace this with a <Link /> component not <a />
+                  <a
+                    href="/logins"
+                    className=" hidden md:block md:ml-6 whitespace-nowrap  items-center px-8 justify-center  py-2 border border-transparent rounded-full shadow-sm text-base font-medium text-white bg-primary  hover:bg-secondary">
+                    Sign in
+                  </a>
+                )}
               </div>
             </div>
           </div>
@@ -131,10 +133,6 @@ export const Navbar = () => {
                           key={item.name}
                           href={item.href}
                           className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50">
-                          {/*  <item.icon
-                            className="flex-shrink-0 h-6 w-6 text-indigo-600"
-                            aria-hidden="true"
-                          /> */}
                           <span className="ml-3 text-base font-medium text-gray-900">
                             {item.name}
                           </span>
