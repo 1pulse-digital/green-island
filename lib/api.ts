@@ -1,3 +1,5 @@
+import useSWR from "swr";
+
 export function getStrapiURL(path = "") {
   return `${
     process.env.NEXT_PUBLIC_STRAPI_API_URL || "http://localhost:1337"
@@ -5,9 +7,41 @@ export function getStrapiURL(path = "") {
 }
 
 // Helper to make GET requests to Strapi
-export async function fetchAPI(path: string) {
+export async function fetchAPI(path: string, token?: string) {
+  const headers = {
+    "Content-Type": "application/json",
+    "Authorization": `Bearer ${token}`,
+  } as { "Content-Type": string, Authorization?: string };
+
+  if (!token) {
+    delete headers.Authorization;
+  }
+
   const requestUrl = getStrapiURL(path);
-  console.log(`fetching ${requestUrl}`);
-  const response = await fetch(requestUrl);
-  return await response.json();
+  console.debug(`fetching: ${requestUrl}`);
+  const response = await fetch(requestUrl, { headers });
+  const data = await response.json();
+  console.debug(`fetched:  ${requestUrl}\n`, data);
+  if (data.error) {
+    throw `${data.error}: ${data.message}`;
+  }
+  return data;
 }
+
+export const useProducts = (query?: string) => {
+  const { data, error } = useSWR(`/products${query}`, fetchAPI);
+  return {
+    products: data,
+    isLoading: !error && !data,
+    error,
+  };
+};
+
+// export const useUser = (token: string) => {
+//   const { data, error } = useSWR(["/users/me", token], fetchAPI);
+//   return {
+//     products: data,
+//     isLoading: !error && !data,
+//     error,
+//   };
+// };

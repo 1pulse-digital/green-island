@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { User } from "../types/user";
-import { getStrapiURL } from "../lib/api";
+import { fetchAPI, getStrapiURL } from "../lib/api";
 
 interface ContextType {
   user?: User
@@ -12,23 +12,41 @@ interface ContextType {
 
 const Context = createContext({} as ContextType);
 
+const retrieveToken = (): string | undefined => {
+  return localStorage.getItem("token") || undefined;
+};
+
+const saveToken = (token: string) => {
+  return localStorage.setItem("token", token);
+};
+
+const clearToken = () => {
+  return localStorage.removeItem("token");
+};
+
 function AuthContext({ children }: { children?: React.ReactNode }) {
-  const retrieveToken = (): string | undefined => {
-    return localStorage.getItem("token") || undefined;
-  };
-
-  const saveToken = (token: string) => {
-    return localStorage.setItem("token", token);
-  };
-
   const [user, setUser] = useState<User>();
 
-  const [token, setToken] = useState<string>();
+  // auto login the user if there is still a valid token
   useEffect(() => {
+    // create a function that can be used to fetch the user (me)
+    const fetchMe = async (token: string) => {
+      try {
+        const response = await fetchAPI("/users/me", token);
+        setUser(response);
+      } catch (e) {
+        console.error(`Could not fetch user: ${e.message ? e.message : e.toString()}`);
+        logout();
+      }
+    };
+
     const cachedToken = retrieveToken();
     if (cachedToken) {
-      setToken(cachedToken);
+      fetchMe(cachedToken).finally(() => {
+        setLoading(false);
+      });
     }
+
   }, []);
 
   const [loading, setLoading] = useState<boolean>(false);
@@ -52,7 +70,6 @@ function AuthContext({ children }: { children?: React.ReactNode }) {
       console.debug("User signed in:", data);
       const { user, jwt } = data as { user: User, jwt: string };
       saveToken(jwt);
-      setToken(jwt);
       setUser(user);
     } catch (e) {
       console.error(`Could not sign in: ${e.message ? e.message : e.toString()}`, e);
@@ -65,7 +82,6 @@ function AuthContext({ children }: { children?: React.ReactNode }) {
     const requestUrl = getStrapiURL("/auth/local/register");
     setLoading(true);
     try {
-      console.debug(`Registering user ${username}`);
       const response = await fetch(requestUrl, {
         method: "POST",
         headers: {
@@ -79,10 +95,9 @@ function AuthContext({ children }: { children?: React.ReactNode }) {
       });
 
       const data = await response.json();
-      console.debug("User registered:", data);
       const { user, jwt } = data as { user: User, jwt: string };
+      console.debug(`User registered: ${user.username}`);
       saveToken(jwt);
-      setToken(jwt);
       setUser(user);
 
     } catch (e) {
@@ -92,6 +107,7 @@ function AuthContext({ children }: { children?: React.ReactNode }) {
   };
 
   const logout = () => {
+    clearToken();
     setUser(undefined);
   };
 

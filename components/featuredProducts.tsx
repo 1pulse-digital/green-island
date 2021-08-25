@@ -1,23 +1,11 @@
 import React from "react";
-import Image from "next/image";
-import useSWR from "swr";
-import { fetchAPI } from "../lib/api";
 import { Product } from "../types/product";
 import ProductWidget from "./productWidget";
-
-
-const useProducts = () => {
-  const { data, error } = useSWR("/products?featured=true", fetchAPI);
-  return {
-    products: data,
-    isLoading: !error && !data,
-    error,
-  };
-};
 
 export interface FeaturedProductsProps {
   products?: Product[];
 }
+
 export const FeaturedProducts = (props: FeaturedProductsProps) => {
   const { products } = props;
 
