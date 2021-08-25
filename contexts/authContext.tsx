@@ -7,7 +7,7 @@ interface ContextType {
   logout: () => void
   signIn: (username: string, password: string) => Promise<void>
   register: (username: string, password: string) => Promise<void>
-  loading: boolean
+  isLoading: boolean
 }
 
 const Context = createContext({} as ContextType);
@@ -49,7 +49,7 @@ function AuthContext({ children }: { children?: React.ReactNode }) {
 
   }, []);
 
-  const [loading, setLoading] = useState<boolean>(false);
+  const [isLoading, setLoading] = useState<boolean>(false);
 
   const signIn = async (username: string, password: string) => {
     const requestUrl = getStrapiURL("/auth/local");
@@ -118,7 +118,7 @@ function AuthContext({ children }: { children?: React.ReactNode }) {
         logout,
         signIn,
         register,
-        loading,
+        isLoading,
       }}>
       {children}
     </Context.Provider>

@@ -87,7 +87,7 @@ export const Register = () => {
   return (
     <div
       className={
-        " sm:grid  grid-cols-2 md:h-[800px] sm:h-96 w-full bg-gray-100 content-center font-karla px-16 text-primary "
+        "grid grid-cols-2 w-full bg-gray-100 md:h-[800px] content-center font-karla px-16 text-primary "
       }>
       {/* Left column */}
       <div className={" px-10  grid-cols-2 "}>

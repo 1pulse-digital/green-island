@@ -28,8 +28,8 @@ const CartItem = ({ item }: { item: CartItemType }) => {
           layout="fill"
           objectFit="contain"
           loader={strapiLoader}
-          src={item.product.image.formats.thumbnail.url}
-          alt={item.product.image.alternativeText}
+          src={item.product.image?.formats.thumbnail.url || ""}
+          alt={item.product.image?.alternativeText || "Product image"}
         />
       </div>
 

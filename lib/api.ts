@@ -29,7 +29,7 @@ export async function fetchAPI(path: string, token?: string) {
 }
 
 export const useProducts = (query?: string) => {
-  const { data, error } = useSWR(`/products${query}`, fetchAPI);
+  const { data, error } = useSWR(query ? `/products${query}` : "/products", fetchAPI);
   return {
     products: data,
     isLoading: !error && !data,

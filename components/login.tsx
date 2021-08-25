@@ -4,7 +4,7 @@ import { useAuthContext } from "../contexts/authContext";
 import { useRouter } from "next/router";
 
 export const Login = () => {
-  const { signIn } = useAuthContext();
+  const { signIn, isLoading } = useAuthContext();
   const router = useRouter();
   const [credentials, setCredentials] = useState({
     username: router.query.username as string || "",
@@ -32,17 +32,17 @@ export const Login = () => {
         " grid md:grid-col-1 lg:grid-cols-2 md:h-full lg:h-[700px] w-full bg-gray-100 content-center font-karla p-7 md:px-20 text-primary"
       }>
       {/* First column - Create account*/}
-      <div className={"p-20 bg-white"}>
+      <div className={"p-10 md:p-20 bg-white"}>
         <h6 className={"text-4xl grid pb-7 "}>Login or create an account</h6>
         <div className={""}>
           <p className={"text-lg "}>
             By creating an account with our store, you will be able to move
             through the checkout process faster, store multiple shipping
             addresses, view and track your orders in your account and more.
-            <div className=" relative py-7">
+            <div className=" py-7">
               <Button
                 color={"primary"}
-                onClick={() => router.push("/reg")}
+                onClick={() => router.push("/register")}
                 className={
                   "flex flex-row items-center hover:bg-secondary hover:text-white"
                 }>
@@ -108,6 +108,7 @@ export const Login = () => {
                     className={
                       "flex flex-row items-center hover:bg-secondary hover:text-white"
                     }
+                    disabled={isLoading}
                     onClick={handleLogin}
                   >
                     <svg
