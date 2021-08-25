@@ -10,14 +10,14 @@ export interface MainLayoutProps {
 
 const MainLayout = (props: MainLayoutProps) => {
   return (
-    <div className={"flex flex-col min-h-screen"}>
+    <div className={"flex flex-col min-h-screen bg-indigo-400"}>
       <Head>
         <title>Perfect Health Practice</title>
         <meta name="description" content="Live a natural, healthy and organic life" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div style={{ position: "fixed", zIndex: 30 }} className=" w-full fixed top-0 z-30">
+      <div>
         <Navbar />
       </div>
 
