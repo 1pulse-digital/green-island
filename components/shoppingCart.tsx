@@ -70,6 +70,7 @@ export const ShoppingCart = () => {
           <>
             <Popover.Button
               className={`p-2 inline-flex rounded-sm hover:ring-2 ring-primary`}>
+              {/* TODO: Replace image with SVG */}
               <Image src={cart} alt="cart" />
               {cartCount > 0 && (
                 <span

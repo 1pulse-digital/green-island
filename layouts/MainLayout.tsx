@@ -17,7 +17,7 @@ const MainLayout = (props: MainLayoutProps) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className={"fixed top-0 z-30 w-full"}>
+      <div style={{position:"fixed"}} className=" w-full fixed top-0 z-30 ">
         <Navbar />
       </div>
 
