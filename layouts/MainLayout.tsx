@@ -17,7 +17,7 @@ const MainLayout = (props: MainLayoutProps) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div>
+      <div className={"z-30"}>
         <Navbar />
       </div>
 
