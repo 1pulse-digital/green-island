@@ -40,6 +40,18 @@ export const useProducts = (query?: string) => {
   };
 };
 
+export const useProductCategories = (query?: string) => {
+  const { data, error } = useSWR(
+    query ? `/product-categories${query}` : "/product-categories",
+    fetchAPI
+  );
+  return {
+    productCategories: data,
+    isLoading: !error && !data,
+    error,
+  };
+};
+
 // export const useUser = (token: string) => {
 //   const { data, error } = useSWR(["/users/me", token], fetchAPI);
 //   return {
