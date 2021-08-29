@@ -5,10 +5,12 @@ import { Product } from "../types/product";
 import { useProducts } from "../lib/api";
 import ProductWidget from "../components/productWidget";
 import { ShopSidebar } from "../components/shopSidebar";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import qs from "qs";
 import { ProductType } from "../types/productTypes";
 import { ProductForm } from "../types/productForms";
+import { Breadcrumb, Hits } from "react-instantsearch-dom";
+import { ProductHit } from "../components/search/productHit";
 
 export interface ShopProps {
 }
@@ -86,28 +88,29 @@ const Shop = (props: ShopProps) => {
   return (
     <MainLayout>
       <ShopBanner />
-      <div className={"grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 justify-center"}>
-        <ShopSidebar
-          onSelectCategory={onSelectCategory}
-          selectedCategories={filter.categories}
+      {/* We use a 12 column grid system to fine tune the breakpoints */}
+      <div className={"grid grid-cols-12 lg:min-h-[768px]"}>
+        {/* Sidebar */}
+        <div className={"col-span-12 sm:col-span-5 md:col-span-4 lg:col-span-3 2xl:col-span-2"}>
+          <ShopSidebar
+            onSelectCategory={onSelectCategory}
+            selectedCategories={filter.categories}
 
-          onSelectType={onSelectProductType}
-          selectedProductTypes={filter.productTypes}
+            onSelectType={onSelectProductType}
+            selectedProductTypes={filter.productTypes}
 
-          onSelectForm={onSelectProductForm}
-          selectedProductForms={filter.productForms}
-        />
+            onSelectForm={onSelectProductForm}
+            selectedProductForms={filter.productForms}
+          />
+        </div>
 
-        <div className="p-5 md:p-7 col-span-2 xl:col-span-3">
-          <p className={"font-karla pb-10"}>Home Digestive</p>
-          {!isLoading && (
-            <div className="flex flex-wrap gap-4">
-              {products.map((p: Product) => {
-                return <ProductWidget key={p.id} product={p} />;
-              })}
-            </div>
-          )}
-          {isLoading && <div className={"animate-pulse"}>Loading</div>}
+        {/* Product grid */}
+        <div className="p-5 md:p-7 col-span-12 sm:col-span-7 md:col-span-8 lg:col-span-9 2xl:col-span-10">
+          <Breadcrumb
+            rootUrl={"/shop"}
+            attributes={["category.name.lvl0"]}
+          />
+          <Hits hitComponent={ProductHit} />
         </div>
       </div>
 

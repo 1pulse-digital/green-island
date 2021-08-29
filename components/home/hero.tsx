@@ -6,7 +6,7 @@ import mobileHero from "../../images/perfect-health-mobile-banner.jpg";
 
 import Link from "next/link";
 import Button from "../button";
-import { CustomAutocomplete } from "../search/autocomplete";
+import { AlgoliaAutocomplete } from "../search/autocomplete";
 
 const MobileBanner = () => {
   return (
@@ -34,7 +34,7 @@ const MobileBanner = () => {
 
         {/* Search box */}
         <div className="relative flex py-4 w-1/2 lg:w-1/3 2xl:w-1/4">
-          <CustomAutocomplete />
+          <AlgoliaAutocomplete />
         </div>
 
         {/* Shop all button */}
@@ -78,7 +78,7 @@ const DesktopBanner = () => {
 
           {/* Search box */}
           <div className="relative py-4 w-1/2 lg:w-1/3 2xl:w-1/4">
-            <CustomAutocomplete />
+            <AlgoliaAutocomplete />
           </div>
 
           {/* Shop all button */}

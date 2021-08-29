@@ -10,6 +10,8 @@ import { ProductWishlist } from "./ProductWishlist";
 import { useAuthContext } from "../contexts/authContext";
 import cn from "classnames";
 import { useRouter } from "next/router";
+import { Menu } from "@headlessui/react";
+import Button from "./button";
 
 const navigationItems = [
   {
@@ -166,12 +168,39 @@ export const Navbar = () => {
 
             {/* Logged in */}
             {user && (
-              <button
-                className={"hidden lg:block whitespace-nowrap  items-center px-8 justify-center  py-2 border border-transparent rounded-full shadow-sm text-base font-medium text-white bg-primary hover:bg-secondary"}
-                onClick={logout}
-                color={"secondary"}>
-                Sign out
-              </button>
+
+              // <button
+              //   className={"hidden lg:block whitespace-nowrap  items-center px-8 justify-center  py-2 border border-transparent rounded-full shadow-sm text-base font-medium text-white bg-primary hover:bg-secondary"}
+              //   onClick={logout}
+              //   color={"secondary"}>
+              //   Sign out
+              // </button>
+              <Menu as="div" className="relative z-20">
+                <Menu.Button>
+                  <span className="sr-only">Open user menu</span>
+                  <img
+                    className="inline-block h-6 w-6 rounded-full ring-2 ring-white"
+                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                    alt=""
+                  />
+                </Menu.Button>
+                <Menu.Items
+                  className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                  <Menu.Item>
+                    {({ active }) => (
+                      <a
+                        className={`${active && "bg-blue-500"}`}
+                        href="/account-settings"
+                      >
+                        Account settings
+                      </a>
+                    )}
+                  </Menu.Item>
+                  <Menu.Item>
+                    <Button className={"h-20"} color={"secondary"} onClick={logout}>Sign out</Button>
+                  </Menu.Item>
+                </Menu.Items>
+              </Menu>
             )}
 
           </div>

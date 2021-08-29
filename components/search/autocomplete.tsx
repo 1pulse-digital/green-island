@@ -63,7 +63,7 @@ const ProductItem = ({ product }: { product: Product }) => {
 const Autocomplete = ({ hits, currentRefinement, refine }: AutocompleteProps) => {
   const [showResults, setShowResults] = useState(true);
   useEffect(() => {
-    if (currentRefinement && hits.length > 0) {
+    if (currentRefinement) {
       setShowResults(true);
     } else {
       setShowResults(false);
@@ -78,8 +78,12 @@ const Autocomplete = ({ hits, currentRefinement, refine }: AutocompleteProps) =>
         value={currentRefinement}
         onChange={event => refine(event.currentTarget.value)}
         placeholder={"Search"}
+        autoComplete="off"
+        autoCorrect="off"
+        autoCapitalize="none"
+        spellCheck="false"
       />
-      <div className={"absolute z-20 mt-1 bg-white/95 shadow-lg rounded"}>
+      <div className={"absolute z-20 mt-1 bg-white/95 shadow-lg rounded w-full"}>
         <Popover>
           {showResults && (
             <div>
@@ -91,6 +95,11 @@ const Autocomplete = ({ hits, currentRefinement, refine }: AutocompleteProps) =>
                       <ProductItem key={hit.objectID} product={product} />
                     );
                   })}
+                  {hits.length === 0 && (
+                    <p className={"h-16 w-full rounded bg-white grid place-content-center"}>
+                      No items found
+                    </p>
+                  )}
                 </div>
               </Popover.Panel>
             </div>
@@ -102,4 +111,4 @@ const Autocomplete = ({ hits, currentRefinement, refine }: AutocompleteProps) =>
   );
 };
 
-export const CustomAutocomplete = connectAutoComplete(Autocomplete);
+export const AlgoliaAutocomplete = connectAutoComplete(Autocomplete);

@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Algolia styles */
+.ais-Hits {
+}
+
+.ais-Hits-list {
+    @apply flex flex-wrap gap-4;
+}
+
+ais-Hits-item {
+}

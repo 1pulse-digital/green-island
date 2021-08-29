@@ -4,20 +4,11 @@ import { Button } from "./button";
 import { useCartContext } from "../contexts/cartContext";
 import { useRouter } from "next/router";
 import placeholder from "../images/2.jpg";
+import { strapiLoader } from "../lib/media";
 
 export interface ProductWidgetProps {
   product: Product;
 }
-
-type strapiLoaderParams = {
-  src: string;
-  width: number;
-  quality?: number;
-};
-
-const strapiLoader = (params: strapiLoaderParams) => {
-  return params.src;
-};
 
 const prettyPrice = (price: number): string => {
   return new Intl.NumberFormat("en-ZA", {
@@ -49,7 +40,7 @@ const ProductWidget = (props: ProductWidgetProps) => {
       onClick={goToProduct}
       className="sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 rounded-lg border-gray-50 overflow-hidden bg-white hover:shadow-xl cursor-pointer font-karla">
       <div
-        className={"relative h-[170px] w-[170px] md:w-full md:h-[240px]"}>
+        className={"relative h-[170px] w-full md:h-[240px]"}>
         {product.image && (
           <Image
             layout="fill"

@@ -6,7 +6,7 @@ import algoliasearch from "algoliasearch/lite";
 import { InstantSearch } from "react-instantsearch-dom";
 import { Toaster } from "react-hot-toast";
 
-const searchClient = algoliasearch("", "");
+const searchClient = algoliasearch("OKX28SUY54", "6d0caf66db31435053bdb33dc8750e47");
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

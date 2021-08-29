@@ -3,6 +3,10 @@ import { useProductCategories } from "../lib/api";
 import { ProductCategory } from "../types/productCategory";
 import { ProductForm, productForms } from "../types/productForms";
 import { ProductType, productTypes } from "../types/productTypes";
+import { ClearRefinements, Hits, RefinementList } from "react-instantsearch-dom";
+import { AlgoliaSearchBox } from "./search/searchbox";
+import { AlgoliaRefinementList } from "./search/refinementList";
+import { AlgoliaClearRefinements } from "./search/clearRefinements";
 
 interface SingleItemProps {
   title: string;
@@ -40,91 +44,46 @@ export interface ShopSidebarProps {
 }
 
 export const ShopSidebar = (props: ShopSidebarProps) => {
-  const { productCategories, isLoading, error } = useProductCategories();
-
-  const isCategoryChecked = (id: number): boolean => {
-    return props.selectedCategories.findIndex((i) => i === id) >= 0;
-  };
-
-  const isProductTypeChecked = (value: string): boolean => {
-    return props.selectedProductTypes.findIndex((i) => i.value === value) >= 0;
-  };
-
-  const isProductFromChecked = (value: string): boolean => {
-    return props.selectedProductForms.findIndex((i) => i.value === value) >= 0;
-  };
-
-  if (isLoading) {
-    return <div>loading</div>;
-  }
-
   return (
-    <div className={"bg-gray-100 h-full py-5 px-10 md:px-10 lg:px-20 "}>
+    <div className={"bg-gray-100 h-full py-5 px-10 2xl:px-20 "}>
       <div className="flex flex-col sm:justify-center">
-        <nav>
+        <nav className={"grid gap-6"}>
           {/* Search box */}
-          <div className="my-8 ">
-            <input
-              type="search"
-              className="bg-white p-3 w-full"
-              placeholder="Search products..." />
+          <div className="relative">
+            <AlgoliaSearchBox />
           </div>
 
-          {/* Shop by Category */}
+
+          {/* Shop by category */}
           <div>
-            <p className="text-primary font-bold  w-full pb-2   mb-4 text-2xl font-karla">
+            <p className="text-primary font-bold w-full mb-4 text-2xl font-karla">
               Shop by Category
             </p>
-
-            {isLoading && <div className={"animate-pulse"}>Loading</div>}
-
-            {!isLoading && (
-              <div className={"font-karla"}>
-                {productCategories.map((item: ProductCategory) => (
-                  <SingleItem
-                    key={item.id}
-                    title={item.name}
-                    checked={isCategoryChecked(item.id)}
-                    onChange={() => props.onSelectCategory(item.id)}
-                  />
-                ))}
-              </div>
-            )}
+            <AlgoliaRefinementList attribute={"category.name"} />
           </div>
 
-          {/* Shop by Product Type */}
+          {/* Shop by product types */}
           <div>
-            <p className="text-primary font-bold w-full my-10 text-2xl font-karla">
+            <p className="text-primary font-bold w-full mb-4 text-2xl font-karla">
               Shop by product type
             </p>
             <div>
-              {productTypes.map(item => (
-                <SingleItem
-                  key={item.value}
-                  title={item.label}
-                  checked={isProductTypeChecked(item.value)}
-                  onChange={() => props.onSelectType(item)}
-                />
-              ))}
+              <AlgoliaRefinementList attribute={"product_type"} />
             </div>
           </div>
 
-          {/* Forms */}
-
+          {/* Shop by product forms */}
           <div>
-            <p className="text-primary font-bold w-full my-10 text-2xl font-karla">
+            <p className="text-primary font-bold w-full mb-4 text-2xl font-karla">
               Forms
             </p>
             <div>
-              {productForms.map(item => (
-                <SingleItem
-                  key={item.value}
-                  title={item.label}
-                  checked={isProductFromChecked(item.value)}
-                  onChange={() => props.onSelectForm(item)}
-                />
-              ))}
+              <AlgoliaRefinementList attribute={"product_form"} />
             </div>
+          </div>
+
+          <div className={""}>
+            <AlgoliaClearRefinements clearsQuery customTitle={"Clear all filters and query"} />
           </div>
         </nav>
       </div>
