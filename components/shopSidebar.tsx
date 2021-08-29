@@ -1,46 +1,40 @@
-import React from "react";
-import { useProductCategories } from "../lib/api";
-import { ProductCategory } from "../types/productCategory";
-import { ProductForm, productForms } from "../types/productForms";
-import { ProductType, productTypes } from "../types/productTypes";
-import { ClearRefinements, Hits, RefinementList } from "react-instantsearch-dom";
 import { AlgoliaSearchBox } from "./search/searchbox";
 import { AlgoliaRefinementList } from "./search/refinementList";
 import { AlgoliaClearRefinements } from "./search/clearRefinements";
 
-interface SingleItemProps {
-  title: string;
-  checked: boolean;
-  onChange: () => void;
-}
+// interface SingleItemProps {
+//   title: string;
+//   checked: boolean;
+//   onChange: () => void;
+// }
 
-const SingleItem = (props: SingleItemProps) => {
-  return (
-    <label className="flex items-center space-x-3 mb-3 hover:cursor-pointer">
-      <input
-        type="checkbox"
-        name={`${props.title.split(" ").join("-")}`}
-        className="bg-white bg-check h-6 w-6 border border-gray-300 checked:bg-blue-500 checked:border-transparent focus:outline-none hover:cursor-pointer"
-        checked={props.checked}
-        onChange={props.onChange}
-        value=""
-      />
-      <span className="truncate text-gray-700 dark:text-white font-normal">
-        {props.title}
-      </span>
-    </label>
-  );
-};
+// const SingleItem = (props: SingleItemProps) => {
+//   return (
+//     <label className="flex items-center space-x-3 mb-3 hover:cursor-pointer">
+//       <input
+//         type="checkbox"
+//         name={`${props.title.split(" ").join("-")}`}
+//         className="bg-white bg-check h-6 w-6 border border-gray-300 checked:bg-blue-500 checked:border-transparent focus:outline-none hover:cursor-pointer"
+//         checked={props.checked}
+//         onChange={props.onChange}
+//         value=""
+//       />
+//       <span className="truncate text-gray-700 dark:text-white font-normal">
+//         {props.title}
+//       </span>
+//     </label>
+//   );
+// };
 
 export interface ShopSidebarProps {
-  selectedProductTypes: ProductType[];
-  onSelectType: (productType: ProductType) => void;
-
-  selectedProductForms: ProductForm[];
-  onSelectForm: (productForm: ProductForm) => void;
-
-  selectedCategories: number[];
-  onSelectCategory: (id: number) => void;
+  // selectedProductTypes: ProductType[];
+  // onSelectType: (productType: ProductType) => void;
+  //
+  // selectedProductForms: ProductForm[];
+  // onSelectForm: (productForm: ProductForm) => void;
+  //
+  // selectedCategories: number[];
+  // onSelectCategory: (id: number) => void;
 }
 
 export const ShopSidebar = (props: ShopSidebarProps) => {
