@@ -144,6 +144,7 @@ function CartContext({ children }: { children?: React.ReactNode }) {
   useEffect(() => {
     if (!user && wishListSynchronised.current) {
       wishListSynchronised.current = false;
+      clearWishlist()
     }
   }, [user]);
 
