@@ -11,7 +11,6 @@ import { useAuthContext } from "../contexts/authContext";
 import cn from "classnames";
 import { useRouter } from "next/router";
 import { Menu } from "@headlessui/react";
-import Button from "./button";
 
 const navigationItems = [
   {
@@ -42,7 +41,7 @@ export const Navbar = () => {
   const isLoginPage = router.pathname === "/login";
 
   return (
-    <Popover className="w-full bg-white shadow-md ">
+    <Popover className="w-full bg-white shadow-md z-30">
       {({ open }) => (
         <div
           className="grid grid-cols-3 w-full py-2 px-4 sm:px-6 lg:px-8">
@@ -185,19 +184,22 @@ export const Navbar = () => {
                   />
                 </Menu.Button>
                 <Menu.Items
-                  className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                  className="py-4 grid gap-2 origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                   <Menu.Item>
                     {({ active }) => (
-                      <a
-                        className={`${active && "bg-blue-500"}`}
-                        href="/account-settings"
-                      >
-                        Account settings
-                      </a>
+                      <Link href={"/my-account"}>
+                        <a
+                          className={cn("px-2 py-1  hover:bg-gray-100 cursor-pointer", { "bg-gray-300": active })}
+                        >
+                          Account settings
+                        </a>
+                      </Link>
                     )}
                   </Menu.Item>
                   <Menu.Item>
-                    <Button className={"h-20"} color={"secondary"} onClick={logout}>Sign out</Button>
+                    <div onClick={logout} className={"px-2 py-1 hover:bg-gray-100 cursor-pointer"}>
+                      <span>Sign out</span>
+                    </div>
                   </Menu.Item>
                 </Menu.Items>
               </Menu>

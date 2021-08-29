@@ -1,6 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { Product } from "../types/product";
 import { toast } from "react-hot-toast";
+import { useAuthContext } from "./authContext";
+import { updateStrapiWishlist, fetchAPI, createStrapiWishlist } from "../lib/api";
 
 interface ContextType {
   addToCart: (product: Product, quantity: number) => void;
@@ -28,11 +30,13 @@ export interface WishlistItemType {
 }
 
 function CartContext({ children }: { children?: React.ReactNode }) {
+  const { user, authToken } = useAuthContext();
   const [cartItems, setCartItems] = useState<CartItemType[]>([]);
   const [cartCount, setCartCount] = useState(0);
 
   const [wishlistCount, setWishlistCount] = useState(0);
   const [wishlistItems, setWishlistItems] = useState<WishlistItemType[]>([]);
+  const wishListSynchronised = useRef<boolean>();
 
   const addToWishlist = (product: Product) => {
     // check if the item is already in the list
@@ -44,10 +48,27 @@ function CartContext({ children }: { children?: React.ReactNode }) {
     } else {
       // add the new item (it's not in the list yet)
       const updatedList = [...wishlistItems, { product: product }];
-      setWishlistItems(updatedList);
-      setWishlistCount(updatedList.length);
-      toast(`${product.name} added to wishlist`, { icon: "❤️" });
+
+      // first add to the server
+      if (user && authToken) {
+        const addToStrapi = async () => {
+          await updateStrapiWishlist(authToken, updatedList.map(i => i.product.id));
+        };
+
+        addToStrapi().then(() => {
+          setWishlistItems(updatedList);
+          setWishlistCount(updatedList.length);
+          toast(`${product.name} added to wishlist`, { icon: "❤️" });
+        }).catch(e => {
+          toast.error(`could not add to strapi ${e}`);
+        });
+      } else {
+        setWishlistItems(updatedList);
+        setWishlistCount(updatedList.length);
+        toast(`${product.name} added to wishlist`, { icon: "❤️" });
+      }
     }
+
   };
 
   const removeFromWishlist = (productID: number) => {
@@ -119,6 +140,62 @@ function CartContext({ children }: { children?: React.ReactNode }) {
     setCartItems([]);
     setCartCount(0);
   };
+
+  useEffect(() => {
+    if (!user && wishListSynchronised.current) {
+      wishListSynchronised.current = false;
+    }
+  }, [user]);
+
+  useEffect(() => {
+    const synchroniseWishlist = (products: Product[]) => {
+      wishListSynchronised.current = true;
+      let newItems = false;
+      const updatedList = [...wishlistItems];
+
+      for (const product of products) {
+        const found = wishlistItems.find(i => i.product.id === product.id);
+        if (!found) {
+          newItems = true;
+          updatedList.push({ product });
+        }
+      }
+
+      if (newItems) {
+        setWishlistItems(updatedList);
+        setWishlistCount(updatedList.length);
+      }
+
+
+    };
+
+    if (user && authToken) {
+      if (wishListSynchronised.current) {
+        console.debug("wish list already in sync");
+        return;
+      }
+
+      const getMyWishlist = async (): Promise<Product[]> => {
+        const response = await fetchAPI("/wish-lists/me", authToken);
+        return response.products;
+      };
+
+      getMyWishlist().then((products: Product[]) => {
+        synchroniseWishlist(products);
+        toast(`Synchronised your wishlist`, { icon: "❤️" });
+      }).catch(e => {
+        if (e === "Not Found") {
+          createStrapiWishlist(authToken).then(() => {
+            toast(`Created your wishlist`, { icon: "❤️" });
+          }).catch(e => {
+            toast.error(`Could not create your wishlist ${e}`);
+          });
+        } else {
+          toast.error(`Could not fetch your wishlist ${e}`);
+        }
+      });
+    }
+  }, [authToken, user, wishListSynchronised, wishlistItems]);
 
   return (
     <Context.Provider

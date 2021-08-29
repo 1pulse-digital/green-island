@@ -3,11 +3,12 @@ import { User } from "../types/user";
 import { fetchAPI, getStrapiURL } from "../lib/api";
 
 interface ContextType {
-  user?: User
-  logout: () => void
-  signIn: (username: string, password: string) => Promise<void>
-  register: (username: string, password: string) => Promise<void>
-  isLoading: boolean
+  user?: User;
+  logout: () => void;
+  signIn: (username: string, password: string) => Promise<void>;
+  register: (username: string, password: string) => Promise<void>;
+  isLoading: boolean;
+  authToken?: string;
 }
 
 const Context = createContext({} as ContextType);
@@ -26,6 +27,7 @@ const clearToken = () => {
 
 function AuthContext({ children }: { children?: React.ReactNode }) {
   const [user, setUser] = useState<User>();
+  const [authToken, setAuthToken] = useState<string>();
 
   // auto login the user if there is still a valid token
   useEffect(() => {
@@ -34,6 +36,7 @@ function AuthContext({ children }: { children?: React.ReactNode }) {
       try {
         const response = await fetchAPI("/users/me", token);
         setUser(response);
+        setAuthToken(token);
       } catch (e) {
         console.error(`Could not fetch user: ${e.message ? e.message : e.toString()}`);
         logout();
@@ -70,6 +73,7 @@ function AuthContext({ children }: { children?: React.ReactNode }) {
       console.debug("User signed in:", data);
       const { user, jwt } = data as { user: User, jwt: string };
       saveToken(jwt);
+      setAuthToken(jwt)
       setUser(user);
     } catch (e) {
       console.error(`Could not sign in: ${e.message ? e.message : e.toString()}`, e);
@@ -109,6 +113,7 @@ function AuthContext({ children }: { children?: React.ReactNode }) {
   const logout = () => {
     clearToken();
     setUser(undefined);
+    setAuthToken(undefined);
   };
 
   return (
@@ -119,6 +124,7 @@ function AuthContext({ children }: { children?: React.ReactNode }) {
         signIn,
         register,
         isLoading,
+        authToken,
       }}>
       {children}
     </Context.Provider>
