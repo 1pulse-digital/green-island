@@ -1,6 +1,8 @@
 import React from "react";
 import { useProductCategories } from "../lib/api";
 import { ProductCategory } from "../types/productCategory";
+import { ProductForm, productForms } from "../types/productForms";
+import { ProductType, productTypes } from "../types/productTypes";
 
 interface SingleItemProps {
   title: string;
@@ -27,6 +29,12 @@ const SingleItem = (props: SingleItemProps) => {
 };
 
 export interface ShopSidebarProps {
+  selectedProductTypes: ProductType[];
+  onSelectType: (productType: ProductType) => void;
+
+  selectedProductForms: ProductForm[];
+  onSelectForm: (productForm: ProductForm) => void;
+
   selectedCategories: number[];
   onSelectCategory: (id: number) => void;
 }
@@ -34,8 +42,16 @@ export interface ShopSidebarProps {
 export const ShopSidebar = (props: ShopSidebarProps) => {
   const { productCategories, isLoading, error } = useProductCategories();
 
-  const isChecked = (id: number): boolean => {
+  const isCategoryChecked = (id: number): boolean => {
     return props.selectedCategories.findIndex((i) => i === id) >= 0;
+  };
+
+  const isProductTypeChecked = (value: string): boolean => {
+    return props.selectedProductTypes.findIndex((i) => i.value === value) >= 0;
+  };
+
+  const isProductFromChecked = (value: string): boolean => {
+    return props.selectedProductForms.findIndex((i) => i.value === value) >= 0;
   };
 
   if (isLoading) {
@@ -68,22 +84,10 @@ export const ShopSidebar = (props: ShopSidebarProps) => {
                   <SingleItem
                     key={item.id}
                     title={item.name}
-                    checked={isChecked(item.id)}
+                    checked={isCategoryChecked(item.id)}
                     onChange={() => props.onSelectCategory(item.id)}
                   />
                 ))}
-
-                {/* <SingleItem title="Gut Health" />
-              <SingleItem title="Skin Health" />
-              <SingleItem title="Mental Health" />
-              <SingleItem title="Weight and Metabolism" />
-              <SingleItem title="Detoxification" />
-              <SingleItem title="Daily Care" />
-              <SingleItem title="Immune Support" />
-              <SingleItem title="Stress Management" />
-              <SingleItem title="Thyroid Support" />
-              <SingleItem title="Infection Management" />
-              <SingleItem title="Pain Management" /> */}
               </div>
             )}
           </div>
@@ -94,14 +98,14 @@ export const ShopSidebar = (props: ShopSidebarProps) => {
               Shop by product type
             </p>
             <div>
-              {/*<SingleItem title="Multivitamins" />*/}
-              {/*<SingleItem title=" Individual Nutrients" />*/}
-              {/*<SingleItem title="Digestive Aids" />*/}
-              {/*<SingleItem title=" Probiotics" />*/}
-              {/*<SingleItem title=" Prbiotics" />*/}
-              {/*<SingleItem title="Essential Fatty Acids" />*/}
-              {/*<SingleItem title="Immune Enhancers" />*/}
-              {/*<SingleItem title="Kid's health" />*/}
+              {productTypes.map(item => (
+                <SingleItem
+                  key={item.value}
+                  title={item.label}
+                  checked={isProductTypeChecked(item.value)}
+                  onChange={() => props.onSelectType(item)}
+                />
+              ))}
             </div>
           </div>
 
@@ -111,15 +115,15 @@ export const ShopSidebar = (props: ShopSidebarProps) => {
             <p className="text-primary font-bold w-full my-10 text-2xl font-karla">
               Forms
             </p>
-            {/* test1 */}
             <div>
-              {/*<SingleItem title=" Capsule" />*/}
-              {/*<SingleItem title=" Softgel" />*/}
-              {/*<SingleItem title=" Tablet" />*/}
-              {/*<SingleItem title="  Powder" />*/}
-              {/*<SingleItem title="Shake" />*/}
-              {/*<SingleItem title=" Liquid" />*/}
-              {/*<SingleItem title="Granules" />*/}
+              {productForms.map(item => (
+                <SingleItem
+                  key={item.value}
+                  title={item.label}
+                  checked={isProductFromChecked(item.value)}
+                  onChange={() => props.onSelectForm(item)}
+                />
+              ))}
             </div>
           </div>
         </nav>
