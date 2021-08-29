@@ -10,8 +10,8 @@ export function getStrapiURL(path = "") {
 export async function fetchAPI(path: string, token?: string) {
   const headers = {
     "Content-Type": "application/json",
-    "Authorization": `Bearer ${token}`,
-  } as { "Content-Type": string, Authorization?: string };
+    Authorization: `Bearer ${token}`,
+  } as { "Content-Type": string; Authorization?: string };
 
   if (!token) {
     delete headers.Authorization;
@@ -29,7 +29,10 @@ export async function fetchAPI(path: string, token?: string) {
 }
 
 export const useProducts = (query?: string) => {
-  const { data, error } = useSWR(query ? `/products${query}` : "/products", fetchAPI);
+  const { data, error } = useSWR(
+    query ? `/products${query}` : "/products",
+    fetchAPI
+  );
   return {
     products: data,
     isLoading: !error && !data,
