@@ -10,11 +10,11 @@ interface SingleItemProps {
 
 const SingleItem = (props: SingleItemProps) => {
   return (
-    <label className="flex items-center space-x-3 mb-3 ">
+    <label className="flex items-center space-x-3 mb-3 hover:cursor-pointer">
       <input
         type="checkbox"
         name={`${props.title.split(" ").join("-")}`}
-        className="bg-white bg-check h-6 w-6 border border-gray-300 checked:bg-blue-500 checked:border-transparent focus:outline-none"
+        className="bg-white bg-check h-6 w-6 border border-gray-300 checked:bg-blue-500 checked:border-transparent focus:outline-none hover:cursor-pointer"
         checked={props.checked}
         onChange={props.onChange}
         value=""
@@ -35,7 +35,7 @@ export const ShopSidebar = (props: ShopSidebarProps) => {
   const { productCategories, isLoading, error } = useProductCategories();
 
   const isChecked = (id: number): boolean => {
-    return props.selectedCategories.findIndex((i) => i === id) > 0;
+    return props.selectedCategories.findIndex((i) => i === id) >= 0;
   };
 
   if (isLoading) {

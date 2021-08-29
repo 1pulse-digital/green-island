@@ -1,4 +1,5 @@
 import useSWR from "swr";
+import { Product } from "../types/product";
 
 export function getStrapiURL(path = "") {
   return `${
@@ -28,11 +29,12 @@ export async function fetchAPI(path: string, token?: string) {
   return data;
 }
 
-export const useProducts = (query?: string) => {
+export const useProducts = (query?: string): { products: Product[], isLoading: boolean, error: any } => {
   const { data, error } = useSWR(
-    query ? `/products${query}` : "/products",
-    fetchAPI
+    query ? `/products?${query}` : "/products",
+    fetchAPI,
   );
+
   return {
     products: data,
     isLoading: !error && !data,
@@ -43,7 +45,7 @@ export const useProducts = (query?: string) => {
 export const useProductCategories = (query?: string) => {
   const { data, error } = useSWR(
     query ? `/product-categories${query}` : "/product-categories",
-    fetchAPI
+    fetchAPI,
   );
   return {
     productCategories: data,

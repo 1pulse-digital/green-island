@@ -5,7 +5,8 @@ import { Product } from "../types/product";
 import { useProducts } from "../lib/api";
 import ProductWidget from "../components/productWidget";
 import { ShopSidebar } from "../components/shopSidebar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import qs from "qs";
 
 export interface ShopProps {
 }
@@ -15,10 +16,20 @@ interface ProductFilter {
 }
 
 const Shop = (props: ShopProps) => {
-  const { products, isLoading, error } = useProducts();
+  const [query, setQuery] = useState<string>();
+
+  const { products, isLoading, error } = useProducts(query);
+
   const [filter, setFilter] = useState<ProductFilter>({
     categories: [],
   });
+
+  useEffect(() => {
+    setQuery(qs.stringify({
+        _where: [{ category: [filter.categories] }],
+      }),
+    );
+  }, [filter]);
 
   const onSelectCategory = (id: number) => {
     const idx = filter.categories.findIndex((i) => i === id);
@@ -59,7 +70,7 @@ const Shop = (props: ShopProps) => {
               })}
             </div>
           )}
-          {!isLoading && <div className={"animate-pulse"}>Loading</div>}
+          {isLoading && <div className={"animate-pulse"}>Loading</div>}
         </div>
       </div>
 
