@@ -1,5 +1,4 @@
 import Head from "next/head";
-import Hero from "../components/hero";
 import { About } from "../components/about";
 import { FeaturedProducts } from "../components/featuredProducts";
 
@@ -13,6 +12,8 @@ import { Categories } from "../components/categories";
 
 import { Button } from "../components/button";
 import Link from "next/link";
+
+import { Hero } from "../components/home/hero";
 
 export interface HomeProps {
   articles?: Article[];
@@ -36,11 +37,12 @@ const Home = (props: HomeProps) => {
 
       <About />
       <Categories />
-      {/* <Products /> */}
+      {/* FeaturedProducts */}
       <FeaturedProducts products={featuredProducts} />
 
-      {/* Featured Blogs? */}
 
+      {/* Testimonials (What our clients have to say) */}
+      {/* TODO: Use a react carousel component here: */}
       <div className={"bg-primary text-center h-[500px] grid content-center"}>
         <div className={"grid grid-cols-3"}>
           <div className={"col-span-3"}>
@@ -111,6 +113,7 @@ const Home = (props: HomeProps) => {
         </div>
       </div>
 
+      {/* Blogs */}
       <div className={"h-auto mlg:h-[700px] py-20 "}>
         <div className={"font-karla"}>
           <h1
@@ -157,6 +160,7 @@ export async function getStaticProps() {
     fetchAPI("/article-categories"),
   ]);
 
+  // TODO: Is the revalidate value correct here?
   return {
     props: { articles, featuredProducts, categories },
     revalidate: 1,

@@ -7,12 +7,7 @@ import {
   WishlistItemType,
 } from "../contexts/cartContext";
 import Image from "next/image";
-
-type strapiLoaderParams = {
-  src: string;
-  width: number;
-  quality?: number;
-};
+import { strapiLoader } from "../lib/media";
 
 const prettyPrice = (price: number): string => {
   return new Intl.NumberFormat("en-ZA", {
@@ -21,7 +16,6 @@ const prettyPrice = (price: number): string => {
   }).format(price);
 };
 
-const strapiLoader = (params: strapiLoaderParams) => params.src;
 
 const WishlistItem = ({ item }: { item: WishlistItemType }) => {
   const { removeFromWishlist, addToCart } = useCartContext();

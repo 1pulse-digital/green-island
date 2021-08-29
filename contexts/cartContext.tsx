@@ -1,6 +1,6 @@
-import { number } from "prop-types";
 import React, { useContext, useState } from "react";
 import { Product } from "../types/product";
+import { toast } from "react-hot-toast";
 
 interface ContextType {
   addToCart: (product: Product, quantity: number) => void;
@@ -37,7 +37,7 @@ function CartContext({ children }: { children?: React.ReactNode }) {
   const addToWishlist = (product: Product) => {
     // check if the item is already in the list
     const existingItemIdx = wishlistItems.findIndex(
-      (item) => item.product.id === product.id
+      (item) => item.product.id === product.id,
     );
     if (existingItemIdx >= 0) {
       // do nothing
@@ -46,16 +46,18 @@ function CartContext({ children }: { children?: React.ReactNode }) {
       const updatedList = [...wishlistItems, { product: product }];
       setWishlistItems(updatedList);
       setWishlistCount(updatedList.length);
+      toast(`${product.name} added to wishlist`, { icon: "❤️" });
     }
   };
 
   const removeFromWishlist = (productID: number) => {
     //  Remove from cart completely
     const updatedList = wishlistItems.filter(
-      (item) => item.product.id !== productID
+      (item) => item.product.id !== productID,
     );
     setWishlistItems(updatedList);
     setWishlistCount(updatedList.length);
+
   };
 
   const clearWishlist = () => {
@@ -66,7 +68,7 @@ function CartContext({ children }: { children?: React.ReactNode }) {
   const addToCart = (product: Product, quantity: number) => {
     // check if the item is already in the list
     const existingItemIdx = cartItems.findIndex(
-      (item) => item.product.id === product.id
+      (item) => item.product.id === product.id,
     );
     if (existingItemIdx >= 0) {
       // update the item in the list
@@ -81,20 +83,21 @@ function CartContext({ children }: { children?: React.ReactNode }) {
       setCartItems(updatedList);
       setCartCount(updatedList.length);
     }
+    toast(`${product.name} added to cart`, { icon: "🛒" });
   };
 
   const removeFromCart = (productID: number, quantity?: number) => {
     if (!quantity) {
       //  Remove from cart completely
       const updatedList = cartItems.filter(
-        (item) => item.product.id !== productID
+        (item) => item.product.id !== productID,
       );
       setCartItems(updatedList);
       setCartCount(updatedList.length);
     } else {
       // get the existing item
       const existingItemIdx = cartItems.findIndex(
-        (item) => item.product.id === productID
+        (item) => item.product.id === productID,
       );
       if (existingItemIdx < 0) {
         console.error("Can't find the item with id ", productID);
