@@ -8,8 +8,8 @@ import { Toaster } from "react-hot-toast";
 
 // Initialise Algolia
 const searchClient = algoliasearch(
-  process.env.ALGOLIA_APP_ID ?? "",
-  process.env.ALGOLIA_API_KEY ?? "",
+  process.env.NEXT_PUBLIC_ALGOLIA_APP_ID ?? "",
+  process.env.NEXT_PUBLIC_ALGOLIA_API_KEY ?? "",
 );
 
 function MyApp({ Component, pageProps }: AppProps) {
