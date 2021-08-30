@@ -56,7 +56,8 @@ const CartItem = ({ item }: { item: CartItemType }) => {
 };
 
 export const ShoppingCart = () => {
-  const { cartCount, cartItems } = useCartContext();
+  const { cartItems } = useCartContext();
+  const cartCount = cartItems.length;
 
   // calculate the total price for all items in the
   const cartTotal = cartItems
@@ -69,12 +70,13 @@ export const ShoppingCart = () => {
         {({ open }) => (
           <>
             <Popover.Button
-              className={`p-2 inline-flex rounded-sm hover:ring-2 ring-primary`}>
-              {/* TODO: Replace image with SVG */}
-              <Image src={cart} alt="cart" />
+              className={`p-2 inline-flex rounded-sm`}>
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-primary ring-1 rounded ring-offset-2 hover:ring-offset-4  ring-primary" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
+              </svg>
               {cartCount > 0 && (
                 <span
-                  className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/3 -translate-y-1/3 bg-secondary rounded-full">
+                  className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/4 -translate-y-1/4 bg-secondary rounded-full">
                   {cartCount}
                 </span>
               )}

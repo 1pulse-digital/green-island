@@ -1,5 +1,6 @@
 import useSWR from "swr";
 import { Product } from "../types/product";
+import { CartItemType } from "../contexts/cartContext";
 
 export function getStrapiURL(path = "") {
   return `${
@@ -60,6 +61,32 @@ export async function createStrapiWishlist(token: string) {
   return data;
 }
 
+export async function createStrapiShoppingCart(token: string) {
+  const headers = {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${token}`,
+  } as { "Content-Type": string; Authorization?: string };
+
+  const requestUrl = getStrapiURL("/shopping-carts");
+  console.debug(`posting: ${requestUrl}`);
+
+  const response = await fetch(requestUrl, {
+    method: "POST",
+    headers: headers,
+    body: JSON.stringify({
+
+    }),
+  });
+  const data = await response.json();
+  console.debug(`posted:  ${requestUrl}\n`, data);
+
+  if (data.error) {
+    throw `${data.message}`;
+  }
+
+  return data;
+}
+
 export async function updateStrapiWishlist(token: string, products: number[]) {
   const headers = {
     "Content-Type": "application/json",
@@ -79,6 +106,31 @@ export async function updateStrapiWishlist(token: string, products: number[]) {
   const data = await response.json();
   console.debug(`updated:  ${requestUrl}\n`, data);
 
+  if (data.error) {
+    throw `${data.error}: ${data.message}`;
+  }
+  return data;
+}
+
+export async function updateStrapiShoppingCart(token: string, items: CartItemType[]) {
+  const headers = {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${token}`,
+  } as { "Content-Type": string; Authorization?: string };
+
+  const requestUrl = getStrapiURL("/shopping-carts/me");
+  console.debug(`updating: ${requestUrl}`);
+
+  const response = await fetch(requestUrl, {
+    method: "PUT",
+    headers: headers,
+    body: JSON.stringify({
+      cart_items: items,
+    }),
+  });
+  const data = await response.json();
+  console.debug(`updated:  ${requestUrl}\n`, data);
+
 
   if (data.error) {
     throw `${data.error}: ${data.message}`;
@@ -86,15 +138,6 @@ export async function updateStrapiWishlist(token: string, products: number[]) {
   return data;
 }
 
-export const useWishlist = (token: string): { products: Product[], isLoading: boolean, error: any } => {
-  const { data, error } = useSWR(["/wish-lists/me", token], fetchAPI);
-
-  return {
-    products: data,
-    isLoading: !error && !data,
-    error,
-  };
-};
 
 export const useProducts = (query?: string): { products: Product[], isLoading: boolean, error: any } => {
   const { data, error } = useSWR(

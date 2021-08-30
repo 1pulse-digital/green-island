@@ -3,19 +3,26 @@ import { Product } from "../types/product";
 import { toast } from "react-hot-toast";
 import { useAuthContext } from "./authContext";
 import { unionWith, differenceWith } from "lodash";
-import { updateStrapiWishlist, fetchAPI, createStrapiWishlist } from "../lib/api";
+import {
+  updateStrapiWishlist,
+  fetchAPI,
+  createStrapiWishlist,
+  updateStrapiShoppingCart,
+  createStrapiShoppingCart,
+} from "../lib/api";
+import { ProductType } from "../types/productTypes";
 
 interface ContextType {
   addToCart: (product: Product, quantity: number) => void;
   removeFromCart: (productID: number, quantity?: number) => void;
   clearCart: () => void;
-  cartCount: number;
   cartItems: CartItemType[];
 
   addToWishlist: (product: Product) => void;
   removeFromWishlist: (productID: number) => void;
   clearWishlist: () => void;
   wishlistContains: (id: number) => boolean;
+  cartContains: (id: number) => number | undefined;
   wishlistItems: WishlistItemType[];
 }
 
@@ -33,11 +40,12 @@ export interface WishlistItemType {
 function CartContext({ children }: { children?: React.ReactNode }) {
   const { user, authToken } = useAuthContext();
   const [cartItems, setCartItems] = useState<CartItemType[]>([]);
-  const [cartCount, setCartCount] = useState(0);
+  const cartSynchronised = useRef<boolean>();
 
   const [wishlistItems, setWishlistItems] = useState<WishlistItemType[]>([]);
   const wishListSynchronised = useRef<boolean>();
 
+  const cartContains = (id: number): number | undefined => cartItems.find(i => i.product.id === id)?.quantity;
   const wishlistContains = (id: number): boolean => wishlistItems.findIndex(i => i.product.id === id) >= 0;
 
   const addToWishlist = (product: Product) => {
@@ -60,25 +68,23 @@ function CartContext({ children }: { children?: React.ReactNode }) {
         })
         .catch(e => {
           console.error(`Could not add to your wishlist ${e}`);
-          toast.error(`Something went wrong, we could not add to your wishlist`, { icon: "❌️" });
+          toast.error(`Something went wrong, we could not add to your wishlist`, { icon: "😞️" });
         });
     } else {
       setWishlistItems(updatedList);
-      toast(`${product.name} added to offline wishlist`, { icon: "🖤️" });
+      toast(`${product.name} added to wishlist`, { icon: "🖤️" });
     }
-
   };
 
   const removeFromWishlist = (productID: number) => {
     //  Remove from cart completely
-    const updatedList = wishlistItems.filter(
-      (item) => item.product.id !== productID,
-    );
+    const updatedList = wishlistItems.filter(i => i.product.id !== productID);
+
     if (authToken) {
       updateStrapiWishlist(authToken, updatedList.map(i => i.product.id))
         .catch((e) => {
           console.error(`Could not synchronise your wishlist ${e}`);
-          toast.error(`Something went wrong, we could not synchronise your wishlist`, { icon: "❌️" });
+          toast.error(`Something went wrong, we could not synchronise your wishlist`, { icon: "😞️" });
         })
         .finally(() => {
           setWishlistItems(updatedList);
@@ -93,67 +99,98 @@ function CartContext({ children }: { children?: React.ReactNode }) {
   };
 
   const addToCart = (product: Product, quantity: number) => {
+    // remove the product from the wishlist
+    // TODO: Should the product stay in the wishlist?
+    removeFromWishlist(product.id);
+
     // check if the item is already in the list
-    const existingItemIdx = cartItems.findIndex(
-      (item) => item.product.id === product.id,
-    );
+    const existingItemIdx = cartItems.findIndex((i) => i.product.id === product.id);
+
+    let updatedList: CartItemType[] = [];
     if (existingItemIdx >= 0) {
       // update the item in the list
       cartItems[existingItemIdx].quantity += quantity;
-      setCartItems([...cartItems]);
+      updatedList = [...cartItems];
     } else {
       // add the new item (it's not in the list yet)
-      const updatedList = [
-        ...cartItems,
-        { product: product, quantity: quantity },
-      ];
-      setCartItems(updatedList);
-      setCartCount(updatedList.length);
+      updatedList = [...cartItems, { product, quantity }];
     }
-    toast(`${product.name} added to cart`, { icon: "🛒" });
+
+    if (authToken) {
+      updateStrapiShoppingCart(authToken, updatedList)
+        .then(() => {
+          setCartItems(updatedList);
+          toast(`${product.name} added to cart`, { icon: "🛒" });
+        })
+        .catch(e => {
+          console.error(`Could not add to your cart ${e}`);
+          toast.error(`Something went wrong, we could not add to your cart`, { icon: "😞️" });
+        });
+    } else {
+      setCartItems(updatedList);
+      toast(`${product.name} added to cart`, { icon: "🛍️" });
+    }
   };
 
-  const removeFromCart = (productID: number, quantity?: number) => {
+  const removeFromCart = (productID: number, quantity?: number): void => {
+    let updatedList: CartItemType[] = [];
     if (!quantity) {
       //  Remove from cart completely
-      const updatedList = cartItems.filter(
-        (item) => item.product.id !== productID,
-      );
-      setCartItems(updatedList);
-      setCartCount(updatedList.length);
+      updatedList = cartItems.filter(i => i.product.id !== productID);
     } else {
       // get the existing item
-      const existingItemIdx = cartItems.findIndex(
-        (item) => item.product.id === productID,
-      );
+      const existingItemIdx = cartItems.findIndex(i => i.product.id === productID);
+
       if (existingItemIdx < 0) {
         console.error("Can't find the item with id ", productID);
+        toast.error("We can't find that item", { icon: "😞️" });
         return;
       }
 
       if (cartItems[existingItemIdx].quantity <= 1) {
         // if this is the last one, remove completely
-        removeFromCart(productID);
+        return removeFromCart(productID);
       } else {
         // update the item in the list
         cartItems[existingItemIdx].quantity -= quantity;
-        setCartItems([...cartItems]);
+        updatedList = [...cartItems];
       }
     }
+
+    // if we are logged in, update the cart on the server first
+    if (authToken) {
+      updateStrapiShoppingCart(authToken, updatedList)
+        .catch(e => {
+          console.error(`Could not synchronise your cart ${e}`);
+          toast.error(`Something went wrong, we could not synchronise your cart`, { icon: "😞️" });
+        })
+        .finally(() => {
+          setCartItems(updatedList);
+        });
+    } else {
+      // set locally only
+      setCartItems(updatedList);
+    }
+
+
   };
 
   const clearCart = () => {
     setCartItems([]);
-    setCartCount(0);
   };
 
-  // clear the user's wishlist on logout
+  // clear the user's cart && wishlist on logout
   // Note: wishListSynchronised.current would have been true if the user was
   //       logged in before
   useEffect(() => {
     if (!user && wishListSynchronised.current) {
       wishListSynchronised.current = false;
       clearWishlist();
+    }
+
+    if (!user && cartSynchronised.current) {
+      cartSynchronised.current = false;
+      clearCart();
     }
   }, [user]);
 
@@ -163,12 +200,79 @@ function CartContext({ children }: { children?: React.ReactNode }) {
     return response.products;
   };
 
-  // comparator is a function to compare if two products are the same
-  const comparator = (a: Product, b: Product): boolean => {
+  // fetchShoppingCart can be used to fetch the user's cart given an auth token
+  const fetchShoppingCart = async (token: string): Promise<CartItemType[]> => {
+    const response = await fetchAPI("/shopping-carts/me", token);
+    return response.cart_items;
+  };
+
+  // wishlistComparator is a function to compare if two products are the same
+  const wishlistComparator = (a: Product, b: Product): boolean => {
     return a.id === b.id;
   };
 
-  // synchronise the wishlist if user authentication changes
+  // cartComparator is a function to compare if two cart items are the same
+  const cartComparator = (a: CartItemType, b: CartItemType): boolean => {
+    return a.product.id === b.product.id && a.quantity === b.quantity;
+  };
+
+  // synchronise the shopping cart if user is authenticated
+  useEffect(() => {
+    if (!user || !authToken) {
+      return;
+    }
+
+    if (cartSynchronised.current) {
+      console.debug("Shopping cart in sync");
+      return;
+    }
+
+    // create a function that can be used to synchronise the shopping cart
+    const synchroniseShoppingCart = async (token: string, items: CartItemType[], cartItems: CartItemType[]) => {
+      const combinedList = unionWith(items, cartItems, cartComparator);
+      cartSynchronised.current = true;
+
+      // check if any items have to be updated on the server
+      if (differenceWith(combinedList, items, cartComparator).length > 0) {
+        await updateStrapiShoppingCart(token, combinedList);
+      }
+
+      // check if any items have to be updated locally
+      if (differenceWith(combinedList, cartItems, cartComparator).length > 0) {
+        setCartItems(combinedList);
+      }
+    };
+
+    fetchShoppingCart(authToken)
+      .then((items: CartItemType[]) => {
+        synchroniseShoppingCart(authToken, items, cartItems)
+          .then(() => {
+            toast(`Synchronised your shopping cart`, { icon: "🛒️" });
+          })
+          .catch(e => {
+            console.error(`Could not synchronise your shopping cart ${e}`);
+            toast.error(`Something went wrong, we could not synchronise your shopping cart`, { icon: "😞️" });
+          });
+      })
+      .catch(e => {
+        if (e === "Not Found") {
+          createStrapiShoppingCart(authToken)
+            .then(() => {
+              toast(`Created your shopping cart`, { icon: "🛒️️" });
+            })
+            .catch(e => {
+              console.error(`Could not create your shopping cart ${e}`);
+              toast.error(`Something went wrong, we could not create your shopping cart`, { icon: "😞️" });
+            });
+        } else {
+          console.error(`Could not fetch your shopping cart ${e}`);
+          toast.error(`Something went wrong, we could not fetch your shopping cart`, { icon: "😞️" });
+        }
+      });
+  }, [authToken, user, cartItems]);
+
+
+  // synchronise the wishlist if user is authenticated
   useEffect(() => {
     if (!user || !authToken) {
       return;
@@ -181,16 +285,16 @@ function CartContext({ children }: { children?: React.ReactNode }) {
 
     // create a function that can be used to synchronise the wishlist
     const synchroniseWishlist = async (token: string, products: Product[], wishlistProducts: Product[]) => {
-      const combinedList = unionWith(products, wishlistProducts, comparator);
+      const combinedList = unionWith(products, wishlistProducts, wishlistComparator);
       wishListSynchronised.current = true;
 
       // check if any items have to be updated on the server
-      if (differenceWith(combinedList, products, comparator).length > 0) {
+      if (differenceWith(combinedList, products, wishlistComparator).length > 0) {
         await updateStrapiWishlist(token, combinedList.map(i => i.id));
       }
 
       // check if any items have to be updated locally
-      if (differenceWith(combinedList, wishlistProducts, comparator).length > 0) {
+      if (differenceWith(combinedList, wishlistProducts, wishlistComparator).length > 0) {
         setWishlistItems(combinedList.map(i => ({ product: i })));
       }
     };
@@ -203,7 +307,7 @@ function CartContext({ children }: { children?: React.ReactNode }) {
           })
           .catch(e => {
             console.error(`Could not synchronise your wishlist ${e}`);
-            toast.error(`Something went wrong, we could not synchronise your wishlist`, { icon: "❌️" });
+            toast.error(`Something went wrong, we could not synchronise your wishlist`, { icon: "😞️" });
           });
       })
       .catch(e => {
@@ -214,14 +318,14 @@ function CartContext({ children }: { children?: React.ReactNode }) {
             })
             .catch(e => {
               console.error(`Could not create your wishlist ${e}`);
-              toast.error(`Something went wrong, we could not create your wishlist`, { icon: "❌️" });
+              toast.error(`Something went wrong, we could not create your wishlist`, { icon: "😞️" });
             });
         } else {
           console.error(`Could not fetch your wishlist ${e}`);
-          toast.error(`Something went wrong, we could not fetch your wishlist`, { icon: "❌️" });
+          toast.error(`Something went wrong, we could not fetch your wishlist`, { icon: "😞️" });
         }
       });
-  }, [authToken, user, wishListSynchronised, wishlistItems]);
+  }, [authToken, user, wishlistItems]);
 
   return (
     <Context.Provider
@@ -229,8 +333,8 @@ function CartContext({ children }: { children?: React.ReactNode }) {
         addToCart: addToCart,
         clearCart: clearCart,
         removeFromCart: removeFromCart,
-        cartCount: cartCount,
         cartItems: cartItems,
+        cartContains: cartContains,
 
         addToWishlist: addToWishlist,
         clearWishlist: clearWishlist,

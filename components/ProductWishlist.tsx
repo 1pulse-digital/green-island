@@ -74,12 +74,14 @@ export const ProductWishlist = () => {
         {({ open }) => (
           <>
             <Popover.Button
-              className={`p-2 inline-flex rounded-sm hover:ring-2 ring-primary`}>
-              {/* TODO: Replace image with SVG */}
-              <Image src={wishlist} alt="wishlist" />
+              className={`p-2 inline-flex`}>
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-primary ring-1 rounded ring-offset-2 hover:ring-offset-4 ring-primary" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
+              </svg>
+
               {wishlistItems.length > 0 && (
                 <span
-                  className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/3 -translate-y-1/3 bg-secondary rounded-full">
+                  className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/4 -translate-y-1/4 bg-secondary rounded-full">
                   {wishlistItems.length}
                 </span>
               )}
