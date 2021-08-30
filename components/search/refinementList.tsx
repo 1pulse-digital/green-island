@@ -12,7 +12,7 @@ const RefinementList = ({ items, refine }: RefinementListProvided) => {
             <input
               type="checkbox"
               name={`${item.label}`}
-              className="bg-white bg-check h-6 w-6 border border-gray-300 checked:bg-blue-500 checked:border-transparent focus:outline-none hover:cursor-pointer"
+              className="bg-white bg-check h-6 w-6 rounded border-gray-300 text-primary focus:ring-secondary hover:cursor-pointer"
               checked={item.isRefined}
               onChange={() => refine(item.value)}
               value=""

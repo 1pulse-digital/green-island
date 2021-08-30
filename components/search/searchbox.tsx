@@ -11,7 +11,7 @@ const SearchBox = ({ currentRefinement, refine }: SearchBoxProps) => {
   return (
     <div className={"font-karla w-full grid relative"}>
       <input
-        className={"bg-white shadow-sm rounded-full pl-4 py-2 w-full"}
+        className={"shadow-sm rounded-full px-4 py-2 w-full"}
         type="search"
         value={currentRefinement}
         onChange={event => refine(event.currentTarget.value)}
