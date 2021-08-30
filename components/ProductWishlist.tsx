@@ -66,7 +66,7 @@ const WishlistItem = ({ item }: { item: WishlistItemType }) => {
 };
 
 export const ProductWishlist = () => {
-  const { wishlistCount, wishlistItems } = useCartContext();
+  const { wishlistItems } = useCartContext();
 
   return (
     <div className="max-w-sm relative">
@@ -77,10 +77,10 @@ export const ProductWishlist = () => {
               className={`p-2 inline-flex rounded-sm hover:ring-2 ring-primary`}>
               {/* TODO: Replace image with SVG */}
               <Image src={wishlist} alt="wishlist" />
-              {wishlistCount > 0 && (
+              {wishlistItems.length > 0 && (
                 <span
                   className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/3 -translate-y-1/3 bg-secondary rounded-full">
-                  {wishlistCount}
+                  {wishlistItems.length}
                 </span>
               )}
             </Popover.Button>
@@ -104,7 +104,7 @@ export const ProductWishlist = () => {
                   </div>
 
                   {/*  Message to display for empty cart */}
-                  {wishlistCount === 0 && (
+                  {wishlistItems.length === 0 && (
                     <div className="p-4 bg-gray-50">
                       <span>Your wishlist is empty</span>
                     </div>

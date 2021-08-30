@@ -5,6 +5,7 @@ import { useCartContext } from "../contexts/cartContext";
 import { useRouter } from "next/router";
 import placeholder from "../images/2.jpg";
 import { strapiLoader } from "../lib/media";
+import cn from "classnames";
 
 export interface ProductWidgetProps {
   product: Product;
@@ -21,10 +22,9 @@ const ProductWidget = (props: ProductWidgetProps) => {
   const { product } = props;
   const {
     addToCart,
-    removeFromCart,
-    clearCart,
-    addToWishlist,
     removeFromWishlist,
+    addToWishlist,
+    wishlistContains,
   } = useCartContext();
   const router = useRouter();
 
@@ -34,6 +34,8 @@ const ProductWidget = (props: ProductWidgetProps) => {
   const goToProduct = () => {
     router.push(`/products/${product.id}`);
   };
+
+  const inWishlist = wishlistContains(product.id);
 
   return (
     <div
@@ -72,13 +74,18 @@ const ProductWidget = (props: ProductWidgetProps) => {
           onClick={(event) => {
             event.preventDefault();
             event.stopPropagation();
-            addToWishlist(props.product);
+            if (inWishlist) {
+              removeFromWishlist(product.id);
+            } else {
+              addToWishlist(product);
+            }
           }}>
           {/* Add product to wishlist start */}
           <svg
-            className="w-6 h-6  "
-            fill="currentColor"
+            className={"w-6 h-6 stroke-current text-primary"}
+            fill={inWishlist ? "currentColor" : "none"}
             viewBox="0 0 20 20"
+            strokeWidth="1px"
             xmlns="http://www.w3.org/2000/svg">
             <path
               fillRule="evenodd"

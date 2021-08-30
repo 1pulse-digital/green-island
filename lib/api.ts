@@ -22,7 +22,7 @@ export async function fetchAPI(path: string, token?: string) {
   console.debug(`fetching: ${requestUrl}`);
   const response = await fetch(requestUrl, { headers });
   if (!response.ok) {
-    throw response.statusText
+    throw response.statusText;
   }
 
   const data = await response.json();
@@ -61,16 +61,13 @@ export async function createStrapiWishlist(token: string) {
 }
 
 export async function updateStrapiWishlist(token: string, products: number[]) {
-  if (products.length === 0) {
-    throw `products can't be empty`;
-  }
   const headers = {
     "Content-Type": "application/json",
     Authorization: `Bearer ${token}`,
   } as { "Content-Type": string; Authorization?: string };
 
   const requestUrl = getStrapiURL("/wish-lists/me");
-  console.debug(`fetching: ${requestUrl}`);
+  console.debug(`updating: ${requestUrl}`);
 
   const response = await fetch(requestUrl, {
     method: "PUT",
@@ -80,7 +77,7 @@ export async function updateStrapiWishlist(token: string, products: number[]) {
     }),
   });
   const data = await response.json();
-  console.debug(`fetched:  ${requestUrl}\n`, data);
+  console.debug(`updated:  ${requestUrl}\n`, data);
 
 
   if (data.error) {
@@ -88,6 +85,16 @@ export async function updateStrapiWishlist(token: string, products: number[]) {
   }
   return data;
 }
+
+export const useWishlist = (token: string): { products: Product[], isLoading: boolean, error: any } => {
+  const { data, error } = useSWR(["/wish-lists/me", token], fetchAPI);
+
+  return {
+    products: data,
+    isLoading: !error && !data,
+    error,
+  };
+};
 
 export const useProducts = (query?: string): { products: Product[], isLoading: boolean, error: any } => {
   const { data, error } = useSWR(

@@ -8,75 +8,7 @@ import { ProductHit } from "../components/search/productHit";
 export interface ShopProps {
 }
 
-// interface ProductFilter {
-//   categories: number[];
-//   productForms: ProductForm[];
-//   productTypes: ProductType[];
-// }
-
 const Shop = (props: ShopProps) => {
-  // const [query, setQuery] = useState<string>();
-
-  // const { products, isLoading, error } = useProducts(query);
-  //
-  // const [filter, setFilter] = useState<ProductFilter>({
-  //   categories: [],
-  //   productForms: [],
-  //   productTypes: [],
-  // });
-
-  // useEffect(() => {
-  //   setQuery(qs.stringify({
-  //       _where: [
-  //         { category: [filter.categories] },
-  //         { product_form: [filter.productForms.map(i => i.value)] },
-  //         { product_type: [filter.productTypes.map(i => i.value)] },
-  //       ],
-  //     }),
-  //   );
-  // }, [filter]);
-
-  // const onSelectProductType = (item: ProductType) => {
-  //   const idx = filter.productTypes.findIndex((i) => i.value === item.value);
-  //   if (idx === -1) {
-  //     const newProductTypes = [...filter.productTypes, item];
-  //     setFilter({ ...filter, productTypes: newProductTypes });
-  //   } else {
-  //     const newProductTypes = [...filter.productTypes];
-  //     newProductTypes.splice(idx, 1);
-  //     setFilter({ ...filter, productTypes: newProductTypes });
-  //   }
-  // };
-
-  // const onSelectProductForm = (item: ProductForm) => {
-  //   const idx = filter.productForms.findIndex((i) => i.value === item.value);
-  //   if (idx === -1) {
-  //     const newProductForms = [...filter.productForms, item];
-  //     setFilter({ ...filter, productForms: newProductForms });
-  //   } else {
-  //     const newProductForms = [...filter.productForms];
-  //     newProductForms.splice(idx, 1);
-  //     setFilter({ ...filter, productForms: newProductForms });
-  //   }
-  // };
-
-  // const onSelectCategory = (id: number) => {
-  //   const idx = filter.categories.findIndex((i) => i === id);
-  //   if (idx === -1) {
-  //     const newCategories = [...filter.categories, id];
-  //     setFilter({ ...filter, categories: newCategories });
-  //   } else {
-  //     const newCategories = [...filter.categories];
-  //     newCategories.splice(idx, 1);
-  //
-  //     setFilter({ ...filter, categories: newCategories });
-  //   }
-  // };
-
-  // if (error) {
-  //   // TODO: We need to handle this error better
-  //   return <div>Error: {error.message ? error.message : error.toString()}</div>;
-  // }
 
   return (
     <MainLayout>
@@ -85,16 +17,7 @@ const Shop = (props: ShopProps) => {
       <div className={"grid grid-cols-12 lg:min-h-[768px]"}>
         {/* Sidebar */}
         <div className={"col-span-12 sm:col-span-5 md:col-span-4 lg:col-span-3 2xl:col-span-2"}>
-          <ShopSidebar
-            // onSelectCategory={onSelectCategory}
-            // selectedCategories={filter.categories}
-            //
-            // onSelectType={onSelectProductType}
-            // selectedProductTypes={filter.productTypes}
-            //
-            // onSelectForm={onSelectProductForm}
-            // selectedProductForms={filter.productForms}
-          />
+          <ShopSidebar />
         </div>
 
         {/* Product grid */}
