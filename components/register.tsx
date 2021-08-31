@@ -1,14 +1,96 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useAuthContext } from "../contexts/authContext";
+import { useRouter } from "next/router";
 
 export const Register = () => {
+  const { register, user } = useAuthContext();
+  const router = useRouter();
+  const [values, setValues] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    passwordConfirmation: "",
+  });
+  const [errors, setErrors] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+  });
+
+  const handleRegister = async (event: React.MouseEvent<HTMLButtonElement>) => {
+    // validate the fields
+    let valid = true;
+    let newErrors = {
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+    };
+
+    if (values.firstName === "") {
+      newErrors.firstName = "First Name is required";
+      valid = false;
+    }
+    if (values.lastName === "") {
+      newErrors.lastName = "Last Name is required";
+      valid = false;
+    }
+    if (values.email === "") {
+      newErrors.email = "Email is required";
+      valid = false;
+    }
+    if (values.password === "") {
+      newErrors.password = "Password is required";
+      valid = false;
+    }
+    if (values.password !== values.passwordConfirmation) {
+      newErrors.password = "Passwords don't match";
+      valid = false;
+    }
+    setErrors(newErrors);
+
+    if (valid) {
+      try {
+        const response = await register(values.email, values.password);
+        console.log("User registered");
+        await router.replace("/");
+        // TODO: Add a snackbar
+      } catch (e) {
+        console.error(`Could not register user: ${e.message ? e.message : e.toString()}`);
+      }
+    }
+  };
+
+  // validate the values
+  useEffect(() => {
+
+  }, [values]);
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const field = event.target.name;
+    const newValues = { ...values, [field]: event.target.value };
+    setValues(newValues);
+
+    // password validation
+    if (field === "passwordConfirmation" || errors.password) {
+      // validate the password field
+      if (newValues.password !== newValues.passwordConfirmation) {
+        setErrors({ ...errors, password: "Passwords don't match" });
+      } else {
+        setErrors({ ...errors, password: "" });
+      }
+    }
+  };
+
   return (
     <div
       className={
-        " sm:grid  grid-cols-2 md:h-[800px] sm:h-96 w-full bg-gray-100 content-center font-karla px-16 text-primary "
+        "grid grid-cols-2 w-full bg-gray-100 md:h-[800px] content-center font-karla px-16 text-primary "
       }>
       {/* Left column */}
-
-      <div className={" px-10  grid-cols-2   "}>
+      <div className={" px-10  grid-cols-2 "}>
         <h6 className={"text-4xl pb-8 grid   "}>Create an Account</h6>
         <div>
           <div className="grid  grid-cols-2 gap-4 m-auto bg-white py-12 px-10 ">
@@ -18,20 +100,32 @@ export const Register = () => {
                 <input
                   type="text"
                   id="contact-form-name"
-                  className="  border-transparent flex-1 appearance-none border border-gray-900 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-transparent"
+                  className=" border-transparent flex-1 appearance-none border border-gray-900 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-transparent"
                   placeholder=""
+                  value={values.firstName}
+                  name="firstName"
+                  onChange={handleChange}
                 />
+                {errors.firstName &&
+                <span className="text-xs text-red-600">{errors.firstName}</span>
+                }
               </div>
             </div>
             <div className="col-span-2 lg:col-span-1">
               <div className=" relative ">
                 Password *
                 <input
-                  type="text"
+                  type="password"
                   id="contact-form-password"
                   className="  border-transparent flex-1 appearance-none border border-gray-900 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-transparent"
                   placeholder=""
+                  value={values.password}
+                  name="password"
+                  onChange={handleChange}
                 />
+                {errors.password &&
+                <span className="text-xs text-red-600">{errors.password}</span>
+                }
               </div>
             </div>
             <div className="col-span-2 lg:col-span-1">
@@ -40,19 +134,28 @@ export const Register = () => {
                 <input
                   type="text"
                   id="contact-form-lastnamel"
-                  className="  border-transparent flex-1 appearance-none border border-gray-900 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-transparent"
+                  className=" border-transparent flex-1 appearance-none border border-gray-900 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-transparent"
                   placeholder=""
+                  value={values.lastName}
+                  name="lastName"
+                  onChange={handleChange}
                 />
+                {errors.lastName &&
+                <span className="text-xs text-red-600">{errors.lastName}</span>
+                }
               </div>
             </div>
             <div className="col-span-2 lg:col-span-1">
               <div className=" relative ">
                 Confirm Password *
                 <input
-                  type="text"
+                  type="password"
                   id="contact-form-confirmpassword"
-                  className="  border-transparent flex-1 appearance-none border border-gray-900 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-transparent"
+                  className=" border-transparent flex-1 appearance-none border border-gray-900 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-transparent"
                   placeholder=""
+                  value={values.passwordConfirmation}
+                  name="passwordConfirmation"
+                  onChange={handleChange}
                 />
               </div>
             </div>
@@ -60,41 +163,54 @@ export const Register = () => {
               <div className=" relative ">
                 Email *
                 <input
-                  type="text"
+                  type="email"
                   id="contact-form-email"
                   className=" border-transparent flex-1 appearance-none border border-gray-900 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-transparent"
                   placeholder=""
+                  value={values.email}
+                  name="email"
+                  onChange={handleChange}
                 />
+                {errors.email &&
+                <span className="text-xs text-red-600">{errors.email}</span>
+                }
               </div>
             </div>
           </div>
-          <div className={"bg-white py-4  px-12"}>
-            <p className={"border border-gray-700 w-full  py-2 px-4 "}>
+
+          {/* TODO: Should this box not also have a px-10 padding instead of 12 */}
+          <div className={"bg-white py-4 px-12"}>
+            <div className={"border border-gray-700 w-full py-2 px-4 "}>
               <p className={"text-opacity-100 font-bold"}>
                 To create an account, please review our terms and conditions
                 before you click on the "register" button below.{" "}
               </p>
-              <br></br>By clicking on the "register" button you agree to you
-              personal data being used in accordance with the privacy notice and
-              cookie notice. We will use your personal data to manage your
-              account, fulfill your order, and dispatch goods via our courier
-              service. Your phone number is required for delivery contact from
-              the courier.
-            </p>
+              <p className="mt-1">
+                By clicking on the "register" button you agree to you
+                personal data being used in accordance with the privacy notice and
+                cookie notice. We will use your personal data to manage your
+                account, fulfill your order, and dispatch goods via our courier
+                service. Your phone number is required for delivery contact from
+                the courier.
+              </p>
+            </div>
           </div>
+          {/* TODO: Add a link to the Terms & Conditions here, or maybe just a checkbox */}
           <div className="col-span-2  bg-white py-8 px-10">
+            {/* TODO: Is this the correct button? Should it not be the custom component button? */}
             <button
               type="submit"
-              className="py-2 px-4 border border-primary hover:bg-secondary focus:ring-indigo-500 focus:ring-offset-indigo-200  text-black justify-items justify-items-start  transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2   ">
-              <a href="http://localhost:3000/logins"> Register</a>
+              onClick={handleRegister}
+              className="py-2 px-4 border border-primary hover:bg-secondary focus:ring-indigo-500 focus:ring-offset-indigo-200  text-black justify-items justify-items-start  transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 "
+            >
+              Register
             </button>
           </div>
         </div>
       </div>
 
       {/* Right column */}
-
-      <div className={" px-10  mr-10  text-lg py-20   "}>
+      <div className={" px-10  mr-10  text-lg py-20 "}>
         <div className={"bg-white py-10 px-10 "}>
           <p className={"font-bold text-2xl "}>
             Benefits of Creating an Account{" "}

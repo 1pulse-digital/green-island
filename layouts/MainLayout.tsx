@@ -1,7 +1,8 @@
 import { Footer } from "../components/footer";
-import Navbar from "../components/navbar";
+import { Navbar } from "../components/navbar";
 import { ReactNode } from "react";
 import { SecondFooter } from "../components/secondFooter";
+import Head from "next/head";
 
 export interface MainLayoutProps {
   children: ReactNode;
@@ -9,15 +10,22 @@ export interface MainLayoutProps {
 
 const MainLayout = (props: MainLayoutProps) => {
   return (
-    <div>
-      {/* <Navbar /> */}
-      <Navbar />
+    <div className={"flex flex-col min-h-screen bg-indigo-400"}>
+      <Head>
+        <title>Perfect Health Practice</title>
+        <meta name="description" content="Live a natural, healthy and organic life" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
 
-      {/* Content goes here */}
-      <div>{props.children}</div>
+      <div className={"z-30"}>
+        <Navbar />
+      </div>
+
+
+      <div className={"flex-grow"}>{props.children}</div>
 
       <Footer />
-      <SecondFooter/>
+      <SecondFooter />
     </div>
   );
 };

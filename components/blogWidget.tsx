@@ -5,8 +5,6 @@ import { Article } from "../types/article";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
-import { Button } from "../components/button";
-
 export interface BlogWidgetProps {
   article: Article;
 }
@@ -18,12 +16,8 @@ type strapiLoaderParams = {
 };
 
 const strapiLoader = (params: strapiLoaderParams) => {
-  // const urlBase = getStrapiURL();
-  // return `${urlBase}${params.src}`;
   return params.src;
 };
-
-// Blog widget -
 
 export const BlogWidget = (props: BlogWidgetProps) => {
   const router = useRouter();
@@ -31,6 +25,7 @@ export const BlogWidget = (props: BlogWidgetProps) => {
   const viewBlog = () => {
     router.push(`/blogs/${props.article.slug}`);
   };
+
   return (
     <div
       className={
@@ -61,6 +56,7 @@ export const BlogWidget = (props: BlogWidgetProps) => {
               " inline-block bg-transparent text-blue-dark font-semibold uppercase hover:text-white hover:border-blue rounded "
             }>
             <div className={"sm:absolute bottom-1 "}>
+              {/* TODO: Add a blog archive page*/}
               <Link href="/blogs">
                 <a>
                   <button
@@ -72,9 +68,9 @@ export const BlogWidget = (props: BlogWidgetProps) => {
                       viewBox="0 0 20 20"
                       fill="currentColor">
                       <path
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                        clip-rule="evenodd"
+                        clipRule="evenodd"
                       />
                     </svg>
                   </button>

@@ -10,3 +10,11 @@ export function getStrapiMedia(media: Media) {
     : media.url;
   return imageUrl;
 }
+
+
+export type strapiLoaderParams = {
+  src: string;
+  width: number;
+  quality?: number;
+};
+export const strapiLoader = (params: strapiLoaderParams) => params.src;

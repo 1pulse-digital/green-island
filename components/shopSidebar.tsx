@@ -1,92 +1,83 @@
-import React from "react";
+import { AlgoliaSearchBox } from "./search/searchbox";
+import { AlgoliaRefinementList } from "./search/refinementList";
+import { AlgoliaClearRefinements } from "./search/clearRefinements";
 
-const SingleItem = ({ title }: { title: string }) => {
-  return (
-    <label className="flex items-center space-x-3 mb-3 ">
-      <input
-        type="checkbox"
-        name="checked-demo"
-        className=" bg-white bg-check h-6 w-6 border border-gray-300 checked:bg-blue-500 checked:border-transparent focus:outline-none"
-      />
-      <span className="truncate text-gray-700 dark:text-white font-normal">
-        {title}
-      </span>
-    </label>
-  );
-};
+// interface SingleItemProps {
+//   title: string;
+//   checked: boolean;
+//   onChange: () => void;
+// }
 
-export const ShopSidebar = () => {
+// const SingleItem = (props: SingleItemProps) => {
+//   return (
+//     <label className="flex items-center space-x-3 mb-3 hover:cursor-pointer">
+//       <input
+//         type="checkbox"
+//         name={`${props.title.split(" ").join("-")}`}
+//         className="bg-white bg-check h-6 w-6 border border-gray-300 checked:bg-blue-500 checked:border-transparent focus:outline-none hover:cursor-pointer"
+//         checked={props.checked}
+//         onChange={props.onChange}
+//         value=""
+//       />
+//       <span className="truncate text-gray-700 dark:text-white font-normal">
+//         {props.title}
+//       </span>
+//     </label>
+//   );
+// };
+
+export interface ShopSidebarProps {
+  // selectedProductTypes: ProductType[];
+  // onSelectType: (productType: ProductType) => void;
+  //
+  // selectedProductForms: ProductForm[];
+  // onSelectForm: (productForm: ProductForm) => void;
+  //
+  // selectedCategories: number[];
+  // onSelectCategory: (id: number) => void;
+}
+
+export const ShopSidebar = (props: ShopSidebarProps) => {
   return (
-    <div className={"bg-gray-100 h-full py-5 px-10 md:px-10 lg:px-20 "}>
+    <div className={"bg-gray-100 h-full py-5 px-10 "}>
       <div className="flex flex-col sm:justify-center">
-        <nav>
+        <nav className={"grid gap-6"}>
           {/* Search box */}
-          <div className="my-8 ">
-            <input
-              type="search"
-              className="bg-white p-3 w-full"
-              placeholder="Search products..."></input>
+          <div className="relative ">
+            <AlgoliaSearchBox />
           </div>
 
-          {/* Shop by Category */}
+
+          {/* Shop by category */}
           <div>
-            <p className="text-primary font-bold  w-full pb-2   mb-4 text-2xl font-karla">
-              Shop by Category
+            <p className="text-primary font-bold w-full mb-4 text-2xl font-karla">
+              Category
             </p>
-
-            {/*  test */}
-
-            <div className={"font-karla"}>
-              <SingleItem title="Hormonal Health" />
-              <SingleItem title="Gut Health" />
-              <SingleItem title="Skin Health" />
-              <SingleItem title="Mental Health" />
-              <SingleItem title="Weight and Metabolism" />
-              <SingleItem title="Detoxification" />
-              <SingleItem title="Daily Care" />
-              <SingleItem title="Immune Support" />
-              <SingleItem title="Stress Management" />
-              <SingleItem title="Thyroid Support" />
-              <SingleItem title="Infection Management" />
-              <SingleItem title="Pain Management" />
-            </div>
-
-            {/*  end */}
+            <AlgoliaRefinementList attribute={"category.name"} />
           </div>
 
-          {/* Shop by Prouct Type */}
+          {/* Shop by product type */}
           <div>
-            <p className="text-primary font-bold w-full my-10 text-2xl font-karla">
-              Shop by product type
+            <p className="text-primary font-bold w-full mb-4 text-2xl font-karla">
+              Product Type
             </p>
             <div>
-              <SingleItem title="Multivitamins" />
-              <SingleItem title=" Individual Nutrients" />
-              <SingleItem title="Digestive Aids" />
-              <SingleItem title=" Probiotics" />
-              <SingleItem title=" Prebiotics" />
-              <SingleItem title="Essential Fatty Acids" />
-              <SingleItem title="Immune Enhancers" />
-              <SingleItem title="Kid's health" />
+              <AlgoliaRefinementList attribute={"product_type"} />
             </div>
           </div>
 
-          {/* Forms */}
-
+          {/* Shop by product form */}
           <div>
-            <p className="text-primary font-bold w-full my-10 text-2xl font-karla">
-              Forms
+            <p className="text-primary font-bold w-full mb-4 text-2xl font-karla">
+              Product Form
             </p>
-            {/* test1 */}
             <div>
-              <SingleItem title=" Capsule" />
-              <SingleItem title=" Softgel" />
-              <SingleItem title=" Tablet" />
-              <SingleItem title="  Powder" />
-              <SingleItem title="Shake" />
-              <SingleItem title=" Liquid" />
-              <SingleItem title="Granules" />
+              <AlgoliaRefinementList attribute={"product_form"} />
             </div>
+          </div>
+
+          <div className={""}>
+            <AlgoliaClearRefinements clearsQuery customTitle={"Clear all filters and query"} />
           </div>
         </nav>
       </div>

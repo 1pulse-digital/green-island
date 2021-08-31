@@ -25,10 +25,10 @@ export const ShopBanner = () => {
             className={
               "z-10 text-2xl my-8 text-gray-600 font-light font-karla"
             }>
-            <div className="bg-white/90 inline">
+            <span className="bg-white/90 inline">
               Fill in your details below to receive to receive Your 15% off
               coupon code.
-            </div>
+            </span>
           </p>
           <div className={"flex "}>
             <form className="absolute ">
@@ -44,7 +44,7 @@ export const ShopBanner = () => {
                 type="text"
                 className=" h-12 px-4 mb-3 transition duration-200 rounded-full appearance-none md:mr-2 md:mb-0 focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
               />
-              <Button color={"primary"} > Submit</Button>
+              <Button color={"primary"}>Submit</Button>
              </form>
           </div>
         </div>
