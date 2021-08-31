@@ -73,7 +73,7 @@ function AuthContext({ children }: { children?: React.ReactNode }) {
       console.debug("User signed in:", data);
       const { user, jwt } = data as { user: User, jwt: string };
       saveToken(jwt);
-      setAuthToken(jwt)
+      setAuthToken(jwt);
       setUser(user);
     } catch (e) {
       console.error(`Could not sign in: ${e.message ? e.message : e.toString()}`, e);
@@ -85,6 +85,7 @@ function AuthContext({ children }: { children?: React.ReactNode }) {
   const register = async (username: string, password: string) => {
     const requestUrl = getStrapiURL("/auth/local/register");
     setLoading(true);
+    let data;
     try {
       const response = await fetch(requestUrl, {
         method: "POST",
@@ -97,15 +98,24 @@ function AuthContext({ children }: { children?: React.ReactNode }) {
           password,
         }),
       });
+      data = await response.json();
+    } catch (e) {
+      console.error(`Could not register user: ${e.message ? e.message : e.toString()}`);
+      throw `Something went wrong with the registration`;
+    }
 
-      const data = await response.json();
+    if (data.error) {
+      console.warn(`Registration failed`, data);
+      type dataError = { messages: { id: string, message: string }[] };
+      const dataMessages = data.message as dataError[];
+      const combinedMessage = dataMessages.map(i => i.messages.map(j => j.message)).join(" ");
+      throw `Registration failed: ${combinedMessage}`;
+    } else {
+      // registration success
       const { user, jwt } = data as { user: User, jwt: string };
       console.debug(`User registered: ${user.username}`);
       saveToken(jwt);
       setUser(user);
-
-    } catch (e) {
-      console.error(`Could not register user: ${e.message ? e.message : e.toString()}`);
     }
     setLoading(false);
   };

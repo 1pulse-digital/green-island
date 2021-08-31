@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useAuthContext } from "../contexts/authContext";
 import { useRouter } from "next/router";
+import { toast } from "react-hot-toast";
 
 export const Register = () => {
-  const { register, user } = useAuthContext();
+  const { register } = useAuthContext();
   const router = useRouter();
   const [values, setValues] = useState({
     firstName: "",
@@ -53,20 +54,15 @@ export const Register = () => {
 
     if (valid) {
       try {
-        const response = await register(values.email, values.password);
-        console.log("User registered");
+        await register(values.email, values.password);
         await router.replace("/");
-        // TODO: Add a snackbar
+        toast(`Welcome to The Perfect Health Practice!`, { icon: "🌿⚕️⚗️💊" });
       } catch (e) {
-        console.error(`Could not register user: ${e.message ? e.message : e.toString()}`);
+        toast.error(e, { icon: "😞️" });
       }
     }
   };
 
-  // validate the values
-  useEffect(() => {
-
-  }, [values]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const field = event.target.name;
