@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import bottle from "../images/bottle.png";
+import { MedicalAnimation } from "./home/animation";
 
 export const About = () => {
   return (
@@ -9,7 +10,9 @@ export const About = () => {
         {/* Left column - Bottle icon */}
 
         <div className={"grid justify-self-center py-10"}>
-          <Image src={bottle} alt="homeopath bottle icon" />
+          {/* <Image src={bottle} alt="homeopath bottle icon" /> */}
+          <MedicalAnimation />
+
         </div>
 
         {/* Right column text */}
