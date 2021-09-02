@@ -9,7 +9,7 @@ import BronwynKohler from "../images/BronwynKohler.jpg";
 import SindiNtozini from "../images/SindiNtozini.jpg";
 
 import Button from "../components/button";
-import { MedicalAnimation } from "../components/home/animation";
+// import { MedicalAnimation } from "../components/home/animation";
 
 const about = () => {
   return (
@@ -34,7 +34,7 @@ const about = () => {
               <div
                 className={"lg:absolute top-0 bottom-0 right-0 left-28 w-full"}>
                 <Image layout="fill" objectFit="cover" src={running} />
-                <MedicalAnimation />
+                {/* <MedicalAnimation /> */}
               </div>
             </div>
           </div>

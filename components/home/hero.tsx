@@ -100,7 +100,7 @@ const DesktopBanner = () => {
 
 export const Hero = () => {
   return (
-    <div className={"h-[700px] "}>
+    <div className={"h-[800px]"}>
       <div className="hidden md:block h-full">
         <DesktopBanner />
       </div>
