@@ -41,10 +41,10 @@ export const Navbar = () => {
   const isLoginPage = router.pathname === "/login";
 
   return (
-    <Popover className="z-30 w-full bg-white shadow-md">
+    <Popover className="w-full bg-white shadow-md z-30 lg:px-20">
       {({ open }) => (
         <div
-          className="grid grid-cols-3 py-2 px-4 w-full sm:px-6 lg:px-8">
+          className="grid grid-cols-3 w-full py-2 px-4 sm:px-6 lg:px-8">
 
           {/* Menu wrapper */}
           <div className={"my-auto"}>
@@ -52,7 +52,7 @@ export const Navbar = () => {
             <div className="lg:hidden">
               {/* Mobile menu button */}
               <Popover.Button
-                className="inline-flex justify-center items-center p-2 text-gray-400 rounded-md hover:text-white focus:ring-2 focus:ring-inset focus:ring-gray-500 focus:outline-none hover:bg-secondary">
+                className="rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-white hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500">
                 <span className="sr-only">Open menu</span>
                 <MenuIcon className="w-6 h-6" aria-hidden="true" />
               </Popover.Button>
