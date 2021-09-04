@@ -56,7 +56,7 @@ export const Register = () => {
       try {
         await register(values.email, values.password);
         await router.replace("/");
-        toast(`Welcome to The Perfect Health Practice!`, { icon: "🌿⚕️⚗️💊" });
+        toast(`Welcome to The Perfect Health Practice!`, { icon: "🌿⚕️" });
       } catch (e) {
         toast.error(e, { icon: "😞️" });
       }
@@ -211,21 +211,21 @@ export const Register = () => {
           <p className={"font-bold text-2xl "}>
             Benefits of Creating an Account{" "}
           </p>
-          <br></br>
+          <br/>
           <p className={"font-bold"}>
-            News and exclusive offers!<br></br>
+            News and exclusive offers!<br/>
           </p>
           Sign up to receive email updates on promotions, launches, gift ideas
-          and more. <br></br>
-          <br></br>
+          and more. <br/>
+          <br/>
           <p className={"font-bold"}>
             {" "}
-            Order History <br></br>
+            Order History <br/>
           </p>
-          Receive important information about your order.<br></br>
-          <br></br>
+          Receive important information about your order.<br/>
+          <br/>
           <p className={"font-bold"}>
-            Faster Checkout<br></br>
+            Faster Checkout<br/>
           </p>
           Save your billing and shipping information to make repeat purchases
           easier.

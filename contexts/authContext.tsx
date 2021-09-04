@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { User } from "../types/user";
 import { fetchAPI, getStrapiURL } from "../lib/api";
+import { parseErrorResponse } from "../utils/strapi";
 
 interface ContextType {
   user?: User;
@@ -56,6 +57,7 @@ function AuthContext({ children }: { children?: React.ReactNode }) {
 
   const signIn = async (username: string, password: string) => {
     const requestUrl = getStrapiURL("/auth/local");
+    let data;
     try {
       setLoading(true);
       const response = await fetch(requestUrl, {
@@ -69,17 +71,27 @@ function AuthContext({ children }: { children?: React.ReactNode }) {
           password,
         }),
       });
-      const data = await response.json();
-      console.debug("User signed in:", data);
-      const { user, jwt } = data as { user: User, jwt: string };
-      saveToken(jwt);
-      setAuthToken(jwt);
-      setUser(user);
+      data = await response.json();
     } catch (e) {
+      setLoading(false);
       console.error(`Could not sign in: ${e.message ? e.message : e.toString()}`, e);
+      throw `Something went wrong with the sign in process`;
+    }
+    setLoading(false);
+
+    if (data.error) {
+      console.warn(`Login failed`, data);
+      const combinedMessage = parseErrorResponse(data.message);
+      throw `Login failed: ${combinedMessage}`;
+    } else {
+      // login success
+      const { user, jwt } = data as { user: User, jwt: string };
+      console.debug(`User signed in: ${user.username}`);
+      setAuthToken(jwt);
+      saveToken(jwt);
+      setUser(user);
     }
 
-    setLoading(false);
   };
 
   const register = async (username: string, password: string) => {
@@ -106,14 +118,13 @@ function AuthContext({ children }: { children?: React.ReactNode }) {
 
     if (data.error) {
       console.warn(`Registration failed`, data);
-      type dataError = { messages: { id: string, message: string }[] };
-      const dataMessages = data.message as dataError[];
-      const combinedMessage = dataMessages.map(i => i.messages.map(j => j.message)).join(" ");
+      const combinedMessage = parseErrorResponse(data.message);
       throw `Registration failed: ${combinedMessage}`;
     } else {
       // registration success
       const { user, jwt } = data as { user: User, jwt: string };
       console.debug(`User registered: ${user.username}`);
+      setAuthToken(jwt)
       saveToken(jwt);
       setUser(user);
     }

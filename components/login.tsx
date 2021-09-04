@@ -2,6 +2,7 @@ import React, { MouseEvent, useState } from "react";
 import Button from "./button";
 import { useAuthContext } from "../contexts/authContext";
 import { useRouter } from "next/router";
+import { toast } from "react-hot-toast";
 
 export const Login = () => {
   const { signIn, isLoading } = useAuthContext();
@@ -20,9 +21,9 @@ export const Login = () => {
     event.stopPropagation();
     try {
       await signIn(credentials.username, credentials.password);
-      // await router.replace("/");
+      toast(`Welcome to The Perfect Health Practice!`, { icon: "🌿⚕️" });
     } catch (e) {
-      console.error(`Could not sign in: ${e.message ? e.message : e.toString()}`);
+      toast.error(e, { icon: "😞️" });
     }
   };
 
@@ -106,7 +107,7 @@ export const Login = () => {
                   <Button
                     color={"primary"}
                     className={
-                      "flex flex-row items-center hover:bg-secondary hover:text-white"
+                      "flex flex-row items-center"
                     }
                     disabled={isLoading}
                     onClick={handleLogin}
