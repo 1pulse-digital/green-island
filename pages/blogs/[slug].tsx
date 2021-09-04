@@ -22,7 +22,6 @@ const strapiLoader = (params: strapiLoaderParams) => {
 
 const SingleBlogPost = (props: SingleBlogPostProps) => {
   const router = useRouter();
-  const { slug } = router.query;
 
   if (!props.article) {
     return <div>Still loading</div>;
@@ -38,9 +37,9 @@ const SingleBlogPost = (props: SingleBlogPostProps) => {
 
           <div className={"grid  sm:px-0 md:px-24 content-center  max-h-full"}>
             <h1 className={"lg:text-5xl  md:text-4xl text-2xl text-primary"}>
-              <h1 className="text-4xl font-bold ">{props.article.title}</h1>
-              <h1 className="text-4xl font-bold ">{props.article.category.name}</h1>
-              <h1 className="text-lg pb-5 pt-10 ">
+              <h1 className="text-4xl font-bold">{props.article.title}</h1>
+              <h1 className="text-4xl font-bold">{props.article.category.name}</h1>
+              <h1 className="pt-10 pb-5 text-lg">
                 {props.article.description}
               </h1>
             </h1>
@@ -62,7 +61,7 @@ const SingleBlogPost = (props: SingleBlogPostProps) => {
         </div>
         <div className={""}>
           <div className="prose-sm">
-            <article className=" md:py-20 py-10 px-10 sm:py-10">
+            <article className="py-10 px-10 sm:py-10 md:py-20">
               <Markdown>{props.article.content}</Markdown>
             </article>
           </div>

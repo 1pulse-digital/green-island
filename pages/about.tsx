@@ -85,7 +85,7 @@ const about = () => {
               </button>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-4 w-4 self-center"
+                className="self-center w-4 h-4"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor">
@@ -209,7 +209,7 @@ const about = () => {
 
             <div>
               <h1 className={"md:text-right pr-10 pb-5 text-3xl text-white "}>
-                Dr Kohler’s <br></br>Mission Statement:
+                Dr Kohler’s <br />Mission Statement:
               </h1>
             </div>
             <div>
@@ -247,7 +247,8 @@ const about = () => {
             athletes, his practice offers treatment for the whole family, from the young to the elderly. Simon has a special interest in pain management
             and rehabilitation and works closely with other health professionals to ensure a rounded care model."
               />
-            </div>{" "}
+            </div>
+            {" "}
             <div className={"py-20 w-full"}>
               <div className={" lg:px-32"}>
                 <Image src={SimonWorkman} />
@@ -287,7 +288,8 @@ const about = () => {
             gets what they need when they need it, whether its an appointment, medication or a kind word. Her warmth and friendliness
             are part of what make Perfect Health a welcoming family practice."
               />
-            </div>{" "}
+            </div>
+            {" "}
             <div className={"py-20 w-full"}>
               <div className={" lg:px-32"}>
                 <Image src={SindiNtozini} />

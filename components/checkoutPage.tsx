@@ -7,7 +7,7 @@ export const CheckoutPage = () => {
     <div className={"bg-gray-100 md:h-[2000px] sm:h-[3000px]"}>
       <h6 className={"text-4xl  grid py-6  px-10  "}>Checkout</h6>
       <p className={"px-10 py-6"}>
-        Please enter your details below to complete your purchase.<br></br>{" "}
+        Please enter your details below to complete your purchase.<br/>{" "}
         Please note that you will need to submit your purchase to your Medical
         Aid provider to claim back.
       </p>
@@ -17,7 +17,7 @@ export const CheckoutPage = () => {
         <div className={"bg-white md:h-[1500px]  sm:h-[3000px]  px-10  "}>
           <p className={"text-2xl font-semibold   py-10  "}>Shipping Address</p>
           <div className="col-span-1 lg:col-span-1">
-            <div className=" relative   ">
+            <div className="relative">
               First Name *
               <input
                 type="text"
@@ -28,7 +28,7 @@ export const CheckoutPage = () => {
             </div>
           </div>
           <div className="col-span-1 lg:col-span-1">
-            <div className=" relative ">
+            <div className="relative">
               Last Name *
               <input
                 type="text"
@@ -39,7 +39,7 @@ export const CheckoutPage = () => {
             </div>
           </div>
           <div className="col-span-1 lg:col-span-1">
-            <div className=" relative ">
+            <div className="relative">
               Company Name
               <input
                 type="text"
@@ -50,7 +50,7 @@ export const CheckoutPage = () => {
             </div>
           </div>
           <div className="col-span-1 lg:col-span-1">
-            <div className=" relative ">
+            <div className="relative">
               Streeet Address *
               <input
                 type="text"
@@ -61,7 +61,7 @@ export const CheckoutPage = () => {
             </div>
           </div>
           <div className="col-span-1 lg:col-span-1">
-            <div className=" relative ">
+            <div className="relative">
               <input
                 type="text"
                 id="contact-form-name"
@@ -71,7 +71,7 @@ export const CheckoutPage = () => {
             </div>
           </div>
           <div className="col-span-1 lg:col-span-1">
-            <div className=" relative ">
+            <div className="relative">
               Suburb *
               <input
                 type="text"
@@ -82,7 +82,7 @@ export const CheckoutPage = () => {
             </div>
           </div>
           <div className="col-span-1 lg:col-span-1">
-            <div className=" relative ">
+            <div className="relative">
               City *
               <input
                 type="text"
@@ -93,7 +93,7 @@ export const CheckoutPage = () => {
             </div>
           </div>
           <div className="col-span-1 lg:col-span-1">
-            <div className=" relative ">
+            <div className="relative">
               Country *
               <input
                 type="text"
@@ -104,7 +104,7 @@ export const CheckoutPage = () => {
             </div>
           </div>
           <div className="col-span-1 lg:col-span-1">
-            <div className=" relative ">
+            <div className="relative">
               Postal Code *
               <input
                 type="text"
@@ -115,7 +115,7 @@ export const CheckoutPage = () => {
             </div>
           </div>
           <div className="col-span-1 lg:col-span-1">
-            <div className=" relative ">
+            <div className="relative">
               Phone Number *
               <input
                 type="text"
@@ -129,8 +129,8 @@ export const CheckoutPage = () => {
           <p className={"text-2xl font-semibold text-center py-10"}>
             Medical Aid Details
           </p>
-          <div className="grid grid-cols-1 ">
-            <div className=" relative ">
+          <div className="grid grid-cols-1">
+            <div className="relative">
               ID
               <input
                 type="text"
@@ -141,7 +141,7 @@ export const CheckoutPage = () => {
             </div>
           </div>
           <div className="col-span-1 lg:col-span-1">
-            <div className=" relative ">
+            <div className="relative">
               Medical Aid
               <input
                 type="text"
@@ -152,7 +152,7 @@ export const CheckoutPage = () => {
             </div>
           </div>
           <div className="col-span-1 lg:col-span-1">
-            <div className=" relative ">
+            <div className="relative">
               Scheme Name
               <input
                 type="text"
@@ -163,7 +163,7 @@ export const CheckoutPage = () => {
             </div>
           </div>
           <div className="col-span-1 lg:col-span-1">
-            <div className=" relative ">
+            <div className="relative">
               Membership Number
               <input
                 type="text"
@@ -174,7 +174,7 @@ export const CheckoutPage = () => {
             </div>
           </div>
           <div className="col-span-1 lg:col-span-1">
-            <div className=" relative ">
+            <div className="relative">
               Main Member
               <input
                 type="text"
@@ -200,11 +200,11 @@ export const CheckoutPage = () => {
               Shipping Method
             </p>
             <div className="col-span-1 lg:col-span-1">
-              <div className=" relative ">
+              <div className="relative">
                 <input
                   type="checkbox"
                   id="contact-form-name"
-                  className="form-checkbox h-5 w-5 text-gray-600"
+                  className="w-5 h-5 text-gray-600 form-checkbox"
                   placeholder="  "
                 />
                 <span className="ml-2 text-gray-700">Courier (+R150)</span>
@@ -212,11 +212,11 @@ export const CheckoutPage = () => {
             </div>
 
             <div className="col-span-1 lg:col-span-1">
-              <div className=" relative py-4">
+              <div className="relative py-4">
                 <input
                   type="checkbox"
                   id="contact-form-name"
-                  className="form-checkbox h-5 w-5 text-gray-600"
+                  className="w-5 h-5 text-gray-600 form-checkbox"
                   placeholder="  "
                 />
                 <span className="ml-2 text-gray-700">
@@ -237,12 +237,12 @@ export const CheckoutPage = () => {
             Payment Method
           </p>
 
-          <div className="grid-rows-1 col-span-1 lg:col-span-1">
-            <div className=" relative px-10  ">
+          <div className="col-span-1 grid-rows-1 lg:col-span-1">
+            <div className="relative px-10">
               <input
                 type="checkbox"
                 id="contact-form-name"
-                className="form-checkbox h-5 w-5 text-gray-600 "
+                className="w-5 h-5 text-gray-600 form-checkbox"
                 placeholder="  "
               />
             </div>
@@ -254,21 +254,21 @@ export const CheckoutPage = () => {
 
           <div className={"bg-white md:h-[300px] sm:h-[3000px] px-10   mt-10 "}>
             <p className={"text-2xl font-semibold divide-solid  "}>
-              Discount Code<br></br>
-              <br></br>
+              Discount Code<br/>
+              <br/>
               Apply discount code
             </p>
 
             <input
               type="text"
               id="contact-form-name"
-              className=" ml-2 border border-gray-700  flex-1 appearance-none  w-full  py-2 my-4 px-4 bg-white text-gray-700 placeholder-gray-400   "
+              className="flex-1 py-2 px-4 my-4 ml-2 w-full placeholder-gray-400 text-gray-700 bg-white border border-gray-700 appearance-none"
               placeholder=" Enter discount code "
             />
             <div className="col-span-2 py-2 px-10">
               <button
                 type="submit"
-                className=" py-2 px-4  bg-secondary  border border-secondary hover:bg-gray-500 focus:ring-indigo-500 focus:ring-offset-indigo-200  text-white    transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2   "
+                className="py-2 px-4 text-base font-semibold text-center text-white border shadow-md transition duration-200 ease-in hover:bg-gray-500 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-indigo-200 focus:outline-none bg-secondary border-secondary"
               >
                 Apply
               </button>
@@ -277,19 +277,19 @@ export const CheckoutPage = () => {
 
           <div className={"bg-white md:h-[300px] sm:h-[3000px] px-10 mt-10"}>
             <p className={"text-2xl font-semibold divide-solid  py-4"}>
-              Order Total<br></br>
+              Order Total<br/>
             </p>
 
             <input
               type="text"
               id="contact-form-name"
-              className="ml-2 border border-gray-700  flex-1 appearance-none  w-1/2  py-2 my-4 px-4 bg-white text-gray-700 placeholder-gray-400   "
+              className="flex-1 py-2 px-4 my-4 ml-2 w-1/2 placeholder-gray-400 text-gray-700 bg-white border border-gray-700 appearance-none"
               placeholder=" Enter discount code "
             />
-            <div className="col-span-2 py-8 px-2 ">
+            <div className="col-span-2 py-8 px-2">
               <button
                 type="submit"
-                className="py-2 px-4 bg-secondary border border-secondary hover:primary focus:ring-indigo-500 focus:ring-offset-indigo-200  text-white    transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2   "
+                className="py-2 px-4 text-base font-semibold text-center text-white border shadow-md transition duration-200 ease-in focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-indigo-200 focus:outline-none bg-secondary border-secondary hover:primary"
               >
                 Proceed to Purchase
               </button>

@@ -8,9 +8,9 @@ export interface ProductAdditionalInfoProps {
 
 export const ProductAdditionalInfo = (props: ProductAdditionalInfoProps) => {
   return (
-    <div className="w-3/4 ml-16 px-10 py-16 sm:px-0">
+    <div className="py-16 px-10 ml-16 w-3/4 sm:px-0">
       <Tab.Group>
-        <Tab.List className="flex p-1 space-x-1 bg-secondary rounded-xl">
+        <Tab.List className="flex p-1 space-x-1 rounded-xl bg-secondary">
           <Tab
             className={({ selected }) =>
               classnames(
@@ -61,7 +61,7 @@ export const ProductAdditionalInfo = (props: ProductAdditionalInfoProps) => {
           </Tab>
         </Tab.List>
 
-        <Tab.Panels className="mt-2 ">
+        <Tab.Panels className="mt-2">
           <Tab.Panel
             className={classnames(
               "bg-white rounded-xl p-3",

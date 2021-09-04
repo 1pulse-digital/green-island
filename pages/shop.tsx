@@ -21,7 +21,7 @@ const Shop = (props: ShopProps) => {
         </div>
 
         {/* Product grid */}
-        <div className="p-5 md:p-7 col-span-12 sm:col-span-7 md:col-span-8 lg:col-span-9 2xl:col-span-10">
+        <div className="col-span-12 p-5 sm:col-span-7 md:col-span-8 md:p-7 lg:col-span-9 2xl:col-span-10">
           <Hits hitComponent={ProductHit} />
         </div>
       </div>

@@ -39,9 +39,7 @@ export const About = () => {
             <a href="/about" className={"flex items-center justify-center md:justify-start"}>
               <button
                 type="submit"
-                className=" font-karla px-6 mr-6 font-normal tracking-wide text-white transition duration-200 shadow-md 
-                bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none bg-primary 
-                text-gray p-2 rounded-full hover:bg-secondary  ">
+                className="p-2 px-6 mr-6 font-normal tracking-wide text-white rounded-full shadow-md transition duration-200 focus:outline-none font-karla bg-deep-purple-accent-400 bg-primary text-gray hover:bg-deep-purple-accent-700 hover:bg-secondary focus:shadow-outline">
                 More about us
               </button>
             </a>

@@ -1,9 +1,9 @@
 import React from "react";
-import GoogleMapReact from 'google-map-react';
+// import GoogleMapReact from 'google-map-react';
 
 export const Map = () => {
   return (
-    <div className="h-96 w-full">
+    <div className="w-full h-96">
       {/* <GoogleMapReact
         bootstrapURLKeys={{ key: "" }}
         defaultCenter={{

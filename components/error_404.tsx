@@ -14,10 +14,10 @@ export const Error_404 = () => {
           The requested page cannot be found!!!{" "}
         </p>
 
-        <div className=" flex items-center justify-center py-20   ">
+        <div className="flex justify-center items-center py-20">
           <a
             href="http://localhost:3000/shop"
-            className="  whitespace-nowrap inline-flex items-center px-20 justify-center  py-2 border border-transparent rounded-full shadow-sm text-base font-medium text-white bg-primary  hover:bg-secondary">
+            className="inline-flex justify-center items-center py-2 px-20 text-base font-medium text-white whitespace-nowrap rounded-full border border-transparent shadow-sm bg-primary hover:bg-secondary">
             Continue Shopping
           </a>
         </div>

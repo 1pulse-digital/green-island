@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useAuthContext } from "../contexts/authContext";
 import { useRouter } from "next/router";
 import { toast } from "react-hot-toast";
@@ -89,14 +89,14 @@ export const Register = () => {
       <div className={" px-10  grid-cols-2 "}>
         <h6 className={"text-4xl pb-8 grid   "}>Create an Account</h6>
         <div>
-          <div className="grid  grid-cols-2 gap-4 m-auto bg-white py-12 px-10 ">
+          <div className="grid grid-cols-2 gap-4 py-12 px-10 m-auto bg-white">
             <div className="col-span-2 lg:col-span-1">
-              <div className=" relative ">
+              <div className="relative">
                 First Name *
                 <input
                   type="text"
                   id="contact-form-name"
-                  className=" border-transparent flex-1 appearance-none border border-gray-900 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-transparent"
+                  className="flex-1 py-2 px-4 w-full text-base placeholder-gray-400 text-gray-700 bg-white border border-transparent border-gray-900 shadow-sm appearance-none focus:border-transparent focus:ring-2 focus:ring-gray-600 focus:outline-none"
                   placeholder=""
                   value={values.firstName}
                   name="firstName"
@@ -108,12 +108,12 @@ export const Register = () => {
               </div>
             </div>
             <div className="col-span-2 lg:col-span-1">
-              <div className=" relative ">
+              <div className="relative">
                 Password *
                 <input
                   type="password"
                   id="contact-form-password"
-                  className="  border-transparent flex-1 appearance-none border border-gray-900 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-transparent"
+                  className="flex-1 py-2 px-4 w-full text-base placeholder-gray-400 text-gray-700 bg-white border border-transparent border-gray-900 shadow-sm appearance-none focus:border-transparent focus:ring-2 focus:ring-gray-600 focus:outline-none"
                   placeholder=""
                   value={values.password}
                   name="password"
@@ -125,12 +125,12 @@ export const Register = () => {
               </div>
             </div>
             <div className="col-span-2 lg:col-span-1">
-              <div className=" relative ">
+              <div className="relative">
                 Last Name *
                 <input
                   type="text"
                   id="contact-form-lastnamel"
-                  className=" border-transparent flex-1 appearance-none border border-gray-900 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-transparent"
+                  className="flex-1 py-2 px-4 w-full text-base placeholder-gray-400 text-gray-700 bg-white border border-transparent border-gray-900 shadow-sm appearance-none focus:border-transparent focus:ring-2 focus:ring-gray-600 focus:outline-none"
                   placeholder=""
                   value={values.lastName}
                   name="lastName"
@@ -142,12 +142,12 @@ export const Register = () => {
               </div>
             </div>
             <div className="col-span-2 lg:col-span-1">
-              <div className=" relative ">
+              <div className="relative">
                 Confirm Password *
                 <input
                   type="password"
                   id="contact-form-confirmpassword"
-                  className=" border-transparent flex-1 appearance-none border border-gray-900 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-transparent"
+                  className="flex-1 py-2 px-4 w-full text-base placeholder-gray-400 text-gray-700 bg-white border border-transparent border-gray-900 shadow-sm appearance-none focus:border-transparent focus:ring-2 focus:ring-gray-600 focus:outline-none"
                   placeholder=""
                   value={values.passwordConfirmation}
                   name="passwordConfirmation"
@@ -156,12 +156,12 @@ export const Register = () => {
               </div>
             </div>
             <div className="col-span-2 lg:col-span-1">
-              <div className=" relative ">
+              <div className="relative">
                 Email *
                 <input
                   type="email"
                   id="contact-form-email"
-                  className=" border-transparent flex-1 appearance-none border border-gray-900 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-transparent"
+                  className="flex-1 py-2 px-4 w-full text-base placeholder-gray-400 text-gray-700 bg-white border border-transparent border-gray-900 shadow-sm appearance-none focus:border-transparent focus:ring-2 focus:ring-gray-600 focus:outline-none"
                   placeholder=""
                   value={values.email}
                   name="email"
@@ -192,12 +192,12 @@ export const Register = () => {
             </div>
           </div>
           {/* TODO: Add a link to the Terms & Conditions here, or maybe just a checkbox */}
-          <div className="col-span-2  bg-white py-8 px-10">
+          <div className="col-span-2 py-8 px-10 bg-white">
             {/* TODO: Is this the correct button? Should it not be the custom component button? */}
             <button
               type="submit"
               onClick={handleRegister}
-              className="py-2 px-4 border border-primary hover:bg-secondary focus:ring-indigo-500 focus:ring-offset-indigo-200  text-black justify-items justify-items-start  transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 "
+              className="justify-items-start py-2 px-4 text-base font-semibold text-center text-black border shadow-md transition duration-200 ease-in focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-indigo-200 focus:outline-none border-primary justify-items hover:bg-secondary"
             >
               Register
             </button>
@@ -211,21 +211,21 @@ export const Register = () => {
           <p className={"font-bold text-2xl "}>
             Benefits of Creating an Account{" "}
           </p>
-          <br/>
+          <br />
           <p className={"font-bold"}>
-            News and exclusive offers!<br/>
+            News and exclusive offers!<br />
           </p>
           Sign up to receive email updates on promotions, launches, gift ideas
-          and more. <br/>
-          <br/>
+          and more. <br />
+          <br />
           <p className={"font-bold"}>
             {" "}
-            Order History <br/>
+            Order History <br />
           </p>
-          Receive important information about your order.<br/>
-          <br/>
+          Receive important information about your order.<br />
+          <br />
           <p className={"font-bold"}>
-            Faster Checkout<br/>
+            Faster Checkout<br />
           </p>
           Save your billing and shipping information to make repeat purchases
           easier.

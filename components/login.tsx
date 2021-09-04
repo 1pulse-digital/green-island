@@ -40,7 +40,7 @@ export const Login = () => {
             By creating an account with our store, you will be able to move
             through the checkout process faster, store multiple shipping
             addresses, view and track your orders in your account and more.
-            <div className=" py-7">
+            <div className="py-7">
               <Button
                 color={"primary"}
                 onClick={() => router.push("/register")}
@@ -48,7 +48,7 @@ export const Login = () => {
                   "flex flex-row items-center hover:bg-secondary hover:text-white"
                 }>
                 <svg
-                  className="h-6 w-6 pr-1"
+                  className="pr-1 w-6 h-6"
                   viewBox="0 0 20 20"
                   fill="currentColor">
                   <path
@@ -67,9 +67,9 @@ export const Login = () => {
       {/* Second column - Sign in */}
       <div>
         <div>
-          <form className="mt-10 sm:mt-10 md:ml-0 lg:ml-10  lg:mt-0 text-primary">
-            <div className="bg-white p-20">
-              <div className="  ">
+          <form className="mt-10 sm:mt-10 md:ml-0 lg:mt-0 lg:ml-10 text-primary">
+            <div className="p-20 bg-white">
+              <div className="">
                 <h6 className={"text-4xl grid pb-7"}>Sign in</h6>
                 <p className={"text-lg pb-3"}>
                   If you have an account with us, please log in.
@@ -82,7 +82,7 @@ export const Login = () => {
                   <input
                     type="email"
                     id="contact-form-name"
-                    className="rounded-md py-2 px-4 border-primary shadow-sm w-full mt-1 block placeholder-gray-400 focus:outline-none focus:ring ring-offset-2 focus:border-primary"
+                    className="block py-2 px-4 mt-1 w-full placeholder-gray-400 rounded-md ring-offset-2 shadow-sm focus:ring focus:outline-none border-primary focus:border-primary"
                     placeholder="user@mail.com"
                     value={credentials.username}
                     name="username"
@@ -96,14 +96,14 @@ export const Login = () => {
                   <input
                     type="password"
                     id="password-field"
-                    className="rounded focus:ring-2 ring-gray-700 w-full py-2 px-4 bg-white"
+                    className="py-2 px-4 w-full bg-white rounded ring-gray-700 focus:ring-2"
                     placeholder=""
                     name="password"
                     onChange={handleChange}
                   />
                 </div>
 
-                <div className=" text-left">
+                <div className="text-left">
                   <Button
                     color={"primary"}
                     className={
@@ -114,7 +114,7 @@ export const Login = () => {
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5"
+                      className="w-5 h-5"
                       viewBox="0 0 20 20"
                       fill="currentColor">
                       <path

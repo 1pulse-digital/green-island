@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import { Article } from "../types/article";
 import Markdown from "markdown-to-jsx";
 import MainLayout from "../layouts/MainLayout";
@@ -16,7 +15,7 @@ const SingleBlogPost = (props: SingleBlogPostProps) => {
     <MainLayout>
       <div>
         <h1 className="text-4xl">{props.article.title}</h1>
-        <div className="prose mx-auto">
+        <div className="mx-auto prose">
           <article className="line-clamp-3 md:line-clamp-none">
             <Markdown>{props.article.content}</Markdown>
           </article>

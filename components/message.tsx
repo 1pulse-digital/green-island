@@ -1,6 +1,4 @@
 import React from "react";
-import Image from "next/image";
-import contacts from "../images/contacts.jpg";
 
 export const Message = () => {
   return (
@@ -11,10 +9,10 @@ export const Message = () => {
           "grid content-center   bg-gray-50  lg:px-24  text-primary text-lg pl-4 md:px-5  md:py-8  "
         }>
         <p className={"text-md lg:pr-48 md:pr-32 grid sm:pt-8 "}>
-          33 Highland Avenue<br></br> Bryanston Ext 8 <br></br>Johannesburg,
+          33 Highland Avenue<br /> Bryanston Ext 8 <br />Johannesburg,
           Gauteng
         </p>
-        <br></br>
+        <br />
         <p className={"text-md lg:pr-48 md:pr-32"}>
           <a
             className={"hover:text-secondary"}
@@ -22,79 +20,79 @@ export const Message = () => {
             reception@perfecthealthpractice.com
           </a>
 
-          <br></br>
+          <br />
           <a
             className={"hover:text-secondary"}
             href="mailto: accounts@perfecthealthpractice.com">
             accounts@perfecthealthpractice.com
           </a>
         </p>
-        <br></br>
+        <br />
         <p className={"text-md lg:pr-48 md:pr-32"}>
-          Tel: +27 11 706 2786<br></br>
+          Tel: +27 11 706 2786<br />
           Tel: +27 82 293 8502{" "}
         </p>
-        <br></br>
+        <br />
         <p className={"text-md lg:pr-48 md:pr-32"}>
-          Monday to Thursday 08:00 - 17:00 <br></br>
-          <br></br>
-          Fridays 08:00 - 16:00 <br></br>
-          <br></br>
-          Saturday 08:00- 13:00 <br></br>
-          <br></br>
+          Monday to Thursday 08:00 - 17:00 <br />
+          <br />
+          Fridays 08:00 - 16:00 <br />
+          <br />
+          Saturday 08:00- 13:00 <br />
+          <br />
           We reserve emergency slots each week which can be booked on Mondays.
           They are awarded on a first come first serve basis, and bookings open
           at 8am.
         </p>
-        <br></br>
+        <br />
       </div>
 
       {/* Right column */}
       <div>
-        <form className="  grid  w-full  space-x-3 relative ">
-          <div className="w-full max-w-2xl  py-10 px-12 mt-10 bg-white  dark:bg-gray-800 ">
-            <div className="mb-6 text-3xl font-light text-center text-primary dark:text-white">
+        <form className="grid relative space-x-3 w-full">
+          <div className="py-10 px-12 mt-10 w-full max-w-2xl bg-white dark:bg-gray-800">
+            <div className="mb-6 text-3xl font-light text-center dark:text-white text-primary">
               <h1 className={"text-1xl pb-4 font-bold text-left text-primary "}>
                 Send us a message
               </h1>
             </div>
-            <div className="grid max-w-xl grid-cols-2 gap-4  ">
-              <div className="col-span-2 lg:col-span-1 ">
-                <div className=" relative ">
+            <div className="grid grid-cols-2 gap-4 max-w-xl">
+              <div className="col-span-2 lg:col-span-1">
+                <div className="relative">
                   <input
                     type="text"
                     id="contact-form-name"
-                    className="   flex-1 appearance-none border-b-2 w-full py-2  bg-white text-primary placeholder-gray-400 "
+                    className="flex-1 py-2 w-full placeholder-gray-400 bg-white border-b-2 appearance-none text-primary"
                     placeholder="First name"
                   />
                 </div>
               </div>
               <div className="col-span-2 lg:col-span-1">
-                <div className=" relative ">
+                <div className="relative">
                   <input
                     type="text"
                     id="contact-form-email"
-                    className="  appearance-none border-b-2 w-full py-2  bg-white text-primary placeholder-gray-400 "
+                    className="py-2 w-full placeholder-gray-400 bg-white border-b-2 appearance-none text-primary"
                     placeholder="Surname"
                   />
                 </div>
               </div>
               <div className="col-span-2 lg:col-span-1">
-                <div className=" relative ">
+                <div className="relative">
                   <input
                     type="text"
                     id="contact-form-email"
-                    className=" appearance-none border-b-2 w-full py-2  bg-white text-primary placeholder-gray-400 "
+                    className="py-2 w-full placeholder-gray-400 bg-white border-b-2 appearance-none text-primary"
                     placeholder="Email"
                   />
                 </div>
               </div>
               <div className="col-span-2 lg:col-span-1">
-                <div className=" relative ">
+                <div className="relative">
                   <input
                     type="text"
                     id="contact-form-email"
-                    className="  border-b-2 w-full py-2  bg-white text-primary placeholder-gray-400 "
+                    className="py-2 w-full placeholder-gray-400 bg-white border-b-2 text-primary"
                     placeholder="Tel"
                   />
                 </div>
@@ -102,7 +100,7 @@ export const Message = () => {
               <div className="col-span-2">
                 <label className="text-gray-700" htmlFor="name">
                   <textarea
-                    className=" border-b-2 w-full py-2  bg-white text-primary placeholder-gray-400 "
+                    className="py-2 w-full placeholder-gray-400 bg-white border-b-2 text-primary"
                     id="comment"
                     placeholder="Message Here"
                     name="comment"
@@ -111,10 +109,10 @@ export const Message = () => {
                   />
                 </label>
               </div>
-              <div className=" text-right pt-4">
+              <div className="pt-4 text-right">
                 <button
                   type="submit"
-                  className="py-2 px-4  bg-primary hover:bg-secondary focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
+                  className="py-2 px-4 w-full text-base font-semibold text-center text-white rounded-lg shadow-md transition duration-200 ease-in focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-indigo-200 focus:outline-none bg-primary hover:bg-secondary">
                   Submit
                 </button>
               </div>

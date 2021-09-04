@@ -1,8 +1,6 @@
 import { Popover, Transition } from "@headlessui/react";
 import { Fragment } from "react";
-import wishlist from "../images/wishlist.png";
 import {
-  CartItemType,
   useCartContext,
   WishlistItemType,
 } from "../contexts/cartContext";
@@ -21,8 +19,8 @@ const WishlistItem = ({ item }: { item: WishlistItemType }) => {
   const { removeFromWishlist, addToCart } = useCartContext();
 
   return (
-    <div className="grid grid-cols-8 h-24 transition duration-150 ease-in-out rounded-lg hover:bg-gray-50">
-      <div className="relative ring-primary ring-1 rounded-lg ring-offset-1">
+    <div className="grid grid-cols-8 h-24 rounded-lg transition duration-150 ease-in-out hover:bg-gray-50">
+      <div className="relative rounded-lg ring-1 ring-offset-1 ring-primary">
         <Image
           layout="fill"
           objectFit="contain"
@@ -39,7 +37,7 @@ const WishlistItem = ({ item }: { item: WishlistItemType }) => {
         </p>
       </div>
 
-      <div className="col-span-2 border-l-2 border-dashed pl-4">
+      <div className="col-span-2 pl-4 border-l-2 border-dashed">
         <p>{prettyPrice(item.product.price)}</p>
         <div>
           <button
@@ -69,68 +67,70 @@ export const ProductWishlist = () => {
   const { wishlistItems } = useCartContext();
 
   return (
-    <div className="max-w-sm relative">
+    <div className="relative max-w-sm">
       <Popover className="relative">
-        {({ open }) => (
-          <>
-            <Popover.Button
-              className={`p-2 inline-flex`}>
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-primary ring-1 rounded ring-offset-2 hover:ring-offset-4 ring-primary" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
-              </svg>
+        <>
+          <Popover.Button
+            className={`p-2 inline-flex`}>
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 className="w-6 h-6 rounded ring-1 ring-offset-2 hover:ring-offset-4 text-primary ring-primary"
+                 viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd"
+                    d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
+                    clipRule="evenodd" />
+            </svg>
 
-              {wishlistItems.length > 0 && (
-                <span
-                  className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/4 -translate-y-1/4 bg-secondary rounded-full">
+            {wishlistItems.length > 0 && (
+              <span
+                className="inline-flex absolute top-0 right-0 justify-center items-center py-1 px-2 text-xs font-bold leading-none text-white rounded-full transform translate-x-1/4 -translate-y-1/4 bg-secondary">
                   {wishlistItems.length}
                 </span>
-              )}
-            </Popover.Button>
+            )}
+          </Popover.Button>
 
-            <Transition
-              as={Fragment}
-              enter="transition ease-out duration-200"
-              enterFrom="opacity-0 translate-y-1"
-              enterTo="opacity-100 translate-y-0"
-              leave="transition ease-in duration-150"
-              leaveFrom="opacity-100 translate-y-0"
-              leaveTo="opacity-0 translate-y-1">
-              <Popover.Panel
-                className="absolute z-10 w-screen max-w-sm px-4 mt-3 -translate-x-3/4 sm:px-0 lg:max-w-3xl">
-                <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
-                  {/* Cart Items */}
-                  <div className="relative grid gap-4 bg-white p-4">
-                    {wishlistItems.map((item, idx) => (
-                      <WishlistItem key={idx} item={item} />
-                    ))}
-                  </div>
+          <Transition
+            as={Fragment}
+            enter="transition ease-out duration-200"
+            enterFrom="opacity-0 translate-y-1"
+            enterTo="opacity-100 translate-y-0"
+            leave="transition ease-in duration-150"
+            leaveFrom="opacity-100 translate-y-0"
+            leaveTo="opacity-0 translate-y-1">
+            <Popover.Panel
+              className="absolute z-10 px-4 mt-3 w-screen max-w-sm -translate-x-3/4 sm:px-0 lg:max-w-3xl">
+              <div className="overflow-hidden rounded-lg ring-1 ring-black ring-opacity-5 shadow-lg">
+                {/* Cart Items */}
+                <div className="grid relative gap-4 p-4 bg-white">
+                  {wishlistItems.map((item, idx) => (
+                    <WishlistItem key={idx} item={item} />
+                  ))}
+                </div>
 
-                  {/*  Message to display for empty cart */}
-                  {wishlistItems.length === 0 && (
-                    <div className="p-4 bg-gray-50">
-                      <span>Your wishlist is empty</span>
-                    </div>
-                  )}
-
-                  {/*  Cart summary */}
+                {/*  Message to display for empty cart */}
+                {wishlistItems.length === 0 && (
                   <div className="p-4 bg-gray-50">
-                    <div
-                      className="flow-root px-2 py-2 transition duration-150 ease-in-out rounded-md hover:bg-gray-100 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50">
+                    <span>Your wishlist is empty</span>
+                  </div>
+                )}
+
+                {/*  Cart summary */}
+                <div className="p-4 bg-gray-50">
+                  <div
+                    className="flow-root py-2 px-2 rounded-md transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50">
                       <span className="flex items-center">
                         <span className="text-sm font-medium text-gray-900">
                           Some summary of your wishlist?
                         </span>
                       </span>
-                      <span className="block text-sm text-gray-500">
+                    <span className="block text-sm text-gray-500">
                         Thanks
                       </span>
-                    </div>
                   </div>
                 </div>
-              </Popover.Panel>
-            </Transition>
-          </>
-        )}
+              </div>
+            </Popover.Panel>
+          </Transition>
+        </>
       </Popover>
     </div>
   );

@@ -37,7 +37,7 @@ const ProductWidget1 = (props: ProductWidget1Props) => {
         </div>
         {/* product description */}
         <div className="  md:h-[100px]sm:h-[1500px] px-10 py-10  ">
-          <span className="truncate font-semibold text-4xl">
+          <span className="text-4xl font-semibold truncate">
             {product.name}
           </span>
           {/* Product Rating Starts */}
@@ -96,11 +96,11 @@ const ProductWidget1 = (props: ProductWidget1Props) => {
           <p className={"py-2 font-semibold "}>{product.directions}</p>
           <p className={"py-2 font-semibold pb-10"}>{product.warning}</p>
           <p className={"font-semibold text-2xl"}>
-            <div className="relative inline-block text-left px-2">
+            <div className="inline-block relative px-2 text-left">
               <div>
                 <button
                   type="button"
-                  className=" border gap-2 border-gray-500  dark:bg-gray-800 shadow-sm flex items-center justify-center w-full rounded-md  px-6 py-2 text-lg font-medium text-gray-700 dark:text-gray-10s0 hover:bg-gray-50 dark:hover:bg-gray-500 focus:outline-none   "
+                  className="flex gap-2 justify-center items-center py-2 px-6 w-full text-lg font-medium text-gray-700 rounded-md border border-gray-500 shadow-sm dark:bg-gray-800 hover:bg-gray-50 focus:outline-none dark:text-gray-10s0 dark:hover:bg-gray-500"
                   id="options-menu">
                   Select option
                   <svg
@@ -118,22 +118,22 @@ const ProductWidget1 = (props: ProductWidget1Props) => {
 
             {prettyPrice(product.price)}
           </p>
-          <div className="relative inline-block text-left px-2 py-10">
+          <div className="inline-block relative py-10 px-2 text-left">
             <div>
               <div className="flex items-center">
                 <button
                   type="button"
-                  className="w-full border-l border-t border-b text-base font-medium rounded-l-md text-black bg-white hover:bg-gray-300 px-4 py-2 ">
+                  className="py-2 px-4 w-full text-base font-medium text-black bg-white rounded-l-md border-t border-b border-l hover:bg-gray-300">
                   -
                 </button>
                 <button
                   type="button"
-                  className="w-full border text-base font-medium text-black bg-white hover:bg-gray-100 px-4 py-2">
+                  className="py-2 px-4 w-full text-base font-medium text-black bg-white border hover:bg-gray-100">
                   1
                 </button>
                 <button
                   type="button"
-                  className="w-full border-t border-b border-r text-base font-medium rounded-r-md text-black bg-white hover:bg-gray-100 px-4 py-2">
+                  className="py-2 px-4 w-full text-base font-medium text-black bg-white rounded-r-md border-t border-r border-b hover:bg-gray-100">
                   +
                 </button>
               </div>
@@ -141,7 +141,7 @@ const ProductWidget1 = (props: ProductWidget1Props) => {
           </div>
           <button
             type="submit"
-            className="truncate h-12 px-20 font-medium tracking-wide text-white transition duration-200 rounded-full shadow-md bg-secondary hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none mt-4 ">
+            className="px-20 mt-4 h-12 font-medium tracking-wide text-white rounded-full shadow-md transition duration-200 focus:outline-none truncate bg-secondary hover:bg-deep-purple-accent-700 focus:shadow-outline">
             Add to cart
           </button>
         </div>

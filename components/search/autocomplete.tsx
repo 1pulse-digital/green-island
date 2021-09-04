@@ -29,8 +29,8 @@ const ProductItem = ({ product }: { product: Product }) => {
       onClick={() => {
         router.push(`/products/${product.id}`);
       }}
-      className="grid grid-cols-8 p-1 hover:cursor-pointer transition duration-150 ease-in-out rounded hover:bg-gray-200">
-      <div className="relative col-span-2 ring-primary ring-1 rounded">
+      className="grid grid-cols-8 p-1 rounded transition duration-150 ease-in-out hover:bg-gray-200 hover:cursor-pointer">
+      <div className="relative col-span-2 rounded ring-1 ring-primary">
         <Image
           layout="fill"
           objectFit="contain"

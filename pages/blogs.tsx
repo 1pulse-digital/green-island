@@ -95,7 +95,7 @@ const Blogs = (props: BlogsProps) => {
               categories={props.articleCategories}
               onSelect={selectCategory}
             />
-            <div className="flex justify-center flex-wrap gap-x-4 lg:gap-x-12 gap-y-12 pb-10">
+            <div className="flex flex-wrap gap-x-4 gap-y-12 justify-center pb-10 lg:gap-x-12">
               {articles.map((item) => (
                 <BlogWidget key={item.id} article={item} />
               ))}
