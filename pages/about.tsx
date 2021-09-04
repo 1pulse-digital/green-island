@@ -7,7 +7,6 @@ import Bio from "../components/team_bios";
 import SimonWorkman from "../images/SimonWorkman.jpg";
 import BronwynKohler from "../images/BronwynKohler.jpg";
 import SindiNtozini from "../images/SindiNtozini.jpg";
-
 import Button from "../components/button";
 // import { MedicalAnimation } from "../components/home/animation";
 
@@ -30,7 +29,7 @@ const about = () => {
 
             {/* Right column - Hero image goes here*/}
 
-            <div className={"relative grid content-center"}>
+            <div className={"relative grid content-center "}>
               <div
                 className={"lg:absolute top-0 bottom-0 right-0 left-28 w-full"}>
                 <Image layout="fill" objectFit="cover" src={running} />
@@ -79,15 +78,12 @@ const about = () => {
             <div className={"flex content-center pb-10 lg:px-32 md:px-10 px-4"}>
               <Button color={"primary"}> Meet the team</Button>
 
-              <button
-                className={
-                  "text-primary rounded-full py-2 px-4 "
-                }>
+              <button className={"text-primary rounded-full py-2 px-4 "}>
                 Our services
               </button>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-4 w-4 self-center"
+                className="self-center w-4 h-4"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor">
