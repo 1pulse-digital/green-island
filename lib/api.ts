@@ -23,7 +23,9 @@ export async function fetchAPI(path: string, token?: string) {
   console.debug(`fetching: ${requestUrl}`);
   const response = await fetch(requestUrl, { headers });
   if (!response.ok) {
-    throw response.statusText;
+    const data = await response.text();
+    console.warn(`fetch error response:`, { response, data});
+    throw data;
   }
 
   const data = await response.json();
@@ -73,9 +75,7 @@ export async function createStrapiShoppingCart(token: string) {
   const response = await fetch(requestUrl, {
     method: "POST",
     headers: headers,
-    body: JSON.stringify({
-
-    }),
+    body: JSON.stringify({}),
   });
   const data = await response.json();
   console.debug(`posted:  ${requestUrl}\n`, data);
