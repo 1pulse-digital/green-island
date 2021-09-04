@@ -10,7 +10,6 @@ import {
   updateStrapiShoppingCart,
   createStrapiShoppingCart,
 } from "../lib/api";
-import { ProductType } from "../types/productTypes";
 
 interface ContextType {
   addToCart: (product: Product, quantity: number) => void;
@@ -265,7 +264,7 @@ function CartContext({ children }: { children?: React.ReactNode }) {
               toast.error(`Something went wrong, we could not create your shopping cart`, { icon: "😞️" });
             });
         } else {
-          console.error(`Could not fetch your shopping cart ${e}`);
+          console.error(`Could not fetch your shopping cart`, e);
           toast.error(`Something went wrong, we could not fetch your shopping cart`, { icon: "😞️" });
         }
       });
