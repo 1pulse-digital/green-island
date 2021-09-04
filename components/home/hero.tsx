@@ -33,7 +33,7 @@ const MobileBanner = () => {
         </p>
 
         {/* Search box */}
-        <div className="relative flex py-4 w-1/2 lg:w-1/3 2xl:w-1/4">
+        <div className="">
           <AlgoliaAutocomplete />
         </div>
 

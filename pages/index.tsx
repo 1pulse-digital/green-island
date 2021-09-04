@@ -14,6 +14,7 @@ import { Button } from "../components/button";
 import Link from "next/link";
 
 import { Hero } from "../components/home/hero";
+import { TestimonialCarousel } from "../components/home/testimonial";
 
 export interface HomeProps {
   articles?: Article[];
@@ -40,31 +41,12 @@ const Home = (props: HomeProps) => {
       {/* FeaturedProducts */}
       <FeaturedProducts products={featuredProducts} />
 
-
       {/* Testimonials (What our clients have to say) */}
       {/* TODO: Use a react carousel component here: */}
       <div className={"bg-primary text-center h-[500px] grid content-center"}>
-        <div className={"grid grid-cols-3"}>
-          <div className={"col-span-3"}>
-            <h1
-              className={
-                "text-5xl md:text-5xl z-10 text-white font-medium font-karla pb-12"
-              }>
-              What our clients have to say
-            </h1>
-          </div>
+        <TestimonialCarousel />
 
-          <div className={"col-span-3"}>
-            <p className={"italic text-2xl text-white font-light"}>
-              “Dr Robin is passionate about healing people, finding the cause of{" "}
-              <br />
-              the problem and then addressing it. He explains everything so well{" "}
-              <br />
-              really feel that at last there is hope.”
-            </p>
-          </div>
-        </div>
-        <div className={"grid grid-cols-3 h-20 items-center"}>
+        {/* <div className={"grid grid-cols-3 h-20 items-center"}>
           <div className={""}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -110,7 +92,7 @@ const Home = (props: HomeProps) => {
               />
             </svg>
           </div>
-        </div>
+        </div> */}
       </div>
 
       {/* Blogs */}
@@ -141,7 +123,7 @@ const Home = (props: HomeProps) => {
           }>
           <Link href="/blogs">
             <a>
-              <Button color="primary">Learn more</Button>
+              <Button color="primary">Read more</Button>
             </a>
           </Link>
         </div>
