@@ -22,14 +22,19 @@ const Checkout = () => {
         </p>
 
         <div className={"grid gap-4 md:grid-cols-2 xl:grid-cols-3"}>
-          <ShippingAddress />
+          <div className={"grid gap-4"}>
+            <ShippingMethod />
+            <ShippingAddress />
+          </div>
+
           <div className={"grid gap-4"}>
             <OrderSummary />
-            <PaymentMethod />
-            <ShippingMethod />
-
           </div>
-          <MedicalAidDetails />
+
+          <div className={"grid gap-4"}>
+            <MedicalAidDetails />
+            <PaymentMethod />
+          </div>
         </div>
 
         <div className={"grid justify-end"}>

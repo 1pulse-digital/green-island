@@ -6,15 +6,11 @@ export interface ShippingMethodProps {
 
 export const ShippingMethod = (props: ShippingMethodProps) => {
   return (
-    <div className={"bg-white px-10 mt-10 py-8 "}>
-      <p
-        className={
-          "text-2xl font-semibold divide-solid bg-white-500  py-2"
-        }
-      >
+    <div className={"bg-white p-10 "}>
+      <p className={"text-2xl font-semibold"}>
         Shipping Method
       </p>
-      <div className="col-span-1 lg:col-span-1">
+      <div className="mt-4">
         <div className="relative">
           <input
             type="checkbox"
