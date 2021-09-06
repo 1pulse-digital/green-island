@@ -43,7 +43,7 @@ const ProductWidget = (props: ProductWidgetProps) => {
   return (
     <div
       onClick={goToProduct}
-      className="relative w-[250px] h-full bg-white rounded-lg border-gray-50 cursor-pointer sm:grid-cols-2 lg:grid-cols-4 hover:shadow-xl font-karla">
+      className="relative w-[250px] bg-white rounded-lg border-gray-50 cursor-pointer sm:grid-cols-2 lg:grid-cols-4 hover:shadow-xl font-karla">
       <div className={"relative h-[170px] w-full md:h-[240px]"}>
         {product.image && (
           <Image
