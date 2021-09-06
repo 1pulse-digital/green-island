@@ -1,5 +1,6 @@
 import { connectPoweredBy } from "react-instantsearch-dom";
 
+// TODO: This must not be rendered on the server, it throws a console error because the href differs from client side
 export const Logo = ({ url }: { url: string }) => {
   return (
     <div className={"flex"}>

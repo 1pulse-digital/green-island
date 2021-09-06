@@ -119,11 +119,11 @@ export const ProductWishlist = () => {
                     className="flow-root py-2 px-2 rounded-md transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50">
                       <span className="flex items-center">
                         <span className="text-sm font-medium text-gray-900">
-                          Some summary of your wishlist?
+                          Your wishlist for future purchases
                         </span>
                       </span>
                     <span className="block text-sm text-gray-500">
-                        Thanks
+                        The Perfect Health Practice
                       </span>
                   </div>
                 </div>

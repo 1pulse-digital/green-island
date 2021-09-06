@@ -100,9 +100,18 @@ function CartContext({ children }: { children?: React.ReactNode }) {
   const addToCart = (product: Product, quantity: number) => {
     const isPrescription = product.availability === "prescription";
 
-    if (!user && isPrescription) {
-      toast(`${product.name} is a prescription only product. Please login to add this to your cart`, { icon: "⚠️" });
-      return;
+    if (isPrescription) {
+      if (!user) {
+        toast(`${product.name} is a prescription only product. Please login to add this to your cart`, { icon: "⚠️" });
+        return;
+      }
+      if (user.role.name !== "Patient") {
+        toast(`${product.name} is a prescription only product. Please contact us to find out how to become a patient`, {
+          icon: "⚡",
+          duration: 8000,
+        });
+        return;
+      }
     }
 
     // check if the item is already in the list
