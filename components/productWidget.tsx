@@ -6,18 +6,12 @@ import { useRouter } from "next/router";
 import placeholder from "../images/2.jpg";
 import { strapiLoader } from "../lib/media";
 import ReactTooltip from "react-tooltip";
+import { prettyPrice } from "../lib/calc";
 
 
 export interface ProductWidgetProps {
   product: Product;
 }
-
-const prettyPrice = (price: number): string => {
-  return new Intl.NumberFormat("en-ZA", {
-    style: "currency",
-    currency: "ZAR",
-  }).format(price);
-};
 
 const ProductWidget = (props: ProductWidgetProps) => {
   const { product } = props;

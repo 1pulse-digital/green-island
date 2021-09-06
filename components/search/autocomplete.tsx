@@ -8,19 +8,13 @@ import { useCartContext } from "../../contexts/cartContext";
 import { Popover } from "@headlessui/react";
 import { useRouter } from "next/router";
 import { AlgoliaLogo } from "./logo";
+import { prettyPrice } from "../../lib/calc";
 
 interface AutocompleteProps {
   hits: Hit[];
   currentRefinement: string;
   refine: (value: string) => void;
 }
-
-const prettyPrice = (price: number): string => {
-  return new Intl.NumberFormat("en-ZA", {
-    style: "currency",
-    currency: "ZAR",
-  }).format(price);
-};
 
 const ProductItem = ({ product }: { product: Product }) => {
   const router = useRouter();

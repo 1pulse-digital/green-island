@@ -4,6 +4,7 @@ import { CartItemType, useCartContext } from "../contexts/cartContext";
 import Image from "next/image";
 import Button from "./button";
 import { useRouter } from "next/router";
+import { prettyPrice } from "../lib/calc";
 
 type strapiLoaderParams = {
   src: string;
@@ -11,16 +12,13 @@ type strapiLoaderParams = {
   quality?: number;
 };
 
-const prettyPrice = (price: number): string => {
-  return new Intl.NumberFormat("en-ZA", {
-    style: "currency",
-    currency: "ZAR",
-  }).format(price);
-};
-
 const strapiLoader = (params: strapiLoaderParams) => params.src;
 
-const CartItem = ({ item }: { item: CartItemType }) => {
+export interface CartItemProps {
+  item: CartItemType;
+}
+
+export const CartItem = ({ item }: CartItemProps) => {
   const { removeFromCart } = useCartContext();
   return (
     <div className="grid grid-cols-8 h-24 rounded-lg transition duration-150 ease-in-out hover:bg-gray-50">

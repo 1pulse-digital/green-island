@@ -1,17 +1,11 @@
 import { Product } from "../types/product";
 import Image from "next/image";
 import { strapiLoader } from "../lib/media";
+import { prettyPrice } from "../lib/calc";
 
 export interface ProductWidget1Props {
   product: Product;
 }
-
-const prettyPrice = (price: number): string => {
-  return new Intl.NumberFormat("en-ZA", {
-    style: "currency",
-    currency: "ZAR",
-  }).format(price);
-};
 
 const ProductWidget1 = (props: ProductWidget1Props) => {
   const { product } = props;

@@ -6,13 +6,7 @@ import {
 } from "../contexts/cartContext";
 import Image from "next/image";
 import { strapiLoader } from "../lib/media";
-
-const prettyPrice = (price: number): string => {
-  return new Intl.NumberFormat("en-ZA", {
-    style: "currency",
-    currency: "ZAR",
-  }).format(price);
-};
+import { prettyPrice } from "../lib/calc";
 
 
 const WishlistItem = ({ item }: { item: WishlistItemType }) => {
