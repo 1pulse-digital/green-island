@@ -131,7 +131,8 @@ export const Navbar = () => {
               {navigationItems.map((item, idx) => {
                 return (
                   <Link key={idx} href={item.href}>
-                    <a className="font-medium hover:font-bold w-[70px]">
+                    <a
+                      className={cn(router.pathname === item.href ? "font-bold" : "font-medium", "hover:font-bold w-[70px]")}>
                       {item.name}
                     </a>
                   </Link>
@@ -143,7 +144,7 @@ export const Navbar = () => {
           {/* LOGO */}
           <div className={"mx-auto"}>
             <Image
-              className={cn({ "animate-pulse": isLoading })}
+              className={cn({ "animate-spin": isLoading })}
               alt={"Perfect Health Practice logo"}
               src={logo}
             />
@@ -177,8 +178,11 @@ export const Navbar = () => {
               <Menu as="div" className="relative z-20">
                 <Menu.Button>
                   <span className="sr-only">Open user menu</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" className="w-10 h-10 text-primary" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
+                  <svg xmlns="http://www.w3.org/2000/svg" className="w-10 h-10 text-primary" viewBox="0 0 20 20"
+                       fill="currentColor">
+                    <path fillRule="evenodd"
+                          d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z"
+                          clipRule="evenodd" />
                   </svg>
                 </Menu.Button>
                 <Menu.Items
