@@ -22,34 +22,13 @@ export const Input = (props: InputProps) => {
         name={name}
         type="text"
         placeholder={placeHolder}
-        className="
-        peer
-        h-10
-        w-full
-        rounded border-gray-300
-        text-gray-900
-        placeholder-transparent
-        focus:outline-none focus:ring-0 focus:border-secondary
-        "
+        className="w-full h-10 placeholder-transparent text-gray-900 rounded border-gray-300 focus:ring-0 focus:outline-none peer focus:border-secondary"
         value={props.value}
         onChange={props.onChange}
       />
       <label
         htmlFor={props.id}
-        className="
-        absolute
-        left-2
-        -top-5
-        text-gray-600
-        text-sm
-        transition-all
-        peer-placeholder-shown:text-gray-400
-        peer-placeholder-shown:top-2
-        peer-placeholder-shown:text-base
-        peer-focus:text-gray-600
-        peer-focus:-top-5
-        peer-focus:text-sm
-        "
+        className="absolute left-2 -top-5 text-sm text-gray-600 transition-all peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-focus:text-gray-600 peer-focus:-top-5 peer-focus:text-sm"
       >
         {props.label}
       </label>
