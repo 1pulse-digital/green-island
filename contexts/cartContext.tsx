@@ -98,9 +98,13 @@ function CartContext({ children }: { children?: React.ReactNode }) {
   };
 
   const addToCart = (product: Product, quantity: number) => {
-    // remove the product from the wishlist
-    // TODO: Should the product stay in the wishlist?
-    removeFromWishlist(product.id);
+    const isPrescription = product.availability === "prescription";
+
+    if (!user && isPrescription) {
+      toast(`${product.name} is a prescription only product. Please login to add this to your cart`, { icon: "⚠️" });
+      return;
+    }
+    console.log("adding to cart", product);
 
     // check if the item is already in the list
     const existingItemIdx = cartItems.findIndex((i) => i.product.id === product.id);
@@ -115,6 +119,7 @@ function CartContext({ children }: { children?: React.ReactNode }) {
       updatedList = [...cartItems, { product, quantity }];
     }
 
+    // if the user is logged in
     if (authToken) {
       updateStrapiShoppingCart(authToken, updatedList)
         .then(() => {
@@ -129,6 +134,9 @@ function CartContext({ children }: { children?: React.ReactNode }) {
       setCartItems(updatedList);
       toast(`${product.name} added to cart`, { icon: "🛍️" });
     }
+
+    // remove the product from the wishlist
+    removeFromWishlist(product.id);
   };
 
   const removeFromCart = (productID: number, quantity?: number): void => {

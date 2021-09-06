@@ -131,7 +131,6 @@ export async function updateStrapiShoppingCart(token: string, items: CartItemTyp
   const data = await response.json();
   console.debug(`updated:  ${requestUrl}\n`, data);
 
-
   if (data.error) {
     throw `${data.error}: ${data.message}`;
   }
