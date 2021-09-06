@@ -104,7 +104,6 @@ function CartContext({ children }: { children?: React.ReactNode }) {
       toast(`${product.name} is a prescription only product. Please login to add this to your cart`, { icon: "⚠️" });
       return;
     }
-    console.log("adding to cart", product);
 
     // check if the item is already in the list
     const existingItemIdx = cartItems.findIndex((i) => i.product.id === product.id);
