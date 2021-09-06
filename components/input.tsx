@@ -39,7 +39,7 @@ export const Input = (props: InputProps) => {
         className="
         absolute
         left-2
-        -top-6
+        -top-5
         text-gray-600
         text-sm
         transition-all
@@ -47,7 +47,7 @@ export const Input = (props: InputProps) => {
         peer-placeholder-shown:top-2
         peer-placeholder-shown:text-base
         peer-focus:text-gray-600
-        peer-focus:-top-6
+        peer-focus:-top-5
         peer-focus:text-sm
         "
       >

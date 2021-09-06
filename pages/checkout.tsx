@@ -1,12 +1,12 @@
 import React from "react";
 import Image from "next/image";
-import payfast from "../images/payfast.png";
 import { ShippingAddress } from "../components/checkout/shippingAddress";
 import { ShippingMethod } from "../components/checkout/shippingMethod";
 import MainLayout from "../layouts/MainLayout";
 import { MedicalAidDetails } from "../components/checkout/medicalAidDetails";
 import { OrderSummary } from "../components/checkout/orderSummary";
 import { PaymentMethod } from "../components/checkout/paymentMethod";
+import payfastLogo from "../components/checkout/PayFast_logo_colour.png"
 
 const Checkout = () => {
   return (
@@ -38,9 +38,9 @@ const Checkout = () => {
         </div>
 
         <div className={"grid justify-end"}>
-          <span className={"text-sm"}>Secure payments with Payfast</span>
-          <div>
-            <Image src={payfast} alt="Payments made with Payfast" />
+          <span className={"text-sm text-gray-600"}>All payments are secured with Payfast</span>
+          <div className="w-[200px]">
+            <Image src={payfastLogo} alt="Payments made with Payfast" />
           </div>
         </div>
       </div>

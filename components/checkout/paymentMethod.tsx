@@ -10,10 +10,9 @@ export interface PaymentMethodProps {
 
 export const PaymentMethod = (props: PaymentMethodProps) => {
   return (
-    <div className={"bg-white px-10 relative"}>
-      <p className={"text-2xl font-semibold py-10"}>Payment Method</p>
-      <div className={"absolute top-0 right-0 mt-10 mr-4 "}>
-        <Image width={80} height={80} src={payfastLogo} alt="payfast" />
+    <div className={"bg-white p-10 relative"}>
+      <div className={"absolute top-0 right-0 mt-4 mr-4 "}>
+        <Image width={60} height={60} src={payfastLogo} alt="payfast" />
       </div>
       <p className={"text-2xl font-semibold"}>
         Discount Code
