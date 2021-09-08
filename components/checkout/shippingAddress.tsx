@@ -1,22 +1,27 @@
-import React, { useState } from "react";
+import React from "react";
 import { Input } from "../input";
 
+
+export interface ShippingAddress {
+  firstName: string,
+  lastName: string,
+  companyName: string,
+  streetAddress: string,
+  suburb: string,
+  city: string,
+  country: string,
+  phoneNumber: string,
+  postalCode: string,
+}
+
 export interface ShippingAddressProps {
+  values: ShippingAddress;
+  setValues: (values: ShippingAddress) => void;
 
 }
 
 export const ShippingAddress = (props: ShippingAddressProps) => {
-  const [values, setValues] = useState({
-    firstName: "",
-    lastName: "",
-    streetAddress: "",
-    suburb: "",
-    companyName: "",
-    city: "",
-    country: "",
-    postalCode: "",
-    phoneNumber: "",
-  });
+  const { values, setValues } = props;
 
   const handleChange = (name: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
     setValues({ ...values, [name]: event.target.value });

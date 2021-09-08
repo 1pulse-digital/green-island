@@ -10,6 +10,7 @@ interface ContextType {
   register: (username: string, password: string) => Promise<void>;
   isLoading: boolean;
   authToken?: string;
+  setLoading: (isLoading: boolean) => void;
 }
 
 const Context = createContext({} as ContextType);
@@ -124,7 +125,7 @@ function AuthContext({ children }: { children?: React.ReactNode }) {
       // registration success
       const { user, jwt } = data as { user: User, jwt: string };
       console.debug(`User registered: ${user.username}`);
-      setAuthToken(jwt)
+      setAuthToken(jwt);
       saveToken(jwt);
       setUser(user);
     }
@@ -145,6 +146,7 @@ function AuthContext({ children }: { children?: React.ReactNode }) {
         signIn,
         register,
         isLoading,
+        setLoading,
         authToken,
       }}>
       {children}

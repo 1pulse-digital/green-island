@@ -1,14 +1,14 @@
 import React from "react";
-import { useCartContext } from "../../contexts/cartContext";
+import { CartItemType } from "../../contexts/cartContext";
 import { CartItem } from "../shoppingCart";
 import { prettyPrice } from "../../lib/calc";
 
 export interface OrderSummaryProps {
-
+  cartItems: CartItemType[];
 }
 
 export const OrderSummary = (props: OrderSummaryProps) => {
-  const { cartItems } = useCartContext();
+  const { cartItems } = props;
   const cartTotal = cartItems
     .map((item) => item.product.price * item.quantity)
     .reduce((total, item) => (total += item), 0);
