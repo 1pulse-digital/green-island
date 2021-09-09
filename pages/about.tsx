@@ -7,8 +7,8 @@ import Bio from "../components/team_bios";
 import SimonWorkman from "../images/SimonWorkman.jpg";
 import BronwynKohler from "../images/BronwynKohler.jpg";
 import SindiNtozini from "../images/SindiNtozini.jpg";
-
 import Button from "../components/button";
+// import { MedicalAnimation } from "../components/home/animation";
 
 const about = () => {
   return (
@@ -29,10 +29,11 @@ const about = () => {
 
             {/* Right column - Hero image goes here*/}
 
-            <div className={"relative grid content-center"}>
+            <div className={"relative grid content-center "}>
               <div
                 className={"lg:absolute top-0 bottom-0 right-0 left-28 w-full"}>
                 <Image layout="fill" objectFit="cover" src={running} />
+                {/* <MedicalAnimation /> */}
               </div>
             </div>
           </div>
@@ -77,15 +78,12 @@ const about = () => {
             <div className={"flex content-center pb-10 lg:px-32 md:px-10 px-4"}>
               <Button color={"primary"}> Meet the team</Button>
 
-              <button
-                className={
-                  "text-primary rounded-full py-2 px-4 "
-                }>
+              <button className={"text-primary rounded-full py-2 px-4 "}>
                 Our services
               </button>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-4 w-4 self-center"
+                className="self-center w-4 h-4"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor">
@@ -209,7 +207,7 @@ const about = () => {
 
             <div>
               <h1 className={"md:text-right pr-10 pb-5 text-3xl text-white "}>
-                Dr Kohler’s <br></br>Mission Statement:
+                Dr Kohler’s <br />Mission Statement:
               </h1>
             </div>
             <div>
@@ -247,7 +245,8 @@ const about = () => {
             athletes, his practice offers treatment for the whole family, from the young to the elderly. Simon has a special interest in pain management
             and rehabilitation and works closely with other health professionals to ensure a rounded care model."
               />
-            </div>{" "}
+            </div>
+            {" "}
             <div className={"py-20 w-full"}>
               <div className={" lg:px-32"}>
                 <Image src={SimonWorkman} />
@@ -287,7 +286,8 @@ const about = () => {
             gets what they need when they need it, whether its an appointment, medication or a kind word. Her warmth and friendliness
             are part of what make Perfect Health a welcoming family practice."
               />
-            </div>{" "}
+            </div>
+            {" "}
             <div className={"py-20 w-full"}>
               <div className={" lg:px-32"}>
                 <Image src={SindiNtozini} />

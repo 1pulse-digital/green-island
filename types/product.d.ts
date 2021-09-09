@@ -16,5 +16,6 @@ export interface Product {
   image?: Picture;
   directions: string;
   warning: string;
+  availability: "otc" | "prescription" | undefined;
   benefits: string;
 }

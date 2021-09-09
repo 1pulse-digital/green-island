@@ -25,24 +25,24 @@ export const ShopBanner = () => {
             className={
               "z-10 text-2xl my-8 text-gray-600 font-light font-karla"
             }>
-            <span className="bg-white/90 inline">
+            <span className="inline bg-white/90">
               Fill in your details below to receive to receive Your 15% off
               coupon code.
             </span>
           </p>
           <div className={"flex "}>
-            <form className="absolute ">
+            <form className="absolute">
               <input
                 placeholder="Full Name"
                 required
                 type="text"
-                className=" h-12 px-4 bg-white rounded-full appearance-none md:mr-2 md:mb-0 focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
+                className="px-4 h-12 bg-white rounded-full appearance-none md:mr-2 md:mb-0 focus:outline-none focus:border-deep-purple-accent-400 focus:shadow-outline"
               />
               <input
                 placeholder="Email Address"
                 required
                 type="text"
-                className=" h-12 px-4 mb-3 transition duration-200 rounded-full appearance-none md:mr-2 md:mb-0 focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
+                className="px-4 mb-3 h-12 rounded-full transition duration-200 appearance-none md:mr-2 md:mb-0 focus:outline-none focus:border-deep-purple-accent-400 focus:shadow-outline"
               />
               <Button color={"primary"}>Submit</Button>
              </form>

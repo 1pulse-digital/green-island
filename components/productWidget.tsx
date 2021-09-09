@@ -5,18 +5,13 @@ import { useCartContext } from "../contexts/cartContext";
 import { useRouter } from "next/router";
 import placeholder from "../images/2.jpg";
 import { strapiLoader } from "../lib/media";
-import cn from "classnames";
+import ReactTooltip from "react-tooltip";
+import { prettyPrice } from "../lib/calc";
+
 
 export interface ProductWidgetProps {
   product: Product;
 }
-
-const prettyPrice = (price: number): string => {
-  return new Intl.NumberFormat("en-ZA", {
-    style: "currency",
-    currency: "ZAR",
-  }).format(price);
-};
 
 const ProductWidget = (props: ProductWidgetProps) => {
   const { product } = props;
@@ -42,9 +37,8 @@ const ProductWidget = (props: ProductWidgetProps) => {
   return (
     <div
       onClick={goToProduct}
-      className="sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 rounded-lg border-gray-50 overflow-hidden bg-white hover:shadow-xl cursor-pointer font-karla">
-      <div
-        className={"relative h-[170px] w-full md:h-[240px]"}>
+      className="relative w-[250px] bg-white rounded-lg border-gray-50 cursor-pointer sm:grid-cols-2 lg:grid-cols-4 hover:shadow-xl font-karla">
+      <div className={"relative h-[170px] w-full md:h-[240px]"}>
         {product.image && (
           <Image
             layout="fill"
@@ -64,13 +58,14 @@ const ProductWidget = (props: ProductWidgetProps) => {
         )}
 
       </div>
-      <div className={" grid grid-cols-3  w-[250px]"}>
-        <div className={" px-4 py-6 text-center md:text-left col-span-2"}>
-          <span className={"text-primary text-xl"}>{product.name}</span>
 
+      <div className={"h-32 grid grid-cols-3"}>
+        <div className={" px-4 py-6 text-left col-span-2"}>
+          <span className={"text-primary text-xl leading-tight line-clamp-2"}>{product.name}</span>
           <p className="text-green-500">In stock</p>
           <p className={"text-primary "}>{prettyPrice(product.price)}</p>
         </div>
+
         <div
           className={"grid justify-items-end py-6 px-6 "}
           onClick={(event) => {
@@ -99,7 +94,7 @@ const ProductWidget = (props: ProductWidgetProps) => {
         </div>
       </div>
 
-      <div className="p-1 sm:p-4">
+      <div className="flex justify-center p-1 sm:p-4">
         <Button
           color="secondary"
           className={"flex text-sm md:text-lg "}
@@ -111,7 +106,7 @@ const ProductWidget = (props: ProductWidgetProps) => {
           Add to cart
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5 md:h-7 sm:w-7 self-center pl-2"
+            className="self-center pl-2 w-5 h-5 sm:w-7 md:h-7"
             viewBox="0 0 20 20"
             fill="currentColor">
             <path
@@ -120,6 +115,19 @@ const ProductWidget = (props: ProductWidgetProps) => {
           {cartCount && (<span className={"ml-1"}>({cartCount})</span>)}
         </Button>
       </div>
+
+      {product.availability !== "otc" && (
+        <div className="absolute top-0 right-0 p-2 text-primary" data-tip="Prescription only product">
+          <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fillRule="evenodd"
+                  d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                  clipRule="evenodd" />
+          </svg>
+        </div>
+      )}
+      <ReactTooltip place="left" type="dark" effect="solid" />
+
+
     </div>
   );
 };

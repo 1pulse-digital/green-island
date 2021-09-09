@@ -10,16 +10,16 @@ import { AlgoliaClearRefinements } from "./search/clearRefinements";
 
 // const SingleItem = (props: SingleItemProps) => {
 //   return (
-//     <label className="flex items-center space-x-3 mb-3 hover:cursor-pointer">
+//     <label className="flex items-center mb-3 space-x-3 hover:cursor-pointer">
 //       <input
 //         type="checkbox"
 //         name={`${props.title.split(" ").join("-")}`}
-//         className="bg-white bg-check h-6 w-6 border border-gray-300 checked:bg-blue-500 checked:border-transparent focus:outline-none hover:cursor-pointer"
+//         className="w-6 h-6 bg-white border border-gray-300 checked:bg-blue-500 checked:border-transparent hover:cursor-pointer focus:outline-none bg-check"
 //         checked={props.checked}
 //         onChange={props.onChange}
 //         value=""
 //       />
-//       <span className="truncate text-gray-700 dark:text-white font-normal">
+//       <span className="font-normal text-gray-700 dark:text-white truncate">
 //         {props.title}
 //       </span>
 //     </label>
@@ -43,14 +43,14 @@ export const ShopSidebar = (props: ShopSidebarProps) => {
       <div className="flex flex-col sm:justify-center">
         <nav className={"grid gap-6"}>
           {/* Search box */}
-          <div className="relative ">
+          <div className="relative">
             <AlgoliaSearchBox />
           </div>
 
 
           {/* Shop by category */}
           <div>
-            <p className="text-primary font-bold w-full mb-4 text-2xl font-karla">
+            <p className="mb-4 w-full text-2xl font-bold text-primary font-karla">
               Category
             </p>
             <AlgoliaRefinementList attribute={"category.name"} />
@@ -58,7 +58,7 @@ export const ShopSidebar = (props: ShopSidebarProps) => {
 
           {/* Shop by product type */}
           <div>
-            <p className="text-primary font-bold w-full mb-4 text-2xl font-karla">
+            <p className="mb-4 w-full text-2xl font-bold text-primary font-karla">
               Product Type
             </p>
             <div>
@@ -68,7 +68,7 @@ export const ShopSidebar = (props: ShopSidebarProps) => {
 
           {/* Shop by product form */}
           <div>
-            <p className="text-primary font-bold w-full mb-4 text-2xl font-karla">
+            <p className="mb-4 w-full text-2xl font-bold text-primary font-karla">
               Product Form
             </p>
             <div>

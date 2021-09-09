@@ -10,7 +10,6 @@ import {
   updateStrapiShoppingCart,
   createStrapiShoppingCart,
 } from "../lib/api";
-import { ProductType } from "../types/productTypes";
 
 interface ContextType {
   addToCart: (product: Product, quantity: number) => void;
@@ -99,9 +98,21 @@ function CartContext({ children }: { children?: React.ReactNode }) {
   };
 
   const addToCart = (product: Product, quantity: number) => {
-    // remove the product from the wishlist
-    // TODO: Should the product stay in the wishlist?
-    removeFromWishlist(product.id);
+    const isPrescription = product.availability === "prescription";
+
+    if (isPrescription) {
+      if (!user) {
+        toast(`${product.name} is a prescription only product. Please login to add this to your cart`, { icon: "⚠️" });
+        return;
+      }
+      if (user.role.name !== "Patient") {
+        toast(`${product.name} is a prescription only product. Please contact us to find out how to become a patient`, {
+          icon: "⚡",
+          duration: 8000,
+        });
+        return;
+      }
+    }
 
     // check if the item is already in the list
     const existingItemIdx = cartItems.findIndex((i) => i.product.id === product.id);
@@ -116,6 +127,7 @@ function CartContext({ children }: { children?: React.ReactNode }) {
       updatedList = [...cartItems, { product, quantity }];
     }
 
+    // if the user is logged in
     if (authToken) {
       updateStrapiShoppingCart(authToken, updatedList)
         .then(() => {
@@ -130,6 +142,9 @@ function CartContext({ children }: { children?: React.ReactNode }) {
       setCartItems(updatedList);
       toast(`${product.name} added to cart`, { icon: "🛍️" });
     }
+
+    // remove the product from the wishlist
+    removeFromWishlist(product.id);
   };
 
   const removeFromCart = (productID: number, quantity?: number): void => {
@@ -265,7 +280,7 @@ function CartContext({ children }: { children?: React.ReactNode }) {
               toast.error(`Something went wrong, we could not create your shopping cart`, { icon: "😞️" });
             });
         } else {
-          console.error(`Could not fetch your shopping cart ${e}`);
+          console.error(`Could not fetch your shopping cart`, e);
           toast.error(`Something went wrong, we could not fetch your shopping cart`, { icon: "😞️" });
         }
       });

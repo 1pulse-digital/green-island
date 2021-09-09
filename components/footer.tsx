@@ -15,7 +15,7 @@ const SocialIcon = (props: SocialIconProps) => {
     <Link href={props.href}>
       <a
         href={props.href}
-        className="text-white-500 transition-colors duration-300 hover:text-teal-accent-400 flex py-4 space-x-3">
+        className="flex py-4 space-x-3 transition-colors duration-300 text-white-500 hover:text-teal-accent-400">
         {props.children}
       </a>
     </Link>
@@ -25,7 +25,7 @@ const SocialIcon = (props: SocialIconProps) => {
 export const Footer = (props: FooterProps) => {
   return (
     <div
-      className="grid row-gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 py-10 px-10 md:px-20 font-karla bg-primary">
+      className="grid grid-cols-1 py-10 px-10 md:grid-cols-2 md:px-20 lg:grid-cols-3 xl:grid-cols-4 row-gap-4 font-karla bg-primary">
       <div className={""}>
         <p className={"  text-white text-lg pb-2"}>
           Sign up for our monthly newsletter
@@ -35,7 +35,7 @@ export const Footer = (props: FooterProps) => {
             placeholder="Email Address"
             required
             type="text"
-            className="px-4 h-12 transition duration-200 bg-white rounded shadow-lg focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
+            className="px-4 h-12 bg-white rounded shadow-lg transition duration-200 focus:outline-none focus:border-deep-purple-accent-400 focus:shadow-outline"
           />
           <div className={"block"}>
             <Button color={"secondary"}>Subscribe</Button>
@@ -51,14 +51,14 @@ export const Footer = (props: FooterProps) => {
           <li>
             <a
               href="/"
-              className="text-white transition-colors duration-300  cursor-pointer hover:text-secondary">
+              className="text-white transition-colors duration-300 cursor-pointer hover:text-secondary">
               Shop Account
             </a>
           </li>
           <li>
             <Link href={"/shop"}>
               <a
-                className="text-white transition-colors duration-300  cursor-pointer hover:text-secondary">
+                className="text-white transition-colors duration-300 cursor-pointer hover:text-secondary">
                 All Products
               </a>
             </Link>
@@ -66,7 +66,7 @@ export const Footer = (props: FooterProps) => {
           <li>
             <a
               href="/"
-              className="text-white transition-colors duration-300  cursor-pointer hover:text-secondary">
+              className="text-white transition-colors duration-300 cursor-pointer hover:text-secondary">
               COVID-19 Kit
             </a>
           </li>
@@ -77,21 +77,21 @@ export const Footer = (props: FooterProps) => {
           <li>
             <a
               href="/about"
-              className="text-white transition-colors duration-300  cursor-pointer hover:text-secondary">
+              className="text-white transition-colors duration-300 cursor-pointer hover:text-secondary">
               About
             </a>
           </li>
           <li>
             <a
               href="/contact"
-              className="text-white transition-colors duration-300  cursor-pointer hover:text-secondary">
+              className="text-white transition-colors duration-300 cursor-pointer hover:text-secondary">
               Contact Us
             </a>
           </li>
           <li>
             <a
               href="/blogs"
-              className="text-white transition-colors duration-300  cursor-pointer hover:text-secondary">
+              className="text-white transition-colors duration-300 cursor-pointer hover:text-secondary">
               Blogs
             </a>
           </li>

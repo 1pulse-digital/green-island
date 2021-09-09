@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import hero from "../../images/perfect-health-banner.jpg";
 import mobileHero from "../../images/perfect-health-mobile-banner.jpg";
@@ -26,19 +25,19 @@ const MobileBanner = () => {
         </h1>
 
         <p className={"text-xl mt-8 text-gray-600 font-light font-karla"}>
-          <span className="bg-white/90 inline">
+          <span className="inline bg-white/90">
             We empower our patients with the tools to heal themselves,
             and the knowledge to own their health.
           </span>
         </p>
 
         {/* Search box */}
-        <div className="relative flex py-4 w-1/2 lg:w-1/3 2xl:w-1/4">
+        <div className="">
           <AlgoliaAutocomplete />
         </div>
 
         {/* Shop all button */}
-        <div className=" text-right z-10 justify-self-start">
+        <div className="z-10 justify-self-start text-right">
           <Link href="/shop">
             <a>
               <Button color="primary">Shop all</Button>
@@ -82,12 +81,12 @@ const DesktopBanner = () => {
           </div>
 
           {/* Shop all button */}
-          <div className=" text-right z-10 justify-self-start">
-            <Link href={"/shop"}>
+          <div className="z-10 justify-self-start text-right">
+            <Link href={"/shop"} passHref>
               {/*TODO: Use the Button component */}
               <button
                 type="submit"
-                className="py-2 px-8 sm:w-full bg-primary hover:bg-secondary focus:ring-secondary focus:ring-offset-indigo-200 text-white  transition ease-in duration-200 text-center text-base font-normal shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-full  hover:text-white">
+                className="py-2 px-8 text-base font-normal text-center text-white rounded-full shadow-md transition duration-200 ease-in sm:w-full hover:text-white focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-200 focus:outline-none bg-primary hover:bg-secondary focus:ring-secondary">
                 Shop all
               </button>
             </Link>
@@ -100,8 +99,8 @@ const DesktopBanner = () => {
 
 export const Hero = () => {
   return (
-    <div className={"h-[700px] "}>
-      <div className="hidden md:block h-full">
+    <div className={"h-[800px]"}>
+      <div className="hidden h-full md:block">
         <DesktopBanner />
       </div>
 

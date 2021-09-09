@@ -1,4 +1,4 @@
-import { connectSearchBox, PoweredBy } from "react-instantsearch-dom";
+import { connectSearchBox } from "react-instantsearch-dom";
 import { AlgoliaLogo } from "./logo";
 
 interface SearchBoxProps {
