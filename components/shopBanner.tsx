@@ -45,7 +45,7 @@ export const ShopBanner = () => {
                 className="px-4 mb-3 h-12 rounded-full transition duration-200 appearance-none md:mr-2 md:mb-0 focus:outline-none focus:border-deep-purple-accent-400 focus:shadow-outline"
               />
               <Button color={"primary"}>Submit</Button>
-             </form>
+            </form>
           </div>
         </div>
       </div>

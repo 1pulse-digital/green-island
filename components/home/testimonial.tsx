@@ -23,16 +23,16 @@ export const TestimonialCarousel = () => {
     hasPrev: boolean,
     label: string
   ) => (
-    <button className="" title={label} onClick={onClickHandler}>
+    <button className=" ml-10 " title={label} onClick={onClickHandler}>
       next
     </button>
   );
 
   return (
-    <div className="px-32">
+    <div className="  grid grid-cols-1 py-10 sm:h-  md:grid-cols-1 md:px-32 lg:grid-cols-1 xl:grid-cols-1  ">
       <h1
         className={
-          "text-5xl md:text-5xl z-10 text-white font-medium font-karla pb-12"
+          "     text-5xl md:text-5xl z-10 text-white font-medium font-karla pb-12 "
         }>
         What our clients have to say
       </h1>
@@ -45,40 +45,41 @@ export const TestimonialCarousel = () => {
         // renderArrowNext={customNextArrow}
         // renderArrowPrev={customPrevArrow}
       >
-        <div className={""}>
-          <p className={"italic text-2xl text-white font-light"}>
+        <div className={"grid mb-20 "}>
+          <p className={"italic text-2xl text-white font-light  "}>
             “Dr Robin is passionate about healing people, finding the cause of
-            the problem and then addressing it. He explains everything so well
-            really feel that at last there is hope.”
+            the problem and then addressing it.<br></br> He explains everything
+            so well really feel that at last there is hope.”
           </p>
         </div>
 
-        <div className={""}>
-          <p className={"italic text-2xl text-white font-light"}>
+        <div className={"grid"}>
+          <p className={"italic text-2xl text-white font-light "}>
             “Dr Robin Is the most incredible doctor I have ever worked with! I
-            cannot recommend anyone more highly! Even my little girl of 1 and a
-            half was so impressed with him and sat and did everything he needed
-            her to do! I never leave there not feeling positive and helped!”
+            cannot recommend anyone more highly!<br></br> Even my little girl of
+            1 and a half was so impressed with him and sat and did everything he
+            needed her to do!<br></br> I never leave there not feeling positive
+            and helped!”
           </p>
         </div>
 
-        <div className={""}>
-          <p className={"italic text-2xl text-white font-light"}>
+        <div className={"grid"}>
+          <p className={"italic text-2xl text-white font-light "}>
             “Personally I appreciate such a thorough consultation that is not
-            rushed! Dr Kohler looks for the root cause (even root of the root
-            issue ) and treats it naturally. Always such a positive experience.”
+            rushed! Dr Kohler looks for the root cause<br></br> (even root of
+            the root issue ) and treats it naturally. Always such a positive
+            experience.”
           </p>
         </div>
 
-
-          <div className={""}>
-            <p className={"italic text-2xl text-white font-light"}>
-              “My experience with Dr. Robin Kohler can best be described as
-              "transformative". I feel like FINALLY someone has the intelligence
-              and capability to treat the whole person. I highly recommend his
-              practice.”
-            </p>
-          </div>
+        <div className={"grid"}>
+          <p className={"italic text-2xl text-white font-light "}>
+            “My experience with Dr. Robin Kohler can best be described as
+            "transformative". <br></br>I feel like FINALLY someone has the
+            intelligence and capability to treat the whole person. I highly
+            recommend his practice.”
+          </p>
+        </div>
       </Carousel>
     </div>
   );
