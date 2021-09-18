@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { Wrapper } from "@googlemaps/react-wrapper";
+import { useState } from "react";
 import Image from "next/image";
 import { ShippingAddress } from "../components/checkout/shippingAddress";
 import { ShippingMethod } from "../components/checkout/shippingMethod";
@@ -79,12 +80,16 @@ const Checkout = () => {
     firstName: "",
     lastName: "",
     companyName: "",
-    streetAddress: "",
+    phoneNumber: "",
+    streetNumber: "",
     suburb: "",
     city: "",
     country: "",
-    phoneNumber: "",
     postalCode: "",
+    formattedAddress: "",
+    area: "",
+    province: "",
+    street: "",
   });
 
   //md:grid-cols-2 xl:grid-cols-3
@@ -108,7 +113,9 @@ const Checkout = () => {
               shippingPrice={150}
             />
             {shipping && (
-              <ShippingAddress values={shippingAddress} setValues={setShippingAddress} />
+              <Wrapper apiKey={process.env.NEXT_PUBLIC_GOOGLE_API_KEY || ""} libraries={["places"]}>
+                <ShippingAddress values={shippingAddress} setValues={setShippingAddress} />
+              </Wrapper>
             )}
           </div>
 
