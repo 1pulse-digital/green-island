@@ -96,6 +96,9 @@ export async function getStaticProps() {
   // TODO: Is the revalidate value correct here?
   return {
     props: { articles, featuredProducts, categories },
-    revalidate: 1,
+    // Next.js will attempt to re-generate the page:
+    // - When a request comes in
+    // - At most once every 30 seconds
+    revalidate: 30, // In seconds
   };
 }
