@@ -1,25 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
+import { Input } from "./input";
+import Button from "./button";
 
 export const Message = () => {
+  const [values, setValues] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    tel: "",
+    message: "",
+  });
+
+  const handleChange = (name: string) => (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setValues({ ...values, [name]: event.target.value });
+  };
+
   return (
     <div className={" sm:grid  grid-cols-2 h-[700px]  w-full  font-karla   "}>
       {/* Left column */}
       <div
-        className={
-          "grid content-center   bg-gray-50  lg:px-24  text-primary text-lg pl-4 md:px-5  md:py-8  "
-        }>
-        <p className={"text-md lg:pr-48 md:pr-32 grid sm:pt-8 "}>
-          33 Highland Avenue<br /> Bryanston Ext 8 <br />Johannesburg,
-          Gauteng
+        className={"grid content-center   bg-gray-50  lg:px-24  text-primary text-lg pl-4 md:px-5  md:py-8  "}>
+        <h2 className={"font-bold"}>Contact details</h2>
+        <p className={"text-md"}>
+          <a className={"hover:text-secondary"} href="tel:+27-11-706-2786">Tel: +27 11 706 2786</a>
+          <br />
+          <a className={"hover:text-secondary"} href="tel:+27-82-293-8502">Tel: +27 82 293 8502</a>
         </p>
-        <br />
-        <p className={"text-md lg:pr-48 md:pr-32"}>
+        <p className={"text-md mt-2"}>
           <a
             className={"hover:text-secondary"}
-            href="mailto: reception@perfecthealthpractice.com">
+            href="mailto: reception@perfecthealthpractice.com"
+          >
             reception@perfecthealthpractice.com
           </a>
-
           <br />
           <a
             className={"hover:text-secondary"}
@@ -27,19 +40,20 @@ export const Message = () => {
             accounts@perfecthealthpractice.com
           </a>
         </p>
-        <br />
-        <p className={"text-md lg:pr-48 md:pr-32"}>
-          Tel: +27 11 706 2786<br />
-          Tel: +27 82 293 8502{" "}
+        <h2 className={"mt-8 font-bold"}>Address</h2>
+        <p className={"text-md "}>
+          <span>33 Highland Avenue</span><br />
+          <span>Bryanston Ext 8 </span><br />
+          <span>Johannesburg</span><br />
+          <span>Gauteng</span>
         </p>
-        <br />
-        <p className={"text-md lg:pr-48 md:pr-32"}>
-          Monday to Thursday 08:00 - 17:00 <br />
-          <br />
-          Fridays 08:00 - 16:00 <br />
-          <br />
-          Saturday 08:00- 13:00 <br />
-          <br />
+        <h2 className={"font-bold mt-8"}>Operating hours</h2>
+        <p className={"text-md"}>
+          <span>Monday to Thursday 08:00 - 17:00</span><br />
+          <span>Fridays 08:00 - 16:00</span><br />
+          <span>Saturday 08:00- 13:00</span>
+        </p>
+        <p className={"mt-8"}>
           We reserve emergency slots each week which can be booked on Mondays.
           They are awarded on a first come first serve basis, and bookings open
           at 8am.
@@ -56,81 +70,70 @@ export const Message = () => {
                 Send us a message
               </h1>
             </div>
-            <div className="grid grid-cols-2 gap-4 max-w-xl">
+            <div className="grid grid-cols-2 gap-6">
+              <div className="col-span-2 lg:col-span-1">
+                <Input
+                  id={"first-name"}
+                  label={"First name "}
+                  onChange={handleChange("firstName")}
+                  value={values.firstName}
+                />
+              </div>
+              <div className="col-span-2 lg:col-span-1">
+                <Input
+                  id={"last-name"}
+                  label={"Last name "}
+                  onChange={handleChange("lastName")}
+                  value={values.lastName}
+                />
+              </div>
               <div className="col-span-2 lg:col-span-1">
                 <div className="relative">
-                  <input
-                    type="text"
-                    id="contact-form-name"
-                    className="flex-1 py-2 w-full placeholder-gray-400 bg-white border-b-2 appearance-none text-primary"
-                    placeholder="First name"
+                  <Input
+                    id={"email"}
+                    label={"Email"}
+                    type={"email"}
+                    onChange={handleChange("email")}
+                    value={values.email}
                   />
                 </div>
               </div>
               <div className="col-span-2 lg:col-span-1">
-                <div className="relative">
-                  <input
-                    type="text"
-                    id="contact-form-email"
-                    className="py-2 w-full placeholder-gray-400 bg-white border-b-2 appearance-none text-primary"
-                    placeholder="Surname"
-                  />
-                </div>
+                <Input
+                  id={"tel"}
+                  label={"Tel"}
+                  type={"tel"}
+                  onChange={handleChange("tel")}
+                  value={values.tel}
+                />
               </div>
-              <div className="col-span-2 lg:col-span-1">
-                <div className="relative">
-                  <input
-                    type="text"
-                    id="contact-form-email"
-                    className="py-2 w-full placeholder-gray-400 bg-white border-b-2 appearance-none text-primary"
-                    placeholder="Email"
-                  />
-                </div>
-              </div>
-              <div className="col-span-2 lg:col-span-1">
-                <div className="relative">
-                  <input
-                    type="text"
-                    id="contact-form-email"
-                    className="py-2 w-full placeholder-gray-400 bg-white border-b-2 text-primary"
-                    placeholder="Tel"
-                  />
-                </div>
-              </div>
-              <div className="col-span-2">
-                <label className="text-gray-700" htmlFor="name">
+              <div className={"relative col-span-2"}>
                   <textarea
-                    className="py-2 w-full placeholder-gray-400 bg-white border-b-2 text-primary"
-                    id="comment"
-                    placeholder="Message Here"
-                    name="comment"
-                    rows={5}
-                    cols={40}
+                    id={"message"}
+                    rows={3}
+                    name={"message"}
+                    placeholder={"Message here"}
+                    className="w-full h-full placeholder-transparent text-gray-900 disabled:text-gray-600 rounded border-gray-300 focus:ring-0 focus:outline-none peer focus:border-secondary"
+                    value={values.message}
+                    onChange={handleChange("message")}
                   />
+                <label
+                  htmlFor={"message"}
+                  className="absolute left-2 -top-5 text-sm text-gray-600 transition-all peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-focus:text-gray-600 peer-focus:-top-5 peer-focus:text-sm"
+                >
+                  {"Message here"}
                 </label>
               </div>
-              <div className="pt-4 text-right">
-                <button
-                  type="submit"
-                  className="py-2 px-4 w-full text-base font-semibold text-center text-white rounded-lg shadow-md transition duration-200 ease-in focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-indigo-200 focus:outline-none bg-primary hover:bg-secondary">
-                  Submit
-                </button>
-              </div>
+              <Button color={"primary"}>Submit</Button>
+              {/* TODO: The below is a cool "squireish" button we can make a component laer*/}
+              {/*<button*/}
+              {/*  type="submit"*/}
+              {/*  className="py-2 px-4 w-full text-base font-semibold text-center text-white rounded-lg shadow-md transition duration-200 ease-in focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-indigo-200 focus:outline-none bg-primary hover:bg-secondary">*/}
+              {/*  Submit*/}
+              {/*</button>*/}
             </div>
           </div>
         </form>
-      </div>
-
-      <div className={"  "}>
-        <div className={" "}>
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3584.557930203964!2d28.003619614979353!3d-26.04801658350764!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e957411c227358d%3A0x7718f4d138de9d9a!2s33%20Highland%20Ave%2C%20Bryanston%2C%20Sandton%2C%202191!5e0!3m2!1sen!2sza!4v1627045925998!5m2!1sen!2sza"
-            width="2000"
-            height="450"
-            style={{ border: 0 }}
-            loading="lazy"
-          />
-        </div>
       </div>
     </div>
   );
