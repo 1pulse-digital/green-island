@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
-import Button from "./button";
+import { SmallButton } from "./button";
 
 export interface FooterProps {
 }
@@ -23,6 +23,12 @@ const SocialIcon = (props: SocialIconProps) => {
 };
 
 export const Footer = (props: FooterProps) => {
+  const [values, setValues] = useState({
+    email: "",
+  });
+  const handleChange = (name: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
+    setValues({ ...values, [name]: event.target.value });
+  };
   return (
     <div
       className="grid grid-cols-1 py-10 px-10 md:grid-cols-2 md:px-20 lg:grid-cols-3 xl:grid-cols-4 row-gap-4 font-karla bg-primary">
@@ -30,17 +36,33 @@ export const Footer = (props: FooterProps) => {
         <p className={"  text-white text-lg pb-2"}>
           Sign up for our monthly newsletter
         </p>
-        <form className="flex flex-wrap gap-4">
-          <input
-            placeholder="Email Address"
-            required
-            type="text"
-            className="px-4 h-12 bg-white rounded shadow-lg transition duration-200 focus:outline-none focus:border-deep-purple-accent-400 focus:shadow-outline"
-          />
-          <div className={"block"}>
-            <Button color={"secondary"}>Subscribe</Button>
+        <div className={"grid gap-4 p-4"}>
+          {/* This is a copy paste of input component because of label color issues */}
+          <div className={"relative"}>
+            <input
+              id={"email"}
+              type={"email"}
+              placeholder={"Email"}
+              className="w-full h-10 placeholder-transparent text-gray-900 disabled:text-gray-600 rounded border-gray-300 focus:ring-0 focus:outline-none peer focus:border-secondary"
+              value={values.email}
+              onChange={handleChange("email")}
+            />
+            <label
+              htmlFor={"email"}
+              className="absolute left-2 -top-5 text-sm text-gray-600 transition-all peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-focus:text-gray-200 peer-focus:-top-5 peer-focus:text-sm"
+            >
+              Email
+            </label>
           </div>
-        </form>
+          <div>
+            <SmallButton
+              color={"secondary"}
+              onClick={() => alert(("The computer says no!"))}>
+              Subscribe
+            </SmallButton>
+          </div>
+        </div>
+
       </div>
 
       <div>

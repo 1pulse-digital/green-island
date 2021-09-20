@@ -17,9 +17,7 @@ const MainLayout = (props: MainLayoutProps) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className={"z-30"}>
-        <Navbar />
-      </div>
+      <Navbar />
 
 
       <div className={"flex-grow"}>{props.children}</div>
