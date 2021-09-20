@@ -6,11 +6,23 @@ import { divide } from "lodash";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import Button from "../button";
 import Image from "next/image";
-import idexis from "../images/Idexis.png";
-import amipro from "../images/amipro.png";
-import coyne from "../images/coyne.png";
-import medford from "../images/medford.png";
-import prime from "../images/prime.jpg";
+import idexis from "../images/Idexis.jpg";
+import amipro from "../images/Amipro.jpg";
+import coyne from "../images/Coyne.jpg";
+import medford from "../images/Medford.jpg";
+import prime from "../images/Prime-Quest.jpg";
+
+import China from "../images/China-Herb.jpg";
+import Corpclo from "../images/Corpclo.jpg";
+import Fagron from "../images/Fagron.jpg";
+import Nordic from "../images/Nordic-Naturals.jpg";
+import Solgar from "../images/Solgar.jpg";
+import Theta from "../images/Theta-Health.jpg";
+import Topmed from "../images/Topmed.jpg";
+import Vibrant from "../images/Vibrant-Health.jpg";
+import Wings from "../images/Wings.jpg";
+import wlast from "../images/wlast.jpg";
+import Xymogen from "../images/Xymogen.jpg";
 
 var Carousel = require("react-responsive-carousel").Carousel;
 
@@ -80,7 +92,7 @@ export const Suppliers = () => {
           <Image src={prime} alt="prime" />
         </div> */}
 
-        <div className="grid grid-cols-5 gap-4  h-24 my-12 px-12">
+        <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-4   lg:h-24 md:52 sm:h-96  h-24 my-12 px-12">
           <div className=" grid-cols-1 ">
             <Image src={idexis} alt="idexis" />
           </div>
@@ -93,28 +105,52 @@ export const Suppliers = () => {
           </div>
           <div className=" grid-cols-1 ">
             <Image src={medford} alt="medford" />
-          </div>
-          <div className=" grid-cols-1 ">
-            <Image src={prime} alt="prime" />
           </div>
         </div>
 
-        <div className="grid grid-cols-5 gap-4 bg-red-500 h-24 my-12 px-12">
-          <div className=" grid-cols-1 bg-gray-900">
-            <Image src={idexis} alt="idexis" />
+        <div className="grid lg:grid-cols-4 gap-4   md:grid-cols-2 sm:grid-cols-1    lg:h-24 md:52 sm:h-96 my-12 px-12">
+          <div className=" grid-cols-1 ">
+            <Image src={China} alt="china-herb" />
           </div>
-          <div className=" grid-cols-1 bg-green-900">
+          <div className=" grid-cols-1 ">
             {" "}
-            <Image src={amipro} alt="amipro" />
+            <Image src={Corpclo} alt="Corpclo" />
           </div>
-          <div className=" grid-cols-1 bg-blue-900">
-            <Image src={coyne} alt="coyne" />
+          <div className=" grid-cols-1 ">
+            <Image src={Fagron} alt="Fagron" />
           </div>
-          <div className=" grid-cols-1 bg-yellow-900">
-            <Image src={medford} alt="medford" />
+          <div className=" grid-cols-1 ">
+            <Image src={Nordic} alt="Nordic" />
           </div>
-          <div className=" grid-cols-1 bg-pink-900">
+        </div>
+        <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-4   lg:h-24 md:52 sm:h-96 my-12 px-12">
+          <div className=" grid-cols-1 ">
+            <Image src={Theta} alt="Theta" />
+          </div>
+          <div className=" grid-cols-1 ">
+            {" "}
+            <Image src={Topmed} alt="Topmed" />
+          </div>
+          <div className=" grid-cols-1 ">
+            <Image src={Vibrant} alt="Vibrant" />
+          </div>
+          <div className=" grid-cols-1 ">
+            <Image src={Wings} alt="Wings" />
+          </div>
+        </div>
+        <div className="grid lg:grid-cols-4  md:grid-cols-2 sm:grid-cols-1 gap-4   lg:h-24 md:52 sm:h-96 h-24 my-12 px-12">
+          <div className=" grid-cols-1 ">
+            <Image src={wlast} alt="wlast" />
+          </div>
+          <div className=" grid-cols-1 ">
+            {" "}
+            <Image src={Xymogen} alt="Xymogen" />
+          </div>
+          <div className=" grid-cols-1 ">
             <Image src={prime} alt="prime" />
+          </div>
+          <div className=" grid-cols-1 ">
+            <Image src={Solgar} alt="Solgar" />
           </div>
         </div>
       </Carousel>
