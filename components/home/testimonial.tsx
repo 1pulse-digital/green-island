@@ -60,7 +60,7 @@ export const TestimonialCarousel = () => {
           </p>
         </div>
 
-        <div className={""}>
+        <div>
           <p
             className={
               "italic lg:text-2xl md:text-2xl sm:text-1xl  text-white font-light "
@@ -76,7 +76,7 @@ export const TestimonialCarousel = () => {
           </p>
         </div>
 
-        <div className={""}>
+        <div>
           <p
             className={
               "italic lg:text-2xl md:text-2xl sm:text-1xl  text-white font-light "
@@ -91,7 +91,7 @@ export const TestimonialCarousel = () => {
           </p>
         </div>
 
-        <div className={""}>
+        <div>
           <p
             className={
               "italic lg:text-2xl md:text-2xl sm:text-1xl  text-white font-light "
