@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { MouseEvent, useState } from "react";
 import { Input } from "./input";
 import Button from "./button";
+import { toast } from "react-hot-toast";
+import { submitContactForm } from "../lib/api";
+import { useAuthContext } from "../contexts/authContext";
 
 export const Message = () => {
+  const { authToken } = useAuthContext();
   const [values, setValues] = useState({
     firstName: "",
     lastName: "",
@@ -13,6 +17,19 @@ export const Message = () => {
 
   const handleChange = (name: string) => (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setValues({ ...values, [name]: event.target.value });
+  };
+
+  const handleSubmit = async (e: MouseEvent<HTMLButtonElement>) => {
+    try {
+      // send the contact form
+      e.preventDefault();
+      e.stopPropagation();
+      await submitContactForm(values, authToken);
+      toast.success(`Your form has been submitted, thank you for getting in touch with us`, { icon: "🌿⚕" });
+    } catch (e) {
+      console.error(`Could not submit the form ${e}`);
+      toast.error(`Something went wrong, we could not submit your form`, { icon: "😞️" });
+    }
   };
 
   return (
@@ -124,13 +141,7 @@ export const Message = () => {
                   {"Message here"}
                 </label>
               </div>
-              <Button color={"primary"}>Submit</Button>
-              {/* TODO: The below is a cool "squireish" button we can make a component laer*/}
-              {/*<button*/}
-              {/*  type="submit"*/}
-              {/*  className="py-2 px-4 w-full text-base font-semibold text-center text-white rounded-lg shadow-md transition duration-200 ease-in focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-indigo-200 focus:outline-none bg-primary hover:bg-secondary">*/}
-              {/*  Submit*/}
-              {/*</button>*/}
+              <Button onClick={handleSubmit} color={"primary"}>Submit</Button>
             </div>
           </div>
         </form>

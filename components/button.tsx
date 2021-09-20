@@ -36,9 +36,9 @@ export const SmallButton = (props: ButtonProps) => {
       onClick={props.onClick}>
       {props.children}
     </button>
-  )
+  );
+};
 
-}
 export const Button = (props: ButtonProps) => {
   const baseClassname = "rounded-full py-2 px-4 md:px-10 py-3 shadow hover:shadow-sm text-lg disabled:opacity-60 whitespace-nowrap";
 
@@ -62,6 +62,17 @@ export const Button = (props: ButtonProps) => {
       disabled={props.disabled}
       onClick={props.onClick}>
       {props.children}
+    </button>
+  );
+};
+
+// TODO: SquareButton can be used in te future as a square instead of rounded button
+const SquareButton = (props: ButtonProps) => {
+  return (
+    <button
+      type="submit"
+      className="py-2 px-4 w-full text-base font-semibold text-center text-white rounded-lg shadow-md transition duration-200 ease-in focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-indigo-200 focus:outline-none bg-primary hover:bg-secondary">
+      Submit
     </button>
   );
 };
