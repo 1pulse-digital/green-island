@@ -42,7 +42,7 @@ export const Navbar = () => {
   const isLoginPage = router.pathname === "/login";
 
   return (
-    <div className={"z-30 relative"}>
+    <div className={"z-30 relative h-[93px]"}>
       <Popover className="w-full fixed bg-white/80 backdrop-blur  shadow-sm lg:px-20">
         {({ open }) => (
           <div
