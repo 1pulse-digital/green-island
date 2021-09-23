@@ -281,7 +281,7 @@ const Checkout = () => {
 
             {!order && (
               <div className={"bg-white grid place-items-center"}>
-                <Button onClick={handlePlaceOrder} color={"primary"}>Proceed to payment</Button>
+                <Button onClick={handlePlaceOrder} color={"primary"}>Place order</Button>
               </div>
             )}
           </div>
