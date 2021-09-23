@@ -230,7 +230,6 @@ const Checkout = () => {
 
   };
 
-  //md:grid-cols-2 xl:grid-cols-3
   return (
     <MainLayout>
       {/* Include the payfast script */}

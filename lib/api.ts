@@ -93,6 +93,23 @@ export interface submitContactFormRequest {
   message: string,
 }
 
+export async function subscribeToMailer(email:string) {
+  const headers = {
+    "Content-Type": "application/json",
+  } as { "Content-Type": string; Authorization?: string };
+
+  const requestUrl = getStrapiURL("/subscribe");
+  console.debug(`posting: ${requestUrl}`);
+
+  const response = await fetch(requestUrl, {
+    method: "POST",
+    headers: headers,
+    body: JSON.stringify({ email }),
+  });
+  console.debug(`posted:  ${requestUrl}\n`, response.text());
+
+  return;
+}
 export async function submitContactForm(request: submitContactFormRequest, token?: string) {
   const headers = {
     "Content-Type": "application/json",

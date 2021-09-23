@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { SmallButton } from "./button";
+import { Input } from "./input";
+import { subscribeToMailer } from "../lib/api";
+import { toast } from "react-hot-toast";
 
 export interface FooterProps {
 }
@@ -26,38 +29,46 @@ export const Footer = (props: FooterProps) => {
   const [values, setValues] = useState({
     email: "",
   });
+
   const handleChange = (name: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
     setValues({ ...values, [name]: event.target.value });
   };
+
+  const handleSubscribe = async () => {
+    try {
+      await subscribeToMailer(values.email);
+      setValues({ ...values, email: "" });
+      toast.success("You are now subscribed");
+    } catch (e) {
+      console.error(`Could not subscribe: ${e.message ? e.message : e.toString()}`);
+      toast.error(`Something went wrong, we could add you to our subscriber list`, { icon: "😞️" });
+    }
+  };
+
   return (
     <div
-      className="grid grid-cols-1 py-10 px-10 md:grid-cols-2 md:px-20 lg:grid-cols-3 xl:grid-cols-4 row-gap-4 font-karla bg-primary">
+      className="grid py-10 px-10 md:grid-cols-2 md:px-20 lg:grid-cols-3 xl:grid-cols-4 row-gap-4 font-karla bg-primary">
       <div className={""}>
         <p className={"  text-white text-lg pb-2"}>
           Sign up for our monthly newsletter
         </p>
-        <div className={"grid gap-4 p-4"}>
+        <div className={"grid gap-4 mt-4 mr-8"}>
           {/* This is a copy paste of input component because of label color issues */}
-          <div className={"relative"}>
-            <input
-              id={"email"}
-              type={"email"}
-              placeholder={"Email"}
-              className="w-full h-10 placeholder-transparent text-gray-900 disabled:text-gray-600 rounded border-gray-300 focus:ring-0 focus:outline-none peer focus:border-secondary"
+          <div>
+            {/* Copy input component to override styles*/}
+            <Input
+              id={"subscriber-email"}
+              label={"Email"}
               value={values.email}
               onChange={handleChange("email")}
+              labelClassName={"peer-focus:text-white"}
             />
-            <label
-              htmlFor={"email"}
-              className="absolute left-2 -top-5 text-sm text-gray-600 transition-all peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-focus:text-gray-200 peer-focus:-top-5 peer-focus:text-sm"
-            >
-              Email
-            </label>
+
           </div>
           <div>
             <SmallButton
               color={"secondary"}
-              onClick={() => alert(("The computer says no!"))}>
+              onClick={handleSubscribe}>
               Subscribe
             </SmallButton>
           </div>
