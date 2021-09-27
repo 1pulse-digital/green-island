@@ -1,6 +1,4 @@
 import React from "react";
-import Image from "next/image";
-import bottle from "../images/bottle.png";
 import { MedicalAnimation } from "./home/animation";
 
 export const About = () => {
@@ -39,6 +37,7 @@ export const About = () => {
             That’s what we help you to do!
           </p>
           <div className="pt-5">
+            {/* FIXME */}
             <a href="/about" className={"flex items-center justify-center md:justify-start"}>
               <button
                 type="submit"
