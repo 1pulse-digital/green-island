@@ -18,4 +18,12 @@ export interface Product {
   warning: string;
   availability: "otc" | "prescription" | undefined;
   benefits: string;
+  serving_size: string;
+  additional_ingredients: string;
+  additional_information: string;
+  notice: string;
+  storage: string;
+  symptoms_indications: string;
+  product_form: string;
+  supplier: string;
 }

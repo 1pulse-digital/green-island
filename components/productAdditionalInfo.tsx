@@ -67,21 +67,21 @@ export const ProductAdditionalInfo = (props: ProductAdditionalInfoProps) => {
               "bg-white rounded-xl p-3",
               "focus:outline-none focus:ring-2 ring-offset-2 ring-offset-blue-400 ring-white ring-opacity-60"
             )}>
-            <div>{props.product.description}</div>
+            <div>{props.product.ingredients}</div>
           </Tab.Panel>
           <Tab.Panel
             className={classnames(
               "bg-white rounded-xl p-3",
               "focus:outline-none focus:ring-2 ring-offset-2 ring-offset-blue-400 ring-white ring-opacity-60"
             )}>
-            <div>{props.product.name}</div>
+            <div>{props.product.additional_information}</div>
           </Tab.Panel>
           <Tab.Panel
             className={classnames(
               "bg-white rounded-xl p-3",
               "focus:outline-none focus:ring-2 ring-offset-2 ring-offset-blue-400 ring-white ring-opacity-60"
             )}>
-            <div>{props.product.description}</div>
+            <div>{props.product.benefits}</div>
           </Tab.Panel>
           <Tab.Panel
             className={classnames(
