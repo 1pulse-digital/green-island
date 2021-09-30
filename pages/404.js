@@ -1,6 +1,5 @@
-import React from "react";
-
-export const Error_404 = () => {
+import { Button } from "../components/button";
+export default function Custom404() {
   return (
     <div className={"bg-gray-100 h-[700px]"}>
       <div className={"   h-[100px] py-32   "}>
@@ -15,13 +14,11 @@ export const Error_404 = () => {
         </p>
 
         <div className="flex justify-center items-center py-20">
-          <a
-            href="http://localhost:3000/shop"
-            className="inline-flex justify-center items-center py-2 px-20 text-base font-medium text-white whitespace-nowrap rounded-full border border-transparent shadow-sm bg-primary hover:bg-secondary">
-            Continue Shopping
+          <a href="/shop">
+            <Button color={"primary"}>Continue Shopping</Button>
           </a>
         </div>
       </div>
     </div>
   );
-};
+}
