@@ -1,10 +1,7 @@
 import React from "react";
-import { Disclosure } from "@headlessui/react";
-import { divide } from "lodash";
 
 // import { render } from "react-dom";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import Button from "../button";
 import Image from "next/image";
 import idexis from "../images/Idexis.jpg";
 import amipro from "../images/Amipro.jpg";
@@ -27,25 +24,6 @@ import Xymogen from "../images/Xymogen.jpg";
 var Carousel = require("react-responsive-carousel").Carousel;
 
 export const Suppliers = () => {
-  const customPrevArrow = (
-    onClickHandler: () => void,
-    hasPrev: boolean,
-    label: string
-  ) => (
-    <button title={label} onClick={onClickHandler}>
-      prev
-    </button>
-  );
-
-  const customNextArrow = (
-    onClickHandler: () => void,
-    hasPrev: boolean,
-    label: string
-  ) => (
-    <button className="  " title={label} onClick={onClickHandler}>
-      next
-    </button>
-  );
   return (
     <div className={""}>
       <Carousel
@@ -54,45 +32,9 @@ export const Suppliers = () => {
         autoPlay={true}
         showStatus={false}
         showThumbs={false}
-        // renderArrowNext={customNextArrow}
-        // renderArrowPrev={customPrevArrow}
       >
-        {/* <div className={"  mx-8  my-12"}>
-          <Image className="mx-8" src={idexis} alt="idexis" />
-
-          <Image src={amipro} alt="amipro" />
-
-          <Image src={coyne} alt="coyne" />
-
-          <Image src={medford} alt="medford" />
-
-          <Image src={prime} alt="prime" />
-        </div>
-
-        <div className={" my-12 "}>
-          <Image src={idexis} alt="idexis" />
-
-          <Image src={amipro} alt="amipro" />
-
-          <Image src={coyne} alt="coyne" />
-
-          <Image src={medford} alt="medford" />
-
-          <Image src={prime} alt="prime" />
-        </div>
-        <div className={" my-12 "}>
-          <Image src={idexis} alt="idexis" />
-
-          <Image src={amipro} alt="amipro" />
-
-          <Image src={coyne} alt="coyne" />
-
-          <Image src={medford} alt="medford" />
-
-          <Image src={prime} alt="prime" />
-        </div> */}
-
-        <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-4   lg:h-24 md:52 sm:h-96  h-24 my-12 px-12">
+        <div
+          className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-4   lg:h-24 md:52 sm:h-96  h-24 my-12 px-12">
           <div className=" grid-cols-1 ">
             <Image src={idexis} alt="idexis" />
           </div>
@@ -138,7 +80,8 @@ export const Suppliers = () => {
             <Image src={Wings} alt="Wings" />
           </div>
         </div>
-        <div className="grid lg:grid-cols-4  md:grid-cols-2 sm:grid-cols-1 gap-4   lg:h-24 md:52 sm:h-96 h-24 my-12 px-12">
+        <div
+          className="grid lg:grid-cols-4  md:grid-cols-2 sm:grid-cols-1 gap-4   lg:h-24 md:52 sm:h-96 h-24 my-12 px-12">
           <div className=" grid-cols-1 ">
             <Image src={wlast} alt="wlast" />
           </div>
