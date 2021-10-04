@@ -11,9 +11,11 @@
   "dependencies": {
     "@headlessui/react": "^1.4.0",
     "@heroicons/react": "^1.0.3",
+    "@react-pdf/renderer": "^2.0.19",
     "@tailwindcss/forms": "^0.3.3",
     "@tailwindcss/line-clamp": "^0.2.1",
     "@tailwindcss/typography": "^0.4.1",
+    "@thumbtack/thumbprint-react": "^14.4.1",
     "@types/google-map-react": "^2.1.2",
     "algoliasearch": "^4.10.5",
     "classnames": "^2.3.1",
@@ -27,8 +29,11 @@
     "react-dom": "17.0.2",
     "react-hot-toast": "^2.1.1",
     "react-instantsearch-dom": "^6.12.1",
+    "react-rating-stars-component": "^2.2.0",
     "react-responsive-carousel": "^3.2.21",
+    "react-star-rating-component": "^1.4.1",
     "react-tooltip": "^4.2.21",
+    "simple-rating-stars": "^1.6.0",
     "swr": "^0.5.6",
     "tailshake": "^0.0.3"
   },
