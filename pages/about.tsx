@@ -8,15 +8,11 @@ import SimonWorkman from "../images/SimonWorkman.jpg";
 import BronwynKohler from "../images/BronwynKohler.jpg";
 import SindiNtozini from "../images/SindiNtozini.jpg";
 import Button from "../components/button";
-//import ReactDOM from 'react-dom'
-//import AnchorLink from "react-anchor-link-smooth-scroll";
-import Link from "next/link";
 import { useRef } from "react";
-// import { MedicalAnimation } from "../components/home/animation";
 
 const About = () => {
-  const teamRef = useRef();
-  const serviceRef = useRef();
+  const teamRef = useRef<HTMLElement>(null);
+  const serviceRef = useRef<HTMLElement>(null);
   return (
     <MainLayout>
       <div>
@@ -85,7 +81,7 @@ const About = () => {
               <Button
                 color={"primary"}
                 onClick={() =>
-                  teamRef.current.scrollIntoView({ behavior: "smooth" })
+                  teamRef.current?.scrollIntoView({ behavior: "smooth" })
                 }>
                 Meet the team
               </Button>
@@ -93,7 +89,7 @@ const About = () => {
               <button
                 className={"text-primary rounded-full mt-4 px-4 flex  "}
                 onClick={() =>
-                  serviceRef.current.scrollIntoView({ behavior: "smooth" })
+                  serviceRef.current?.scrollIntoView({ behavior: "smooth" })
                 }>
                 Our services
                 <svg

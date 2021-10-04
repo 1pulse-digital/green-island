@@ -1,5 +1,3 @@
-import useSWR from "swr";
-import { Product } from "../types/product";
 import { CartItemType } from "../contexts/cartContext";
 
 export function getStrapiURL(path = "") {
@@ -24,7 +22,7 @@ export async function fetchAPI(path: string, token?: string) {
   const response = await fetch(requestUrl, { headers });
   if (!response.ok) {
     const data = await response.text();
-    console.warn(`fetch error response:`, { response, data});
+    console.warn(`fetch error response:`, { response, data });
     throw data;
   }
 
@@ -87,6 +85,54 @@ export async function createStrapiShoppingCart(token: string) {
   return data;
 }
 
+export interface submitContactFormRequest {
+  firstName: string,
+  lastName: string,
+  email: string,
+  tel: string,
+  message: string,
+}
+
+export async function subscribeToMailer(email:string) {
+  const headers = {
+    "Content-Type": "application/json",
+  } as { "Content-Type": string; Authorization?: string };
+
+  const requestUrl = getStrapiURL("/subscribe");
+  console.debug(`posting: ${requestUrl}`);
+
+  const response = await fetch(requestUrl, {
+    method: "POST",
+    headers: headers,
+    body: JSON.stringify({ email }),
+  });
+  console.debug(`posted:  ${requestUrl}\n`, response.text());
+
+  return;
+}
+export async function submitContactForm(request: submitContactFormRequest, token?: string) {
+  const headers = {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${token}`,
+  } as { "Content-Type": string; Authorization?: string };
+
+  if (!token) {
+    delete headers.Authorization;
+  }
+
+  const requestUrl = getStrapiURL("/contact");
+  console.debug(`posting: ${requestUrl}`);
+
+  const response = await fetch(requestUrl, {
+    method: "POST",
+    headers: headers,
+    body: JSON.stringify(request),
+  });
+  console.debug(`posted:  ${requestUrl}\n`, response.text());
+
+  return;
+}
+
 export async function updateStrapiWishlist(token: string, products: number[]) {
   const headers = {
     "Content-Type": "application/json",
@@ -138,30 +184,30 @@ export async function updateStrapiShoppingCart(token: string, items: CartItemTyp
 }
 
 
-export const useProducts = (query?: string): { products: Product[], isLoading: boolean, error: any } => {
-  const { data, error } = useSWR(
-    query ? `/products?${query}` : "/products",
-    fetchAPI,
-  );
+// export const useProducts = (query?: string): { products: Product[], isLoading: boolean, error: any } => {
+//   const { data, error } = useSWR(
+//     query ? `/products?${query}` : "/products",
+//     fetchAPI,
+//   );
+//
+//   return {
+//     products: data,
+//     isLoading: !error && !data,
+//     error,
+//   };
+// };
 
-  return {
-    products: data,
-    isLoading: !error && !data,
-    error,
-  };
-};
-
-export const useProductCategories = (query?: string) => {
-  const { data, error } = useSWR(
-    query ? `/product-categories${query}` : "/product-categories",
-    fetchAPI,
-  );
-  return {
-    productCategories: data,
-    isLoading: !error && !data,
-    error,
-  };
-};
+// export const useProductCategories = (query?: string) => {
+//   const { data, error } = useSWR(
+//     query ? `/product-categories${query}` : "/product-categories",
+//     fetchAPI,
+//   );
+//   return {
+//     productCategories: data,
+//     isLoading: !error && !data,
+//     error,
+//   };
+// };
 
 // export const useUser = (token: string) => {
 //   const { data, error } = useSWR(["/users/me", token], fetchAPI);

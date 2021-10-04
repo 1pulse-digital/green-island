@@ -1,23 +1,18 @@
 import MainLayout from "../layouts/MainLayout";
-import { Contact } from "../components/contact";
+import { Contact as ContactComponent } from "../components/contact";
 import { Message } from "../components/message";
 import { Map } from "../components/map";
-import { Login } from "../components/login";
-import { Footer } from "../components/footer";
 
-// import Background from "../components/background";
-
-const contact = () => {
+const Contact = () => {
   return (
     <MainLayout>
       <div>
-        <Contact />
+        <ContactComponent />
         <Message />
-
         <Map />
       </div>
     </MainLayout>
   );
 };
 
-export default contact;
+export default Contact;

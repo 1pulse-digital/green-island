@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
-import Button from "./button";
+import { SmallButton } from "./button";
+import { Input } from "./input";
+import { subscribeToMailer } from "../lib/api";
+import { toast } from "react-hot-toast";
 
 export interface FooterProps {
 }
@@ -23,24 +26,54 @@ const SocialIcon = (props: SocialIconProps) => {
 };
 
 export const Footer = (props: FooterProps) => {
+  const [values, setValues] = useState({
+    email: "",
+  });
+
+  const handleChange = (name: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
+    setValues({ ...values, [name]: event.target.value });
+  };
+
+  const handleSubscribe = async () => {
+    try {
+      await subscribeToMailer(values.email);
+      setValues({ ...values, email: "" });
+      toast.success("You are now subscribed");
+    } catch (e) {
+      console.error(`Could not subscribe: ${e.message ? e.message : e.toString()}`);
+      toast.error(`Something went wrong, we could add you to our subscriber list`, { icon: "😞️" });
+    }
+  };
+
   return (
     <div
-      className="grid grid-cols-1 py-10 px-10 md:grid-cols-2 md:px-20 lg:grid-cols-3 xl:grid-cols-4 row-gap-4 font-karla bg-primary">
+      className="grid py-10 px-10 md:grid-cols-2 md:px-20 lg:grid-cols-3 xl:grid-cols-4 row-gap-4 font-karla bg-primary">
       <div className={""}>
         <p className={"  text-white text-lg pb-2"}>
           Sign up for our monthly newsletter
         </p>
-        <form className="flex flex-wrap gap-4">
-          <input
-            placeholder="Email Address"
-            required
-            type="text"
-            className="px-4 h-12 bg-white rounded shadow-lg transition duration-200 focus:outline-none focus:border-deep-purple-accent-400 focus:shadow-outline"
-          />
-          <div className={"block"}>
-            <Button color={"secondary"}>Subscribe</Button>
+        <div className={"grid gap-4 mt-4 mr-8"}>
+          {/* This is a copy paste of input component because of label color issues */}
+          <div>
+            {/* Copy input component to override styles*/}
+            <Input
+              id={"subscriber-email"}
+              label={"Email"}
+              value={values.email}
+              onChange={handleChange("email")}
+              labelClassName={"peer-focus:text-white"}
+            />
+
           </div>
-        </form>
+          <div>
+            <SmallButton
+              color={"secondary"}
+              onClick={handleSubscribe}>
+              Subscribe
+            </SmallButton>
+          </div>
+        </div>
+
       </div>
 
       <div>
