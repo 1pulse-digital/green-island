@@ -2,7 +2,7 @@ import React from "react";
 import MainLayout from "../layouts/MainLayout";
 import { UserProfile } from "../components/userProfile";
 
-const Profile = () => {
+const MyAccount = () => {
   return (
     <MainLayout>
       <div>
@@ -11,4 +11,4 @@ const Profile = () => {
     </MainLayout>
   );
 };
-export default Profile;
+export default MyAccount;
