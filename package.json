@@ -28,6 +28,7 @@
     "react-hot-toast": "^2.1.1",
     "react-instantsearch-dom": "^6.12.1",
     "react-places-autocomplete": "^7.3.0",
+    "react-rating-stars-component": "^2.2.0",
     "react-responsive-carousel": "^3.2.21",
     "react-tooltip": "^4.2.21",
     "swr": "^0.5.6",
