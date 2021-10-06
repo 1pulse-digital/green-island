@@ -4,6 +4,7 @@ import { Suppliers } from "../components/suppliers";
 import { ShopSidebar } from "../components/shopSidebar";
 import { Hits } from "react-instantsearch-dom";
 import { ProductHit } from "../components/search/productHit";
+import { AlgoliaPagination } from "../components/search/pagination";
 
 export interface ShopProps {
 }
@@ -14,15 +15,22 @@ const Shop = (props: ShopProps) => {
     <MainLayout>
       <ShopBanner />
       {/* We use a 12 column grid system to fine tune the breakpoints */}
-      <div className={"grid grid-cols-12 lg:min-h-[768px]"}>
+      <div className={"relative grid md:flex lg:min-h-[768px] bg-blue-400"}>
         {/* Sidebar */}
-        <div className={"col-span-12 sm:col-span-5 md:col-span-4 lg:col-span-3 2xl:col-span-2"}>
+        <div className={""}>
           <ShopSidebar />
         </div>
 
         {/* Product grid */}
-        <div className="col-span-12 p-5 sm:col-span-7 md:col-span-8 md:p-7 lg:col-span-9 2xl:col-span-10">
-          <Hits hitComponent={ProductHit} />
+        <div className="relative bg-gray-50 w-full">
+          <div className={"p-5 md:p-7 mb-[38px] mx-auto"}>
+            <Hits hitComponent={ProductHit} />
+          </div>
+          {/* Pagination */}
+          <div className={"absolute inset-x-0 bottom-0 mx-auto "}>
+            {/* TODO: We might want the user to set the page size */}
+            <AlgoliaPagination hitsPerPage={10} />
+          </div>
         </div>
       </div>
 

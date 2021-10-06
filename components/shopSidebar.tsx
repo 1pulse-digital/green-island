@@ -48,36 +48,42 @@ export const ShopSidebar = (props: ShopSidebarProps) => {
           </div>
 
 
-          {/* Shop by category */}
           <div>
-            <p className="mb-4 w-full text-2xl font-bold text-primary font-karla">
-              Category
-            </p>
-            <AlgoliaRefinementList attribute={"category.name"} />
-          </div>
-
-          {/* Shop by product type */}
-          <div>
-            <p className="mb-4 w-full text-2xl font-bold text-primary font-karla">
-              Product Type
-            </p>
+            {/* Shop by category */}
             <div>
-              <AlgoliaRefinementList attribute={"product_type"} />
+              <p className="mb-4 w-full text-2xl font-bold text-primary font-karla">
+                Category
+              </p>
+              <AlgoliaRefinementList
+                attribute={"category.name"}
+                showMore={true}
+                limit={10}
+              />
             </div>
-          </div>
 
-          {/* Shop by product form */}
-          <div>
-            <p className="mb-4 w-full text-2xl font-bold text-primary font-karla">
-              Product Form
-            </p>
+            {/* Shop by product type */}
             <div>
-              <AlgoliaRefinementList attribute={"product_form"} />
+              <p className="mb-4 w-full text-2xl font-bold text-primary font-karla">
+                Product Type
+              </p>
+              <div>
+                <AlgoliaRefinementList attribute={"product_type"} />
+              </div>
             </div>
-          </div>
 
-          <div className={""}>
-            <AlgoliaClearRefinements clearsQuery customTitle={"Clear all filters and query"} />
+            {/* Shop by product form */}
+            <div>
+              <p className="mb-4 w-full text-2xl font-bold text-primary font-karla">
+                Product Form
+              </p>
+              <div>
+                <AlgoliaRefinementList attribute={"product_form"} />
+              </div>
+            </div>
+
+            <div className={""}>
+              <AlgoliaClearRefinements clearsQuery customTitle={"Clear all filters and query"} />
+            </div>
           </div>
         </nav>
       </div>

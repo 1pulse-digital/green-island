@@ -7,8 +7,5 @@
 }
 
 .ais-Hits-list {
-    @apply flex flex-wrap gap-4;
-}
-
-ais-Hits-item {
+    @apply flex flex-wrap gap-4 md:gap-8 2xl:gap-10 place-content-center;
 }
