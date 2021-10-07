@@ -3,7 +3,6 @@ import { GetStaticProps, GetStaticPropsContext } from "next";
 import { fetchAPI } from "../../lib/api";
 import { Product } from "../../types/product";
 import MainLayout from "../../layouts/MainLayout";
-import ProductWidget from "../../components/productWidget";
 import { FeaturedProducts } from "../../components/featuredProducts";
 import { ProductAdditionalInfo } from "../../components/productAdditionalInfo";
 import SingleProductWidget from "../../components/singleProductWidget";
@@ -36,7 +35,7 @@ const SingleProduct = (props: SingleProductProps) => {
 export default SingleProduct;
 
 export const getStaticProps: GetStaticProps = async (
-  context: GetStaticPropsContext
+  context: GetStaticPropsContext,
 ) => {
   if (!context.params) {
     return {
@@ -57,7 +56,8 @@ export const getStaticProps: GetStaticProps = async (
 
 export async function getStaticPaths() {
   return {
-    paths: [{ params: { id: "1" } }],
+    // paths: [{ params: { id: "1" } }],
+    paths: [],
     fallback: true,
   };
 }

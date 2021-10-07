@@ -86,7 +86,7 @@ export const ShippingAddress = (props: ShippingAddressProps) => {
           break;
       }
     }
-    console.log({ geoResult: geoResult });
+    // console.log({ geoResult: geoResult });
     setValues({
       ...values, ...addressBreakdown,
     });

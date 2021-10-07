@@ -87,7 +87,7 @@ function AuthContext({ children }: { children?: React.ReactNode }) {
     } else {
       // login success
       const { user, jwt } = data as { user: User, jwt: string };
-      console.debug(`User signed in: ${user.username}`);
+      // console.debug(`User signed in: ${user.username}`);
       setAuthToken(jwt);
       saveToken(jwt);
       setUser(user);
@@ -124,7 +124,7 @@ function AuthContext({ children }: { children?: React.ReactNode }) {
     } else {
       // registration success
       const { user, jwt } = data as { user: User, jwt: string };
-      console.debug(`User registered: ${user.username}`);
+      // console.debug(`User registered: ${user.username}`);
       setAuthToken(jwt);
       saveToken(jwt);
       setUser(user);

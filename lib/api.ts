@@ -18,7 +18,7 @@ export async function fetchAPI(path: string, token?: string) {
   }
 
   const requestUrl = getStrapiURL(path);
-  console.debug(`fetching: ${requestUrl}`);
+  // console.debug(`fetching: ${requestUrl}`);
   const response = await fetch(requestUrl, { headers });
   if (!response.ok) {
     const data = await response.text();
@@ -27,7 +27,7 @@ export async function fetchAPI(path: string, token?: string) {
   }
 
   const data = await response.json();
-  console.debug(`fetched:  ${requestUrl}\n`, data);
+  // console.debug(`fetched:  ${requestUrl}\n`, data);
   if (data.error) {
     throw `${data.error}: ${data.message}`;
   }
@@ -42,7 +42,7 @@ export async function createStrapiWishlist(token: string) {
   } as { "Content-Type": string; Authorization?: string };
 
   const requestUrl = getStrapiURL("/wish-lists");
-  console.debug(`posting: ${requestUrl}`);
+  // console.debug(`posting: ${requestUrl}`);
 
   const response = await fetch(requestUrl, {
     method: "POST",
@@ -52,7 +52,7 @@ export async function createStrapiWishlist(token: string) {
     }),
   });
   const data = await response.json();
-  console.debug(`posted:  ${requestUrl}\n`, data);
+  // console.debug(`posted:  ${requestUrl}\n`, data);
 
   if (data.error) {
     throw `${data.message}`;
@@ -68,7 +68,7 @@ export async function createStrapiShoppingCart(token: string) {
   } as { "Content-Type": string; Authorization?: string };
 
   const requestUrl = getStrapiURL("/shopping-carts");
-  console.debug(`posting: ${requestUrl}`);
+  // console.debug(`posting: ${requestUrl}`);
 
   const response = await fetch(requestUrl, {
     method: "POST",
@@ -76,7 +76,7 @@ export async function createStrapiShoppingCart(token: string) {
     body: JSON.stringify({}),
   });
   const data = await response.json();
-  console.debug(`posted:  ${requestUrl}\n`, data);
+  // console.debug(`posted:  ${requestUrl}\n`, data);
 
   if (data.error) {
     throw `${data.message}`;
@@ -99,14 +99,14 @@ export async function subscribeToMailer(email:string) {
   } as { "Content-Type": string; Authorization?: string };
 
   const requestUrl = getStrapiURL("/subscribe");
-  console.debug(`posting: ${requestUrl}`);
+  // console.debug(`posting: ${requestUrl}`);
 
   const response = await fetch(requestUrl, {
     method: "POST",
     headers: headers,
     body: JSON.stringify({ email }),
   });
-  console.debug(`posted:  ${requestUrl}\n`, response.text());
+  // console.debug(`posted:  ${requestUrl}\n`, response.text());
 
   return;
 }
@@ -121,14 +121,14 @@ export async function submitContactForm(request: submitContactFormRequest, token
   }
 
   const requestUrl = getStrapiURL("/contact");
-  console.debug(`posting: ${requestUrl}`);
+  // console.debug(`posting: ${requestUrl}`);
 
   const response = await fetch(requestUrl, {
     method: "POST",
     headers: headers,
     body: JSON.stringify(request),
   });
-  console.debug(`posted:  ${requestUrl}\n`, response.text());
+  // console.debug(`posted:  ${requestUrl}\n`, response.text());
 
   return;
 }
@@ -140,7 +140,7 @@ export async function updateStrapiWishlist(token: string, products: number[]) {
   } as { "Content-Type": string; Authorization?: string };
 
   const requestUrl = getStrapiURL("/wish-lists/me");
-  console.debug(`updating: ${requestUrl}`);
+  // console.debug(`updating: ${requestUrl}`);
 
   const response = await fetch(requestUrl, {
     method: "PUT",
@@ -150,7 +150,7 @@ export async function updateStrapiWishlist(token: string, products: number[]) {
     }),
   });
   const data = await response.json();
-  console.debug(`updated:  ${requestUrl}\n`, data);
+  // console.debug(`updated:  ${requestUrl}\n`, data);
 
   if (data.error) {
     throw `${data.error}: ${data.message}`;
@@ -165,7 +165,7 @@ export async function updateStrapiShoppingCart(token: string, items: CartItemTyp
   } as { "Content-Type": string; Authorization?: string };
 
   const requestUrl = getStrapiURL("/shopping-carts/me");
-  console.debug(`updating: ${requestUrl}`);
+  // console.debug(`updating: ${requestUrl}`);
 
   const response = await fetch(requestUrl, {
     method: "PUT",
@@ -175,7 +175,7 @@ export async function updateStrapiShoppingCart(token: string, items: CartItemTyp
     }),
   });
   const data = await response.json();
-  console.debug(`updated:  ${requestUrl}\n`, data);
+  // console.debug(`updated:  ${requestUrl}\n`, data);
 
   if (data.error) {
     throw `${data.error}: ${data.message}`;
