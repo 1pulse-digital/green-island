@@ -7,7 +7,6 @@ import placeholder from "../images/2.jpg";
 import { strapiLoader } from "../lib/media";
 import ReactTooltip from "react-tooltip";
 import { prettyPrice } from "../lib/calc";
-import ReactStars from "react-rating-stars-component";
 
 export interface ProductWidgetProps {
   product: Product;
@@ -63,9 +62,12 @@ const ProductWidget = (props: ProductWidgetProps) => {
           <span className={"text-primary text-xl leading-tight line-clamp-2"}>
             {product.name}
           </span>
+          {product.variation && (
+            <span className={"text-sm text-gray-400 line-clamp-1"}>{product.variation}</span>
+          )}
+          {/* FIXME: Stock management */}
           <p className="text-green-500">In stock</p>
-          <p className={"text-primary "}>{prettyPrice(product.price)}</p>
-          <ReactStars activeColor="blue" size={20} isHalf={true} />
+          <p className={"text-primary"}>{prettyPrice(product.price)}</p>
         </div>
 
         <div
@@ -99,7 +101,7 @@ const ProductWidget = (props: ProductWidgetProps) => {
       <div className="flex justify-center p-1 sm:p-4">
         <Button
           color="secondary"
-          className={"flex text-sm md:text-lg "}
+          className={"mt-4 flex text-sm md:text-lg py-2"}
           onClick={(event) => {
             event.preventDefault();
             event.stopPropagation();
@@ -111,7 +113,8 @@ const ProductWidget = (props: ProductWidgetProps) => {
             className="self-center pl-2 w-5 h-5 sm:w-7 md:h-7"
             viewBox="0 0 20 20"
             fill="currentColor">
-            <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
+            <path
+              d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
           </svg>
           {cartCount && <span className={"ml-1"}>({cartCount})</span>}
         </Button>
