@@ -16,11 +16,17 @@ const SingleProduct = (props: SingleProductProps) => {
   const { product, featuredProducts } = props;
 
   if (!product) {
-    return <div>Still loading</div>;
+    return (
+      <MainLayout>
+        <div className="flex-grow bg-gray-100 grid place-items-center">
+          <span className={"animate-pulse text-xl"}>Loading</span>
+        </div>
+      </MainLayout>
+    )
   }
   return (
     <MainLayout>
-      <div className="">
+      <div className="bg-gray-50 w-full">
 
         <SingleProductWidget product={product} />
 
