@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import { User } from "../types/user";
 import { fetchAPI, getStrapiURL } from "../lib/api";
 import { parseErrorResponse } from "../utils/strapi";
+import { useRouter } from "next/router";
 
 interface ContextType {
   user?: User;
@@ -28,8 +29,31 @@ const clearToken = () => {
 };
 
 function AuthContext({ children }: { children?: React.ReactNode }) {
+  const router = useRouter();
+
   const [user, setUser] = useState<User>();
   const [authToken, setAuthToken] = useState<string>();
+
+  // Handle router loading
+  useEffect(() => {
+    const handleStart = (url: string) => {
+      console.log(`Loading: ${url}`);
+      setLoading(true);
+    };
+    const handleStop = () => {
+      setLoading(false);
+    };
+
+    router.events.on("routeChangeStart", handleStart);
+    router.events.on("routeChangeComplete", handleStop);
+    router.events.on("routeChangeError", handleStop);
+
+    return () => {
+      router.events.off("routeChangeStart", handleStart);
+      router.events.off("routeChangeComplete", handleStop);
+      router.events.off("routeChangeError", handleStop);
+    };
+  }, [router]);
 
   // auto login the user if there is still a valid token
   useEffect(() => {
