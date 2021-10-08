@@ -20,7 +20,7 @@ const MainLayout = (props: MainLayoutProps) => {
       <Navbar />
 
 
-      <div className={"flex-grow"}>{props.children}</div>
+      <div className={"flex flex-col flex-grow"}>{props.children}</div>
 
       <Footer />
       <SecondFooter />
