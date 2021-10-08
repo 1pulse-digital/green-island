@@ -1,14 +1,14 @@
 import React from "react";
-import { Error_404 } from "../components/error_404";
 import MainLayout from "../layouts/MainLayout";
+import { UserProfile } from "../components/userProfile";
 
-const ErrorPage = () => {
+const MyAccount = () => {
   return (
     <MainLayout>
       <div>
-        <Error_404 />
+        <UserProfile />
       </div>
     </MainLayout>
   );
 };
-export default ErrorPage;
+export default MyAccount;
