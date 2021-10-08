@@ -100,18 +100,17 @@ export interface BlogsProps {
 const Blogs = (props: BlogsProps) => {
   const [articles, setArticles] = useState(props.articles);
   const [selectedCategory, setSelectedCategory] = useState("All Posts");
-  //articles.filter;
+
   useEffect(() => {
     if (selectedCategory === "All Posts") {
       setArticles(props.articles);
       return;
     }
     const xyz = props.articles.filter((article) => {
-      return article.category.name === selectedCategory;
+      return article.category?.name === selectedCategory;
     });
     setArticles(xyz);
 
-    console.log([props.articles, selectedCategory]);
   }, [props.articles, selectedCategory]);
 
   // end blog filter code
@@ -126,24 +125,22 @@ const Blogs = (props: BlogsProps) => {
         <Banner />
         <MobileBanner />
 
-        <div>
-          <div className={"font-karla"}>
+        <div className={"font-karla"}>
+          <div className={"mt-4"}>
             <BlogNav
               categories={props.articleCategories}
               onSelect={selectCategory}
               selectedCategory={selectedCategory}
             />
-            <div className="flex flex-wrap gap-x-4 gap-y-12 justify-center pb-10 lg:gap-x-12">
-              {articles.map((item) => (
-                <BlogWidget key={item.id} article={item} />
-              ))}
-            </div>
           </div>
-          {/* <h1>Most popular</h1> */}
-          <div>{/* Blog cards goes here */}</div>
 
-          <div>{/* <div>Load more</div> */}</div>
+          <div className="flex flex-wrap gap-x-4 gap-y-12 justify-center py-12 lg:gap-x-12">
+            {articles.map((item) => (
+              <BlogWidget key={item.id} article={item} />
+            ))}
+          </div>
         </div>
+        {/*  TODO:Pagination ( load more ) */}
       </div>
     </MainLayout>
   );
