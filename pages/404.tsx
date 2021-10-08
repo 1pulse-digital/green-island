@@ -1,7 +1,7 @@
 import { Button } from "../components/button";
 import MainLayout from "../layouts/MainLayout";
 
-export default function Custom404() {
+const Custom404 = () => {
   return (
     <MainLayout>
       <div className={" "}>
@@ -26,4 +26,6 @@ export default function Custom404() {
       </div>
     </MainLayout>
   );
-}
+};
+
+export default Custom404;
