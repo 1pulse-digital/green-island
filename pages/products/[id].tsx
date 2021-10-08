@@ -6,6 +6,7 @@ import MainLayout from "../../layouts/MainLayout";
 import { FeaturedProducts } from "../../components/featuredProducts";
 import { ProductAdditionalInfo } from "../../components/productAdditionalInfo";
 import SingleProductWidget from "../../components/singleProductWidget";
+import { Disclaimer } from "../../components/disclaimer";
 
 interface SingleProductProps {
   product: Product;
@@ -22,7 +23,7 @@ const SingleProduct = (props: SingleProductProps) => {
           <span className={"animate-pulse text-xl"}>Loading</span>
         </div>
       </MainLayout>
-    )
+    );
   }
   return (
     <MainLayout>
@@ -31,6 +32,8 @@ const SingleProduct = (props: SingleProductProps) => {
         <SingleProductWidget product={product} />
 
         <ProductAdditionalInfo product={product} />
+
+        <Disclaimer />
 
         <FeaturedProducts products={featuredProducts} />
       </div>
