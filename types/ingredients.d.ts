@@ -1,5 +1,5 @@
-export interface Ingredients {
+export interface Ingredient {
   name: string;
   amount: string;
-  percentage_of_daily_intake: string;
+  percentageOfDailyIntake: string;
 }

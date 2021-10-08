@@ -1,4 +1,5 @@
 import { Picture } from "./picture";
+import { Ingredient } from "./ingredients";
 
 export interface Product {
   id: number;
@@ -26,4 +27,5 @@ export interface Product {
   symptoms_indications: string;
   product_form: string;
   supplier: string;
+  ingredients?: Ingredient[];
 }
