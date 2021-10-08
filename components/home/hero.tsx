@@ -16,6 +16,7 @@ const MobileBanner = () => {
           objectFit="cover"
           src={mobileHero}
           alt="herbs in a bowl"
+          placeholder={"blur"}
         />
       </div>
 
@@ -61,6 +62,7 @@ const DesktopBanner = () => {
           objectFit="cover"
           src={hero}
           alt="herbs in a bowl"
+          placeholder={"blur"}
         />
         <div className={"grid z-10 relative"}>
           <h1 className={"text-5xl lg:text-7xl text-primary font-medium font-karla"}>

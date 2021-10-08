@@ -9,16 +9,6 @@ export interface BlogWidgetProps {
   article: Article;
 }
 
-type strapiLoaderParams = {
-  src: string;
-  width: number;
-  quality?: number;
-};
-
-const strapiLoader = (params: strapiLoaderParams) => {
-  return params.src;
-};
-
 export const BlogWidget = (props: BlogWidgetProps) => {
   const router = useRouter();
 
@@ -36,7 +26,6 @@ export const BlogWidget = (props: BlogWidgetProps) => {
           <Image
             layout="fill"
             objectFit="cover"
-            loader={strapiLoader}
             src={props.article.image.formats.thumbnail.url}
             alt={props.article.image.alternativeText}
           />

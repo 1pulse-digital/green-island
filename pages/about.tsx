@@ -34,8 +34,13 @@ const About = () => {
             <div className={"relative grid content-center "}>
               <div
                 className={"lg:absolute top-0 bottom-0 right-0 left-28 w-full"}>
-                <Image layout="fill" objectFit="cover" src={running} />
-                {/* <MedicalAnimation /> */}
+                <Image
+                  layout="fill"
+                  objectFit="cover"
+                  src={running}
+                  placeholder={"blur"}
+                  alt={"Healthy family walking in a park"}
+                />
               </div>
             </div>
           </div>
@@ -187,12 +192,16 @@ const About = () => {
               </div>
             </div>
           </section>
-          {/*Robin Kohler Bio */}
+          {/* Robin Kohler Bio */}
           <section ref={teamRef}>
             <div className={"grid grid-cols-1 md:grid-cols-2"}>
               <div className={" md:py-20 w-full"}>
                 <div className={" lg:px-32"}>
-                  <Image src={RobinKohler} />
+                  <Image
+                    src={RobinKohler}
+                    placeholder={"blur"}
+                    alt={"Headshot of Robin Kohler"}
+                  />
                 </div>
               </div>
 
@@ -263,7 +272,11 @@ const About = () => {
               </div>{" "}
               <div className={"py-20 w-full"}>
                 <div className={" lg:px-32"}>
-                  <Image src={SimonWorkman} />
+                  <Image
+                    src={SimonWorkman}
+                    placeholder={"blur"}
+                    alt={"Headshot of Dr Simon Workman"}
+                  />
                 </div>
               </div>
             </div>
@@ -273,7 +286,11 @@ const About = () => {
             <div className={"grid grid-cols-1 md:grid-cols-2 bg-gray-100"}>
               <div className={"py-20 w-full"}>
                 <div className={" lg:px-32"}>
-                  <Image src={BronwynKohler} />
+                  <Image
+                    src={BronwynKohler}
+                    placeholder={"blur"}
+                    alt={"Headshot of Bronwyn Kohler"}
+                  />
                 </div>
               </div>
               <div className={"grid content-center"}>
@@ -303,7 +320,11 @@ const About = () => {
               </div>{" "}
               <div className={"py-20 w-full"}>
                 <div className={" lg:px-32"}>
-                  <Image src={SindiNtozini} />
+                  <Image
+                    src={SindiNtozini}
+                    placeholder={"blur"}
+                    alt={"Headshot of Sindi Ntozini"}
+                  />
                 </div>
               </div>
             </div>

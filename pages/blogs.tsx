@@ -32,10 +32,20 @@ const Banner = () => {
       {/* Right column */}
       <div className={"relative grid content-center"}>
         <div className={"absolute top-0 bottom-0 right-0 left-28"}>
-          <Image layout="fill" objectFit="cover" src={fruit} />
+          <Image
+            layout="fill"
+            objectFit="cover"
+            src={fruit}
+            placeholder={"blur"}
+            alt={"Lot's of healthy fruit on wooden table"}
+          />
         </div>
         <div className={"w-550px]"}>
-          <Image src={blondeLady} />
+          <Image
+            src={blondeLady}
+            placeholder={"blur"}
+            alt={"Healthy young female breathing fresh air"}
+          />
         </div>
       </div>
     </div>
@@ -47,10 +57,20 @@ const MobileBanner = () => {
     <div className={"sm:hidden grid h-[450px] bg-white font-karla text-primary"}>
       <div className={"relative grid content-center"}>
         <div className={"absolute top-0 bottom-0 right-0 left-40"}>
-          <Image layout="fill" objectFit="cover" src={fruit} />
+          <Image
+            layout="fill"
+            objectFit="cover"
+            src={fruit}
+            placeholder={"blur"}
+            alt={"Lot's of healthy fruit on wooden table"}
+          />
         </div>
         <div className={"w-[300px]"}>
-          <Image src={blondeLady} />
+          <Image
+            src={blondeLady}
+            placeholder={"blur"}
+            alt={"Healthy young female breathing fresh air"}
+          />
         </div>
       </div>
 

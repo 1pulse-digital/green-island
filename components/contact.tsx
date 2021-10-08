@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
 import contacts from "../images/contacts.jpg";
-import contact from "../images/contact.jpg";
 
 export const Contact = () => {
   return (
@@ -12,7 +11,8 @@ export const Contact = () => {
             layout="fill"
             objectFit="cover"
             src={contacts}
-            alt="this is an image"
+            alt="Organic medicine tablets placed on a table in the shape of a heart"
+            placeholder={"blur"}
           />
           <div className={"grid ml-0 content-center  px-4 "}>
             <h1

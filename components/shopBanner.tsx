@@ -12,7 +12,8 @@ export const ShopBanner = () => {
           layout="fill"
           objectFit="cover"
           src={shop}
-          alt="this is an image"
+          placeholder={"blur"}
+          alt="Organic medicine on white table"
         />
         <div className={" grid  sm:px-0 content-center  "}>
           <h1

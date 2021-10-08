@@ -7,7 +7,7 @@ import mental from "../images/mental_health.jpg";
 import stress from "../images/stress-management.jpg";
 import cn from "classnames";
 
-import { Button } from "../components/button";
+import { Button } from "./button";
 
 interface CategoryWidgetProps {
   title: string;
@@ -46,6 +46,7 @@ const CategoryWidget = (props: CategoryWidgetProps) => {
         objectFit="cover"
         src={props.imgSrc}
         alt={props.altText}
+        placeholder={"blur"}
       />
       <Button
         color={"primary"}
