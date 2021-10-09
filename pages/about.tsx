@@ -121,7 +121,7 @@ const About = () => {
             Our Services
           </h1>
 
-          <div className={"mt-8 divide-primary divide-y space-y-8"}>
+          <div className={"mt-8 space-y-16 lg:space-y-24"}>
             <Service title="Functional Medical Assessment">
               Functional Medicine views health as a dance between seven
               functional body systems. When a symptom of ill health appears, it can be traced to break down in one or
@@ -166,31 +166,12 @@ const About = () => {
             </Service>
           </div>
 
-          <div
-            className={"grid sm:grid-col-1 lg:grid-cols-2 md:mx-10 lg:mx-20 px-4 py-20"}>
-            <div className={"lg:text-right md:text-left lg:pr-10"}>
-              <h2
-                className={
-                  "grid col-span-2 text-2xl pb-10 md:pb-20 text-primary "
-                }>
-                Tailorblend Shake Formulation
-              </h2>
-            </div>
-            <div>
-              <p className={"text-gray-700"}>
-                Dr Kohler has teamed up with innovative nutritional
-                specialists Tailorblend. Based on your consultation,
-                Tailorblend can formulate an ideal blend of nutrients and
-                natural medicines into a delicious shake or drink. Taking
-                your supplements has never been easier.
-              </p>
-            </div>
-          </div>
         </section>
+
         {/* Robin Kohler Bio */}
-        <section ref={teamRef}>
-          <div className={"grid grid-cols-1 md:grid-cols-2"}>
-            <div className={" md:py-20 w-full"}>
+        <section ref={teamRef} className={"mt-8 md:mt-16 px-4 md:px-10 lg:px-32"}>
+          <div className={"grid md:grid-cols-2"}>
+            <div className={"md:py-20 w-full"}>
               <div className={" lg:px-32"}>
                 <Image
                   src={RobinKohler}
