@@ -15,12 +15,12 @@ export interface BioProps {
 
 const Bio = (props: BioProps) => {
   return (
-    <div className={"grid lg:grid-cols-2 gap-x-16"}>
-      <h2 className={cn("text-2xl text-primary lg:col-span-2", { "lg:text-right": props.reverse })}>{props.name}</h2>
+    <div className={"grid lg:grid-cols-2 gap-x-16 xl:gap-x-10"}>
+      <h2 className={cn("text-2xl 2xl:text-4xl text-primary lg:col-span-2 xl:text-center xl:mb-8", { "lg:text-right": props.reverse })}>{props.name}</h2>
 
       {/* Show the image on the left when reverse is false or the screen is smaller than lg*/}
       <div className={cn("my-4 flex justify-center ", { "lg:hidden": props.reverse })}>
-        <div className={"max-w-md"}>
+        <div className={"max-w-md xl:max-w-lg"}>
           <Image
             className={"rounded"}
             src={props.profilePicture || RobinKohler}
@@ -39,7 +39,7 @@ const Bio = (props: BioProps) => {
 
       {/* Show the image on the right when reverse is true and the screen size is lg */}
       <div className={cn("my-4 hidden", { "lg:flex justify-center": props.reverse })}>
-        <div className={"max-w-md"}>
+        <div className={"max-w-md xl:max-w-lg"}>
           <Image
             className={"rounded"}
             src={props.profilePicture || RobinKohler}

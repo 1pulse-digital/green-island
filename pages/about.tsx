@@ -168,7 +168,7 @@ const About = () => {
 
         </section>
 
-        <section ref={teamRef} className={"mt-8 md:mt-32 px-4 md:px-10 lg:px-32 space-y-12 lg:space-y-32"}>
+        <section ref={teamRef} className={"mt-8 md:mt-32 px-4 md:px-10 lg:px-32 space-y-12 lg:space-y-32 xl:space-y-44"}>
           {/* Robin Kohler Bio */}
           <div>
             <Bio
@@ -272,7 +272,8 @@ const About = () => {
           <Bio
             profilePicture={SindiNtozini}
             name="Sindi Ntozini"
-            education="Receptionist"
+            title="Receptionist"
+            reverse
           >
             Sindi is a Soweto girl, born and raised. A fashionista with a passion for looking and feeling good
             inside and out, she has been the beating heart of our practice since its earliest days. She makes sure
