@@ -2,6 +2,8 @@ import Document, { Html, Head, Main, NextScript } from "next/document";
 
 class MyDocument extends Document {
   render() {
+    const isDev = process?.env.NODE_ENV === "development";
+
     return (
       <Html>
         <Head>
@@ -12,7 +14,7 @@ class MyDocument extends Document {
             rel="stylesheet"
           />
         </Head>
-        <body>
+        <body className={isDev ? "debug-screens" : ""}>
         <Main />
         <NextScript />
         </body>
