@@ -18,35 +18,38 @@ const About = () => {
       <div>
         <div>
           <div
-            className={
-              "grid sm:grid-col-1 lg:grid-cols-2 h-[350px] lg:h-[550px] bg-gray-50 lg:px-32 md:px-10 px-4 "
-            }>
+            className={"grid lg:grid-cols-2 bg-gray-50 lg:px-32 md:px-10 px-4"}>
             {/* Left column - Text introduction goes here*/}
-
-            <div className={"grid  sm:px-0 content-center"}>
-              <h1 className={"lg:text-5xl  md:text-4xl text-2xl text-primary"}>
+            <div className={"grid content-center h-32 lg:h-auto"}>
+              <h1 className={"lg:text-5xl md:text-4xl text-2xl text-primary"}>
                 Where it all began…
               </h1>
             </div>
 
             {/* Right column - Hero image goes here*/}
 
-            <div className={"relative grid content-center "}>
-              <div
-                className={"lg:absolute top-0 bottom-0 right-0 left-28 w-full"}>
-                <Image
-                  layout="fill"
-                  objectFit="cover"
-                  src={running}
-                  placeholder={"blur"}
-                  alt={"Healthy family walking in a park"}
-                />
-              </div>
+            <div className={"hidden lg:grid relative content-center"}>
+              <Image
+                objectFit="cover"
+                src={running}
+                placeholder={"blur"}
+                alt={"Healthy family walking in a park"}
+              />
+            </div>
+
+            <div className={"lg:hidden relative content-center"}>
+              <Image
+                height={650}
+                objectFit="cover"
+                src={running}
+                placeholder={"blur"}
+                alt={"Healthy family walking in a park"}
+              />
             </div>
           </div>
 
           {/* Perfect Healh Story goes here*/}
-          <div className={"py-10  md:py-20 "}>
+          <div className={"py-10"}>
             <div
               className={"lg:px-32 md:px-10 px-4 pt-20 pb-10  text-gray-700"}>
               <p>
@@ -269,7 +272,7 @@ const About = () => {
             athletes, his practice offers treatment for the whole family, from the young to the elderly. Simon has a special interest in pain management
             and rehabilitation and works closely with other health professionals to ensure a rounded care model."
                 />
-              </div>{" "}
+              </div>
               <div className={"py-20 w-full"}>
                 <div className={" lg:px-32"}>
                   <Image
@@ -317,7 +320,7 @@ const About = () => {
             gets what they need when they need it, whether its an appointment, medication or a kind word. Her warmth and friendliness
             are part of what make Perfect Health a welcoming family practice."
                 />
-              </div>{" "}
+              </div>
               <div className={"py-20 w-full"}>
                 <div className={" lg:px-32"}>
                   <Image
