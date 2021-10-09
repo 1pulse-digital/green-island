@@ -1,6 +1,7 @@
 import React from "react";
 import RobinKohler from "../images/drrobinkohler.jpg";
 import Image from "next/image";
+import cn from "classnames";
 
 export interface BioProps {
   name: string;
@@ -9,18 +10,20 @@ export interface BioProps {
   bio?: string;
   profilePicture: StaticImageData;
   children: React.ReactNode;
+  reverse?: boolean;
 }
 
 const Bio = (props: BioProps) => {
   return (
     <div className={"grid lg:grid-cols-2 gap-x-16"}>
+      <h2 className={cn("text-2xl text-primary lg:col-span-2", { "lg:text-right": props.reverse })}>{props.name}</h2>
 
-      <h1 className={"text-2xl text-primary lg:col-span-2"}>{props.name}</h1>
-      <div className={"my-4 flex justify-center "}>
+      {/* Show the image on the left when reverse is false or the screen is smaller than lg*/}
+      <div className={cn("my-4 flex justify-center ", { "lg:hidden": props.reverse })}>
         <div className={"max-w-md"}>
           <Image
             className={"rounded"}
-            src={RobinKohler}
+            src={props.profilePicture || RobinKohler}
             objectFit={"contain"}
             placeholder={"blur"}
             alt={`Headshot of ${props.name}`}
@@ -28,12 +31,23 @@ const Bio = (props: BioProps) => {
         </div>
       </div>
 
-      <div className={"my-4"}>
-        <h2 className={"pb-2 text-gray-400"}>{props.education}</h2>
-        <h2 className={"text-gray-500 pb-3"}>{props.title}</h2>
-        <p className={"text-gray-500"}>
-          {props.children}
-        </p>
+      <div className={"my-4 text-gray-500"}>
+        <p className={"pb-2 text-gray-400"}>{props.education}</p>
+        <p className={"pb-3 font-semibold"}>{props.title}</p>
+        <p className={""}>{props.children}</p>
+      </div>
+
+      {/* Show the image on the right when reverse is true and the screen size is lg */}
+      <div className={cn("my-4 hidden", { "lg:flex justify-center": props.reverse })}>
+        <div className={"max-w-md"}>
+          <Image
+            className={"rounded"}
+            src={props.profilePicture || RobinKohler}
+            objectFit={"contain"}
+            placeholder={"blur"}
+            alt={`Headshot of ${props.name}`}
+          />
+        </div>
       </div>
     </div>
   );

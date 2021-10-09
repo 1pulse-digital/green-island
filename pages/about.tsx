@@ -19,9 +19,9 @@ const About = () => {
         <div className={"grid lg:grid-cols-2 bg-gray-50 lg:px-32 md:px-10 px-4"}>
           {/* Left column - Text introduction goes here*/}
           <div className={"grid place-items-center h-32 lg:h-auto"}>
-            <h1 className={"lg:text-5xl md:text-4xl text-2xl text-primary"}>
+            <h2 className={"lg:text-5xl md:text-4xl text-2xl text-primary"}>
               Where it all began…
-            </h1>
+            </h2>
           </div>
 
           {/* Right column - Hero image goes here*/}
@@ -168,139 +168,119 @@ const About = () => {
 
         </section>
 
-        {/* Robin Kohler Bio */}
-        <section ref={teamRef} className={"mt-8 md:mt-16 px-4 md:px-10 lg:px-32"}>
-          <div className={""}>
+        <section ref={teamRef} className={"mt-8 md:mt-32 px-4 md:px-10 lg:px-32 space-y-12 lg:space-y-32"}>
+          {/* Robin Kohler Bio */}
+          <div>
+            <Bio
+              name="Dr Robin Kohler"
+              education="MTech Hom, Dip. Irid, Cert. Live Blood Analysis, FMCP"
+              title="Naturopath, Iridologist, and Functional Medicine Practitioner"
+              profilePicture={RobinKohler}
+            >
+              The son of a specialist physician, Dr Robin Kohler chose to put his own spin on the family trade.
+              While he wanted to work in health, his instincts drew him towards preventative and natural medicine. He
+              qualified as a
+              Registered Homeopath in 2004, and added the modalities of Iridology and Live Blood Analysis to his
+              skillset in 2006. He has
+              since invested hundreds of hours into Functional Medicine training through the Institute for Functional
+              Medicine.
 
-            <div className={"grid content-center"}>
-              <Bio
-                name="Dr Robin Kohler"
-                education="MTech Hom, Dip. Irid, Cert. Live Blood Analysis, FMCP"
-                title="Naturopath, Iridologist, and Functional Medicine Practitioner"
-                profilePicture={RobinKohler}
-              >
-                The son of a specialist physician, Dr Robin Kohler chose to put his own spin on the family trade.
-                While he wanted to work in health, his instincts drew him towards preventative and natural medicine. He
-                qualified as a
-                Registered Homeopath in 2004, and added the modalities of Iridology and Live Blood Analysis to his
-                skillset in 2006. He has
-                since invested hundreds of hours into Functional Medicine training through the Institute for Functional
-                Medicine.
+              Outside the practice, Dr Kohler is a loving father, a passionate beach volleyball player and an
+              adventurer who loves to explore
+              new places and cultures.
+            </Bio>
 
-                Outside the practice, Dr Kohler is a loving father, a passionate beach volleyball player and an
-                adventurer who loves to explore
-                new places and cultures.
-              </Bio>
-            </div>
-          </div>
+            <div
+              className={
+                "text-white grid md:grid-cols-2 gap-x-10 bg-secondary py-10 md:py-20 content-center px-4 md:px-10"
+              }>
+              {/* Dr Kohler's Mission Statement*/}
 
-          <div
-            className={
-              "grid grid-cols-1 md:grid-cols-2 bg-secondary py-20 content-center px-4"
-            }>
-            {/* Dr Kohler's Mission Statement*/}
-
-            <div>
-              <h1 className={"md:text-right pr-10 pb-5 text-3xl text-white "}>
-                Dr Kohler’s <br />
-                Mission Statement:
-              </h1>
-            </div>
-            <div>
-              <p className={"text-white"}>
-                “As a dad, I appreciate the weight that disease can put on a
-                family. Whether you’re trying to cope with a relentlessly sick
-                toddler, buckling under the weight of fatigue and stress, or
-                watching your health slip away to chronic illness far too
-                soon, I will hear you. I want to know your story, because you
-                know yourself and your family better than anyone. Once I
-                understand where you have come from, I can try to piece
-                together the story of your health, discover the root of your
-                ailments and help you chart a course that will free you from
-                your disease burden.”
-              </p>
-            </div>
-          </div>
-
-          {/*Simon Workman Bio */}
-
-          <div className={"grid grid-cols-1 md:grid-cols-2"}>
-            <div className={"grid content-center"}>
-              <Bio
-                name="Dr Simon Workman"
-                education="MSc. Chiropractic, Dip Sports ScienceMSc. Chiropractic, Dip Sports Science"
-                title="Sports and Family Chiropractor "
-                bio="Dr Simon Workman graduated with a Masters Degree in Chiropractic from the University of Johannesburg in 2010.
-            He has completed an International Chiropractic Sports Science Diploma, as well as courses in rehabilitation, Instrument
-            Assisted Soft Tissue Mobilisation (IASTM) and Kinesio-Taping. Although he has studied further in sports and has treated
-            provincial and international athletes, his practice offers treatment for the whole family, from the young to the elderly.
-
-            Simon has a special interest in pain management and rehabilitation and works closely with other health professionals to ensure
-            a rounded care model.Dr Simon Workman graduated with a Masters Degree in Chiropractic from the University of Johannesburg in 2010.
-            He has completed an International Chiropractic Sports Science Diploma, as well as courses in rehabilitation, Instrument Assisted Soft
-            Tissue Mobilisation (IASTM) and Kinesio-Taping. Although he has studied further in sports and has treated provincial and international
-            athletes, his practice offers treatment for the whole family, from the young to the elderly. Simon has a special interest in pain management
-            and rehabilitation and works closely with other health professionals to ensure a rounded care model."
-              />
-            </div>
-            <div className={"py-20 w-full"}>
-              <div className={" lg:px-32"}>
-                <Image
-                  src={SimonWorkman}
-                  placeholder={"blur"}
-                  alt={"Headshot of Dr Simon Workman"}
-                />
+              <div>
+                <h2 className={"md:text-right pb-5 text-3xl"}>
+                  Dr Kohler’s <br />
+                  Mission Statement:
+                </h2>
+              </div>
+              <div>
+                <p>
+                  “As a dad, I appreciate the weight that disease can put on a
+                  family. Whether you’re trying to cope with a relentlessly sick
+                  toddler, buckling under the weight of fatigue and stress, or
+                  watching your health slip away to chronic illness far too
+                  soon, I will hear you. I want to know your story, because you
+                  know yourself and your family better than anyone. Once I
+                  understand where you have come from, I can try to piece
+                  together the story of your health, discover the root of your
+                  ailments and help you chart a course that will free you from
+                  your disease burden.”
+                </p>
               </div>
             </div>
           </div>
+
+          {/* Simon Workman Bio */}
+          <Bio
+            name="Dr Simon Workman"
+            education="MSc. Chiropractic, Dip Sports ScienceMSc. Chiropractic, Dip Sports Science"
+            title="Sports and Family Chiropractor"
+            profilePicture={SimonWorkman}
+            reverse
+          >
+            Dr Simon Workman graduated with a Masters Degree in Chiropractic from the University of Johannesburg in
+            2010.
+            He has completed an International Chiropractic Sports Science Diploma, as well as courses in
+            rehabilitation, Instrument
+            Assisted Soft Tissue Mobilisation (IASTM) and Kinesio-Taping. Although he has studied further in sports
+            and has treated
+            provincial and international athletes, his practice offers treatment for the whole family, from the young
+            to the elderly.
+
+            Simon has a special interest in pain management and rehabilitation and works closely with other health
+            professionals to ensure
+            a rounded care model.Dr Simon Workman graduated with a Masters Degree in Chiropractic from the University
+            of Johannesburg in 2010.
+            He has completed an International Chiropractic Sports Science Diploma, as well as courses in
+            rehabilitation, Instrument Assisted Soft
+            Tissue Mobilisation (IASTM) and Kinesio-Taping. Although he has studied further in sports and has treated
+            provincial and international
+            athletes, his practice offers treatment for the whole family, from the young to the elderly. Simon has a
+            special interest in pain management
+            and rehabilitation and works closely with other health professionals to ensure a rounded care model."
+          </Bio>
 
           {/*Bronwyn Kohler Bio */}
+          <Bio
+            name="Bronwyn Kohler"
+            education=""
+            title="Practice Manager"
+            profilePicture={BronwynKohler}
+          >
+            Trained as an Environmental Scientist, Bronwyn spent her early career producing award winning wildlife
+            documentaries. She has a fascination with creatures on the diminutive end of Nature, from dung beetles
+            to microbes. Her particular passion is the world of microorganisms that co-habit our human bodies: the
+            microbiome.
 
-          <div className={"grid grid-cols-1 md:grid-cols-2 bg-gray-100"}>
-            <div className={"py-20 w-full"}>
-              <div className={" lg:px-32"}>
-                <Image
-                  src={BronwynKohler}
-                  placeholder={"blur"}
-                  alt={"Headshot of Bronwyn Kohler"}
-                />
-              </div>
-            </div>
-            <div className={"grid content-center"}>
-              <Bio
-                name="Bronwyn Kohler"
-                education=""
-                title="Practice Manager"
-                bio="Trained as an Environmental Scientist, Bronwyn spent her early career producing award winning wildlife documentaries. She has a fascination with creatures on the diminutive end of Nature, from dung beetles to microbes. Her particular passion is the world of microorganisms that co-habit our human bodies: the microbiome.
-
-            When pregnant with her first child, Bronwyn left film to focus on building the Perfect Health Practice with her husband, Dr Kohler. She completed a Diploma in Nutrition and qualified as a certified Functional Health coach, and uses these skills to offer optimum care and support to the patients of Perfect Health. She authors our health-related blog articles and newsletters, and is always up for a meaty conversation about health! "
-              />
-            </div>
-          </div>
+            When pregnant with her first child, Bronwyn left film to focus on building the Perfect Health Practice
+            with her husband, Dr Kohler. She completed a Diploma in Nutrition and qualified as a certified
+            Functional Health coach, and uses these skills to offer optimum care and support to the patients of
+            Perfect Health. She authors our health-related blog articles and newsletters, and is always up for a
+            meaty conversation about health! "
+          </Bio>
 
           {/*Sindi Ntozini Bio */}
-
-          <div className={"grid grid-cols-1 md:grid-cols-2"}>
-            <div className={"grid content-center"}>
-              <Bio
-                name="Sindi Ntozini"
-                education="Receptionist"
-                bio="Sindi is a Soweto girl, born and raised. A fashionista with a passion for looking and feeling good
-            inside and out, she has been the beating heart of our practice since its earliest days. She makes sure that everyone
-            gets what they need when they need it, whether its an appointment, medication or a kind word. Her warmth and friendliness
+          <Bio
+            profilePicture={SindiNtozini}
+            name="Sindi Ntozini"
+            education="Receptionist"
+          >
+            Sindi is a Soweto girl, born and raised. A fashionista with a passion for looking and feeling good
+            inside and out, she has been the beating heart of our practice since its earliest days. She makes sure
+            that everyone
+            gets what they need when they need it, whether its an appointment, medication or a kind word. Her warmth
+            and friendliness
             are part of what make Perfect Health a welcoming family practice."
-              />
-            </div>
-            <div className={"py-20 w-full"}>
-              <div className={" lg:px-32"}>
-                <Image
-                  src={SindiNtozini}
-                  placeholder={"blur"}
-                  alt={"Headshot of Sindi Ntozini"}
-                />
-              </div>
-            </div>
-          </div>
+          </Bio>
         </section>
       </div>
     </MainLayout>
