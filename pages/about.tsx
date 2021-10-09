@@ -15,8 +15,8 @@ const About = () => {
   const serviceRef = useRef<HTMLElement>(null);
   return (
     <MainLayout>
-      <div>
-        <div className={"bg-green-400 grid lg:grid-cols-2 bg-gray-50 lg:px-32 md:px-10 px-4"}>
+      <div className={""}>
+        <div className={"grid lg:grid-cols-2 bg-gray-50 lg:px-32 md:px-10 px-4"}>
           {/* Left column - Text introduction goes here*/}
           <div className={"grid place-items-center h-32 lg:h-auto"}>
             <h1 className={"lg:text-5xl md:text-4xl text-2xl text-primary"}>
@@ -47,8 +47,9 @@ const About = () => {
         </div>
 
         {/* Perfect Health Story goes here*/}
-        <div className={""}>
-          <div className={"px-4 pt-20 pb-10 lg:px-32 md:px-10  text-gray-700"}>
+        <div className={"mt-8 md:mt-16 space-y-10 px-4 md:px-10 lg:px-32 text-gray-700"}>
+          <div>
+            {/*<div className={"px-4 pt-20 pb-10 lg:px-32 md:px-10  text-gray-700"}>*/}
             <p>
               After completing his Masters in Homeopathy at the University of
               Johannesburg, Dr Kohler started consulting from the practice
@@ -61,6 +62,7 @@ const About = () => {
               right, and finally found it in the quiet leafy suburb of
               Bryanston.
             </p>
+            <br />
             <p>
               They started Perfect Health together in 2010, with Robin
               consulting, Bronwyn running the practice and their family
@@ -68,7 +70,6 @@ const About = () => {
               reception in 2012, our core team was complete.
             </p>
             <br />
-
             <p>
               Our mission at Perfect Health is to help our patients understand
               and master their own healing and health. Robin devotes many
@@ -82,7 +83,7 @@ const About = () => {
             </p>
           </div>
 
-          <div className={"flex content-center pb-10 lg:px-32 md:px-10 px-4"}>
+          <div className={"flex content-center "}>
             <Button
               color={"primary"}
               onClick={() =>
@@ -99,7 +100,7 @@ const About = () => {
               Our services
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="self-center w-4 h-4 ml-4"
+                className="self-center ml-4 w-4 h-4"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor">
@@ -113,82 +114,76 @@ const About = () => {
             </button>
           </div>
         </div>
+
         {/* Our Services goes here*/}
-        <section ref={serviceRef}>
-          <div className={"bg-gray-50 lg:px-32 md:px-10 px-4 pt-20 "}>
-            <div>
-              <h1
+        <section ref={serviceRef} className={"mt-8 md:mt-16 bg-gray-50 px-4 md:px-10 lg:px-32"}>
+          <h1 className={"text-4xl text-primary"}>
+            Our Services
+          </h1>
+
+          <div className={"mt-8 divide-primary divide-y space-y-8"}>
+            <Service title="Functional Medical Assessment">
+              Functional Medicine views health as a dance between seven
+              functional body systems. When a symptom of ill health appears, it can be traced to break down in one or
+              more
+              of these systems, often far upstream from the symptom itself. The art of the Functional Medicine
+              practitioner is to identify these root causes, and provide the interventions required to restore normal
+              function to the systems concerned. This approach, which is especially valuable in the treatment of chronic
+              disease aims for the restoration of full body health, rather than the suppression of individual symptoms.
+            </Service>
+            <Service title="Iridology">
+              A number of 19th century medical practitioners began to notice
+              that certain injuries, ailments and constitutional weaknesses were
+              associated with specific marks that appeared in the iris. In the
+              early 1900’s, these observations were synthesised into a
+              comprehensive study of the information that the iris could reveal
+              about a patient’s state of health. Iridology offers clues to
+              internal weaknesses, injuries or constitutional predispositions
+              not easily perceived without invasive procedures. Dr Kohler uses
+              this technique as a supplement to his normal diagnostic procedures
+              to help him thoroughly assess the potential root causes of
+              disease.
+            </Service>
+            <Service title="Live Blood Analysis">
+              Microscopic inspection of a droplet of fresh live blood can reveal a wealth of
+              information about a patient’s current state of health, including nutritional concerns, infection,
+              parasitic infestation, and toxicity. Dr Kohler uses live blood analysis to supplement his diagnostic
+              processes.
+            </Service>
+            <Service title="Nutrigenomics Assessment">
+              The expression of the genes that influence our health is not set in stone. A great many of
+              them can be upregulated, downregulated or even turned off by dietary, lifestyle and medicinal
+              interventions. Understanding your genes can free you from health problems that might once have felt
+              beyond your control and allow you to maximise your genetic potential.
+            </Service>
+            <Service title="Organic Acid Analysis">
+              Organic Acid Analysis examines metabolic end products in urine that provide highly
+              specific insights into a vast range of health conditions.
+            </Service>
+            <Service title="GI Mapping">
+              GI Mapping analyses the gut microbiome and indicates where imbalances, overgrowths of
+              pathogens and gastroenteric malfunctions have occured.
+            </Service>
+          </div>
+
+          <div
+            className={"grid sm:grid-col-1 lg:grid-cols-2 md:mx-10 lg:mx-20 px-4 py-20"}>
+            <div className={"lg:text-right md:text-left lg:pr-10"}>
+              <h2
                 className={
-                  "grid col-span-2 text-4xl pb-5 mg:pb-20 text-primary"
+                  "grid col-span-2 text-2xl pb-10 md:pb-20 text-primary "
                 }>
-                Our Services
-              </h1>
+                Tailorblend Shake Formulation
+              </h2>
             </div>
-
-            <Service
-              title="Functional Medical Assessment"
-              content="Functional Medicine views health as a dance between seven functional body systems. When a symptom of ill health appears, it can be traced to break down in one or more of these systems, often far upstream from the symptom itself. The art of the Functional Medicine practitioner is to identify these root causes, and provide the interventions required to restore normal function to the systems concerned. This approach, which is especially valuable in the treatment of chronic disease aims for the restoration of full body health, rather than the suppression of individual symptoms."
-            />
-            <Service
-              title="Iridology"
-              content="A number of 19th century medical practitioners began to notice
-          that certain injuries, ailments and constitutional weaknesses were
-          associated with specific marks that appeared in the iris. In the
-          early 1900’s, these observations were synthesised into a
-          comprehensive study of the information that the iris could reveal
-          about a patient’s state of health. Iridology offers clues to
-          internal weaknesses, injuries or constitutional predispositions
-          not easily perceived without invasive procedures. Dr Kohler uses
-          this technique as a supplement to his normal diagnostic procedures
-          to help him thoroughly assess the potential root causes of
-          disease."
-            />
-            <Service
-              title="Live Blood Analysis"
-              content="Microscopic inspection of a droplet of fresh live blood can reveal a wealth of
-          information about a patient’s current state of health, including nutritional concerns, infection,
-          parasitic infestation, and toxicity. Dr Kohler uses live blood analysis to supplement his diagnostic processes."
-            />
-            <Service
-              title="Nutrigenomics Assessment"
-              content="The expression of the genes that influence our health is not set in stone. A great many of
-          them can be upregulated, downregulated or even turned off by dietary, lifestyle and medicinal
-          interventions. Understanding your genes can free you from health problems that might once have felt
-          beyond your control and allow you to maximise your genetic potential."
-            />
-
-            <Service
-              title="Organic Acid Analysis"
-              content="Organic Acid Analysis examines metabolic end products in urine that provide highly
-          specific insights into a vast range of health conditions."
-            />
-
-            <Service
-              title="GI Mapping"
-              content="GI Mapping analyses the gut microbiome and indicates where imbalances, overgrowths of
-          pathogens and gastroenteric malfunctions have occured."
-            />
-            <div
-              className={
-                "grid sm:grid-col-1 lg:grid-cols-2 md:mx-10 lg:mx-20 px-4 py-20"
-              }>
-              <div className={"lg:text-right md:text-left lg:pr-10"}>
-                <h2
-                  className={
-                    "grid col-span-2 text-2xl pb-10 md:pb-20 text-primary "
-                  }>
-                  Tailorblend Shake Formulation
-                </h2>
-              </div>
-              <div>
-                <p className={"text-gray-700"}>
-                  Dr Kohler has teamed up with innovative nutritional
-                  specialists Tailorblend. Based on your consultation,
-                  Tailorblend can formulate an ideal blend of nutrients and
-                  natural medicines into a delicious shake or drink. Taking
-                  your supplements has never been easier.
-                </p>
-              </div>
+            <div>
+              <p className={"text-gray-700"}>
+                Dr Kohler has teamed up with innovative nutritional
+                specialists Tailorblend. Based on your consultation,
+                Tailorblend can formulate an ideal blend of nutrients and
+                natural medicines into a delicious shake or drink. Taking
+                your supplements has never been easier.
+              </p>
             </div>
           </div>
         </section>
