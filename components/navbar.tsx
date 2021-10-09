@@ -161,6 +161,7 @@ export const Navbar = () => {
               {!user && !isLoginPage && (
                 // TODO: Replace this with a <Link /> component not <a />
                 <SmallButton
+                  className={"hidden lg:block"}
                   color={"primary"}
                   onClick={() => router.push("/login")}>
                   Sign in

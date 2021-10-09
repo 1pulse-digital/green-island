@@ -12,7 +12,7 @@ export interface ButtonProps {
 
 export const SmallButton = (props: ButtonProps) => {
 
-  const baseClassname = "hidden lg:block whitespace-nowrap  items-center px-8 justify-center  py-2 border border-transparent rounded-full shadow-sm text-base font-medium ";
+  const baseClassname = "whitespace-nowrap  items-center px-8 justify-center  py-2 border border-transparent rounded-full shadow-sm text-base font-medium ";
 
   const isPrimary = props.color === "primary";
   const isSecondary = props.color === "secondary";
@@ -40,7 +40,7 @@ export const SmallButton = (props: ButtonProps) => {
 };
 
 export const Button = (props: ButtonProps) => {
-  const baseClassname = "rounded-full py-2 px-4 md:px-10 py-3 shadow hover:shadow-sm text-lg disabled:opacity-60 whitespace-nowrap";
+  const baseClassname = "rounded-full px-4 md:px-10 py-3 shadow hover:shadow-sm text-lg disabled:opacity-60 whitespace-nowrap";
 
   const isPrimary = props.color === "primary";
   const isSecondary = props.color === "secondary";
