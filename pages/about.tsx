@@ -170,30 +170,27 @@ const About = () => {
 
         {/* Robin Kohler Bio */}
         <section ref={teamRef} className={"mt-8 md:mt-16 px-4 md:px-10 lg:px-32"}>
-          <div className={"grid md:grid-cols-2"}>
-            <div className={"md:py-20 w-full"}>
-              <div className={" lg:px-32"}>
-                <Image
-                  src={RobinKohler}
-                  placeholder={"blur"}
-                  alt={"Headshot of Robin Kohler"}
-                />
-              </div>
-            </div>
+          <div className={""}>
 
             <div className={"grid content-center"}>
               <Bio
                 name="Dr Robin Kohler"
                 education="MTech Hom, Dip. Irid, Cert. Live Blood Analysis, FMCP"
-                title="Naturopath, Iridologist, and Functional Medicine Practitioner "
-                bio="The son of a specialist physician, Dr Robin Kohler chose to put his own spin on the family trade.
-            While he wanted to work in health, his instincts drew him towards preventative and natural medicine. He qualified as a
-            Registered Homeopath in 2004, and added the modalities of Iridology and Live Blood Analysis to his skillset in 2006. He has
-            since invested hundreds of hours into Functional Medicine training through the Institute for Functional Medicine.
+                title="Naturopath, Iridologist, and Functional Medicine Practitioner"
+                profilePicture={RobinKohler}
+              >
+                The son of a specialist physician, Dr Robin Kohler chose to put his own spin on the family trade.
+                While he wanted to work in health, his instincts drew him towards preventative and natural medicine. He
+                qualified as a
+                Registered Homeopath in 2004, and added the modalities of Iridology and Live Blood Analysis to his
+                skillset in 2006. He has
+                since invested hundreds of hours into Functional Medicine training through the Institute for Functional
+                Medicine.
 
-            Outside the practice, Dr Kohler is a loving father, a passionate beach volleyball player and an adventurer who loves to explore
-            new places and cultures. "
-              />
+                Outside the practice, Dr Kohler is a loving father, a passionate beach volleyball player and an
+                adventurer who loves to explore
+                new places and cultures.
+              </Bio>
             </div>
           </div>
 
