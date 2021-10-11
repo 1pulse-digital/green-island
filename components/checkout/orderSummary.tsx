@@ -7,13 +7,18 @@ import { Order } from "../../types/order";
 export interface OrderSummaryProps {
   cartItems: CartItemType[];
   order?: Order;
+  shippingCost?: number;
 }
 
 export const OrderSummary = (props: OrderSummaryProps) => {
   const { cartItems } = props;
-  const cartTotal = cartItems
+  let cartTotal = cartItems
     .map((item) => item.product.price * item.quantity)
     .reduce((total, item) => (total += item), 0);
+
+  if (props.shippingCost) {
+    cartTotal += props.shippingCost;
+  }
 
   return (
     <div className={"bg-white p-10  "}>
@@ -44,6 +49,12 @@ export const OrderSummary = (props: OrderSummaryProps) => {
           <div className={"col-span-2"}>
             <span className="block font-medium text-gray-900">Order Total</span>
             <span className="block text-gray-500">{prettyPrice(props.order.total)}</span>
+          </div>
+        )}
+        {props.shippingCost && (
+          <div className={"col-span-2"}>
+            <span className="block font-medium text-gray-900">Shipping Cost</span>
+            <span className="block text-gray-500">{prettyPrice(props.shippingCost)}</span>
           </div>
         )}
         {!props.order && (

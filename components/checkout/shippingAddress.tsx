@@ -14,7 +14,6 @@ export interface ShippingAddress extends Address {
 export interface ShippingAddressProps {
   values: ShippingAddress;
   setValues: (values: ShippingAddress) => void;
-
 }
 
 export const ShippingAddress = (props: ShippingAddressProps) => {
@@ -58,6 +57,8 @@ export const ShippingAddress = (props: ShippingAddressProps) => {
       formattedAddress: geoResult.formatted_address,
     } as Address;
 
+    console.log({ geoResult });
+
     for (const ac of geoResult.address_components) {
       switch (convertAddressComponentType(ac.types)) {
         case "country" :
@@ -86,17 +87,16 @@ export const ShippingAddress = (props: ShippingAddressProps) => {
           break;
       }
     }
-    // console.log({ geoResult: geoResult });
+
     setValues({
       ...values, ...addressBreakdown,
     });
   };
 
-
   return (
     <div className={"bg-white p-10 "}>
-      <p className={"text-2xl font-semibold"}>Shipping Address</p>
-      <div className={"grid gap-8 mt-4"}>
+      <p className={"text-2xl font-semibold "}>Shipping Address</p>
+      <div className={"grid gap-8 mt-6"}>
         <Input
           id={"first-name"}
           label={"First name"}
@@ -131,7 +131,6 @@ export const ShippingAddress = (props: ShippingAddressProps) => {
             onChange={handleAddressChange}
             onSelect={handleSelectAddress}
             searchOptions={{
-              // types: ["address"],
               componentRestrictions: {
                 country: "ZA",
               },
@@ -184,40 +183,10 @@ export const ShippingAddress = (props: ShippingAddressProps) => {
           }}>
             <span className={""}>{values.streetNumber ? `${values.streetNumber} ${values.street}` : ""}</span><br />
             <span className={""}>{values.suburb} </span><br />
-            <span className={""}>{convertCity(values.city)}</span><br />
+            {renderCity(values.city)}<br />
             <span className={""}>{values.country}</span><br />
             <span className={""}>{values.postalCode}</span>
           </p>
-          {/*<Input*/}
-          {/*  id={"street"}*/}
-          {/*  label={"Street"}*/}
-          {/*  value={values.streetNumber ? `${values.streetNumber} ${values.street}` : ""}*/}
-          {/*  disabled*/}
-          {/*/>*/}
-          {/*<Input*/}
-          {/*  id={"suburb"}*/}
-          {/*  label={"Suburb"}*/}
-          {/*  value={values.suburb}*/}
-          {/*  disabled*/}
-          {/*/>*/}
-          {/*<Input*/}
-          {/*  id={"city"}*/}
-          {/*  label={"City"}*/}
-          {/*  disabled*/}
-          {/*  value={convertCity(values.city)}*/}
-          {/*/>*/}
-          {/*<Input*/}
-          {/*  id={"country"}*/}
-          {/*  label={"Country"}*/}
-          {/*  disabled*/}
-          {/*  value={values.country}*/}
-          {/*/>*/}
-          {/*<Input*/}
-          {/*  id={"postalCode"}*/}
-          {/*  label={"Postal code"}*/}
-          {/*  disabled*/}
-          {/*  value={values.postalCode}*/}
-          {/*/>*/}
         </div>
       </div>
 
@@ -236,7 +205,12 @@ type addressComponentType =
   | "street"
   | "streetNumber"
 
-const majorCities = [
+export const isMajorCity = (value: string): boolean => {
+  return Boolean(majorCities.find(c => c.name === value || c.alias === value));
+};
+
+export const majorCities = [
+  { alias: "Randburg", name: "Randburg" },
   { alias: "Johannesburg", name: "Johannesburg" },
   { alias: "Pretoria", name: "Pretoria" },
   { alias: "Bloemfontein", name: "Bloemfontein" },
@@ -254,14 +228,12 @@ const majorCities = [
   { alias: "Witbank", name: "Emalahleni" },
 ];
 
-const convertCity = (city: string): string => {
-  const majorCity = majorCities.find(c => c.name === city);
-  if (majorCity) {
-    return `${city} ( ${majorCity.alias} )`;
+const renderCity = (city: string) => {
+  if (isMajorCity(city)) {
+    return <span className={""}>{city} <em className={"text-xs font-semibold"}>*Major City</em></span>;
   }
-  return city;
+  return <span className={""}>{city}</span>;
 };
-
 
 const convertAddressComponentType = (types: string[]): addressComponentType | undefined => {
   if (types.includes("postal_code")) {

@@ -62,14 +62,14 @@ export const ShopSidebar = (props: ShopSidebarProps) => {
             </div>
 
             {/* Shop by product type */}
-            <div>
-              <p className="mb-4 w-full text-2xl font-bold text-primary font-karla">
-                Product Type
-              </p>
-              <div>
-                <AlgoliaRefinementList attribute={"product_type"} />
-              </div>
-            </div>
+            {/*<div>*/}
+            {/*  <p className="mb-4 w-full text-2xl font-bold text-primary font-karla">*/}
+            {/*    Product Type*/}
+            {/*  </p>*/}
+            {/*  <div>*/}
+            {/*    <AlgoliaRefinementList attribute={"product_type"} />*/}
+            {/*  </div>*/}
+            {/*</div>*/}
 
             {/* Shop by product form */}
             <div>

@@ -1,7 +1,7 @@
 import { Wrapper } from "@googlemaps/react-wrapper";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { ShippingAddress } from "../components/checkout/shippingAddress";
+import { isMajorCity, ShippingAddress } from "../components/checkout/shippingAddress";
 import { ShippingMethod } from "../components/checkout/shippingMethod";
 import MainLayout from "../layouts/MainLayout";
 import { MedicalAidDetails } from "../components/checkout/medicalAidDetails";
@@ -16,6 +16,9 @@ import { toast } from "react-hot-toast";
 import { Order } from "../types/order";
 import Script from "next/script";
 import Button from "../components/button";
+import { Input } from "../components/input";
+import { Disclaimer } from "../components/disclaimer";
+import { values } from "lodash";
 
 const Checkout = () => {
   const { user, authToken, setLoading } = useAuthContext();
@@ -32,6 +35,7 @@ const Checkout = () => {
   const [appliedCoupons, setAppliedCoupons] = useState<string[]>([]);
 
   const [shipping, setShipping] = useState(true);
+  const [shippingCost, setShippingCost] = useState<number>();
 
   const [shippingAddress, setShippingAddress] = useState<ShippingAddress>({
     firstName: "",
@@ -76,7 +80,9 @@ const Checkout = () => {
           description: "",
           // TODO: Do we want to include a customer note?
           customer_note: "",
-          shipping: shipping,
+          shipping,
+          shipping_cost: shippingCost,
+          email,
         }),
       });
       data = await response.json();
@@ -206,7 +212,7 @@ const Checkout = () => {
 
       const { payfastPaymentID: uuid } = await createPayment();
 
-      console.log(`Loading payfast popup with uuid '${uuid}'`)
+      console.log(`Loading payfast popup with uuid '${uuid}'`);
       // trigger the payfast popup
       // @ts-ignore
       window.payfast_do_onsite_payment({ "uuid": uuid }, function(result) {
@@ -214,11 +220,11 @@ const Checkout = () => {
         if (result === true) {
           // payment success
           setLoading(false);
-          setPaymentStatus('paid');
+          setPaymentStatus("paid");
           toast.success("Payment successful");
         } else {
           // payment failure
-          setPaymentStatus('cancelled');
+          setPaymentStatus("cancelled");
           toast.error("Payment cancelled");
         }
       });
@@ -229,6 +235,22 @@ const Checkout = () => {
     }
 
   };
+
+
+  // calculate shipping cost
+  useEffect(() => {
+    if (!shipping) {
+      setShippingCost(undefined);
+      return;
+    }
+
+    if (isMajorCity(shippingAddress.city)) {
+      setShippingCost(100);
+      return;
+    }
+
+    setShippingCost(165);
+  }, [shipping, shippingAddress]);
 
   return (
     <MainLayout>
@@ -249,7 +271,6 @@ const Checkout = () => {
             <ShippingMethod
               shipping={shipping}
               setShipping={setShipping}
-              shippingPrice={150}
             />
             {shipping && (
               <Wrapper apiKey={process.env.NEXT_PUBLIC_GOOGLE_API_KEY || ""} libraries={["places"]}>
@@ -259,7 +280,7 @@ const Checkout = () => {
           </div>
 
           <div className={"grid gap-4"}>
-            <OrderSummary cartItems={cartItems} order={order} />
+            <OrderSummary cartItems={cartItems} order={order} shippingCost={shippingCost} />
           </div>
 
           <div className={"grid gap-4 lg:col-span-2 lg:grid-cols-2 2xl:col-span-1 2xl:grid-cols-1"}>
@@ -279,8 +300,25 @@ const Checkout = () => {
             )}
 
             {!order && (
-              <div className={"bg-white grid place-items-center"}>
-                <Button onClick={handlePlaceOrder} color={"primary"}>Place order</Button>
+              <div className={"bg-white grid place-items-center "}>
+                <div className={"space-y-8 grid place-items-center"}>
+                  {!user && (
+                    <div>
+                      <Input
+                        id={"email"}
+                        label={"Enter your email address"}
+                        value={email}
+                        type={"email"}
+                        onChange={(e) => setEmail(e.target.value)}
+                      />
+                      {!email && (
+                        <span className={"text-sm text-red-400"}>*Please provide a valid email address</span>
+                      )}
+                    </div>
+                  )}
+                  <Button onClick={handlePlaceOrder} color={"primary"} disabled={!email}>Place order</Button>
+
+                </div>
               </div>
             )}
           </div>
@@ -292,6 +330,7 @@ const Checkout = () => {
             <Image src={payfastLogo} alt="Payments made with Payfast" />
           </div>
         </div>
+        <Disclaimer />
       </div>
     </MainLayout>
   );
