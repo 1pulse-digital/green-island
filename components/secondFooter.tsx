@@ -1,34 +1,38 @@
-import React from "react";
+import Link from "next/link";
 
-export interface secondFooterProps {}
+export interface SecondFooterProps {
+}
 
-export const SecondFooter = (props: secondFooterProps) => {
+export const SecondFooter = (props: SecondFooterProps) => {
   return (
-    <div className="grid grid-cols-1 py-10 px-10 pt-5 border-t sm:flex-row md:grid-cols-2 md:px-20 lg:px-20 border-white-800 bg-primary">
-      <div className="flex text-sm text-white">
-        ©2021 Perfect Health Practice |
-        <div className={""}>
-          <a
-            href="http://localhost:3000/privacyPolicy "
-            className="py-4 px-2 cursor-pointer hover:text-secondary">
-            Privacy Policy |
+    <div
+      className="grid items-center p-8 border-t lg:grid-cols-2 lg:px-20 border-white-800 bg-primary">
+      <div className="whitespace-nowrap text-center sm:text-left grid sm:flex sm:grid-flow-col text-sm text-white sm:divide-x gap-2">
+        <span className={""}>©{new Date().getFullYear()} Perfect Health Practice</span>
+        <Link href={"/privacyPolicy"}>
+          <a rel={"noopener"} target={"_blank"} className={"sm:pl-2 duration-300 hover:text-secondary"}>
+            Privacy Policy
           </a>
-        </div>
-        <div className={""}>
-          <a href="http://localhost:3000/termsAndConditions " className="">
+        </Link>
+        <Link href={"/termsAndConditions"}>
+          <a rel={"noopener"} target={"_blank"} className={"sm:pl-2 duration-300 hover:text-secondary"}>
             Terms and Conditions
           </a>
-        </div>
+        </Link>
       </div>
-      <div className="text-left md:text-right">
-        <a
-          href="/"
-          className="text-right text-white transition-colors duration-300 hover:text-teal-accent-400">
-          <p className="pt-5 text-sm text-white md:pt-0">
-            Developed and design by 1Pulse Digital
-          </p>
-          <p className="text-sm text-white">Photography by Dane Drevin</p>
-        </a>
+
+      <div className="grid text-centre text-right text-sm text-white gap-2 mt-8 lg:mt-0">
+        <Link href={"https://1pulse.co.za/"}>
+          <a rel={"noopener"} target={"_blank"} className={"duration-300 hover:text-secondary"}>
+            Website Development and Design by <em className={"font-semibold whitespace-nowrap"}>1Pulse Digital</em>
+          </a>
+        </Link>
+
+        <Link href={"https://www.instagram.com/danedrevinphoto/"}>
+          <a rel={"noopener"} target={"_blank"} className={"duration-300 hover:text-secondary"}>
+            Photography by <em className={"font-semibold whitespace-nowrap"}>Dane Drevin</em>
+          </a>
+        </Link>
       </div>
     </div>
   );
