@@ -100,6 +100,7 @@ const Checkout = () => {
       // order placement success
       console.debug(`Order placed: `, data);
       setLoading(false);
+
       return data;
     }
 
