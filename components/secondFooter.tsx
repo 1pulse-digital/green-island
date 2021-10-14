@@ -9,12 +9,12 @@ export const SecondFooter = (props: SecondFooterProps) => {
       className="grid items-center p-8 border-t lg:grid-cols-2 lg:px-20 border-white-800 bg-primary">
       <div className="whitespace-nowrap text-center sm:text-left grid sm:flex sm:grid-flow-col text-sm text-white sm:divide-x gap-2">
         <span className={""}>©{new Date().getFullYear()} Perfect Health Practice</span>
-        <Link href={"/privacyPolicy"}>
+        <Link href={"/privacy-policy"}>
           <a rel={"noopener"} target={"_blank"} className={"sm:pl-2 duration-300 hover:text-secondary"}>
             Privacy Policy
           </a>
         </Link>
-        <Link href={"/termsAndConditions"}>
+        <Link href={"/terms-and-conditions"}>
           <a rel={"noopener"} target={"_blank"} className={"sm:pl-2 duration-300 hover:text-secondary"}>
             Terms and Conditions
           </a>

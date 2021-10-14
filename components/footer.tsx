@@ -47,100 +47,99 @@ export const Footer = (props: FooterProps) => {
 
   return (
     <div
-      className="grid py-10 px-10 md:grid-cols-2 md:px-20 lg:grid-cols-3 xl:grid-cols-4 row-gap-4 font-karla bg-primary">
-      <div className={""}>
-        <p className={"  text-white text-lg pb-2"}>
+      className="grid text-center md:justify-items-center text-white p-10 md:grid-cols-10 md:text-left md:p-20 gap-4  font-karla bg-primary">
+      {/* Subscribe */}
+      <div className={"md:col-span-4 xl:col-span-3 grid gap-4 mb-4"}>
+        <p className={"text-lg "}>
           Sign up for our monthly newsletter
         </p>
-        <div className={"grid gap-4 mt-4 mr-8"}>
-          {/* This is a copy paste of input component because of label color issues */}
-          <div>
-            {/* Copy input component to override styles*/}
-            <Input
-              id={"subscriber-email"}
-              label={"Email"}
-              value={values.email}
-              onChange={handleChange("email")}
-              labelClassName={"peer-focus:text-white"}
-            />
-
-          </div>
-          <div>
-            <SmallButton
-              color={"secondary"}
-              onClick={handleSubscribe}>
-              Subscribe
-            </SmallButton>
-          </div>
+        {/* This is a copy paste of input component because of label color issues */}
+        <div>
+          {/* Copy input component to override styles*/}
+          <Input
+            id={"subscriber-email"}
+            label={"Email"}
+            value={values.email}
+            onChange={handleChange("email")}
+            labelClassName={"peer-focus:text-white"}
+          />
         </div>
 
+        <SmallButton color={"secondary"} onClick={handleSubscribe}>
+          Subscribe
+        </SmallButton>
       </div>
 
-      <div>
-        <p className="font-medium text-white cursor-pointer hover:text-secondary">
-          Shop
-        </p>
+      {/* Shop & My Account */}
+      <div className={"md:col-span-2"}>
+        <Link href={"/shop"}>
+          <a
+            className="font-medium duration-300 hover:text-secondary">
+            Shop
+          </a>
+        </Link>
         <ul className="">
           <li>
-            <a
-              href="/"
-              className="text-white transition-colors duration-300 cursor-pointer hover:text-secondary">
-              Shop Account
-            </a>
-          </li>
-          <li>
-            <Link href={"/shop"}>
+            <Link href={"/my-account"}>
               <a
-                className="text-white transition-colors duration-300 cursor-pointer hover:text-secondary">
-                All Products
+                className="duration-300 hover:text-secondary">
+                My Account
               </a>
             </Link>
           </li>
-          <li>
-            <a
-              href="/"
-              className="text-white transition-colors duration-300 cursor-pointer hover:text-secondary">
-              COVID-19 Kit
-            </a>
-          </li>
+          {/* TODO: Where should this point to? */}
+          {/*<li>*/}
+          {/*  <Link href={"/shop?"}>*/}
+          {/*    <a className="duration-300 hover:text-secondary">*/}
+          {/*      COVID-19 Kit*/}
+          {/*    </a>*/}
+          {/*  </Link>*/}
+          {/*</li>*/}
         </ul>
       </div>
-      <div>
-        <ul className="mt-2">
-          <li>
+
+      {/* About & Contact Us & Blogs */}
+      <ul className="md:col-span-2">
+        <li>
+          <Link href={"/about"}>
             <a
-              href="/about"
-              className="text-white transition-colors duration-300 cursor-pointer hover:text-secondary">
+              className="duration-300 hover:text-secondary">
               About
             </a>
-          </li>
-          <li>
+          </Link>
+        </li>
+        <li>
+          <Link href={"/contact"}>
             <a
-              href="/contact"
-              className="text-white transition-colors duration-300 cursor-pointer hover:text-secondary">
+              className="duration-300 hover:text-secondary whitespace-nowrap">
               Contact Us
             </a>
-          </li>
-          <li>
+          </Link>
+        </li>
+        <li>
+          <Link href={"/blogs"}>
             <a
-              href="/blogs"
-              className="text-white transition-colors duration-300 cursor-pointer hover:text-secondary">
+              className="duration-300 hover:text-secondary whitespace-nowrap">
               Blogs
             </a>
-          </li>
-        </ul>
-      </div>
+          </Link>
+        </li>
+      </ul>
 
-      <div className="font-medium tracking-wide text-white">
-        <p>Follow us</p>
+      {/* Follow us Section */}
+      <div className="md:col-span-2 font-medium tracking-wide text-white">
+        <p className={""}>Follow us</p>
 
-        <div className={"flex gap-4"}>
+        <div className={"justify-center flex gap-4"}>
+          {/* FIXME: Facebook */}
           <SocialIcon href={"/"}>
             <svg viewBox="0 0 24 24" fill="currentColor" className="h-5">
               <path
                 d="M22,0H2C0.895,0,0,0.895,0,2v20c0,1.105,0.895,2,2,2h11v-9h-3v-4h3V8.413c0-3.1,1.893-4.788,4.659-4.788 c1.325,0,2.463,0.099,2.795,0.143v3.24l-1.918,0.001c-1.504,0-1.795,0.715-1.795,1.763V11h4.44l-1,4h-3.44v9H22c1.105,0,2-0.895,2-2 V2C24,0.895,23.105,0,22,0z" />
             </svg>
           </SocialIcon>
+
+          {/* FIXME: Instagram */}
           <SocialIcon href={"/"}>
             <svg viewBox="0 0 30 30" fill="currentColor" className="h-6">
               <circle cx="15" cy="15" r="4" />
