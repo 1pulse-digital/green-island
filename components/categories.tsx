@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { MouseEvent, useState } from "react";
 import Image from "next/image";
 import infection from "../images/infection_management.jpg";
 import digestive from "../images/digestive_health.jpg";
@@ -8,6 +8,8 @@ import stress from "../images/stress-management.jpg";
 import cn from "classnames";
 
 import { Button } from "./button";
+import { useRefinementContext } from "../contexts/refinementContext";
+import { useRouter } from "next/router";
 
 interface CategoryWidgetProps {
   title: string;
@@ -17,6 +19,8 @@ interface CategoryWidgetProps {
 }
 
 const CategoryWidget = (props: CategoryWidgetProps) => {
+  const { setDefaultRefinementCategories } = useRefinementContext();
+  const router = useRouter();
   const [isHovering, setIsHovering] = useState(false);
 
   const customMouseEnter = () => {
@@ -32,13 +36,19 @@ const CategoryWidget = (props: CategoryWidgetProps) => {
     "scale-110": isHovering,
   });
 
+  const handleSelect = (e: MouseEvent<HTMLDivElement>): void => {
+    setDefaultRefinementCategories([props.title]);
+    router.push("/shop")
+  };
+
   return (
     <div
       className={cn(
         "bg-primary",
         "relative grid w-full h-full cursor-pointer",
-        props.extraClassName
+        props.extraClassName,
       )}
+      onClick={handleSelect}
       onMouseEnter={customMouseEnter}
       onMouseLeave={customMouseLeave}>
       <Image

@@ -1,43 +1,14 @@
 import { AlgoliaSearchBox } from "./search/searchbox";
 import { AlgoliaRefinementList } from "./search/refinementList";
 import { AlgoliaClearRefinements } from "./search/clearRefinements";
-
-// interface SingleItemProps {
-//   title: string;
-//   checked: boolean;
-//   onChange: () => void;
-// }
-
-// const SingleItem = (props: SingleItemProps) => {
-//   return (
-//     <label className="flex items-center mb-3 space-x-3 hover:cursor-pointer">
-//       <input
-//         type="checkbox"
-//         name={`${props.title.split(" ").join("-")}`}
-//         className="w-6 h-6 bg-white border border-gray-300 checked:bg-blue-500 checked:border-transparent hover:cursor-pointer focus:outline-none bg-check"
-//         checked={props.checked}
-//         onChange={props.onChange}
-//         value=""
-//       />
-//       <span className="font-normal text-gray-700 dark:text-white truncate">
-//         {props.title}
-//       </span>
-//     </label>
-//   );
-// };
+import { useRefinementContext } from "../contexts/refinementContext";
 
 export interface ShopSidebarProps {
-  // selectedProductTypes: ProductType[];
-  // onSelectType: (productType: ProductType) => void;
-  //
-  // selectedProductForms: ProductForm[];
-  // onSelectForm: (productForm: ProductForm) => void;
-  //
-  // selectedCategories: number[];
-  // onSelectCategory: (id: number) => void;
 }
 
 export const ShopSidebar = (props: ShopSidebarProps) => {
+  const {defaultRefinementCategories} = useRefinementContext();
+
   return (
     <div className={"bg-gray-100 h-full py-5 px-10 "}>
       <div className="flex flex-col sm:justify-center">
@@ -58,6 +29,7 @@ export const ShopSidebar = (props: ShopSidebarProps) => {
                 attribute={"category.name"}
                 showMore={true}
                 limit={10}
+                defaultRefinement={defaultRefinementCategories}
               />
             </div>
 

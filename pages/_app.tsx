@@ -5,6 +5,7 @@ import AuthContext from "../contexts/authContext";
 import algoliasearch from "algoliasearch/lite";
 import { InstantSearch } from "react-instantsearch-dom";
 import { Toaster } from "react-hot-toast";
+import RefinementContext from "../contexts/refinementContext";
 
 // Initialise Algolia
 const searchClient = algoliasearch(
@@ -17,9 +18,11 @@ function MyApp({ Component, pageProps }: AppProps) {
     <AuthContext>
       <Toaster position={"bottom-center"} />
       <CartContext>
-        <InstantSearch searchClient={searchClient} indexName="perfect_health_products">
-          <Component {...pageProps} />
-        </InstantSearch>
+        <RefinementContext>
+          <InstantSearch searchClient={searchClient} indexName="perfect_health_products">
+            <Component {...pageProps} />
+          </InstantSearch>
+        </RefinementContext>
       </CartContext>
     </AuthContext>
   );
