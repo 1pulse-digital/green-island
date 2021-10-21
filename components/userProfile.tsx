@@ -23,14 +23,7 @@ export const UserProfile = () => {
             <a
               href=" "
               className="px-10 text-lg text-primary font-semi-bold">
-              My Orders
-            </a>
-          </div>
-          <div className={"py-2"}>
-            <a
-              href=" "
-              className="px-10 text-lg text-primary font-semi-bold">
-              Wish List
+              Order History
             </a>
           </div>
           <div className={"py-2"}>
@@ -43,7 +36,6 @@ export const UserProfile = () => {
         </div>
 
         {/* Right column with form */}
-
         <div
           className={
             " md:grid-cols-3 col-span-2 md:mr-24 sm:mr sm:grid-cols-1  "
