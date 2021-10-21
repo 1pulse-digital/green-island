@@ -51,7 +51,7 @@ function CartContext({ children }: { children?: React.ReactNode }) {
   const cartContains = (id: number): number | undefined => cartItems.find(i => i.product.id === id)?.quantity;
 
   const addToCart = (product: Product, quantity: number) => {
-    const isPrescription = product.availability === "prescription";
+    const isPrescription = product.availability !== "otc";
 
     if (isPrescription) {
       if (!user) {
