@@ -7,7 +7,7 @@ export const About = () => {
       <div className={"grid grid-cols-1 md:grid-cols-2 "}>
         {/* Left column - Bottle icon */}
 
-        <div className={"grid justify-self-center py-10"}>
+        <div className={"grid justify-self-center sm:py-10 "}>
           {/* <Image src={bottle} alt="homeopath bottle icon" /> */}
           <MedicalAnimation />
 
@@ -15,7 +15,7 @@ export const About = () => {
 
         {/* Right column text */}
 
-        <div className={" grid content-center font-karla p-10 md:max-w-prose "}>
+        <div className={" grid content-center font-karla p-5 sm:p-10 md:max-w-prose "}>
           <h1
             className={
               "md:text-5xl py-4 font-medium text-4xl text-primary text-center md:text-left"
@@ -41,7 +41,7 @@ export const About = () => {
             <a href="/about" className={"flex items-center justify-center md:justify-start"}>
               <button
                 type="submit"
-                className="p-2 px-6 mr-6 font-normal tracking-wide text-white rounded-full shadow-md transition duration-200 focus:outline-none font-karla bg-deep-purple-accent-400 bg-primary text-gray hover:bg-deep-purple-accent-700 hover:bg-secondary focus:shadow-outline">
+                className="p-2 px-6 mr-6 font-normal tracking-wide text-white transition duration-200 rounded-full shadow-md focus:outline-none font-karla bg-deep-purple-accent-400 bg-primary text-gray hover:bg-deep-purple-accent-700 hover:bg-secondary focus:shadow-outline">
                 More about us
               </button>
             </a>

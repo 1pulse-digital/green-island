@@ -72,7 +72,7 @@ export const Categories = () => {
     <div className={"mt-20 lg:mb-20 lg:mx-20"}>
       <h1
         className={
-          "md:text-5xl pb-20 font-medium text-4xl text-primary md:text-left "
+          "text-center md:pl-10 md:text-5xl pb-20 font-medium text-4xl text-primary md:text-left "
         }>
         Popular Categories
       </h1>
