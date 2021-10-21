@@ -36,7 +36,7 @@ const ProductWidget = (props: ProductWidgetProps) => {
   return (
     <div
       onClick={goToProduct}
-      className="relative w-[250px] bg-white rounded-lg border-gray-50 cursor-pointer hover:shadow-xl font-karla">
+      className="relative  w-[190px] sm:w-[255px] mb-5 bg-white rounded-lg border-gray-50 cursor-pointer hover:shadow-xl font-karla " >
       <div className={"relative h-[170px] w-full md:h-[240px]"}>
         {product.image && (
           <Image
@@ -110,7 +110,7 @@ const ProductWidget = (props: ProductWidgetProps) => {
           Add to cart
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="self-center pl-2 w-5 h-5 sm:w-7 md:h-7"
+            className="self-center w-5 h-5 pl-2 sm:w-7 md:h-7"
             viewBox="0 0 20 20"
             fill="currentColor">
             <path

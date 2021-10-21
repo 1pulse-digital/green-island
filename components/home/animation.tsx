@@ -3,7 +3,7 @@ import homeopathAnimation from "./homeopathAnimation.json";
  
 export const MedicalAnimation = () => {
   return (
-  <div className={""}>
-     <Lottie className={"w-96"} animationData={homeopathAnimation} />
+  <div>
+     <Lottie className={"w-96 mt-40 sm:mt-0"} animationData={homeopathAnimation} />
      </div>)
 };

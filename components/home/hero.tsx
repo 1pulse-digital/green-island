@@ -38,7 +38,7 @@ const MobileBanner = () => {
         </div>
 
         {/* Shop all button */}
-        <div className="z-10 justify-self-start text-right">
+        <div className="z-10 py-5 text-right justify-self-start">
           <Link href="/shop">
             <a>
               <Button color="primary">Shop all</Button>
@@ -78,17 +78,17 @@ const DesktopBanner = () => {
           </p>
 
           {/* Search box */}
-          <div className="relative py-4 w-1/2 lg:w-1/3 2xl:w-1/4">
+          <div className="relative w-1/2 py-4 lg:w-1/3 2xl:w-1/4">
             <AlgoliaAutocomplete />
           </div>
 
           {/* Shop all button */}
-          <div className="z-10 justify-self-start text-right">
+          <div className="z-10 text-right justify-self-start">
             <Link href={"/shop"} passHref>
               {/*TODO: Use the Button component */}
               <button
                 type="submit"
-                className="py-2 px-8 text-base font-normal text-center text-white rounded-full shadow-md transition duration-200 ease-in sm:w-full hover:text-white focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-200 focus:outline-none bg-primary hover:bg-secondary focus:ring-secondary">
+                className="px-8 py-2 text-base font-normal text-center text-white transition duration-200 ease-in rounded-full shadow-md sm:w-full hover:text-white focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-200 focus:outline-none bg-primary hover:bg-secondary focus:ring-secondary">
                 Shop all
               </button>
             </Link>
