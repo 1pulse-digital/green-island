@@ -18,11 +18,23 @@ import Script from "next/script";
 import Button from "../components/button";
 import { Input } from "../components/input";
 import { Disclaimer } from "../components/disclaimer";
-import { values } from "lodash";
+import { MedicalAidDetailsType } from "../types/medicalAid";
+
 
 const Checkout = () => {
   const { user, authToken, setLoading } = useAuthContext();
   const { cartItems } = useCartContext();
+
+  const [medicalAidDetails, setMedicalAidDetails] = useState<MedicalAidDetailsType>({
+    provider: "",
+    scheme_name: "",
+    membership_number: "",
+    main_member: "",
+  });
+
+  const handleMedicalAidDetailsChange = (name: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
+    setMedicalAidDetails({ ...medicalAidDetails, [name]: event.target.value });
+  };
 
   const [paymentStatus, setPaymentStatus] = useState<"paid" | "cancelled">();
   const [order, setOrder] = useState<Order>();
@@ -38,16 +50,16 @@ const Checkout = () => {
   const [shippingCost, setShippingCost] = useState<number>();
 
   const [shippingAddress, setShippingAddress] = useState<ShippingAddress>({
-    firstName: "",
-    lastName: "",
-    companyName: "",
-    phoneNumber: "",
-    streetNumber: "",
+    first_name: "",
+    last_name: "",
+    company_name: "",
+    phone_number: "",
+    street_number: "",
     suburb: "",
     city: "",
     country: "",
-    postalCode: "",
-    formattedAddress: "",
+    postal_code: "",
+    formatted_address: "",
     area: "",
     province: "",
     street: "",
@@ -77,6 +89,7 @@ const Checkout = () => {
           })),
           billing_address: shippingAddress,
           shipping_address: shippingAddress,
+          medical_aid_details: medicalAidDetails,
           description: "",
           // TODO: Do we want to include a customer note?
           customer_note: "",
@@ -197,7 +210,12 @@ const Checkout = () => {
   };
 
   const handlePlaceOrder = async () => {
+
     try {
+      if (!cartItems || cartItems.length <= 0) {
+        toast.error("You don't have any items in your cart");
+        return;
+      }
       const createOrderResult = await createOrder();
       setOrder(createOrderResult);
       toast.success("Your order has been placed, please proceed to payment");
@@ -235,7 +253,6 @@ const Checkout = () => {
     }
 
   };
-
 
   // calculate shipping cost
   useEffect(() => {
@@ -284,7 +301,7 @@ const Checkout = () => {
           </div>
 
           <div className={"grid gap-4 lg:col-span-2 lg:grid-cols-2 2xl:col-span-1 2xl:grid-cols-1"}>
-            <MedicalAidDetails />
+            <MedicalAidDetails values={medicalAidDetails} handleChange={handleMedicalAidDetailsChange} />
             {order && (
               <>
                 <PaymentMethod

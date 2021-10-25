@@ -93,7 +93,7 @@ export interface submitContactFormRequest {
   message: string,
 }
 
-export async function subscribeToMailer(email:string) {
+export async function subscribeToMailer(email: string) {
   const headers = {
     "Content-Type": "application/json",
   } as { "Content-Type": string; Authorization?: string };
@@ -110,6 +110,7 @@ export async function subscribeToMailer(email:string) {
 
   return;
 }
+
 export async function submitContactForm(request: submitContactFormRequest, token?: string) {
   const headers = {
     "Content-Type": "application/json",
@@ -174,6 +175,11 @@ export async function updateStrapiShoppingCart(token: string, items: CartItemTyp
       cart_items: items,
     }),
   });
+  if (response.status === 403) {
+    const message = await response.text()
+    throw new Error(message);
+  }
+
   const data = await response.json();
   // console.debug(`updated:  ${requestUrl}\n`, data);
 
