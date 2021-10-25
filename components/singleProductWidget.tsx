@@ -2,7 +2,7 @@ import { Product } from "../types/product";
 import Image from "next/image";
 import { prettyPrice } from "../lib/calc";
 import { useCartContext } from "../contexts/cartContext";
-import { useRouter } from "next/router";
+import { useState } from "react";
 
 export interface ProductWidget1Props {
   product: Product;
@@ -12,11 +12,25 @@ const ProductWidget1 = (props: ProductWidget1Props) => {
   const { product } = props;
   // add to cart button functionality
   const { addToCart } = useCartContext();
-  const router = useRouter();
+
+  const [quantity, setQuantity] = useState(1);
 
   if (!product) {
     return null;
   }
+
+  const handleIncrease = () => {
+    // set an arbitrary maximum of 50
+    if (quantity < 50) {
+      setQuantity(quantity + 1);
+    }
+  };
+
+  const handleDecrease = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  };
 
   return (
     <div className={"w-full font-karla text-primary"}>
@@ -91,26 +105,26 @@ const ProductWidget1 = (props: ProductWidget1Props) => {
           <h2 className={"font-semibold text-2xl"}>
             {prettyPrice(product.price)}
           </h2>
-          <div className="inline-block relative py-10 px-2 text-left">
-            <div>
-              <div className="flex items-center">
-                <button
-                  type="button"
-                  className="py-2 px-4 w-full text-base font-medium text-black bg-white rounded-l-md border-t border-b border-l hover:bg-gray-300">
-                  -
-                </button>
-                <button
-                  type="button"
-                  className="py-2 px-4 w-full text-base font-medium text-black bg-white border hover:bg-gray-100">
-                  1
-                </button>
-                <button
-                  type="button"
-                  className="py-2 px-4 w-full text-base font-medium text-black bg-white rounded-r-md border-t border-r border-b hover:bg-gray-100"
-                  onClick={() => product.id}>
-                  +
-                </button>
-              </div>
+
+          <div className="inline-block relative py-4 md:py-10 px-2 text-left w-[166px]">
+            <div className="flex items-center mx-2">
+              <button
+                type="button"
+                onClick={handleDecrease}
+                className="py-2 px-4 w-full text-base font-medium text-black bg-white rounded-l-md border-t border-b border-l hover:bg-gray-300">
+                -
+              </button>
+              <button
+                type="button"
+                className="py-2 px-4 w-full text-base font-medium text-black bg-white border hover:bg-gray-100">
+                {quantity}
+              </button>
+              <button
+                type="button"
+                className="py-2 px-4 w-full text-base font-medium text-black bg-white rounded-r-md border-t border-r border-b hover:bg-gray-100"
+                onClick={handleIncrease}>
+                +
+              </button>
             </div>
           </div>
 
@@ -123,7 +137,7 @@ const ProductWidget1 = (props: ProductWidget1Props) => {
             onClick={(event) => {
               event.preventDefault();
               event.stopPropagation();
-              addToCart(product, 1);
+              addToCart(product, quantity);
             }}>
             Add to cart
           </button>
