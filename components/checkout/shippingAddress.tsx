@@ -5,10 +5,10 @@ import { Address } from "../../types/address";
 import cn from "classnames";
 
 export interface ShippingAddress extends Address {
-  firstName: string,
-  lastName: string,
-  companyName: string,
-  phoneNumber: string,
+  first_name: string,
+  last_name: string,
+  company_name: string,
+  phone_number: string,
 }
 
 export interface ShippingAddressProps {
@@ -25,15 +25,15 @@ export const ShippingAddress = (props: ShippingAddressProps) => {
 
   const handleAddressChange = (value: string) => {
     const addressBreakdown = {
-      postalCode: "",
+      postal_code: "",
       country: "",
       province: "",
       city: "",
       area: "",
       suburb: "",
       street: "",
-      streetNumber: "",
-      formattedAddress: value,
+      street_number: "",
+      formatted_address: value,
     } as Address;
     setValues({ ...values, ...addressBreakdown });
   };
@@ -46,15 +46,15 @@ export const ShippingAddress = (props: ShippingAddressProps) => {
 
     const geoResult = geoResultList[0];
     const addressBreakdown = {
-      postalCode: "",
+      postal_code: "",
       country: "",
       province: "",
       city: "",
       area: "",
       suburb: "",
       street: "",
-      streetNumber: "",
-      formattedAddress: geoResult.formatted_address,
+      street_number: "",
+      formatted_address: geoResult.formatted_address,
     } as Address;
 
     console.log({ geoResult });
@@ -65,7 +65,7 @@ export const ShippingAddress = (props: ShippingAddressProps) => {
           addressBreakdown.country = ac.long_name;
           break;
         case "postalCode" :
-          addressBreakdown.postalCode = ac.long_name;
+          addressBreakdown.postal_code = ac.long_name;
           break;
         case "province" :
           addressBreakdown.province = ac.long_name;
@@ -83,7 +83,7 @@ export const ShippingAddress = (props: ShippingAddressProps) => {
           addressBreakdown.street = ac.long_name;
           break;
         case "streetNumber" :
-          addressBreakdown.streetNumber = ac.long_name;
+          addressBreakdown.street_number = ac.long_name;
           break;
       }
     }
@@ -100,34 +100,34 @@ export const ShippingAddress = (props: ShippingAddressProps) => {
         <Input
           id={"first-name"}
           label={"First name"}
-          value={values.firstName}
-          onChange={handleChange("firstName")}
+          value={values.first_name}
+          onChange={handleChange("first_name")}
         />
 
         <Input
           id={"last-name"}
           label={"Last name"}
-          onChange={handleChange("lastName")}
-          value={values.lastName}
+          onChange={handleChange("last_name")}
+          value={values.last_name}
         />
 
         <Input
           id={"company-name"}
-          label={"Company name"}
-          onChange={handleChange("companyName")}
-          value={values.companyName}
+          label={"Company name (Optional)"}
+          onChange={handleChange("company_name")}
+          value={values.company_name}
         />
 
         <Input
           id={"phoneNumber"}
           label={"Phone number"}
-          onChange={handleChange("phoneNumber")}
-          value={values.phoneNumber}
+          onChange={handleChange("phone_number")}
+          value={values.phone_number}
         />
 
-        <div className={cn("duration-1000", { "hidden": values.postalCode })}>
+        <div className={cn("duration-1000", { "hidden": values.postal_code })}>
           <PlacesAutocomplete
-            value={values.formattedAddress}
+            value={values.formatted_address}
             onChange={handleAddressChange}
             onSelect={handleSelectAddress}
             searchOptions={{
@@ -181,11 +181,11 @@ export const ShippingAddress = (props: ShippingAddressProps) => {
             handleAddressChange("");
             placeRef.current?.focus();
           }}>
-            <span className={""}>{values.streetNumber ? `${values.streetNumber} ${values.street}` : ""}</span><br />
+            <span className={""}>{values.street_number ? `${values.street_number} ${values.street}` : ""}</span><br />
             <span className={""}>{values.suburb} </span><br />
             {renderCity(values.city)}<br />
             <span className={""}>{values.country}</span><br />
-            <span className={""}>{values.postalCode}</span>
+            <span className={""}>{values.postal_code}</span>
           </p>
         </div>
       </div>
