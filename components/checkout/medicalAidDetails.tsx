@@ -1,21 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import { Input } from "../input";
+import { MedicalAidDetailsType } from "../../types/medicalAid";
 
 export interface MedicalAidDetailsProps {
-
+  values: MedicalAidDetailsType;
+  handleChange: (name: string) => (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const MedicalAidDetails = (props: MedicalAidDetailsProps) => {
-  const [values, setValues] = useState({
-    medicalAid: "",
-    schemeName: "",
-    membershipNumber: "",
-    mainMember: "",
-  });
+  const { values, handleChange } = props;
 
-  const handleChange = (name: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValues({ ...values, [name]: event.target.value });
-  };
   return (
     <div className={"bg-white p-10 "}>
       <p className={"text-2xl font-semibold"}>
@@ -25,28 +19,28 @@ export const MedicalAidDetails = (props: MedicalAidDetailsProps) => {
         <Input
           id={"medical-aid"}
           label={"Medical aid provider "}
-          onChange={handleChange("medicalAid")}
-          value={values.medicalAid}
+          onChange={handleChange("provider")}
+          value={values.provider}
         />
 
         <Input
           id={"scheme-name"}
           label={"Scheme name "}
-          onChange={handleChange("schemeName")}
-          value={values.schemeName}
+          onChange={handleChange("scheme_name")}
+          value={values.scheme_name}
         />
 
         <Input
           id={"membership-number"}
           label={"Membership number "}
-          onChange={handleChange("membershipNumber")}
-          value={values.membershipNumber}
+          onChange={handleChange("membership_number")}
+          value={values.membership_number}
         />
         <Input
           id={"main-member"}
           label={"Main member"}
-          onChange={handleChange("mainMember")}
-          value={values.mainMember}
+          onChange={handleChange("main_member")}
+          value={values.main_member}
         />
       </div>
     </div>
