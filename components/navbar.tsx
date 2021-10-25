@@ -202,7 +202,8 @@ export const Navbar = () => {
                     </Menu.Item>
                     <Menu.Item>
                       <div onClick={logout} className={"px-2 py-1 hover:bg-gray-100 cursor-pointer"}>
-                        <span>Sign out</span>
+                        <div>Sign out</div>
+                        <div className={"text-sm text-gray-400"}>({user.email})</div>
                       </div>
                     </Menu.Item>
                   </Menu.Items>
