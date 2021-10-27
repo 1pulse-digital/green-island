@@ -14,7 +14,7 @@ const Service = (props: ServiceProps) => {
         </h2>
       </div>
       <div>
-        <p className={"mt-4 lg:mt-0 text-gray-700"}>{props.children}</p>
+        <p className={"mt-2 lg:mt-0 text-gray-700"}>{props.children}</p>
       </div>
     </div>
   );
