@@ -10,7 +10,7 @@ export interface MainLayoutProps {
 
 const MainLayout = (props: MainLayoutProps) => {
   return (
-    <div className={"flex flex-col min-h-screen bg-indigo-400"}>
+    <div className={"flex flex-col min-h-screen"}>
       <Head>
         <title>Perfect Health Practice</title>
         <meta name="description" content="Live a natural, healthy and organic life" />
