@@ -16,9 +16,11 @@ const Item = ({ children }: { children: React.ReactNode }) => {
 
 export const TestimonialCarousel = () => {
   return (
-    <div className="w-8/12 ml-2 sm:w-full lg:px-20 md:w-full ">
+    <div className="w-8/12 ml-2 md:w-10/12 lg:w-full lg:px-20 ">
       <h1
-        className={"md:text-5xl text-4xl z-10 text-white font-medium font-karla pb-12  "}>
+        className={
+          "md:text-5xl text-4xl z-10 text-white font-medium font-karla pb-12  "
+        }>
         What our clients have to say
       </h1>
       <Carousel
