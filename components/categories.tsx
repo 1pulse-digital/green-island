@@ -103,7 +103,7 @@ export const Categories = () => {
         <CategoryWidget
           altText={"lady drinking green tea"}
           imgSrc={daily}
-          title={"Daily Self Care"}
+          title={"Hormonal Health"}
         />
 
         <CategoryWidget
