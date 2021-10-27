@@ -5,7 +5,10 @@ var Carousel = require("react-responsive-carousel").Carousel;
 
 const Item = ({ children }: { children: React.ReactNode }) => {
   return (
-    <p className={"italic lg:text-2xl md:text-2xl sm:text-1xl  text-white font-light"}>
+    <p
+      className={
+        "italic lg:text-2xl md:text-2xl sm:text-1xl  text-white font-light"
+      }>
       {children}
     </p>
   );
@@ -15,9 +18,7 @@ export const TestimonialCarousel = () => {
   return (
     <div className="w-8/12 ml-2 sm:w-full lg:px-20 md:w-full ">
       <h1
-        className={
-          "md:text-lg z-10 text-white font-medium font-karla pb-12  "
-        }>
+        className={"md:text-5xl text-4xl z-10 text-white font-medium font-karla pb-12  "}>
         What our clients have to say
       </h1>
       <Carousel
@@ -30,37 +31,43 @@ export const TestimonialCarousel = () => {
       >
         <div className={"lg:mb-32 md:mb-20 sm:mb-52"}>
           <p
-            className={"italic lg:text-2xl md:text-2xl sm:text-1xl text-white font-light"}>
+            className={
+              "italic lg:text-2xl md:text-2xl sm:text-1xl text-white font-light"
+            }>
             “Dr Robin is passionate about healing people, finding the cause of
-            the problem and then addressing it.
-              He explains everything so well really feel that at last there is
-              hope.”
+            the problem and then addressing it. He explains everything so well
+            really feel that at last there is hope.”
           </p>
         </div>
 
         <div>
-          <p className={"italic lg:text-2xl md:text-2xl sm:text-1xl  text-white font-light"}>
+          <p
+            className={
+              "italic lg:text-2xl md:text-2xl sm:text-1xl  text-white font-light"
+            }>
             “Dr Robin Is the most incredible doctor I have ever worked with! I
-            cannot recommend anyone more highly!
-            Even my little girl of 1 and a half was so impressed with him and
-            sat and did everything he needed her to do!
-            I never leave there not feeling positive and helped!”
+            cannot recommend anyone more highly! Even my little girl of 1 and a
+            half was so impressed with him and sat and did everything he needed
+            her to do! I never leave there not feeling positive and helped!”
           </p>
         </div>
 
         <div>
           <p
-            className={"italic lg:text-2xl md:text-2xl sm:text-1xl  text-white font-light"}>
+            className={
+              "italic lg:text-2xl md:text-2xl sm:text-1xl  text-white font-light"
+            }>
             “Personally I appreciate such a thorough consultation that is not
-            rushed! Dr Kohler looks for the root cause
-              (even root of the root issue ) and treats it naturally. Always
-              such a positive experience.”
+            rushed! Dr Kohler looks for the root cause (even root of the root
+            issue ) and treats it naturally. Always such a positive experience.”
           </p>
         </div>
 
         <div>
           <p
-            className={"italic lg:text-2xl md:text-2xl sm:text-1xl text-white font-light"}>
+            className={
+              "italic lg:text-2xl md:text-2xl sm:text-1xl text-white font-light"
+            }>
             “My experience with Dr. Robin Kohler can best be described as
             "transformative".
             <p>
