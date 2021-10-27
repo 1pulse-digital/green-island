@@ -14,7 +14,7 @@ export const Contact = () => {
             alt="Organic medicine tablets placed on a table in the shape of a heart"
             placeholder={"blur"}
           />
-          <div className={"grid ml-0 content-center  px-4 "}>
+          <div className={"grid content-center px-10 "}>
             <h1
               className={
                 "text-5xl pb-4 font-bold z-10 md:w-3/4 font-karla text-primary  "
