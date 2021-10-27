@@ -5,9 +5,7 @@ import { UserProfile } from "../components/userProfile";
 const MyAccount = () => {
   return (
     <MainLayout>
-      <div>
-        <UserProfile />
-      </div>
+      <UserProfile />
     </MainLayout>
   );
 };

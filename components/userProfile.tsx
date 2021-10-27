@@ -1,175 +1,189 @@
-import React from "react";
+import React, { useState } from "react";
+import { Input } from "./input";
+import { useAuthContext } from "../contexts/authContext";
+import Button from "./button";
+import cn from "classnames";
+import { MedicalAidDetails } from "./checkout/medicalAidDetails";
+import { MedicalAidDetailsType } from "../types/medicalAid";
+import { OrderHistory } from "./orderHistory";
+
 
 export const UserProfile = () => {
+  const { user } = useAuthContext();
+
+  const [
+    selectedSection,
+    setSelectedSection,
+  ] = useState<"myDetails" | "orderHistory" | "medicalAidDetails" | "security">("myDetails");
+
+  const [values, setValues] = useState({
+    firstName: user?.firstName || "",
+    lastName: user?.lastName || "",
+    email: user?.email || "",
+    address: user?.address || "",
+  });
+
+  const handleChange = (name: string) => (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setValues({ ...values, [name]: event.target.value });
+  };
+
+  const [medicalAidDetails, setMedicalAidDetails] = useState<MedicalAidDetailsType>({
+    provider: "",
+    scheme_name: "",
+    membership_number: "",
+    main_member: "",
+  });
+
+  const handleMedicalAidDetailsChange = (name: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
+    setMedicalAidDetails({ ...medicalAidDetails, [name]: event.target.value });
+  };
+
+  const [credentials, setCredentials] = useState({
+    oldPass: "",
+    newPass: "",
+    newPassConfirmation: "",
+  });
+
   return (
-    <div className={"bg-gray-100 h-[1000px] font-karla text-primary"}>
-      <h6 className={"text-4xl pb-8 grid px-24 py-12 text-primary  "}>
+    <div className={"bg-gray-100 font-karla text-primary px-12 xl:px-24"}>
+      <h1 className={"text-4xl py-8"}>
         Edit Profile
-      </h6>
-      <div className={"grid md:grid-cols-3 sm:grid grid-cols-1"}>
+      </h1>
+
+      <div className={"grid md:grid-cols-3 gap-12 xl:gap-24"}>
         {/* Left column with profile menu */}
-        <div
-          className={
-            "bg-gray-300 h-[250px] w-2/3 ml-24 semibold py-12 font-karla"
+        <div>
+          <div className={
+            "flex flex-col gap-2 bg-gray-300 text-lg py-6"
           }>
-          <div className={"py-2"}>
-            <a
-              href=" "
-              className="py-10 px-10 text-lg text-primary font-semi-bold">
-              My Details
-            </a>
-          </div>
-          <div className={"py-2"}>
-            <a
-              href=" "
-              className="px-10 text-lg text-primary font-semi-bold">
-              Order History
-            </a>
-          </div>
-          <div className={"py-2"}>
-            <a
-              href=" "
-              className="px-10 text-lg text-primary font-semi-bold">
-              Medical Aid Details
-            </a>
+            <button
+              onClick={() => {
+                setSelectedSection("myDetails");
+              }}
+              className={cn(
+                { "font-semibold": selectedSection === "myDetails" },
+                "hover:font-semibold text-left px-4",
+              )}>My Details
+            </button>
+            <button
+              onClick={() => {
+                setSelectedSection("orderHistory");
+              }}
+              className={cn(
+                { "font-semibold": selectedSection === "orderHistory" },
+                "hover:font-semibold text-left px-4",
+              )}
+            >Order History
+            </button>
+            <button
+              onClick={() => {
+                setSelectedSection("medicalAidDetails");
+              }}
+              className={cn(
+                { "font-semibold": selectedSection === "medicalAidDetails" },
+                "hover:font-semibold text-left px-4",
+              )}>Medical Aid Details
+            </button>
+            <button
+              onClick={() => {
+                setSelectedSection("security");
+              }}
+              className={cn(
+                { "font-semibold": selectedSection === "security" },
+                "hover:font-semibold text-left px-4",
+              )}>Security
+            </button>
           </div>
         </div>
-
         {/* Right column with form */}
         <div
           className={
-            " md:grid-cols-3 col-span-2 md:mr-24 sm:mr sm:grid-cols-1  "
+            "md:col-span-2"
           }>
-          <div className="grid grid-cols-2 gap-6 py-12 px-10 mr-24 w-full bg-white">
-            <div className="col-span-2 lg:col-span-1">
-              <div className="relative">
-                First Name *
-                <input
-                  type="text"
-                  id="contact-form-name"
-                  className="flex-1 py-2 px-4 w-full text-base placeholder-gray-400 text-gray-700 bg-white border border-transparent border-gray-900 shadow-sm appearance-none focus:border-transparent focus:ring-2 focus:ring-gray-600 focus:outline-none"
-                  placeholder=""
-                />
-              </div>
-            </div>
-            <div className="col-span-2 lg:col-span-1">
-              <div className="relative">
-                Old Password *
-                <input
-                  type="text"
-                  id="contact-form-password"
-                  className="flex-1 py-2 px-4 w-full text-base placeholder-gray-400 text-gray-700 bg-white border border-transparent border-gray-900 shadow-sm appearance-none focus:border-transparent focus:ring-2 focus:ring-gray-600 focus:outline-none"
-                  placeholder=""
-                />
-              </div>
-            </div>
-            <div className="col-span-2 lg:col-span-1">
-              <div className="relative">
-                Last Name *
-                <input
-                  type="text"
-                  id="contact-form-lastnamel"
-                  className="flex-1 py-2 px-4 w-full text-base placeholder-gray-400 text-gray-700 bg-white border border-transparent border-gray-900 shadow-sm appearance-none focus:border-transparent focus:ring-2 focus:ring-gray-600 focus:outline-none"
-                  placeholder=""
-                />
-              </div>
-            </div>
-            <div className="col-span-2 lg:col-span-1">
-              <div className="relative">
-                New Password *
-                <input
-                  type="text"
-                  id="contact-form-confirmpassword"
-                  className="flex-1 py-2 px-4 w-full text-base placeholder-gray-400 text-gray-700 bg-white border border-transparent border-gray-900 shadow-sm appearance-none focus:border-transparent focus:ring-2 focus:ring-gray-600 focus:outline-none"
-                  placeholder=""
-                />
-              </div>
-            </div>
-            <div className="col-span-2 lg:col-span-1">
-              <div className="relative">
-                Email *
-                <input
-                  type="text"
-                  id="contact-form-email"
-                  className="flex-1 py-2 px-4 w-full text-base placeholder-gray-400 text-gray-700 bg-white border border-transparent border-gray-900 shadow-sm appearance-none focus:border-transparent focus:ring-2 focus:ring-gray-600 focus:outline-none"
-                  placeholder=""
-                />
-              </div>
-            </div>
-            <div className="col-span-2 lg:col-span-1">
-              <div className="relative">
-                Confirm New Password *
-                <input
-                  type="text"
-                  id="contact-form-email"
-                  className="flex-1 py-2 px-4 w-full text-base placeholder-gray-400 text-gray-700 bg-white border border-transparent border-gray-900 shadow-sm appearance-none focus:border-transparent focus:ring-2 focus:ring-gray-600 focus:outline-none"
-                  placeholder=""
-                />
-              </div>
-            </div>
-            <div className="col-span-2 mb-2 lg:col-span-1">
-              <div className="relative">
-                Address *
-                <input
-                  type="text"
-                  id="contact-form-email"
-                  className="flex-1 py-2 px-4 w-full text-base placeholder-gray-400 text-gray-700 bg-white border border-transparent border-gray-900 shadow-sm appearance-none focus:border-transparent focus:ring-2 focus:ring-gray-600 focus:outline-none"
-                  placeholder=""
-                />
-              </div>
-            </div>
-            <div className="col-span-2 lg:col-span-1">
-              <div className="relative">
-                Tel Number *
-                <input
-                  type="text"
-                  id="contact-form-email"
-                  className="flex-1 py-2 px-4 w-full text-base placeholder-gray-400 text-gray-700 bg-white border border-transparent border-gray-900 shadow-sm appearance-none focus:border-transparent focus:ring-2 focus:ring-gray-600 focus:outline-none"
-                  placeholder=""
-                />
-              </div>
-            </div>
-            <div>
-              <div className="col-span-2 mb-6 lg:col-span-1">
-                <div className="relative">
-                  <input
-                    type="text"
-                    id="contact-form-email"
-                    className="flex-1 py-2 px-4 w-full text-base placeholder-gray-400 text-gray-700 bg-white border border-transparent border-gray-900 shadow-sm appearance-none focus:border-transparent focus:ring-2 focus:ring-gray-600 focus:outline-none"
-                    placeholder=""
-                  />
-                </div>
-              </div>
+          {selectedSection === "myDetails" && (
+            <div className="grid lg:grid-cols-2 gap-6 py-12 px-10 mr-24 w-full bg-white">
+              <Input
+                id={"first-name"}
+                label={"First Name"}
+                value={values.firstName}
+                onChange={handleChange("firstName")}
+              />
+              <Input
+                id={"last-name"}
+                label={"Last Name"}
+                value={values.lastName}
+                onChange={handleChange("lastName")}
+              />
 
-              <div className="col-span-1 mb-6 lg:col-span-1">
-                <div className="relative">
-                  <input
-                    type="text"
-                    id="contact-form-email"
-                    className="flex-1 py-2 px-4 w-full text-base placeholder-gray-400 text-gray-700 bg-white border border-transparent border-gray-900 shadow-sm appearance-none focus:border-transparent focus:ring-2 focus:ring-gray-600 focus:outline-none"
-                    placeholder=""
-                  />
-                </div>
-              </div>
-              <div className="col-span-1 lg:col-span-1">
-                <div className="relative">
-                  <input
-                    type="text"
-                    id="contact-form-email"
-                    className="flex-1 py-2 px-4 w-full text-base placeholder-gray-400 text-gray-700 bg-white border border-transparent border-gray-900 shadow-sm appearance-none focus:border-transparent focus:ring-2 focus:ring-gray-600 focus:outline-none"
-                    placeholder=""
-                  />
-                </div>
-              </div>
-              <div className="col-span-2 py-8 px-10 bg-white">
-                <button
-                  type="submit"
-                  className="py-2 px-14 text-base font-semibold text-center text-white rounded-full border shadow-md transition duration-200 ease-in focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-indigo-200 focus:outline-none border-secondary bg-secondary hover:bg-primary">
-                  Update
-                </button>
+              <Input
+                id={"email"}
+                label={"Email"}
+                value={values.email}
+                type={"email"}
+                disabled
+              />
+              <Input id={"address"}
+                     label={"Address"}
+                     value={values.address}
+                     onChange={handleChange("address")}
+              />
+
+              <div className="mx-auto col-span-full">
+                <Button color={"primary"}>Update</Button>
               </div>
             </div>
-          </div>
+          )}
+
+          {selectedSection === "orderHistory" && (
+            <div className="grid lg:grid-cols-2 gap-6 py-12 px-10 mr-24 w-full bg-white">
+              <OrderHistory />
+              <div className="mx-auto col-span-full">
+                <Button color={"primary"}>Update</Button>
+              </div>
+            </div>
+          )}
+
+          {selectedSection === "security" && (
+            <div className="grid lg:grid-cols-2 gap-6 py-12 px-10 mr-24 w-full bg-white">
+              <Input
+                id={"old-password"}
+                label={"Old Password"}
+                value={credentials.oldPass}
+                type={"password"}
+                onChange={(e) => setCredentials({ ...credentials, oldPass: e.target.value })}
+              />
+              <Input
+                id={"new-password"}
+                label={"New Password"}
+                value={credentials.newPass}
+                type={"password"}
+                onChange={(e) => setCredentials({ ...credentials, newPass: e.target.value })}
+              />
+
+              <Input
+                id={"confirm-new-password"}
+                label={"Confirm New Password"}
+                value={credentials.newPassConfirmation}
+                onChange={(e) => setCredentials({ ...credentials, newPassConfirmation: e.target.value })}
+                type={"password"}
+              />
+              <div className="mx-auto col-span-full">
+                <Button color={"primary"}>Update</Button>
+              </div>
+            </div>
+          )}
+
+          {selectedSection === "medicalAidDetails" && (
+            <div className="grid py-2 px-10 w-full bg-white">
+              <MedicalAidDetails
+                handleChange={handleMedicalAidDetailsChange}
+                values={medicalAidDetails} />
+
+              <div className="mx-auto col-span-full">
+                <Button color={"primary"}>Update</Button>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

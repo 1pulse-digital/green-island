@@ -6,6 +6,9 @@ export interface User {
   confirmed: boolean;
   blocked: null | boolean;
   role: Role;
+  firstName?: string;
+  lastName?: string;
+  address?: string;
 }
 
 export interface Role {
