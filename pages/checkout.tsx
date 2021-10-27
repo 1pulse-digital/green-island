@@ -94,6 +94,7 @@ const Checkout = () => {
           // TODO: Do we want to include a customer note?
           customer_note: "",
           shipping,
+          // TODO: This should ideally be calculated/confirmed in the back
           shipping_cost: shippingCost,
           email,
         }),
@@ -333,8 +334,7 @@ const Checkout = () => {
                       )}
                     </div>
                   )}
-                  <Button onClick={handlePlaceOrder} color={"primary"} disabled={!email}>Place order</Button>
-
+                  <Button onClick={handlePlaceOrder} color={"primary"} disabled={!email}>Proceed</Button>
                 </div>
               </div>
             )}
