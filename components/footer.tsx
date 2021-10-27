@@ -18,7 +18,7 @@ const SocialIcon = (props: SocialIconProps) => {
       <a
         href={props.href}
         target={"_blank"}
-        rel="nofollow"
+        rel="nofollow noreferrer noopener"
         className="flex py-4 space-x-3 transition-colors duration-300 text-white-500 hover:text-teal-accent-400">
         {props.children}
       </a>
