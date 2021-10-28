@@ -4,7 +4,6 @@ import { Button } from "./button";
 import { useCartContext } from "../contexts/cartContext";
 import { useRouter } from "next/router";
 import placeholder from "../images/2.jpg";
-import { strapiLoader } from "../lib/media";
 import ReactTooltip from "react-tooltip";
 import { prettyPrice } from "../lib/calc";
 
@@ -36,15 +35,18 @@ const ProductWidget = (props: ProductWidgetProps) => {
   return (
     <div
       onClick={goToProduct}
-      className="relative  w-[190px] sm:w-[255px] mb-5 bg-white rounded-lg border-gray-50 cursor-pointer hover:shadow-xl font-karla " >
+      className="relative  w-[190px] sm:w-[255px] mb-5 bg-white rounded-lg border-gray-50 cursor-pointer hover:shadow-xl font-karla ">
       <div className={"relative h-[170px] w-full md:h-[240px]"}>
         {product.image && (
           <Image
             layout="fill"
             objectFit="cover"
-            loader={strapiLoader}
-            src={product.image?.formats.small.url}
-            alt={product.image?.alternativeText}
+            src={
+              product.image?.formats.small?.url ||
+              product.image?.formats.medium?.url ||
+              "https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg"
+            }
+            alt={product.image?.alternativeText || product.name}
           />
         )}
         {!product.image && (

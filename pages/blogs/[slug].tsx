@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import { fetchAPI } from "../../lib/api";
 import { Article } from "../../types/article";
 import Markdown from "markdown-to-jsx";
@@ -10,18 +9,7 @@ export interface SingleBlogPostProps {
   article: Article;
 }
 
-type strapiLoaderParams = {
-  src: string;
-  width: number;
-  quality?: number;
-};
-
-const strapiLoader = (params: strapiLoaderParams) => {
-  return params.src;
-};
-
 const SingleBlogPost = (props: SingleBlogPostProps) => {
-  const router = useRouter();
 
   if (!props.article) {
     return <div>Still loading</div>;

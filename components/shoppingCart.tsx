@@ -6,14 +6,6 @@ import Button from "./button";
 import { useRouter } from "next/router";
 import { prettyPrice } from "../lib/calc";
 
-type strapiLoaderParams = {
-  src: string;
-  width: number;
-  quality?: number;
-};
-
-const strapiLoader = (params: strapiLoaderParams) => params.src;
-
 export interface CartItemProps {
   item: CartItemType;
   disabled?: boolean;
@@ -27,9 +19,9 @@ export const CartItem = ({ item, disabled }: CartItemProps) => {
         <Image
           layout="fill"
           objectFit="contain"
-          loader={strapiLoader}
-          src={item.product.image?.formats.thumbnail.url || ""}
-          alt={item.product.image?.alternativeText || "Product image"}
+          src={item.product.image?.formats.thumbnail?.url||
+          "https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg"}
+          alt={item.product.image?.alternativeText || item.product.name}
         />
       </div>
 

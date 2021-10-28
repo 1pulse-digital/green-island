@@ -5,7 +5,6 @@ import {
   WishlistItemType,
 } from "../contexts/cartContext";
 import Image from "next/image";
-import { strapiLoader } from "../lib/media";
 import { prettyPrice } from "../lib/calc";
 
 
@@ -18,9 +17,9 @@ const WishlistItem = ({ item }: { item: WishlistItemType }) => {
         <Image
           layout="fill"
           objectFit="contain"
-          loader={strapiLoader}
-          src={item.product.image?.formats.thumbnail.url || ""}
-          alt={item.product.image?.alternativeText || "Product image"}
+          src={item.product.image?.formats.thumbnail?.url ||
+          "https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg"}
+          alt={item.product.image?.alternativeText || item.product.name}
         />
       </div>
 

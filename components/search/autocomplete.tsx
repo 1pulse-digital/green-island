@@ -3,7 +3,6 @@ import { Hit } from "react-instantsearch-core";
 import { useEffect, useState } from "react";
 import { Product } from "../../types/product";
 import Image from "next/image";
-import { strapiLoader } from "../../lib/media";
 import { useCartContext } from "../../contexts/cartContext";
 import { Popover } from "@headlessui/react";
 import { useRouter } from "next/router";
@@ -29,12 +28,11 @@ const ProductItem = ({ product }: { product: Product }) => {
         <Image
           layout="fill"
           objectFit="contain"
-          loader={strapiLoader}
           src={
-            product.image?.formats.thumbnail.url ||
+            product.image?.formats.thumbnail?.url ||
             "https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg"
           }
-          alt={product.image?.alternativeText || "Product image"}
+          alt={product.image?.alternativeText || product.name}
         />
       </div>
 
@@ -66,10 +64,10 @@ const ProductItem = ({ product }: { product: Product }) => {
 };
 
 const Autocomplete = ({
-  hits,
-  currentRefinement,
-  refine,
-}: AutocompleteProps) => {
+                        hits,
+                        currentRefinement,
+                        refine,
+                      }: AutocompleteProps) => {
   const [showResults, setShowResults] = useState(true);
   useEffect(() => {
     if (currentRefinement) {

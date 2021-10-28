@@ -2,29 +2,13 @@ import React from "react";
 import Image from "next/image";
 
 import { Article } from "../types/article";
-import { getStrapiURL } from "../lib/api";
 import { useRouter } from "next/router";
 
-import { Button } from "../components/button";
-
+import { Button } from "./button";
 
 export interface BlogWidgetProps {
   article: Article;
 }
-
-type strapiLoaderParams = {
-  src: string;
-  width: number;
-  quality?: number;
-};
-
-const strapiLoader = (params: strapiLoaderParams) => {
-  // const urlBase = getStrapiURL();
-  // return `${urlBase}${params.src}`;
-  return params.src;
-};
-
-// Blog widget -
 
 export const BlogWidget = (props: BlogWidgetProps) => {
   const router = useRouter();
