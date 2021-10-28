@@ -52,16 +52,20 @@ const SingleBlogPost = (props: SingleBlogPostProps) => {
               <Image
                 layout="fill"
                 objectFit="cover"
-                loader={strapiLoader}
-                src={props.article.image.formats.small.url}
-                alt={props.article.image.alternativeText}
+                src={
+                  props.article.image?.formats.small?.url ||
+                  props.article.image?.formats.medium?.url ||
+                  props.article.image?.formats.thumbnail?.url ||
+                  "https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg"
+                }
+                alt={props.article.image?.alternativeText || props.article.title}
               />
             </div>
           </div>
         </div>
         <div className={""}>
           <div className="prose-sm">
-            <article className="px-10 py-10 sm:py-10 md:py-20">
+            <article className="py-10 px-10 sm:py-10 md:py-20">
               <Markdown>{props.article.content}</Markdown>
             </article>
           </div>

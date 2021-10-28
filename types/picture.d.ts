@@ -4,10 +4,10 @@ export interface Picture {
 }
 
 export interface Formats {
-  large: Format;
-  medium: Format;
-  small: Format;
-  thumbnail: Format;
+  large?: Format;
+  medium?: Format;
+  small?: Format;
+  thumbnail?: Format;
 }
 
 export interface Format {

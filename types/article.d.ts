@@ -11,7 +11,7 @@ export interface Article {
   author: Author;
   content: string;
   title: string;
-  image: Picture;
+  image?: Picture;
   description: string;
   tags: Tag[];
   slug: string;

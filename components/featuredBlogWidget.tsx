@@ -33,7 +33,7 @@ export const BlogWidget = (props: BlogWidgetProps) => {
     router.push(`/blogs/${props.article.slug}`);
   };
   return (
-    
+
     <div
       className={
         "relative overflow-hidden w-full max-w-sm sm:h-[490px] md:h-[570px] bg-white shadow-sm rounded-lg "
@@ -43,9 +43,13 @@ export const BlogWidget = (props: BlogWidgetProps) => {
           <Image
             layout="fill"
             objectFit="cover"
-            loader={strapiLoader}
-            src={props.article.image.formats.thumbnail.url}
-            alt={props.article.image.alternativeText}
+            src={
+              props.article.image?.formats.small?.url ||
+              props.article.image?.formats.medium?.url ||
+              props.article.image?.formats.thumbnail?.url ||
+              "https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg"
+            }
+            alt={props.article.image?.alternativeText || props.article.title}
           />
         </div>
         <div className={" p-6"}>
