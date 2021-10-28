@@ -28,10 +28,10 @@ export const UserProfile = () => {
   };
 
   const [medicalAidDetails, setMedicalAidDetails] = useState<MedicalAidDetailsType>({
-    provider: "",
-    scheme_name: "",
-    membership_number: "",
-    main_member: "",
+    provider: user?.medical_aid_details?.provider || "",
+    scheme_name: user?.medical_aid_details?.scheme_name || "",
+    membership_number: user?.medical_aid_details?.membership_number || "",
+    main_member: user?.medical_aid_details?.main_member || "",
   });
 
   const handleMedicalAidDetailsChange = (name: string) => (event: React.ChangeEvent<HTMLInputElement>) => {

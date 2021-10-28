@@ -1,3 +1,5 @@
+import { MedicalAidDetailsType } from "./medicalAid";
+
 export interface User {
   id: number;
   username: string;
@@ -9,6 +11,7 @@ export interface User {
   firstName?: string;
   lastName?: string;
   address?: string;
+  medical_aid_details?: MedicalAidDetailsType;
 }
 
 export interface Role {
