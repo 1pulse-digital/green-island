@@ -99,6 +99,12 @@ const ProductWidget1 = (props: ProductWidget1Props) => {
           {/* Directions */}
           <p className={"mt-6 lg:mt-8 font-semibold "}>Directions</p>
           <p className={"my-2"}>{product.directions}</p>
+          {/* Storage */}
+          <p className={"mt-6 lg:mt-8 font-semibold "}>Storage</p>
+          <p className={"my-2"}>{product.storage}</p>
+          {/* Brand (supplier) */}
+          <p className={"mt-6 lg:mt-8 font-semibold "}>Brand</p>
+          <p className={"my-2"}>{product.supplier}</p>
           {/* Warning */}
           <p className={"mt-6 lg:mt-8 font-semibold "}>Warning</p>
           <p className={"my-2 pb-10"}>{product.warning}</p>

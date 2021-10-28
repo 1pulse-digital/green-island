@@ -24,6 +24,7 @@ export const ProductAdditionalInfo = (props: ProductAdditionalInfoProps) => {
             }>
             Ingredients
           </Tab>
+          {props.product.additional_information &&
           <Tab
             className={({ selected }) =>
               classnames(
@@ -36,6 +37,7 @@ export const ProductAdditionalInfo = (props: ProductAdditionalInfoProps) => {
             }>
             Additional Information
           </Tab>
+          }
           <Tab
             className={({ selected }) =>
               classnames(
@@ -58,8 +60,9 @@ export const ProductAdditionalInfo = (props: ProductAdditionalInfoProps) => {
                   : "text-white hover:bg-white/[0.12] hover:text-white",
               )
             }>
-            Reviews
+            Symptoms
           </Tab>
+
         </Tab.List>
 
         <Tab.Panels className={"h-96 overflow-y-auto p-2"}>
@@ -68,20 +71,23 @@ export const ProductAdditionalInfo = (props: ProductAdditionalInfoProps) => {
           >
             <Ingredients ingredients={props.product.ingredients} />
           </Tab.Panel>
+          {props.product.additional_information &&
           <Tab.Panel
             className={"rounded-xl p-3 focus:outline-none focus:ring-2 ring-offset-2 ring-offset-blue-400 ring-white ring-opacity-60"}
           >
             <div>{props.product.additional_information}</div>
           </Tab.Panel>
+          }
           <Tab.Panel
             className={"rounded-xl p-3 focus:outline-none focus:ring-2 ring-offset-2 ring-offset-blue-400 ring-white ring-opacity-60"}
           >
             <div>{props.product.benefits}</div>
           </Tab.Panel>
+
           <Tab.Panel
             className={"rounded-xl p-3 focus:outline-none focus:ring-2 ring-offset-2 ring-offset-blue-400 ring-white ring-opacity-60"}
           >
-            <div>{props.product.warning}</div>
+            <div>{props.product.symptoms_indications}</div>
           </Tab.Panel>
         </Tab.Panels>
       </Tab.Group>
