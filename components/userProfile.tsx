@@ -135,11 +135,8 @@ export const UserProfile = () => {
           )}
 
           {selectedSection === "orderHistory" && (
-            <div className="grid lg:grid-cols-2 gap-6 py-12 px-10 mr-24 w-full bg-white">
+            <div className="grid gap-6 py-12 px-10 mr-24 w-full bg-white">
               <OrderHistory />
-              <div className="mx-auto col-span-full">
-                <Button color={"primary"}>Update</Button>
-              </div>
             </div>
           )}
 

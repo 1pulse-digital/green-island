@@ -34,7 +34,6 @@ export async function fetchAPI(path: string, token?: string) {
   return data;
 }
 
-
 export async function createStrapiWishlist(token: string) {
   const headers = {
     "Content-Type": "application/json",
@@ -176,7 +175,7 @@ export async function updateStrapiShoppingCart(token: string, items: CartItemTyp
     }),
   });
   if (response.status === 403) {
-    const message = await response.text()
+    const message = await response.text();
     throw new Error(message);
   }
 

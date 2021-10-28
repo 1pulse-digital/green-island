@@ -1,3 +1,13 @@
+import { Product } from "./product";
+
+export interface OrderItemType {
+  id: number;
+  product: Product;
+  price: number;
+  quantity: number;
+  line_total: number;
+}
+
 export interface Order {
   id: number;
   status: OrderStatus;
@@ -6,6 +16,7 @@ export interface Order {
   shipping_total: number;
   shipping: boolean;
   description: string;
+  items?: OrderItemType[];
 }
 
 export type OrderStatus =

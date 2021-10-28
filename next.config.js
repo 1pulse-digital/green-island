@@ -1,6 +1,6 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ["storage.googleapis.com"],
+    domains: ["image.shutterstock.com", "storage.googleapis.com"],
   },
 };
