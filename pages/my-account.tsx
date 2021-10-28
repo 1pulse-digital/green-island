@@ -4,7 +4,7 @@ import { UserProfile } from "../components/userProfile";
 
 const MyAccount = () => {
   return (
-    <MainLayout>
+    <MainLayout authRequired>
       <UserProfile />
     </MainLayout>
   );
