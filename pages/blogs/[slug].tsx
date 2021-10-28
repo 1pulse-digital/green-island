@@ -49,13 +49,13 @@ const SingleBlogPost = (props: SingleBlogPostProps) => {
 
           <div className={"relative grid content-center max-h-full"}>
             <div className={"lg:absolute top-0 bottom-0 right-0  w-full"}>
-              {/* <Image
+              <Image
                 layout="fill"
                 objectFit="cover"
                 loader={strapiLoader}
                 src={props.article.image.formats.small.url}
                 alt={props.article.image.alternativeText}
-              /> */}
+              />
             </div>
           </div>
         </div>
