@@ -19,7 +19,7 @@ export const BlogWidget = (props: BlogWidgetProps) => {
   return (
     <div
       className={
-        "relative overflow-hidden w-full max-w-sm sm:h-[490px] md:h-[500px] bg-white rounded-lg hover:shadow-2xl cursor-pointer "
+        "relative overflow-hidden w-full max-w-sm sm:h-[420px] md:h-[450px] bg-white rounded-lg hover:shadow-2xl cursor-pointer mb-10 align-middle"
       }>
       <div className={"h-full "} onClick={viewBlog}>
         <div className={"relative w-full h-64 bg-white "}>
