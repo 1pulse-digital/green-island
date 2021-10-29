@@ -53,7 +53,7 @@ const SingleBlogPost = (props: SingleBlogPostProps) => {
         </div>
         <div className={""}>
           <div className="prose-sm">
-            <article className="py-10 px-10 sm:py-10 md:py-20">
+            <article className="px-10 py-10 sm:py-10 md:py-20">
               <Markdown>{props.article.content}</Markdown>
             </article>
           </div>
@@ -86,9 +86,7 @@ export const getStaticProps: GetStaticProps = async (
 
 export async function getStaticPaths() {
   return {
-    paths: [
-      { params: { slug: "flip-the-script-on-treats" } }, // See the "paths" section below
-    ],
+    paths: [],
     fallback: true, //true or false // See the "fallback" section below
   };
 }
