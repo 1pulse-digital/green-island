@@ -45,16 +45,16 @@ export const UserProfile = () => {
   });
 
   return (
-    <div className={"bg-gray-100 font-karla text-primary px-12 xl:px-24"}>
+    <div className={"font-karla bg-gray-50 text-primary px-12 xl:px-24 pb-10"}>
       <h1 className={"text-4xl py-8"}>
         Edit Profile
       </h1>
 
-      <div className={"grid md:grid-cols-3 gap-12 xl:gap-24"}>
+      <div className={"grid md:grid-cols-3 gap-12 xl:gap-24 "}>
         {/* Left column with profile menu */}
         <div>
           <div className={
-            "flex flex-col gap-2 bg-gray-300 text-lg py-6"
+            "flex flex-col gap-2 bg-gray-300 text-lg py-6 rounded"
           }>
             <button
               onClick={() => {
@@ -98,10 +98,10 @@ export const UserProfile = () => {
         {/* Right column with form */}
         <div
           className={
-            "md:col-span-2"
+            "md:col-span-2 "
           }>
           {selectedSection === "myDetails" && (
-            <div className="grid lg:grid-cols-2 gap-6 py-12 px-10 mr-24 w-full bg-white">
+            <div className="grid w-full gap-6 px-10 py-12 mr-24 bg-white lg:grid-cols-2">
               <Input
                 id={"first-name"}
                 label={"First Name"}
@@ -135,13 +135,13 @@ export const UserProfile = () => {
           )}
 
           {selectedSection === "orderHistory" && (
-            <div className="grid gap-6 py-12 px-10 mr-24 w-full bg-white">
+            <div className="grid w-full gap-6 px-10 py-12 mr-24 bg-white">
               <OrderHistory />
             </div>
           )}
 
           {selectedSection === "security" && (
-            <div className="grid lg:grid-cols-2 gap-6 py-12 px-10 mr-24 w-full bg-white">
+            <div className="grid w-full gap-6 px-10 py-12 mr-24 bg-white lg:grid-cols-2">
               <Input
                 id={"old-password"}
                 label={"Old Password"}
@@ -171,7 +171,7 @@ export const UserProfile = () => {
           )}
 
           {selectedSection === "medicalAidDetails" && (
-            <div className="grid py-2 px-10 w-full bg-white">
+            <div className="grid w-full px-10 py-2 bg-white">
               <MedicalAidDetails
                 handleChange={handleMedicalAidDetailsChange}
                 values={medicalAidDetails} />
