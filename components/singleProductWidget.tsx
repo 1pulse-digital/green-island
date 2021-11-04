@@ -11,7 +11,7 @@ export interface ProductWidget1Props {
 const ProductWidget1 = (props: ProductWidget1Props) => {
   const { product } = props;
   // add to cart button functionality
-  const { addToCart } = useCartContext();
+  const { addToCart, addToWishlist } = useCartContext();
 
   const [quantity, setQuantity] = useState(1);
 
@@ -86,6 +86,7 @@ const ProductWidget1 = (props: ProductWidget1Props) => {
           <h1 className="text-2xl lg:text-4xl font-semibold truncate">
             {product.name}
           </h1>
+          <span className={"text-sm text-gray-400"}>{product.product_code}</span>
           {/* Variations */}
           {product.variation && (
             <span className={"ml-4 text-sm"}>10 Amusja</span>
@@ -136,17 +137,34 @@ const ProductWidget1 = (props: ProductWidget1Props) => {
 
           {/* add product to cart button functionality */}
 
-          <button
-            className={
-              "px-20 mt-4 h-12 font-medium tracking-wide text-white rounded-full shadow-md transition duration-200 focus:outline-none truncate bg-secondary hover:bg-deep-purple-accent-700 focus:shadow-outline"
-            }
-            onClick={(event) => {
-              event.preventDefault();
-              event.stopPropagation();
-              addToCart(product, quantity);
-            }}>
-            Add to cart
-          </button>
+          <div className={"flex gap-4"}>
+            <button
+              className={
+                "px-20 h-12 font-medium tracking-wide text-white rounded-full shadow-md transition duration-200 focus:outline-none truncate bg-secondary hover:bg-deep-purple-accent-700 focus:shadow-outline"
+              }
+              onClick={(event) => {
+                event.preventDefault();
+                event.stopPropagation();
+                addToCart(product, quantity);
+              }}>
+              Add to cart
+            </button>
+            {/* add to wishlist button */}
+            <button
+              onClick={(event) => {
+                event.preventDefault();
+                event.stopPropagation();
+                addToWishlist(product);
+              }}>
+              <svg xmlns="http://www.w3.org/2000/svg"
+                   className="w-10 h-10 text-primary hover:text-secondary"
+                   viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd"
+                      d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
+                      clipRule="evenodd" />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
     </div>
