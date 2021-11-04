@@ -335,6 +335,7 @@ const Checkout = () => {
                     </div>
                   )}
                   <Button onClick={handlePlaceOrder} color={"primary"} disabled={!email}>Proceed</Button>
+                  <span className={"text-primary"}>Orders are processed with 7 working days (Mondays & Thursdays)</span>
                 </div>
               </div>
             )}
