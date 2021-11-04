@@ -17,6 +17,7 @@ export interface Order {
   shipping: boolean;
   description: string;
   items?: OrderItemType[];
+  time_submitted?: string;
 }
 
 export type OrderStatus =

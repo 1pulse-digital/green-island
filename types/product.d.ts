@@ -7,6 +7,8 @@ export interface Product {
   description: string;
   meta_description: string;
   meta_title: string;
+  product_code: string;
+  out_of_stock: boolean;
   price: number;
   slug: string;
   content: string;
