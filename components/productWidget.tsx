@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import placeholder from "../images/2.jpg";
 import ReactTooltip from "react-tooltip";
 import { prettyPrice } from "../lib/calc";
+import cn from "classnames";
 
 export interface ProductWidgetProps {
   product: Product;
@@ -67,8 +68,11 @@ const ProductWidget = (props: ProductWidgetProps) => {
           {product.variation && (
             <span className={"text-sm text-gray-400 line-clamp-1"}>{product.variation}</span>
           )}
-          {/* FIXME: Stock management */}
-          <p className="text-green-500">In stock</p>
+          <p
+            className={cn(
+              { "text-green-500": !product.out_of_stock },
+              { "text-red-500": product.out_of_stock },
+            )}>{product.out_of_stock ? "Out of stock" : "In stock"}</p>
           <p className={"text-primary"}>{prettyPrice(product.price)}</p>
         </div>
 
