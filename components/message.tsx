@@ -161,7 +161,10 @@ export const Message = () => {
           </div>
         </form>
         <div className={"px-12"}>
-          <a href="https://robins-perfect-health.cliniko.com/bookings">
+          <a
+            target="_blank"
+            href="https://robins-perfect-health.cliniko.com/bookings"
+            rel="noreferrer">
             <Button color={"primary"}>Book Appointment</Button>
           </a>
         </div>
