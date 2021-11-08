@@ -62,7 +62,7 @@ export const Message = () => {
           </a>
           <br />
           Read our
-          <Link href="/privacyPolicy">
+          <Link href="/privacy-policy">
             <a className={"hover:text-secondary px-2"}>Privacy Policy</a>
           </Link>
         </p>
