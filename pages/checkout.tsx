@@ -1,7 +1,10 @@
 import { Wrapper } from "@googlemaps/react-wrapper";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { isMajorCity, ShippingAddress } from "../components/checkout/shippingAddress";
+import {
+  isMajorCity,
+  ShippingAddress,
+} from "../components/checkout/shippingAddress";
 import { ShippingMethod } from "../components/checkout/shippingMethod";
 import MainLayout from "../layouts/MainLayout";
 import { MedicalAidDetails } from "../components/checkout/medicalAidDetails";
@@ -20,21 +23,25 @@ import { Input } from "../components/input";
 import { Disclaimer } from "../components/disclaimer";
 import { MedicalAidDetailsType } from "../types/medicalAid";
 
-
 const Checkout = () => {
   const { user, authToken, setLoading } = useAuthContext();
   const { cartItems } = useCartContext();
 
-  const [medicalAidDetails, setMedicalAidDetails] = useState<MedicalAidDetailsType>({
-    provider: user?.medical_aid_details?.provider || "",
-    scheme_name: user?.medical_aid_details?.scheme_name || "",
-    membership_number: user?.medical_aid_details?.membership_number || "",
-    main_member: user?.medical_aid_details?.main_member || "",
-  });
+  const [medicalAidDetails, setMedicalAidDetails] =
+    useState<MedicalAidDetailsType>({
+      provider: user?.medical_aid_details?.provider || "",
+      scheme_name: user?.medical_aid_details?.scheme_name || "",
+      membership_number: user?.medical_aid_details?.membership_number || "",
+      main_member: user?.medical_aid_details?.main_member || "",
+    });
 
-  const handleMedicalAidDetailsChange = (name: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
-    setMedicalAidDetails({ ...medicalAidDetails, [name]: event.target.value });
-  };
+  const handleMedicalAidDetailsChange =
+    (name: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
+      setMedicalAidDetails({
+        ...medicalAidDetails,
+        [name]: event.target.value,
+      });
+    };
 
   const [paymentStatus, setPaymentStatus] = useState<"paid" | "cancelled">();
   const [order, setOrder] = useState<Order>();
@@ -85,7 +92,11 @@ const Checkout = () => {
         body: JSON.stringify({
           items: cartItems.map((item) => ({
             ...item,
-            product: { id: item.product.id, price: item.product.price, name: item.product.name },
+            product: {
+              id: item.product.id,
+              price: item.product.price,
+              name: item.product.name,
+            },
           })),
           billing_address: shippingAddress,
           shipping_address: shippingAddress,
@@ -101,7 +112,9 @@ const Checkout = () => {
       });
       data = await response.json();
     } catch (e) {
-      console.error(`Could not create order: ${e.message ? e.message : e.toString()}`);
+      console.error(
+        `Could not create order: ${e.message ? e.message : e.toString()}`
+      );
       setLoading(false);
       throw `Something went wrong with the order placement`;
     }
@@ -116,7 +129,6 @@ const Checkout = () => {
       setLoading(false);
       return data;
     }
-
   };
 
   const createPayment = async (): Promise<{ payfastPaymentID: string }> => {
@@ -143,7 +155,9 @@ const Checkout = () => {
       });
       data = await response.json();
     } catch (e) {
-      console.error(`Could not create payment: ${e.message ? e.message : e.toString()}`);
+      console.error(
+        `Could not create payment: ${e.message ? e.message : e.toString()}`
+      );
       setLoading(false);
       throw `Something went wrong with the order placement`;
     }
@@ -159,7 +173,6 @@ const Checkout = () => {
       setLoading(false);
       return data;
     }
-
   };
 
   const applyCoupon = async (): Promise<void> => {
@@ -187,7 +200,9 @@ const Checkout = () => {
       });
       data = await response.json();
     } catch (e) {
-      console.error(`Could not apply coupon: ${e.message ? e.message : e.toString()}`);
+      console.error(
+        `Could not apply coupon: ${e.message ? e.message : e.toString()}`
+      );
       setLoading(false);
       toast.error(`Something went wrong while applying the coupon`);
       return;
@@ -211,7 +226,6 @@ const Checkout = () => {
   };
 
   const handlePlaceOrder = async () => {
-
     try {
       if (!cartItems || cartItems.length <= 0) {
         toast.error("You don't have any items in your cart");
@@ -223,18 +237,16 @@ const Checkout = () => {
     } catch (e) {
       toast.error("Order placement failed, can't proceed to payment");
     }
-
   };
 
   const handleProceedToPayment = async () => {
     try {
-
       const { payfastPaymentID: uuid } = await createPayment();
 
       console.log(`Loading payfast popup with uuid '${uuid}'`);
       // trigger the payfast popup
       // @ts-ignore
-      window.payfast_do_onsite_payment({ "uuid": uuid }, function(result) {
+      window.payfast_do_onsite_payment({ uuid: uuid }, function (result) {
         console.log("Payfast payment result = ", result);
         if (result === true) {
           // payment success
@@ -247,12 +259,12 @@ const Checkout = () => {
           toast.error("Payment cancelled");
         }
       });
-
     } catch (e) {
-      console.error(`Could not create order: ${e.message ? e.message : e.toString()}`);
+      console.error(
+        `Could not create order: ${e.message ? e.message : e.toString()}`
+      );
       toast.error("Could not create the payment");
     }
-
   };
 
   // calculate shipping cost
@@ -286,23 +298,35 @@ const Checkout = () => {
 
         <div className={"grid gap-4 lg:grid-cols-2 2xl:grid-cols-3"}>
           <div className={"grid gap-4"}>
-            <ShippingMethod
-              shipping={shipping}
-              setShipping={setShipping}
-            />
+            <ShippingMethod shipping={shipping} setShipping={setShipping} />
             {shipping && (
-              <Wrapper apiKey={process.env.NEXT_PUBLIC_GOOGLE_API_KEY || ""} libraries={["places"]}>
-                <ShippingAddress values={shippingAddress} setValues={setShippingAddress} />
+              <Wrapper
+                apiKey={process.env.NEXT_PUBLIC_GOOGLE_API_KEY || ""}
+                libraries={["places"]}>
+                <ShippingAddress
+                  values={shippingAddress}
+                  setValues={setShippingAddress}
+                />
               </Wrapper>
             )}
           </div>
 
           <div className={"grid gap-4"}>
-            <OrderSummary cartItems={cartItems} order={order} shippingCost={shippingCost} />
+            <OrderSummary
+              cartItems={cartItems}
+              order={order}
+              shippingCost={shippingCost}
+            />
           </div>
 
-          <div className={"grid gap-4 lg:col-span-2 lg:grid-cols-2 2xl:col-span-1 2xl:grid-cols-1"}>
-            <MedicalAidDetails values={medicalAidDetails} handleChange={handleMedicalAidDetailsChange} />
+          <div
+            className={
+              "grid gap-4 lg:col-span-2 lg:grid-cols-2 2xl:col-span-1 2xl:grid-cols-1"
+            }>
+            <MedicalAidDetails
+              values={medicalAidDetails}
+              handleChange={handleMedicalAidDetailsChange}
+            />
             {order && (
               <>
                 <PaymentMethod
@@ -330,12 +354,21 @@ const Checkout = () => {
                         onChange={(e) => setEmail(e.target.value)}
                       />
                       {!email && (
-                        <span className={"text-sm text-red-400"}>*Please provide a valid email address</span>
+                        <span className={"text-sm text-red-400"}>
+                          *Please provide a valid email address
+                        </span>
                       )}
                     </div>
                   )}
-                  <Button onClick={handlePlaceOrder} color={"primary"} disabled={!email}>Proceed</Button>
-                  <span className={"text-primary"}>Orders are processed with 7 working days (Mondays & Thursdays)</span>
+                  <Button
+                    onClick={handlePlaceOrder}
+                    color={"primary"}
+                    disabled={!email}>
+                    Proceed
+                  </Button>
+                  <span className={"text-primary"}>
+                    Orders are processed within 7 working days
+                  </span>
                 </div>
               </div>
             )}
@@ -343,7 +376,9 @@ const Checkout = () => {
         </div>
 
         <div className={"grid justify-end"}>
-          <span className={"text-sm text-gray-600"}>All payments are secured with Payfast</span>
+          <span className={"text-sm text-gray-600"}>
+            All payments are secured with Payfast
+          </span>
           <div className="w-[200px]">
             <Image src={payfastLogo} alt="Payments made with Payfast" />
           </div>
