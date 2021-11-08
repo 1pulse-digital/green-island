@@ -4,6 +4,7 @@ import Button from "./button";
 import { toast } from "react-hot-toast";
 import { submitContactForm } from "../lib/api";
 import { useAuthContext } from "../contexts/authContext";
+import Link from "next/link";
 
 export const Message = () => {
   const { authToken } = useAuthContext();
@@ -15,9 +16,11 @@ export const Message = () => {
     message: "",
   });
 
-  const handleChange = (name: string) => (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setValues({ ...values, [name]: event.target.value });
-  };
+  const handleChange =
+    (name: string) =>
+    (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      setValues({ ...values, [name]: event.target.value });
+    };
 
   const handleSubmit = async (e: MouseEvent<HTMLButtonElement>) => {
     try {
@@ -25,10 +28,15 @@ export const Message = () => {
       e.preventDefault();
       e.stopPropagation();
       await submitContactForm(values, authToken);
-      toast.success(`Your form has been submitted, thank you for getting in touch with us`, { icon: "🌿⚕" });
+      toast.success(
+        `Your form has been submitted, thank you for getting in touch with us`,
+        { icon: "🌿⚕" }
+      );
     } catch (e) {
       console.error(`Could not submit the form ${e}`);
-      toast.error(`Something went wrong, we could not submit your form`, { icon: "😞️" });
+      toast.error(`Something went wrong, we could not submit your form`, {
+        icon: "😞️",
+      });
     }
   };
 
@@ -36,38 +44,44 @@ export const Message = () => {
     <div className={" sm:grid  grid-cols-2 h-[700px]  w-full  font-karla   "}>
       {/* Left column */}
       <div
-        className={"grid content-center   bg-gray-50  lg:px-24  text-primary text-lg pl-4 md:px-5  md:py-8  "}>
+        className={
+          "grid content-center bg-gray-50 lg:px-24  text-primary text-lg pl-4 md:px-5  md:py-8  "
+        }>
         <h2 className={"font-bold"}>Contact details</h2>
         <p className={"text-md"}>
-          <a className={"hover:text-secondary"} href="tel:+27-11-706-2786">Tel: +27 11 706 2786</a>
+          <a className={"hover:text-secondary"} href="tel:+27-11-706-2786">
+            Tel: +27 11 706 2786
+          </a>
           <br />
         </p>
         <p className={"text-md mt-2"}>
           <a
             className={"hover:text-secondary"}
-            href="mailto: reception@perfecthealthpractice.com"
-          >
+            href="mailto:reception@perfecthealthpractice.com">
             reception@perfecthealthpractice.com
           </a>
           <br />
           Read our
-          <a
-            className={"hover:text-secondary px-2"}
-            href="http://localhost:3000/privacyPolicy">
-            Privacy Policy
-          </a>
+          <Link href="/privacyPolicy">
+            <a className={"hover:text-secondary px-2"}>Privacy Policy</a>
+          </Link>
         </p>
         <h2 className={"mt-8 font-bold"}>Address</h2>
         <p className={"text-md "}>
-          <span>33 Highland Avenue</span><br />
-          <span>Bryanston Ext 8 </span><br />
-          <span>Johannesburg</span><br />
+          <span>33 Highland Avenue</span>
+          <br />
+          <span>Bryanston Ext 8 </span>
+          <br />
+          <span>Johannesburg</span>
+          <br />
           <span>Gauteng</span>
         </p>
         <h2 className={"font-bold mt-8"}>Operating hours</h2>
         <p className={"text-md"}>
-          <span>Monday to Thursday 08:00 - 17:00</span><br />
-          <span>Fridays 08:00 - 16:00</span><br />
+          <span>Monday to Thursday 08:00 - 17:00</span>
+          <br />
+          <span>Fridays 08:00 - 16:00</span>
+          <br />
           <span>Saturday 08:00- 13:00</span>
         </p>
         <p className={"mt-8"}>
@@ -125,23 +139,24 @@ export const Message = () => {
                 />
               </div>
               <div className={"relative col-span-2"}>
-                  <textarea
-                    id={"message"}
-                    rows={3}
-                    name={"message"}
-                    placeholder={"Message here"}
-                    className="w-full h-full placeholder-transparent text-gray-900 disabled:text-gray-600 rounded border-gray-300 focus:ring-0 focus:outline-none peer focus:border-secondary"
-                    value={values.message}
-                    onChange={handleChange("message")}
-                  />
+                <textarea
+                  id={"message"}
+                  rows={3}
+                  name={"message"}
+                  placeholder={"Message here"}
+                  className="w-full h-full text-gray-900 placeholder-transparent border-gray-300 rounded disabled:text-gray-600 focus:ring-0 focus:outline-none peer focus:border-secondary"
+                  value={values.message}
+                  onChange={handleChange("message")}
+                />
                 <label
                   htmlFor={"message"}
-                  className="absolute left-2 -top-5 text-sm text-gray-600 transition-all peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-focus:text-gray-600 peer-focus:-top-5 peer-focus:text-sm"
-                >
+                  className="absolute text-sm text-gray-600 transition-all left-2 -top-5 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-focus:text-gray-600 peer-focus:-top-5 peer-focus:text-sm">
                   {"Message here"}
                 </label>
               </div>
-              <Button onClick={handleSubmit} color={"primary"}>Submit</Button>
+              <Button onClick={handleSubmit} color={"primary"}>
+                Submit
+              </Button>
             </div>
           </div>
         </form>
