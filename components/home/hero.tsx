@@ -1,7 +1,6 @@
 import Image from "next/image";
 import hero from "../../images/perfect-health-banner.jpg";
 import mobileHero from "../../images/perfect-health-mobile-banner.jpg";
-
 import Link from "next/link";
 import Button from "../button";
 import { AlgoliaAutocomplete } from "../search/autocomplete";
@@ -54,7 +53,10 @@ const MobileBanner = () => {
 
 const DesktopBanner = () => {
   return (
-    <div className={"grid relative h-full px-[50px] lg:px-[100px] content-center "}>
+    <div
+      className={
+        "grid relative h-full px-[50px] lg:px-[100px] content-center "
+      }>
       <div>
         <Image
           layout="fill"
@@ -74,11 +76,11 @@ const DesktopBanner = () => {
           </h1>
 
           <p className={"text-2xl mt-8 text-gray-600 font-light font-karla "}>
-            <span className={"bg-white/90 inline rounded"}>
+            <span className={"2xl:bg-transparent bg-white/90 inline rounded"}>
               We empower our patients with the tools to heal themselves,
             </span>
             <br />
-            <span className={"bg-white/90 inline rounded"}>
+            <span className={"2xl:bg-transparent bg-white/90 inline rounded"}>
               and the knowledge to own their health.
             </span>
           </p>

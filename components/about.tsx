@@ -26,9 +26,9 @@ export const About = () => {
             className={
               "text-gray-700 text-center md:text-left font-karla text-[18px]"
             }>
-            It is capable of healing itself. To access this power ​you must
-            remove the obstacles in its way, provide the tools it needs for the
-            job.
+            It is capable of healing self-healing. To access this power ​you
+            must remove the obstacles in its way and provide the tools it needs
+            for the job.
           </p>
           <p
             className={

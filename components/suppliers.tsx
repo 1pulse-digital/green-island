@@ -32,10 +32,8 @@ export const Suppliers = () => {
         autoPlay={true}
         showStatus={false}
         showThumbs={false}
-        showIndicators={false}
-      >
-        <div
-          className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-4   lg:h-24 md:52 sm:h-96  h-24 my-12 px-12">
+        showIndicators={false}>
+        <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-4   lg:h-24 md:52 sm:h-96  h-24 my-12 px-12">
           <div className=" grid-cols-1 ">
             <Image src={idexis} alt="idexis" />
           </div>
@@ -81,8 +79,7 @@ export const Suppliers = () => {
             <Image src={Wings} alt="Wings" />
           </div>
         </div>
-        <div
-          className="grid lg:grid-cols-4  md:grid-cols-2 sm:grid-cols-1 gap-4   lg:h-24 md:52 sm:h-96 h-24 my-12 px-12">
+        <div className="grid lg:grid-cols-4  md:grid-cols-2 sm:grid-cols-1 gap-4   lg:h-24 md:52 sm:h-96 h-24 my-12 px-12">
           <div className=" grid-cols-1 ">
             <Image src={wlast} alt="wlast" />
           </div>

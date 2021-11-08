@@ -41,7 +41,6 @@ export const Message = () => {
         <p className={"text-md"}>
           <a className={"hover:text-secondary"} href="tel:+27-11-706-2786">Tel: +27 11 706 2786</a>
           <br />
-          <a className={"hover:text-secondary"} href="tel:+27-82-293-8502">Tel: +27 82 293 8502</a>
         </p>
         <p className={"text-md mt-2"}>
           <a
@@ -51,10 +50,11 @@ export const Message = () => {
             reception@perfecthealthpractice.com
           </a>
           <br />
+          Read our
           <a
-            className={"hover:text-secondary"}
-            href="mailto: accounts@perfecthealthpractice.com">
-            accounts@perfecthealthpractice.com
+            className={"hover:text-secondary px-2"}
+            href="http://localhost:3000/privacyPolicy">
+            Privacy Policy
           </a>
         </p>
         <h2 className={"mt-8 font-bold"}>Address</h2>
@@ -80,8 +80,8 @@ export const Message = () => {
 
       {/* Right column */}
       <div>
-        <form className="grid relative space-x-3 w-full">
-          <div className="py-10 px-12 mt-10 w-full max-w-2xl bg-white dark:bg-gray-800">
+        <form className="relative grid w-full space-x-3">
+          <div className="w-full max-w-2xl px-12 py-10 mt-10 bg-white dark:bg-gray-800">
             <div className="mb-6 text-3xl font-light text-center dark:text-white text-primary">
               <h1 className={"text-1xl pb-4 font-bold text-left text-primary "}>
                 Send us a message
@@ -145,6 +145,11 @@ export const Message = () => {
             </div>
           </div>
         </form>
+        <div className={"px-12"}>
+          <a href="https://robins-perfect-health.cliniko.com/bookings">
+            <Button color={"primary"}>Book Appointment</Button>
+          </a>
+        </div>
       </div>
     </div>
   );
