@@ -215,7 +215,7 @@ const About = () => {
               </div>
               <div>
                 <p>
-                  “As a dad, I appreciate the weight that disease can put on a
+                  As a dad, I appreciate the weight that disease can put on a
                   family. Whether you’re trying to cope with a relentlessly sick
                   toddler, buckling under the weight of fatigue and stress, or
                   watching your health slip away to chronic illness far too
@@ -224,7 +224,7 @@ const About = () => {
                   understand where you have come from, I can try to piece
                   together the story of your health, discover the root of your
                   ailments and help you chart a course that will free you from
-                  your disease burden.”
+                  your disease burden.
                 </p>
               </div>
             </div>
