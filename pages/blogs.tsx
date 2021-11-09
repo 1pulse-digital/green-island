@@ -151,7 +151,7 @@ export default Blogs;
 export async function getStaticProps() {
   // Run API calls in parallel
   const [articles, articleCategories] = await Promise.all([
-    fetchAPI("/articles"),
+    fetchAPI("/articles?_sort=updated_at:DESC"),
     fetchAPI("/article-categories"),
   ]);
 
