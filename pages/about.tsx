@@ -127,14 +127,14 @@ const About = () => {
             <Service title="Functional Medical Assessment">
               Functional Medicine views health as a dance between seven
               functional body systems. When a symptom of ill health appears, it
-              can be traced to break down in one or more of these systems, often
-              far upstream from the symptom itself. The art of the Functional
-              Medicine practitioner is to identify these root causes, and
-              provide the interventions required to restore normal function to
-              the systems concerned. This approach, which is especially valuable
-              in the treatment of chronic disease aims for the restoration of
-              full body health, rather than the suppression of individual
-              symptoms.
+              can be traced to a break down in one or more of these systems,
+              often far upstream from the symptom itself. The art of the
+              Functional Medicine practitioner is to identify these root causes,
+              and provide the interventions required to restore normal function
+              to the systems concerned. This approach, which is especially
+              valuable in the treatment of chronic disease aims for the
+              restoration of full body health rather than the suppression of
+              individual symptoms.
             </Service>
             <Service title="Iridology">
               A number of 19th century medical practitioners began to notice
@@ -215,7 +215,7 @@ const About = () => {
               </div>
               <div>
                 <p>
-                  “As a dad, I appreciate the weight that disease can put on a
+                  As a dad, I appreciate the weight that disease can put on a
                   family. Whether you’re trying to cope with a relentlessly sick
                   toddler, buckling under the weight of fatigue and stress, or
                   watching your health slip away to chronic illness far too
@@ -224,7 +224,7 @@ const About = () => {
                   understand where you have come from, I can try to piece
                   together the story of your health, discover the root of your
                   ailments and help you chart a course that will free you from
-                  your disease burden.”
+                  your disease burden.
                 </p>
               </div>
             </div>
@@ -256,7 +256,7 @@ const About = () => {
             offers treatment for the whole family, from the young to the
             elderly. Simon has a special interest in pain management and
             rehabilitation and works closely with other health professionals to
-            ensure a rounded care model."
+            ensure a rounded care model.
           </Bio>
 
           {/*Bronwyn Kohler Bio */}
@@ -276,7 +276,7 @@ const About = () => {
             Functional Health coach, and uses these skills to offer optimum care
             and support to the patients of Perfect Health. She authors our
             health-related blog articles and newsletters, and is always up for a
-            meaty conversation about health! "
+            meaty conversation about health!
           </Bio>
 
           {/*Sindi Ntozini Bio */}
@@ -291,7 +291,7 @@ const About = () => {
             sure that everyone gets what they need when they need it, whether
             its an appointment, medication or a kind word. Her warmth and
             friendliness are part of what make Perfect Health a welcoming family
-            practice."
+            practice.
           </Bio>
         </section>
       </div>

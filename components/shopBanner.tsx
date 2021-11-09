@@ -20,7 +20,7 @@ export const ShopBanner = () => {
             className={
               "lg:text-5xl  md:text-4xl text-2xl text-primary z-10 sm:grid-cols-1 md:grid-cols-1  font-karla"
             }>
-            Get 15% off your first purchase.
+            Get 15% off Your first purchase.
           </h1>
           <p
             className={
@@ -37,13 +37,13 @@ export const ShopBanner = () => {
                 placeholder="Full Name"
                 required
                 type="text"
-                className="px-4 h-12 bg-white rounded-full appearance-none md:mr-2 md:mb-0 focus:outline-none focus:border-deep-purple-accent-400 focus:shadow-outline"
+                className="h-12 px-4 bg-white rounded-full appearance-none md:mr-2 md:mb-0 focus:outline-none focus:border-deep-purple-accent-400 focus:shadow-outline"
               />
               <input
                 placeholder="Email Address"
                 required
                 type="text"
-                className="px-4 mb-3 h-12 rounded-full transition duration-200 appearance-none md:mr-2 md:mb-0 focus:outline-none focus:border-deep-purple-accent-400 focus:shadow-outline"
+                className="h-12 px-4 mb-3 transition duration-200 rounded-full appearance-none md:mr-2 md:mb-0 focus:outline-none focus:border-deep-purple-accent-400 focus:shadow-outline"
               />
               <Button color={"primary"}>Submit</Button>
             </form>

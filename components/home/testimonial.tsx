@@ -28,9 +28,9 @@ export const TestimonialCarousel = () => {
         infiniteLoop={true}
         autoPlay={true}
         showStatus={false}
-        showThumbs={false}
-        // centerMode={true}
-      >
+        interval={10000}
+        transitionTime={2000}
+        showThumbs={false}>
         <div className={"lg:mb-32 md:mb-20 sm:mb-52"}>
           <p
             className={
