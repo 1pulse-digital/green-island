@@ -74,13 +74,12 @@ const DesktopBanner = () => {
             <br />
             within your grasp.
           </h1>
-
           <p className={"text-2xl mt-8 text-gray-600 font-light font-karla "}>
-            <span className={"2xl:bg-transparent bg-white/90 inline rounded"}>
+            <span className={"xl:bg-transparent bg-white/90 inline rounded"}>
               We empower our patients with the tools to heal themselves,
             </span>
             <br />
-            <span className={"2xl:bg-transparent bg-white/90 inline rounded"}>
+            <span className={"xl:bg-transparent bg-white/90 inline rounded"}>
               and the knowledge to own their health.
             </span>
           </p>

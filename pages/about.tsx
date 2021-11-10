@@ -132,7 +132,7 @@ const About = () => {
               Functional Medicine practitioner is to identify these root causes,
               and provide the interventions required to restore normal function
               to the systems concerned. This approach, which is especially
-              valuable in the treatment of chronic disease aims for the
+              valuable in the treatment of chronic disease, aims for the
               restoration of full body health rather than the suppression of
               individual symptoms.
             </Service>
