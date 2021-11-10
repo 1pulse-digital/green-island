@@ -49,21 +49,23 @@ export const Message = () => {
         }>
         <h2 className={"font-bold"}>Contact details</h2>
         <p className={"text-md"}>
-          <a className={"hover:text-secondary"} href="tel:+27-11-706-2786">
+          <a className={"hover:text-secondary "} href="tel:+27-11-706-2786">
             Tel: +27 11 706 2786
           </a>
           <br />
         </p>
         <p className={"text-md mt-2"}>
           <a
-            className={"hover:text-secondary"}
+            className={"hover:text-primary text-secondary "}
             href="mailto:reception@perfecthealthpractice.com">
             reception@perfecthealthpractice.com
           </a>
           <br />
           Read our
           <Link href="/privacy-policy">
-            <a className={"hover:text-secondary px-2"}>Privacy Policy</a>
+            <a className={"hover:text-primary text-secondary px-[4px]"}>
+              Privacy Policy
+            </a>
           </Link>
         </p>
         <h2 className={"mt-8 font-bold"}>Address</h2>
@@ -165,7 +167,13 @@ export const Message = () => {
             target="_blank"
             href="https://robins-perfect-health.cliniko.com/bookings"
             rel="noreferrer">
-            <Button color={"primary"}>Book Appointment</Button>
+            <Button
+              color={"primary"}
+              className={
+                "absolute justify-self-center self-center bg-secondary hover:bg-primary"
+              }>
+              Book Appointment
+            </Button>
           </a>
         </div>
       </div>
