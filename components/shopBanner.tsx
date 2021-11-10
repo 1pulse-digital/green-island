@@ -27,8 +27,7 @@ export const ShopBanner = () => {
               "z-10 text-2xl my-8 text-gray-600 font-light font-karla"
             }>
             <span className="inline bg-white/90">
-              Fill in your details below to receive to receive Your 15% off
-              coupon code.
+              Fill in your details below to receive your 15% off coupon code.
             </span>
           </p>
           <div className={"flex "}>
