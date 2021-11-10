@@ -38,7 +38,7 @@ const CategoryWidget = (props: CategoryWidgetProps) => {
 
   const handleSelect = (e: MouseEvent<HTMLDivElement>): void => {
     setDefaultRefinementCategories([props.title]);
-    router.push("/shop")
+    router.push("/shop");
   };
 
   return (
@@ -46,7 +46,7 @@ const CategoryWidget = (props: CategoryWidgetProps) => {
       className={cn(
         "bg-primary",
         "relative grid w-full h-full cursor-pointer",
-        props.extraClassName,
+        props.extraClassName
       )}
       onClick={handleSelect}
       onMouseEnter={customMouseEnter}
@@ -60,7 +60,9 @@ const CategoryWidget = (props: CategoryWidgetProps) => {
       />
       <Button
         color={"primary"}
-        className={"absolute justify-self-center self-center bg-secondary"}>
+        className={
+          "absolute justify-self-center self-center bg-secondary hover:bg-primary"
+        }>
         {props.title}
       </Button>
     </div>
@@ -72,7 +74,7 @@ export const Categories = () => {
     <div className={"mt-20 lg:mb-20 lg:mx-20"}>
       <h1
         className={
-          "text-center md:pl-10 md:text-5xl pb-20 font-medium text-4xl text-primary md:text-left "
+          "text-center md:pl-10 md:text-5xl pb-20 font-medium text-4xl text-primary  md:text-left "
         }>
         Popular Categories
       </h1>
