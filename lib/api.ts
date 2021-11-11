@@ -143,7 +143,6 @@ export async function forgotPassword(email: string) {
 export async function resetPassword(code: string, password: string, passwordConfirmation: string) {
   const headers = {
     "Content-Type": "application/json",
-    Authorization: `Bearer ${code}`,
   } as { "Content-Type": string; Authorization?: string };
 
   const requestUrl = getStrapiURL("/auth/reset-password");
