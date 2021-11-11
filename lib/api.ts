@@ -196,6 +196,41 @@ export async function saveProfileAddress(token: string, {
   return;
 }
 
+
+export async function saveProfileMedicalAid(token: string, {
+  provider,
+  scheme_name,
+  membership_number,
+  main_member,
+}: { provider: string, scheme_name: string, membership_number: string, main_member: string }) {
+  const headers = {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${token}`,
+  } as { "Content-Type": string; Authorization?: string };
+
+  const requestUrl = getStrapiURL("/profiles/me/medical-aid");
+  console.debug(`updating: ${requestUrl}`);
+
+  const response = await fetch(requestUrl, {
+    method: "POST",
+    headers: headers,
+    body: JSON.stringify({
+      medical_aid_details: {
+        provider,
+        scheme_name,
+        membership_number,
+        main_member,
+      },
+    }),
+  });
+  if (response.status != 200) {
+    const message = await response.text();
+    throw new Error(message);
+  }
+
+  return;
+}
+
 export async function subscribeToMailer(email: string) {
   const headers = {
     "Content-Type": "application/json",

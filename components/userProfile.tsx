@@ -6,19 +6,21 @@ import cn from "classnames";
 import { MedicalAidDetails } from "./checkout/medicalAidDetails";
 import { MedicalAidDetailsType } from "../types/medicalAid";
 import { OrderHistory } from "./orderHistory";
+import { saveProfileAddress, saveProfileMedicalAid } from "../lib/api";
+import { toast } from "react-hot-toast";
 
 
 export const UserProfile = () => {
-  const { user } = useAuthContext();
+  const { user, authToken } = useAuthContext();
 
   const [
     selectedSection,
     setSelectedSection,
-  ] = useState<"myDetails" | "orderHistory" | "medicalAidDetails" | "security">("myDetails");
+  ] = useState<"myDetails" | "orderHistory" | "medicalAidDetails">("myDetails");
 
   const [values, setValues] = useState({
-    firstName: user?.firstName || "",
-    lastName: user?.lastName || "",
+    first_name: user?.first_name || "",
+    last_name: user?.last_name || "",
     email: user?.email || "",
     address: user?.address || "",
   });
@@ -38,11 +40,39 @@ export const UserProfile = () => {
     setMedicalAidDetails({ ...medicalAidDetails, [name]: event.target.value });
   };
 
-  const [credentials, setCredentials] = useState({
-    oldPass: "",
-    newPass: "",
-    newPassConfirmation: "",
-  });
+  const handleUpdate = async () => {
+    if (authToken && values.address) {
+      try {
+        await saveProfileAddress(authToken, {
+          address: values.address,
+          last_name: values.last_name,
+          first_name: values.first_name,
+        });
+        toast.success("Profile updated");
+      } catch (e) {
+        toast.error(`Something went wrong, we could not update your profile`, { icon: "😞️" });
+        console.error(`Could not update your profile ${e}`);
+      }
+    }
+  };
+
+  const handleUpdateMedicalAidDetails = async () => {
+    if (authToken &&
+      medicalAidDetails.provider &&
+      medicalAidDetails.scheme_name &&
+      medicalAidDetails.membership_number &&
+      medicalAidDetails.main_member) {
+      try {
+        await saveProfileMedicalAid(authToken, medicalAidDetails);
+        toast.success("Medical aid details updated");
+      } catch (e) {
+        toast.error(`Something went wrong, we could not update your medical aid details`, { icon: "😞️" });
+        console.error(`Could not update your medical aid details ${e}`);
+      }
+    } else {
+      toast.error("Please fill in all your details");
+    }
+  };
 
   return (
     <div className={"font-karla bg-gray-50 text-primary px-12 xl:px-24 pb-10"}>
@@ -84,15 +114,6 @@ export const UserProfile = () => {
                 "hover:font-semibold text-left px-4",
               )}>Medical Aid Details
             </button>
-            <button
-              onClick={() => {
-                setSelectedSection("security");
-              }}
-              className={cn(
-                { "font-semibold": selectedSection === "security" },
-                "hover:font-semibold text-left px-4",
-              )}>Security
-            </button>
           </div>
         </div>
         {/* Right column with form */}
@@ -105,14 +126,14 @@ export const UserProfile = () => {
               <Input
                 id={"first-name"}
                 label={"First Name"}
-                value={values.firstName}
-                onChange={handleChange("firstName")}
+                value={values.first_name}
+                onChange={handleChange("first_name")}
               />
               <Input
                 id={"last-name"}
                 label={"Last Name"}
-                value={values.lastName}
-                onChange={handleChange("lastName")}
+                value={values.last_name}
+                onChange={handleChange("last_name")}
               />
 
               <Input
@@ -122,14 +143,24 @@ export const UserProfile = () => {
                 type={"email"}
                 disabled
               />
-              <Input id={"address"}
-                     label={"Address"}
-                     value={values.address}
-                     onChange={handleChange("address")}
-              />
+              {/*<div className={"grid w-full justify-centser"}>*/}
+              {/*  <h2 className={"text-sm text-gray-600 -mt-4"}>Last used shipping address</h2>*/}
+
+              {/*  <p className={"text-gray-900"}>*/}
+              {/*    {user?.address?.split(",").map((line, idx) =>*/}
+              {/*      <p key={idx}>{line}</p>,*/}
+              {/*    )}*/}
+              {/*  </p>*/}
+              {/*</div>*/}
+              {/*<Input id={"address"}*/}
+              {/*       label={"Address"}*/}
+              {/*       value={values.address}*/}
+              {/*       onChange={handleChange("address")}*/}
+              {/*/>*/}
+
 
               <div className="mx-auto col-span-full">
-                <Button color={"primary"}>Update</Button>
+                <Button color={"primary"} onClick={handleUpdate}>Update</Button>
               </div>
             </div>
           )}
@@ -140,44 +171,15 @@ export const UserProfile = () => {
             </div>
           )}
 
-          {selectedSection === "security" && (
-            <div className="grid w-full gap-6 px-10 py-12 mr-24 bg-white lg:grid-cols-2">
-              <Input
-                id={"old-password"}
-                label={"Old Password"}
-                value={credentials.oldPass}
-                type={"password"}
-                onChange={(e) => setCredentials({ ...credentials, oldPass: e.target.value })}
-              />
-              <Input
-                id={"new-password"}
-                label={"New Password"}
-                value={credentials.newPass}
-                type={"password"}
-                onChange={(e) => setCredentials({ ...credentials, newPass: e.target.value })}
-              />
-
-              <Input
-                id={"confirm-new-password"}
-                label={"Confirm New Password"}
-                value={credentials.newPassConfirmation}
-                onChange={(e) => setCredentials({ ...credentials, newPassConfirmation: e.target.value })}
-                type={"password"}
-              />
-              <div className="mx-auto col-span-full">
-                <Button color={"primary"}>Update</Button>
-              </div>
-            </div>
-          )}
-
           {selectedSection === "medicalAidDetails" && (
             <div className="grid w-full px-10 py-2 bg-white">
               <MedicalAidDetails
                 handleChange={handleMedicalAidDetailsChange}
-                values={medicalAidDetails} />
+                values={medicalAidDetails}
+              />
 
               <div className="mx-auto col-span-full">
-                <Button color={"primary"}>Update</Button>
+                <Button color={"primary"} onClick={handleUpdateMedicalAidDetails}>Update</Button>
               </div>
             </div>
           )}
