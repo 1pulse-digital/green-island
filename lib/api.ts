@@ -116,6 +116,86 @@ export interface submitContactFormRequest {
   message: string,
 }
 
+
+export async function forgotPassword(email: string) {
+  const headers = {
+    "Content-Type": "application/json",
+  } as { "Content-Type": string; Authorization?: string };
+
+  const requestUrl = getStrapiURL("/auth/forgot-password");
+
+  const response = await fetch(requestUrl, {
+    method: "POST",
+    headers: headers,
+    body: JSON.stringify({
+      email,
+    }),
+  });
+
+  if (response.status != 200) {
+    const message = await response.text();
+    throw new Error(message);
+  }
+
+  return;
+}
+
+export async function resetPassword(code: string, password: string, passwordConfirmation: string) {
+  const headers = {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${code}`,
+  } as { "Content-Type": string; Authorization?: string };
+
+  const requestUrl = getStrapiURL("/auth/reset-password");
+
+  const response = await fetch(requestUrl, {
+    method: "POST",
+    headers: headers,
+    body: JSON.stringify({
+      code,
+      password,
+      passwordConfirmation,
+    }),
+  });
+
+  if (response.status != 200) {
+    const message = await response.text();
+    throw new Error(message);
+  }
+
+  return;
+}
+
+export async function saveProfileAddress(token: string, {
+  address,
+  first_name,
+  last_name,
+}: { address: string, first_name: string, last_name: string }) {
+  const headers = {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${token}`,
+  } as { "Content-Type": string; Authorization?: string };
+
+  const requestUrl = getStrapiURL("/profiles/me/address");
+  console.debug(`updating: ${requestUrl}`);
+
+  const response = await fetch(requestUrl, {
+    method: "POST",
+    headers: headers,
+    body: JSON.stringify({
+      address,
+      first_name,
+      last_name,
+    }),
+  });
+  if (response.status != 200) {
+    const message = await response.text();
+    throw new Error(message);
+  }
+
+  return;
+}
+
 export async function subscribeToMailer(email: string) {
   const headers = {
     "Content-Type": "application/json",
@@ -129,7 +209,11 @@ export async function subscribeToMailer(email: string) {
     headers: headers,
     body: JSON.stringify({ email }),
   });
-  // console.debug(`posted:  ${requestUrl}\n`, response.text());
+
+  if (response.status != 200) {
+    const message = await response.text();
+    throw new Error(message);
+  }
 
   return;
 }
@@ -145,15 +229,17 @@ export async function submitContactForm(request: submitContactFormRequest, token
   }
 
   const requestUrl = getStrapiURL("/contact");
-  // console.debug(`posting: ${requestUrl}`);
 
   const response = await fetch(requestUrl, {
     method: "POST",
     headers: headers,
     body: JSON.stringify(request),
   });
-  // console.debug(`posted:  ${requestUrl}\n`, response.text());
 
+  if (response.status != 200) {
+    const message = await response.text();
+    throw new Error(message);
+  }
   return;
 }
 
