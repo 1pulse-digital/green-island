@@ -15,9 +15,9 @@ const Shop = (props: ShopProps) => {
     <MainLayout>
       <ShopBanner />
       {/* We use a 12 column grid system to fine tune the breakpoints */}
-      <div className={"relative grid md:flex lg:min-h-[768px] bg-blue-400"}>
+      <div className={"relative grid md:flex lg:min-h-[768px]"}>
         {/* Sidebar */}
-        <div className={""}>
+        <div className={"max-w-full bg-red-500"}>
           <ShopSidebar />
         </div>
 

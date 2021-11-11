@@ -27,7 +27,7 @@ export const ShopBanner = () => {
 
   return (
     <div
-      className={"grid sm:grid-col-1 lg:grid-cols-1  h-[450px] bg-gray-50   "}>
+      className={"grid h-[450px] bg-gray-50"}>
       <div className={"relative lg:px-[100px] px-10 grid content-center "}>
         <Image
           layout="fill"
@@ -39,7 +39,7 @@ export const ShopBanner = () => {
         <div className={"z-10 grid sm:px-0 content-center"}>
           <h1
             className={
-              "lg:text-5xl  md:text-4xl text-2xl text-primary sm:grid-cols-1 md:grid-cols-1  font-karla"
+              "lg:text-5xl  md:text-4xl text-3xl text-primary sm:grid-cols-1 md:grid-cols-1  font-karla"
             }>
             Get 15% off Your first purchase.
           </h1>
@@ -51,7 +51,7 @@ export const ShopBanner = () => {
               Fill in your details below to receive your 15% off coupon code.
             </span>
           </p>
-          <div className={"flex gap-4"}>
+          <div className={"flex flex-wrap gap-4"}>
             <input
               className="h-12 px-4 bg-white rounded-full appearance-none md:mr-2 md:mb-0 focus:outline-none focus:border-deep-purple-accent-400 focus:shadow-outline"
               placeholder="Full Name"

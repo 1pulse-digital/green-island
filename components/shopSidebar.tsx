@@ -11,7 +11,7 @@ export const ShopSidebar = (props: ShopSidebarProps) => {
 
   return (
     <div className={"bg-gray-100 h-full py-5 px-10 "}>
-      <div className="flex flex-col sm:justify-center">
+      <div className="flex flex-col max-w-full sm:justify-center">
         <nav className={"grid gap-6"}>
           {/* Search box */}
           <div className="relative">
@@ -22,7 +22,7 @@ export const ShopSidebar = (props: ShopSidebarProps) => {
           <div>
             {/* Shop by category */}
             <div>
-              <p className="mb-4 w-full text-2xl font-bold text-primary font-karla">
+              <p className="w-full mb-4 text-2xl font-bold text-primary font-karla">
                 Category
               </p>
               <AlgoliaRefinementList
@@ -35,7 +35,7 @@ export const ShopSidebar = (props: ShopSidebarProps) => {
 
             {/* Shop by product type */}
             {/*<div>*/}
-            {/*  <p className="mb-4 w-full text-2xl font-bold text-primary font-karla">*/}
+            {/*  <p className="w-full mb-4 text-2xl font-bold text-primary font-karla">*/}
             {/*    Product Type*/}
             {/*  </p>*/}
             {/*  <div>*/}
@@ -45,7 +45,7 @@ export const ShopSidebar = (props: ShopSidebarProps) => {
 
             {/* Shop by product form */}
             <div>
-              <p className="mb-4 w-full text-2xl font-bold text-primary font-karla">
+              <p className="w-full mb-4 text-2xl font-bold text-primary font-karla">
                 Product Form
               </p>
               <div>
