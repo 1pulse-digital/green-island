@@ -2,6 +2,7 @@ import { Wrapper } from "@googlemaps/react-wrapper";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import {
+  breakdownGeoResult,
   isMajorCity,
   ShippingAddress,
 } from "../components/checkout/shippingAddress";
@@ -13,7 +14,7 @@ import { PaymentMethod } from "../components/checkout/paymentMethod";
 import payfastLogo from "../components/checkout/PayFast_logo_colour.png";
 import { useCartContext } from "../contexts/cartContext";
 import { useAuthContext } from "../contexts/authContext";
-import { getStrapiURL } from "../lib/api";
+import { getStrapiURL, saveProfileAddress } from "../lib/api";
 import { parseErrorResponse } from "../utils/strapi";
 import { toast } from "react-hot-toast";
 import { Order } from "../types/order";
@@ -22,6 +23,7 @@ import Button from "../components/button";
 import { Input } from "../components/input";
 import { Disclaimer } from "../components/disclaimer";
 import { MedicalAidDetailsType } from "../types/medicalAid";
+import { geocodeByAddress } from "react-places-autocomplete";
 
 const Checkout = () => {
   const { user, authToken, setLoading } = useAuthContext();
@@ -46,6 +48,8 @@ const Checkout = () => {
   const [paymentStatus, setPaymentStatus] = useState<"paid" | "cancelled">();
   const [order, setOrder] = useState<Order>();
   const [email, setEmail] = useState(user?.email || "");
+
+  // auto populate the user email if user is logged in
   useEffect(() => {
     setEmail(user?.email || "");
   }, [user]);
@@ -57,8 +61,8 @@ const Checkout = () => {
   const [shippingCost, setShippingCost] = useState<number>();
 
   const [shippingAddress, setShippingAddress] = useState<ShippingAddress>({
-    first_name: "",
-    last_name: "",
+    first_name: user?.first_name || "",
+    last_name: user?.last_name || "",
     company_name: "",
     phone_number: "",
     street_number: "",
@@ -66,11 +70,29 @@ const Checkout = () => {
     city: "",
     country: "",
     postal_code: "",
-    formatted_address: "",
+    formatted_address: user?.address || "",
     area: "",
     province: "",
     street: "",
   });
+
+  // auto populate the user address if user is logged in
+  useEffect(() => {
+    if (user?.address) {
+      geocodeByAddress(user.address).then((geoResultList) => {
+        if (!geoResultList || geoResultList.length < 1) {
+          return;
+        }
+        const geoResult = geoResultList[0];
+        breakdownGeoResult(geoResult);
+        const addressBreakdown = breakdownGeoResult(geoResult);
+
+        setShippingAddress(prev => ({ ...prev, ...addressBreakdown }));
+      }).catch(e => {
+        console.error("Could not parse user address:", e);
+      });
+    }
+  }, [user?.address]);
 
   const createOrder = async (): Promise<Order> => {
     const requestUrl = getStrapiURL("/orders");
@@ -113,7 +135,7 @@ const Checkout = () => {
       data = await response.json();
     } catch (e) {
       console.error(
-        `Could not create order: ${e.message ? e.message : e.toString()}`
+        `Could not create order: ${e.message ? e.message : e.toString()}`,
       );
       setLoading(false);
       throw `Something went wrong with the order placement`;
@@ -156,7 +178,7 @@ const Checkout = () => {
       data = await response.json();
     } catch (e) {
       console.error(
-        `Could not create payment: ${e.message ? e.message : e.toString()}`
+        `Could not create payment: ${e.message ? e.message : e.toString()}`,
       );
       setLoading(false);
       throw `Something went wrong with the order placement`;
@@ -201,7 +223,7 @@ const Checkout = () => {
       data = await response.json();
     } catch (e) {
       console.error(
-        `Could not apply coupon: ${e.message ? e.message : e.toString()}`
+        `Could not apply coupon: ${e.message ? e.message : e.toString()}`,
       );
       setLoading(false);
       toast.error(`Something went wrong while applying the coupon`);
@@ -234,7 +256,18 @@ const Checkout = () => {
       const createOrderResult = await createOrder();
       setOrder(createOrderResult);
       toast.success("Your order has been placed, please proceed to payment");
+
+      if (authToken && shippingAddress.formatted_address) {
+        // save the user profile
+        await saveProfileAddress(authToken, {
+          address: shippingAddress.formatted_address,
+          first_name: user?.first_name || shippingAddress.first_name,
+          last_name: user?.last_name || shippingAddress.last_name,
+        }).finally();
+      }
+
     } catch (e) {
+      console.error(`Order placement failed, can't proceed to payment: ${e.message ? e.message : e.toString()}`);
       toast.error("Order placement failed, can't proceed to payment");
     }
   };
@@ -246,7 +279,7 @@ const Checkout = () => {
       console.log(`Loading payfast popup with uuid '${uuid}'`);
       // trigger the payfast popup
       // @ts-ignore
-      window.payfast_do_onsite_payment({ uuid: uuid }, function (result) {
+      window.payfast_do_onsite_payment({ uuid: uuid }, function(result) {
         console.log("Payfast payment result = ", result);
         if (result === true) {
           // payment success
@@ -261,7 +294,7 @@ const Checkout = () => {
       });
     } catch (e) {
       console.error(
-        `Could not create order: ${e.message ? e.message : e.toString()}`
+        `Could not create order: ${e.message ? e.message : e.toString()}`,
       );
       toast.error("Could not create the payment");
     }
@@ -280,7 +313,7 @@ const Checkout = () => {
     }
 
     setShippingCost(165);
-  }, [shipping, shippingAddress]);
+  }, [shipping, shippingAddress.city]);
 
   return (
     <MainLayout>
