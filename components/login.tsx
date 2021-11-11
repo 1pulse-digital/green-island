@@ -9,8 +9,8 @@ export const Login = () => {
   const { signIn, isLoading } = useAuthContext();
   const router = useRouter();
   const [credentials, setCredentials] = useState({
-    username: router.query.username as string || "",
-    password: router.query.password as string || "",
+    username: (router.query.username as string) || "",
+    password: (router.query.password as string) || "",
   });
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,10 +31,10 @@ export const Login = () => {
   return (
     <div
       className={
-        " grid md:grid-col-1 lg:grid-cols-2 md:h-full lg:h-[700px] w-full bg-gray-100 content-center font-karla p-7 md:px-20 text-primary"
+        " grid md:grid-col-1 xl:grid-cols-2 md:h-full xl:h-[650px] w-full bg-gray-100 content-center font-karla p-10 md:px-20 text-primary"
       }>
       {/* First column - Create account*/}
-      <div className={"p-10 md:p-20 bg-white"}>
+      <div className={"p-10 md:p-20 bg-white rounded-lg xl:mr-5"}>
         <h6 className={"text-4xl grid pb-7 "}>Login or create an account</h6>
         <div className={""}>
           <p className={"text-lg "}>
@@ -49,7 +49,7 @@ export const Login = () => {
                   "flex flex-row items-center hover:bg-secondary hover:text-white"
                 }>
                 <svg
-                  className="pr-1 w-6 h-6"
+                  className="w-6 h-6 pr-1"
                   viewBox="0 0 20 20"
                   fill="currentColor">
                   <path
@@ -67,9 +67,9 @@ export const Login = () => {
 
       {/* Second column - Sign in */}
       <div>
-        <div>
-          <form className="mt-10 sm:mt-10 md:ml-0 lg:mt-0 lg:ml-10 text-primary">
-            <div className="p-20 bg-white">
+        <div className={"my-10 xl:my-0"}>
+          <form className="mt-10 sm:mt-10 md:ml-0 xl:ml-5 lg:mt-0 text-primary">
+            <div className="p-20 bg-white rounded-lg">
               <div className="">
                 <h6 className={"text-4xl grid pb-7"}>Sign in</h6>
                 <p className={"text-lg pb-3"}>
@@ -83,7 +83,7 @@ export const Login = () => {
                   <input
                     type="email"
                     id="contact-form-name"
-                    className="block py-2 px-4 mt-1 w-full placeholder-gray-400 rounded-md ring-offset-2 shadow-sm focus:ring focus:outline-none border-primary focus:border-primary"
+                    className="block w-full px-4 py-2 mt-1 placeholder-gray-400 rounded-md shadow-sm ring-offset-2 focus:ring focus:outline-none border-primary focus:border-primary"
                     placeholder="user@mail.com"
                     value={credentials.username}
                     name="username"
@@ -97,36 +97,38 @@ export const Login = () => {
                   <input
                     type="password"
                     id="password-field"
-                    className="py-2 px-4 w-full bg-white rounded ring-gray-700 focus:ring-2"
+                    className="w-full px-4 py-2 bg-white rounded ring-gray-700 focus:ring-2"
                     placeholder=""
                     name="password"
                     onChange={handleChange}
                   />
                 </div>
-
+                <div>
+                  <Link href={"/forgot-password"}>
+                    <a
+                      className={
+                        "hover:text-secondary text-red-500 cursor-pointer"
+                      }>
+                      {" "}
+                      Forgot password?
+                    </a>
+                  </Link>
+                </div>
                 <div className="text-left">
                   <Button
                     color={"primary"}
-                    className={
-                      "flex flex-row items-center"
-                    }
+                    className={"flex flex-row items-center"}
                     disabled={isLoading}
-                    onClick={handleLogin}
-                  >
+                    onClick={handleLogin}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="w-5 h-5"
                       viewBox="0 0 20 20"
                       fill="currentColor">
-                      <path
-                        d="M10 2a5 5 0 00-5 5v2a2 2 0 00-2 2v5a2 2 0 002 2h10a2 2 0 002-2v-5a2 2 0 00-2-2H7V7a3 3 0 015.905-.75 1 1 0 001.937-.5A5.002 5.002 0 0010 2z" />
+                      <path d="M10 2a5 5 0 00-5 5v2a2 2 0 00-2 2v5a2 2 0 002 2h10a2 2 0 002-2v-5a2 2 0 00-2-2H7V7a3 3 0 015.905-.75 1 1 0 001.937-.5A5.002 5.002 0 0010 2z" />
                     </svg>
                     LOGIN
                   </Button>
-                </div>
-                <div>
-                  <Link href={"/forgot-password"}><a
-                    className={"hover:text-primary text-secondary cursor-pointer"}> Forgot password?</a></Link>
                 </div>
               </div>
             </div>
