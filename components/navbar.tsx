@@ -109,7 +109,7 @@ export const Navbar = () => {
                           <p className="mt-6 text-base font-medium text-center text-gray-500">
                             Existing customer?{" "}
                             <Link href={"/login"}>
-                              <a className="text-indigo-600 hover:text-indigo-500">
+                              <a className="text-secondary hover:text-indigo-500">
                                 Sign in
                               </a>
                             </Link>
