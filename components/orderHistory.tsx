@@ -23,7 +23,7 @@ const OrderHistory = (props: OrderHistoryProps) => {
 
   const handleRequestInvoice = (order_id: number) => async () => {
     try {
-      await fetchAPI(`/orders/myInvoice/${order_id}`, authToken);
+      await fetchAPI(`/orders/my-invoice/${order_id}`, authToken);
     } catch (e) {
       console.error(`Could not request invoice: ${e.message ? e.message : e.toString()}`);
       toast.error("Something went wrong, we could not request your invoice");
