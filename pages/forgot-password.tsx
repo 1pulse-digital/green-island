@@ -10,6 +10,8 @@ const ResetPasswordPage = () => {
     result: "",
   });
 
+  const [isLoading, setLoading] = useState(false);
+
   const handleChange = (name: string) => (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setValues({ ...values, [name]: event.target.value });
   };
@@ -21,16 +23,19 @@ const ResetPasswordPage = () => {
     }
 
     try {
+      setLoading(true);
       await forgotPassword(values.email);
+      setLoading(false)
       setValues({ email: "", result: "A password reset link has been sent to your email. Please check your mailbox" });
     } catch (e) {
+      setLoading(false)
       toast.error("Something went wrong, we could reset your password");
     }
 
   };
 
   return (
-    <div className={"h-screen w-full bg-white grid content-center"}>
+    <div className={"h-screen w-full bg-white grid place-items-center"}>
       <div className={"container grid justify-center gap-6"}>
         {values.result === "" && (
           <>
@@ -42,7 +47,7 @@ const ResetPasswordPage = () => {
               type={"email"}
               onChange={handleChange("email")}
             />
-            <Button color={"primary"} onClick={handleReset}>Request reset</Button>
+            <Button color={"primary"} onClick={handleReset} disabled={isLoading}>Request reset</Button>
           </>
         )}
         {values.result && (
