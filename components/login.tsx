@@ -3,6 +3,7 @@ import Button from "./button";
 import { useAuthContext } from "../contexts/authContext";
 import { useRouter } from "next/router";
 import { toast } from "react-hot-toast";
+import Link from "next/link";
 
 export const Login = () => {
   const { signIn, isLoading } = useAuthContext();
@@ -122,6 +123,10 @@ export const Login = () => {
                     </svg>
                     LOGIN
                   </Button>
+                </div>
+                <div>
+                  <Link href={"/forgot-password"}><a
+                    className={"hover:text-primary text-secondary cursor-pointer"}> Forgot password?</a></Link>
                 </div>
               </div>
             </div>
