@@ -31,7 +31,7 @@ export const Login = () => {
   return (
     <div
       className={
-        " grid md:grid-col-1 xl:grid-cols-2 md:h-full xl:h-[650px] w-full bg-gray-100 content-center font-karla p-10 md:px-20 text-primary"
+        " grid md:grid-col-1 xl:grid-cols-2 md:h-full xl:h-[650px] w-full bg-gray-100 content-center font-karla p-5 sm:p-10 md:px-20 text-primary"
       }>
       {/* First column - Create account*/}
       <div className={"p-10 md:p-20 bg-white rounded-lg xl:mr-5"}>
@@ -69,7 +69,7 @@ export const Login = () => {
       <div>
         <div className={"my-10 xl:my-0"}>
           <form className="mt-10 sm:mt-10 md:ml-0 xl:ml-5 lg:mt-0 text-primary">
-            <div className="p-20 bg-white rounded-lg">
+            <div className="p-10 bg-white rounded-lg md:p-20">
               <div className="">
                 <h6 className={"text-4xl grid pb-7"}>Sign in</h6>
                 <p className={"text-lg pb-3"}>
