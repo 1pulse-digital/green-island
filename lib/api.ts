@@ -60,6 +60,30 @@ export async function createStrapiWishlist(token: string) {
   return data;
 }
 
+export async function requestCoupon(email: string, fullName: string) {
+  const headers = {
+    "Content-Type": "application/json",
+  } as { "Content-Type": string };
+
+  const requestUrl = getStrapiURL("/coupons/request");
+
+  const response = await fetch(requestUrl, {
+    method: "POST",
+    headers: headers,
+    body: JSON.stringify({
+      fullName,
+      email,
+    }),
+  });
+
+  if (response.status != 200) {
+    const message = await response.text();
+    throw new Error(message);
+  }
+
+  return;
+}
+
 export async function createStrapiShoppingCart(token: string) {
   const headers = {
     "Content-Type": "application/json",
