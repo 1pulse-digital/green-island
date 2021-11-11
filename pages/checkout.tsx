@@ -54,6 +54,7 @@ const Checkout = () => {
     setEmail(user?.email || "");
   }, [user]);
 
+
   const [couponCode, setCouponCode] = useState("");
   const [appliedCoupons, setAppliedCoupons] = useState<string[]>([]);
 
@@ -79,6 +80,7 @@ const Checkout = () => {
   // auto populate the user address if user is logged in
   useEffect(() => {
     if (user?.address) {
+
       geocodeByAddress(user.address).then((geoResultList) => {
         if (!geoResultList || geoResultList.length < 1) {
           return;
@@ -92,7 +94,12 @@ const Checkout = () => {
         console.error("Could not parse user address:", e);
       });
     }
-  }, [user?.address]);
+  }, [user]);
+
+  // auto populate the user detials if user is logged in
+  useEffect(() => {
+    setShippingAddress(prev => ({ ...prev, first_name: user?.first_name || "", last_name: user?.last_name || "" }));
+  }, [user]);
 
   const createOrder = async (): Promise<Order> => {
     const requestUrl = getStrapiURL("/orders");
