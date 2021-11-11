@@ -8,8 +8,8 @@ export interface User {
   confirmed: boolean;
   blocked: null | boolean;
   role: Role;
-  firstName?: string;
-  lastName?: string;
+  first_name?: string;
+  last_name?: string;
   address?: string;
   medical_aid_details?: MedicalAidDetailsType;
 }
