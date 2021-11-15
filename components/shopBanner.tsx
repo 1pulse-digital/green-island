@@ -15,12 +15,12 @@ export const ShopBanner = () => {
           placeholder={"blur"}
           alt="Organic medicine on white table"
         />
-        <div className={" grid  sm:px-0 content-center  "}>
+        <div className={" grid  sm:px-0 content-center"}>
           <h1
             className={
               "lg:text-5xl  md:text-4xl text-2xl text-primary z-10 sm:grid-cols-1 md:grid-cols-1  font-karla"
             }>
-            Get 15% off Your first purchase.
+            Get 15% off your first purchase.
           </h1>
           <p
             className={
