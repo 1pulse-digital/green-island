@@ -39,7 +39,7 @@ const ResetPasswordPage = () => {
     }
   };
   return (
-    <div className={"h-screen w-full bg-white grid content-center"}>
+    <div className={"h-screen w-full bg-white grid place-content-center"}>
       <div className={"container grid justify-center gap-6"}>
         <h1 className={"text-5xl text-primary"}>Reset your password</h1>
         <Input
