@@ -80,7 +80,7 @@ const DesktopBanner = () => {
             </span>
             <br />
             <span className={"xl:bg-transparent bg-white/90 inline rounded"}>
-              and the knowledge to own their health.
+              and the knowledge to master their health.
             </span>
           </p>
 

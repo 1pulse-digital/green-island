@@ -21,7 +21,7 @@ const About = () => {
           {/* Left column - Text introduction goes here*/}
           <div className={"grid content-center h-32 lg:h-auto"}>
             <h2 className={"text-5xl font-bold font-karla text-primary"}>
-              Where it all began…
+              How it started…
             </h2>
           </div>
 
@@ -54,34 +54,26 @@ const About = () => {
           }>
           <div>
             <p>
-              After completing his Masters in Homeopathy at the University of
-              Johannesburg, Dr Kohler started consulting from the practice rooms
-              of a health shop. While these humble beginnings taught him a great
-              deal, the commercial environment was frenetic and he could sense
-              that his patients often felt harried. As he built up his practice,
-              he dreamed of having his own space, where he could offer a calm,
-              welcoming environment where patients would feel at home. He and
-              his wife Bronwyn searched for a place that felt right, and finally
-              found it in the quiet leafy suburb of Bryanston.
+              From an early age, Dr Robin Kohler knew that he wanted to help
+              people. Like his specialist physician father, Dr Kohler was always
+              intrigued by what made people ill. He completed a Masters in
+              Homeopathy at the University of Johannesburg but found his true
+              calling when he discovered Functional Medicine.
             </p>
             <br />
             <p>
-              They started Perfect Health together in 2010, with Robin
-              consulting, Bronwyn running the practice and their family playing
-              just across the garden. When Sindi Ntozini took over reception in
-              2012, our core team was complete.
+              Functional Medicine’s systematic, science-based approach to
+              finding and treating root causes was a perfect fit, and Dr Kohler
+              has spent hundreds of hours growing and deepening his functional
+              health knowledge.
             </p>
             <br />
             <p>
-              Our mission at Perfect Health is to help our patients understand
-              and master their own healing and health. Robin devotes many hours
-              to studying the deepest root causes of disease. He has added the
-              modalities of iridology, live blood analysis, genetic analysis and
-              functional testing to his skillset, and built up a dispensary of
-              the most effective herbal, nutritional, metabolic and homeopathic
-              tools available. Over the past 11 years, we have built a highly
-              regarded and successful Functional Health practice that caters to
-              patients from birth to old age.
+              He started the Perfect Health Practice with his wife, Bronwyn
+              Kohler, in 2010. Together, they have striven to make it a haven of
+              both healing and learning, where patients can learn how to not
+              only restore their health, but also optimise and preserve it far
+              into the future.
             </p>
           </div>
 
@@ -137,17 +129,16 @@ const About = () => {
               individual symptoms.
             </Service>
             <Service title="Iridology">
-              A number of 19th century medical practitioners began to notice
-              that certain injuries, ailments and constitutional weaknesses were
-              associated with specific marks that appeared in the iris. In the
-              early 1900’s, these observations were synthesised into a
-              comprehensive study of the information that the iris could reveal
-              about a patient’s state of health. Iridology offers clues to
-              internal weaknesses, injuries or constitutional predispositions
-              not easily perceived without invasive procedures. Dr Kohler uses
-              this technique as a supplement to his normal diagnostic procedures
-              to help him thoroughly assess the potential root causes of
-              disease.
+              19th century medical practitioners noticed that certain injuries,
+              ailments, and constitutional weaknesses were associated with
+              specific marks that appeared in the iris. These observations were
+              synthesised into a comprehensive study of the information that the
+              iris could reveal about a patient’s state of health. Iridology
+              offers clues to internal weaknesses, injuries or constitutional
+              predispositions not easily perceived without invasive procedures.
+              Dr Kohler uses this technique as a supplement to his normal
+              diagnostic procedures to help him thoroughly assess the potential
+              root causes of disease.
             </Service>
             <Service title="Live Blood Analysis">
               Microscopic inspection of a droplet of fresh live blood can reveal
@@ -189,16 +180,25 @@ const About = () => {
               education="MTech Hom, Dip. Irid, Cert. Live Blood Analysis, FMCP"
               title="Naturopath, Iridologist, and Functional Medicine Practitioner"
               profilePicture={RobinKohler}>
-              The son of a specialist physician, Dr Robin Kohler chose to put
-              his own spin on the family trade. While he wanted to work in
-              health, his instincts drew him towards preventative and natural
-              medicine. He qualified as a Registered Homeopath in 2004, and
-              added the modalities of Iridology and Live Blood Analysis to his
-              skillset in 2006. He has since invested hundreds of hours into
-              Functional Medicine training through the Institute for Functional
-              Medicine. Outside the practice, Dr Kohler is a loving father, a
-              passionate beach volleyball player and an adventurer who loves to
-              explore new places and cultures.
+              Anyone who knows Dr Kohler will tells you that he eats, sleeps and
+              breaths natural health. Son of a specialist physician, Robin’s
+              interest in health began at an early age, but his real passion
+              ignited when he discovered Functional Medicine. Solving the puzzle
+              of health through the lens of root causes is a quest that has
+              inspired him to devote hundreds of hours to learning and growing
+              his skillset over nearly two decades of private practice. He was
+              amongst the first graduates of the Applied Functional Medicine in
+              Clinical Practice course, hosted by the Institute of Functional
+              medicine in 2012. He has trained in iridology, dark field
+              microscopy, bio puncture, traditional Chinese medicine and
+              nutrigenomics to supplement his diagnostic and therapeutic
+              abilities.
+              <p>
+                <br />
+                Outside the practice, Dr Kohler is a loving father, a talented
+                beach volleyball player, and an adventurer who loves to explore
+                new places and cultures.
+              </p>
             </Bio>
 
             <div
@@ -265,18 +265,13 @@ const About = () => {
             education=""
             title="Practice Manager"
             profilePicture={BronwynKohler}>
-            Trained as an Environmental Scientist, Bronwyn spent her early
-            career producing award winning wildlife documentaries. She has a
-            fascination with creatures on the diminutive end of Nature, from
-            dung beetles to microbes. Her particular passion is the world of
-            microorganisms that co-habit our human bodies: the microbiome. When
-            pregnant with her first child, Bronwyn left film to focus on
-            building the Perfect Health Practice with her husband, Dr Kohler.
-            She completed a Diploma in Nutrition and qualified as a certified
-            Functional Health coach, and uses these skills to offer optimum care
-            and support to the patients of Perfect Health. She authors our
-            health-related blog articles and newsletters, and is always up for a
-            meaty conversation about health!
+            Bronwyn is a certified Functional Health Coach with an honours
+            degree in Microbiology and Environmental Science and a Diploma in
+            Nutrition . Her particular passion is the hidden world that
+            co-habits our human bodies: the microbiome. She uses her training
+            and skills to offer optimum care and support to the patients of
+            Perfect Health, and author our health-related blog articles and
+            newsletters.
           </Bio>
 
           {/*Sindi Ntozini Bio */}
@@ -292,6 +287,18 @@ const About = () => {
             its an appointment, medication or a kind word. Her warmth and
             friendliness are part of what make Perfect Health a welcoming family
             practice.
+          </Bio>
+          {/*Khayelihle Ngwenya */}
+          <Bio
+            name="Khayelihle Ngwenya"
+            education=""
+            title="Administrator"
+            profilePicture={SindiNtozini}>
+            Khayelihle, or Lihle as we know her, takes care of the
+            behind-the-scenes admin for the practice. Mother of two boys, Lihle
+            is always calm under pressure and ready to solve whatever problems
+            come her way. She can always be depended on for a friendly smile and
+            a helping hand.
           </Bio>
         </section>
       </div>
