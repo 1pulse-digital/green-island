@@ -27,7 +27,7 @@ import { geocodeByAddress } from "react-places-autocomplete";
 
 const Checkout = () => {
   const { user, authToken, setLoading } = useAuthContext();
-  const { cartItems } = useCartContext();
+  const { cartItems, clearCart } = useCartContext();
 
   const [medicalAidDetails, setMedicalAidDetails] =
     useState<MedicalAidDetailsType>({
@@ -292,6 +292,7 @@ const Checkout = () => {
           // payment success
           setLoading(false);
           setPaymentStatus("paid");
+          clearCart()
           toast.success("Payment successful");
         } else {
           // payment failure
