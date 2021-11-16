@@ -21,13 +21,14 @@ export const ShopBanner = () => {
     }
   };
 
-  const handleChange = (name: string) => (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setValues({ ...values, [name]: event.target.value });
-  };
+  const handleChange =
+    (name: string) =>
+    (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      setValues({ ...values, [name]: event.target.value });
+    };
 
   return (
-    <div
-      className={"grid h-[450px] bg-gray-50"}>
+    <div className={"grid h-[450px] bg-gray-50"}>
       <div className={"relative lg:px-[100px] px-10 grid content-center "}>
         <Image
           layout="fill"
@@ -41,12 +42,9 @@ export const ShopBanner = () => {
             className={
               "lg:text-5xl  md:text-4xl text-3xl text-primary sm:grid-cols-1 md:grid-cols-1  font-karla"
             }>
-            Get 15% off Your first purchase.
+            Get 15% off your first purchase.
           </h1>
-          <p
-            className={
-              "text-2xl my-8 text-gray-600 font-light font-karla"
-            }>
+          <p className={"text-2xl my-8 text-gray-600 font-light font-karla"}>
             <span className="inline bg-white/90 xl:bg-transparent">
               Fill in your details below to receive your 15% off coupon code.
             </span>
@@ -82,7 +80,9 @@ export const ShopBanner = () => {
             {/*  value={values.email}*/}
             {/*  onChange={handleChange("email")}*/}
             {/*/>*/}
-            <Button color={"primary"} onClick={handleCouponRequest}>Submit</Button>
+            <Button color={"primary"} onClick={handleCouponRequest}>
+              Submit
+            </Button>
           </div>
         </div>
       </div>
