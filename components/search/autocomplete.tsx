@@ -1,6 +1,6 @@
 import { connectAutoComplete } from "react-instantsearch-dom";
 import { Hit } from "react-instantsearch-core";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Product } from "../../types/product";
 import Image from "next/image";
 import { useCartContext } from "../../contexts/cartContext";
@@ -8,6 +8,7 @@ import { Popover } from "@headlessui/react";
 import { useRouter } from "next/router";
 import { AlgoliaLogo } from "./logo";
 import { prettyPrice } from "../../lib/calc";
+import useOnClickOutside from "use-onclickoutside";
 
 interface AutocompleteProps {
   hits: Hit[];
@@ -77,8 +78,13 @@ const Autocomplete = ({
     }
   }, [currentRefinement, hits.length]);
 
+  const ref = useRef(null);
+  useOnClickOutside(ref, () => {
+    setShowResults(false);
+  });
+
   return (
-    <div className={"font-karla w-full"}>
+    <div ref={ref} className={"font-karla w-full"}>
       <input
         className={"bg-white shadow-sm border-0 rounded-full px-4 py-2 w-full"}
         type="search"
@@ -98,7 +104,7 @@ const Autocomplete = ({
           {showResults && (
             <div>
               <Popover.Panel static>
-                <div className="grid gap-2">
+                <div className="grid gap-2 max-h-[600px] overflow-y-scroll">
                   {hits.map((hit) => {
                     const product = hit as unknown as Product;
                     return <ProductItem key={hit.objectID} product={product} />;
@@ -111,12 +117,12 @@ const Autocomplete = ({
                       No items found
                     </p>
                   )}
-                  <div
-                    className={
-                      "flex mt-1 justify-end mx-2 py-2 border-t-2 border-gray-100"
-                    }>
-                    <AlgoliaLogo />
-                  </div>
+                </div>
+                <div
+                  className={
+                    "flex mt-1 justify-end mx-2 py-2 border-t-2 border-gray-100"
+                  }>
+                  <AlgoliaLogo />
                 </div>
               </Popover.Panel>
             </div>
