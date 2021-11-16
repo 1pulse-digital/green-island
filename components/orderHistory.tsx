@@ -15,7 +15,7 @@ export interface OrderHistoryProps {
 
 const OrderHistory = (props: OrderHistoryProps) => {
   const [pastOrders, setPastOrders] = useState<Order[]>();
-  const { authToken } = useAuthContext();
+  const { authToken, user, isLoading, setLoading } = useAuthContext();
 
   const fetchOrders = async (token: string): Promise<Order[]> => {
     return await fetchAPI("/orders/me", token);
@@ -23,8 +23,14 @@ const OrderHistory = (props: OrderHistoryProps) => {
 
   const handleRequestInvoice = (order_id: number) => async () => {
     try {
+      setLoading(true);
       await fetchAPI(`/orders/my-invoice/${order_id}`, authToken);
+      toast.success(`Your invoice has been sent, please check your mail ${user?.email}`, {
+        duration: 5000,
+      });
+      setLoading(false);
     } catch (e) {
+      setLoading(false);
       console.error(`Could not request invoice: ${e.message ? e.message : e.toString()}`);
       toast.error("Something went wrong, we could not request your invoice");
     }
@@ -47,7 +53,7 @@ const OrderHistory = (props: OrderHistoryProps) => {
       <span className={"font-semibold"}>Date</span>
     </div>
 
-    <div className={"divide-y divide-primary col-span-full grid gap-2 max-h-screen overflow-y-scroll"}>
+    <div className={"divide-y divide-primary col-span-full grid max-h-screen overflow-y-scroll"}>
       {pastOrders?.map(order => {
         return (
           <Disclosure key={order.id}>
@@ -62,11 +68,11 @@ const OrderHistory = (props: OrderHistoryProps) => {
                       className={cn({ "transform rotate-180": open }, "w-5 h-5 text-primary")} />
                   </div>
                 </Disclosure.Button>
-                <Disclosure.Panel className="text-gray-500">
-                  <div className={""}>
+                <Disclosure.Panel className={"text-gray-500"}>
+                  <div className={"grid gap-2 p-2"}>
                     {order.items?.map((item, idx) => <CartItem item={item} key={idx} disabled />)}
                     <div className={"my-4 justify-end flex"}>
-                      <SmallButton onClick={handleRequestInvoice(order.id)} color={"primary"}>
+                      <SmallButton onClick={handleRequestInvoice(order.id)} color={"primary"} disabled={isLoading}>
                         Request invoice for order #{order.id}
                       </SmallButton>
                     </div>
