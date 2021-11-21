@@ -38,6 +38,11 @@ const validateProduct = (product: Product): string | undefined => {
     }
   }
 
+  const slugRegEx = new RegExp("^[A-Za-z0-9-_.~]*$");
+  if (!product.slug.match(slugRegEx)) {
+    invalidReasons.push(`slug "${product.slug}" is invalid`);
+  }
+
   if (invalidReasons.length > 0) {
     return (invalidReasons.join("; "));
   }
@@ -46,6 +51,23 @@ const validateProduct = (product: Product): string | undefined => {
 
 const SingleItem = ({ idx, item, filter }: SingleItemProps) => {
   const [invalidReason, setInvalidReason] = useState<string>();
+  const [isLoading, setLoading] = useState(false);
+  const [product, setProduct] = useState<Product>();
+
+  useEffect(() => {
+
+    const fetch = async () => {
+      setLoading(true);
+      // const fetchedProducts = await fetchAPI(`/products?product_code=${encodeURI(item.product_code)}`);
+      // if (fetchedProducts?.length === 1) {
+      //   setProduct(fetchedProducts[0]);
+      // }
+    };
+
+    fetch().finally(() => {
+      setLoading(false);
+    });
+  }, [item, idx]);
 
   useEffect(() => {
     setInvalidReason(validateProduct(item));
@@ -55,12 +77,17 @@ const SingleItem = ({ idx, item, filter }: SingleItemProps) => {
   }
 
   return (
-    <tr className={cn("font-medium", { "text-red-400": invalidReason })}>
-      <th>{idx}</th>
+    <tr className={cn("hover:bg-secondary hover:text-white font-medium", { "text-red-400": invalidReason })}>
+      <th>{isLoading ? "loading" : product ? product.id : "-"}</th>
+      <th className={"pl-4 text-left"}>{idx}</th>
       <th className={"pl-4 text-left"}>{item.name}</th>
       <th className={"pl-4 text-left"}>{item.product_code}</th>
       <th className={"pl-4 text-right"}>{prettyPrice(item.price || 0)}</th>
-      <th className={"pl-4 text-right"}>{invalidReason}</th>
+      <th className={"pl-4 text-left"}>{item.availability}</th>
+      <th className={"pl-4 text-left"}>{item.variation}</th>
+      <th className={"pl-4 text-left"}>{item.serving_size}</th>
+      <th className={"pl-4 text-left"}>/{item.slug}</th>
+      <th className={"pl-4 text-left"}>{invalidReason}</th>
     </tr>
   );
 };
@@ -91,6 +118,7 @@ const rowMap = {
   "Supplier | Brand": "V",
   "Product Form": "W",
   "Disclaimer": "X",
+  "Slug": "Y",
 };
 //
 // export interface ExcelRow {
@@ -133,6 +161,22 @@ const parseProductForm = (value?: string): string => {
   return (value || "").toLowerCase();
 };
 
+const parseServingSize = (value?: string | number): string => {
+  return value?.toString() || "";
+};
+
+const parseSlug = (slug?: string, name?: string): string => {
+  if (slug) {
+    return slug.toLowerCase();
+  }
+
+  if (!name) {
+    return "";
+  }
+
+  return encodeURI(name.toLowerCase().replaceAll(" ", "-"));
+};
+
 const parsePrice = (value?: string): number => {
   return Number.parseFloat(value || "0");
 };
@@ -144,31 +188,33 @@ const parseAvailability = (value?: string): "otc" | "prescription" | undefined =
     case "prescription":
       return "prescription";
     default:
-      return;
+      return "prescription";
   }
 };
 
 const parseProduct = (row: RowType): Product => {
   return {
     id: -1,
-    name: row[rowMap["Product Name"]],
-    description: row[rowMap["Product Short Description"]],
-    product_code: row[rowMap["Product Code"]],
+    name: row[rowMap["Product Name"]] || "",
+    description: row[rowMap["Product Short Description"]] || "",
+    product_code: row[rowMap["Product Code"]] || "",
     out_of_stock: false,
     price: parsePrice(row[rowMap["Product Price"]]),
-    variation: row[rowMap["Product Variation"]],
-    directions: row[rowMap["Directions"]],
-    warning: row[rowMap["Warning"]],
+    variation: row[rowMap["Product Variation"]] || "",
+    directions: row[rowMap["Directions"]] || "",
+    warning: row[rowMap["Warning"]] || "",
     availability: parseAvailability(row[rowMap["Membership level"]]),
-    benefits: row[rowMap["Benefits"]],
-    additional_ingredients: row[rowMap["Additional Ingredients"]],
-    additional_information: row[rowMap["Additional Information"]],
-    notice: row[rowMap["Notice/caution"]],
-    storage: row[rowMap["Storage"]],
-    symptoms_indications: row[rowMap["Symptoms /Indications"]],
-    product_form: parseProductForm(row[rowMap["Product Form"]]),
-    supplier: row[rowMap["Supplier | Brand"]],
+    benefits: row[rowMap["Benefits"]] || "",
+    additional_ingredients: row[rowMap["Additional Ingredients"]] || "",
+    additional_information: row[rowMap["Additional Information"]] || "",
+    notice: row[rowMap["Notice/caution"]] || "",
+    storage: row[rowMap["Storage"]] || "",
+    symptoms_indications: row[rowMap["Symptoms /Indications"]] || "",
+    product_form: parseProductForm(row[rowMap["Product Form"]]) || "",
+    supplier: row[rowMap["Supplier | Brand"]] || "",
     ingredients: parseIngredients(row[rowMap["Ingredients"]], row[rowMap["Amount"]]),
+    slug: parseSlug(row[rowMap["Slug"]], row[rowMap["Product Name"]]),
+    serving_size: parseServingSize(row[rowMap["Serving size"]]),
   };
 
 };
@@ -299,7 +345,7 @@ const ProductManager = () => {
       setLoading(false);
     } catch (e) {
       setLoading(false);
-      toast.error("Failed: " + e.toString);
+      toast.error("Failed: " + e.toString());
     }
   };
 
@@ -352,15 +398,20 @@ const ProductManager = () => {
 
       </section>
 
-      <div className={"bg-yellow-200/10"}>
+      <div className={"bg-gray-50"}>
         <table className="table-auto">
           <thead>
           <tr>
+            <th>ID</th>
             <th>#</th>
             <th>Name</th>
             <th>Code</th>
             <th>Price</th>
-            <th/>
+            <th>Availability</th>
+            <th>Variation</th>
+            <th>Serving Size</th>
+            <th>Slug</th>
+            <th />
 
           </tr>
           </thead>
