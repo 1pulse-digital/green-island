@@ -119,6 +119,7 @@ const rowMap = {
   "Product Form": "W",
   "Disclaimer": "X",
   "Slug": "Y",
+  "Skip": "Z",
 };
 //
 // export interface ExcelRow {
@@ -263,6 +264,10 @@ const ProductManager = () => {
             errRow = productIdx;
             const row = sheetData[rowIdx] as RowType;
             errProduct = row[rowMap["Product Name"]];
+            if (row[rowMap["Skip"]]) {
+              continue;
+            }
+
             const product = parseProduct(row);
             console.log(`[ ${rowIdx} ]`, { row }, { product });
             productList.push(product);
