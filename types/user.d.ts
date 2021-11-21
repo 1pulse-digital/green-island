@@ -20,8 +20,4 @@ export interface Role {
   type: string;
 }
 
-export enum RoleName {
-  Customer = "Customer",
-  Patient = "Patient",
-  Public = "Public",
-}
+export type RoleName = "Customer" | "Patient" | "Public" | "Admin"

@@ -3,14 +3,13 @@ import Link from "next/link";
 import Image from "next/image";
 import logo from "../images/logo.png";
 import { Fragment } from "react";
-import { Popover, Transition } from "@headlessui/react";
+import { Menu, Popover, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import { ShoppingCart } from "./shoppingCart";
 import { ProductWishlist } from "./ProductWishlist";
 import { useAuthContext } from "../contexts/authContext";
 import cn from "classnames";
 import { useRouter } from "next/router";
-import { Menu } from "@headlessui/react";
 import { SmallButton } from "./button";
 
 const navigationItems = [
@@ -51,7 +50,8 @@ export const Navbar = () => {
               {/* Mobile menu */}
               <div className="lg:hidden">
                 {/* Mobile menu button */}
-                <Popover.Button className="inline-flex items-center justify-center p-2 text-gray-400 rounded-md hover:text-white focus:ring-2 focus:ring-inset focus:ring-gray-500 focus:outline-none hover:bg-secondary">
+                <Popover.Button
+                  className="inline-flex items-center justify-center p-2 text-gray-400 rounded-md hover:text-white focus:ring-2 focus:ring-inset focus:ring-gray-500 focus:outline-none hover:bg-secondary">
                   <span className="sr-only">Open menu</span>
                   <MenuIcon className="w-6 h-6" aria-hidden="true" />
                 </Popover.Button>
@@ -70,11 +70,13 @@ export const Navbar = () => {
                     focus
                     static
                     className="absolute inset-x-0 top-0 p-2 transition origin-top-right transform">
-                    <div className="bg-white divide-y-2 rounded-lg shadow-lg divide-gray-50 ring-1 ring-black ring-opacity-5">
+                    <div
+                      className="bg-white divide-y-2 rounded-lg shadow-lg divide-gray-50 ring-1 ring-black ring-opacity-5">
                       <div className="px-5 pt-5 pb-6">
                         <div className="flex items-center justify-between">
                           <div className="-mr-2">
-                            <Popover.Button className="inline-flex items-center justify-center p-2 text-gray-400 bg-white rounded-md hover:text-gray-500 hover:bg-gray-100 focus:ring-2 focus:ring-inset focus:ring-indigo-500 focus:outline-none">
+                            <Popover.Button
+                              className="inline-flex items-center justify-center p-2 text-gray-400 bg-white rounded-md hover:text-gray-500 hover:bg-gray-100 focus:ring-2 focus:ring-inset focus:ring-indigo-500 focus:outline-none">
                               <span className="sr-only">Close menu</span>
                               <XIcon className="w-6 h-6" aria-hidden="true" />
                             </Popover.Button>
@@ -132,7 +134,7 @@ export const Navbar = () => {
                           router.pathname === item.href
                             ? "font-bold"
                             : "font-medium",
-                          "hover:font-bold w-[70px]"
+                          "hover:font-bold w-[70px]",
                         )}>
                         {item.name}
                       </a>
@@ -190,20 +192,36 @@ export const Navbar = () => {
                       />
                     </svg>
                   </Menu.Button>
-                  <Menu.Items className="absolute right-0 grid w-auto gap-2 py-4 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                  <Menu.Items
+                    className="absolute right-0 grid w-auto gap-2 py-4 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                     <Menu.Item>
                       {({ active }) => (
                         <Link href={"/my-account"}>
                           <a
                             className={cn(
                               "px-2 py-1  hover:bg-gray-100 cursor-pointer",
-                              { "bg-gray-300": active }
+                              { "bg-gray-300": active },
                             )}>
                             Account settings
                           </a>
                         </Link>
                       )}
                     </Menu.Item>
+                    {user.role.name === "Admin" && (
+                      <Menu.Item>
+                        {({ active }) => (
+                          <Link href={"/product-manager"}>
+                            <a
+                              className={cn(
+                                "px-2 py-1  hover:bg-gray-100 cursor-pointer",
+                                { "bg-gray-300": active },
+                              )}>
+                              Manage products
+                            </a>
+                          </Link>
+                        )}
+                      </Menu.Item>
+                    )}
                     <Menu.Item>
                       <div
                         onClick={logout}
