@@ -1,4 +1,5 @@
 import { CartItemType } from "../contexts/cartContext";
+import { Product } from "../types/product";
 
 export function getStrapiURL(path = "") {
   return `${
@@ -275,6 +276,27 @@ export async function submitContactForm(request: submitContactFormRequest, token
     throw new Error(message);
   }
   return;
+}
+
+export async function upsertProduct(token: string, product: Product) {
+  const headers = {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${token}`,
+  } as { "Content-Type": string; Authorization?: string };
+
+  const requestUrl = getStrapiURL(`/products/${encodeURI(product.product_code || "")}`);
+
+  const response = await fetch(requestUrl, {
+    method: "POST",
+    headers: headers,
+    body: JSON.stringify(product),
+  });
+
+  if (response.status != 200) {
+    const message = await response.text();
+    throw new Error(message);
+  }
+  return await response.json();
 }
 
 export async function updateStrapiWishlist(token: string, products: number[]) {
