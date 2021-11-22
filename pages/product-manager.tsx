@@ -104,7 +104,7 @@ const SingleItem = ({ idx, item, filter }: SingleItemProps) => {
   };
 
   return (
-    <tr className={cn("hover:bg-secondary hover:text-white font-medium cursor-pointer", { "text-red-400": invalidReason })}>
+    <tr className={cn("hover:bg-secondary hover:text-white font-medium", { "text-red-400": invalidReason })}>
       <th className={"cursor-pointer"} onClick={handleUpdate}>{isLoading ? "loading" : product ? product.id : "-"}</th>
       <th className={"pl-4 text-left"}>{idx}</th>
       <th className={"pl-4 text-left"}>{item.name}</th>
