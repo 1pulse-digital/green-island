@@ -91,6 +91,7 @@ const SingleItem = ({ idx, item, filter }: SingleItemProps) => {
         return;
       }
       const response = await upsertProduct(authToken, item);
+      setProduct(response.entity as Product)
       setLoading(false);
       if (response.message.toLowerCase() === "created") {
         toast.success(`${item.name} ${response.message.toLowerCase()}`, { duration: 5000, icon: "🌱" });
@@ -103,9 +104,8 @@ const SingleItem = ({ idx, item, filter }: SingleItemProps) => {
   };
 
   return (
-    <tr className={cn("hover:bg-secondary hover:text-white font-medium cursor-pointer", { "text-red-400": invalidReason })}
-        onClick={handleUpdate}>
-      <th>{isLoading ? "loading" : product ? product.id : "-"}</th>
+    <tr className={cn("hover:bg-secondary hover:text-white font-medium cursor-pointer", { "text-red-400": invalidReason })}>
+      <th className={"cursor-pointer"} onClick={handleUpdate}>{isLoading ? "loading" : product ? product.id : "-"}</th>
       <th className={"pl-4 text-left"}>{idx}</th>
       <th className={"pl-4 text-left"}>{item.name}</th>
       <th className={"pl-4 text-left"}>{item.product_code}</th>
