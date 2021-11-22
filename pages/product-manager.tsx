@@ -50,6 +50,7 @@ const validateProduct = (product: Product): string | undefined => {
 };
 
 const SingleItem = ({ idx, item, filter }: SingleItemProps) => {
+  const { authToken } = useAuthContext();
   const [invalidReason, setInvalidReason] = useState<string>();
   const [isLoading, setLoading] = useState(false);
   const [product, setProduct] = useState<Product>();
@@ -76,8 +77,34 @@ const SingleItem = ({ idx, item, filter }: SingleItemProps) => {
     return null;
   }
 
+  const handleUpdate = async () => {
+    if (!authToken) {
+      toast.error("Not signed in");
+      return;
+    }
+    setLoading(true);
+    try {
+      const invalidReason = validateProduct(item);
+      if (invalidReason) {
+        toast.error(`${item.name} invalid: ${invalidReason}`, { duration: 5000 });
+        setLoading(false);
+        return;
+      }
+      const response = await upsertProduct(authToken, item);
+      setLoading(false);
+      if (response.message.toLowerCase() === "created") {
+        toast.success(`${item.name} ${response.message.toLowerCase()}`, { duration: 5000, icon: "🌱" });
+      } else {
+        toast.success(`${item.name} ${response.message.toLowerCase()}`);
+      }
+    } catch (e) {
+      toast.error("Failed: " + e.toString());
+    }
+  };
+
   return (
-    <tr className={cn("hover:bg-secondary hover:text-white font-medium", { "text-red-400": invalidReason })}>
+    <tr className={cn("hover:bg-secondary hover:text-white font-medium cursor-pointer", { "text-red-400": invalidReason })}
+        onClick={handleUpdate}>
       <th>{isLoading ? "loading" : product ? product.id : "-"}</th>
       <th className={"pl-4 text-left"}>{idx}</th>
       <th className={"pl-4 text-left"}>{item.name}</th>
