@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import { AlgoliaLogo } from "./logo";
 import { prettyPrice } from "../../lib/calc";
 import useOnClickOutside from "use-onclickoutside";
+import { toast } from "react-hot-toast";
 
 interface AutocompleteProps {
   hits: Hit[];
@@ -19,6 +20,8 @@ interface AutocompleteProps {
 const ProductItem = ({ product }: { product: Product }) => {
   const router = useRouter();
   const { addToCart } = useCartContext();
+  const productOutOfStock = product.stock_quantity <= 0;
+
   return (
     <li
       onClick={() => {
@@ -55,6 +58,11 @@ const ProductItem = ({ product }: { product: Product }) => {
               e.preventDefault();
               e.stopPropagation();
               addToCart(product, 1);
+              if (productOutOfStock) {
+                toast("Product out of stock", { duration: 5000, icon: "😞️" });
+              } else {
+                addToCart(product, 1);
+              }
             }}>
             Add to cart
           </button>

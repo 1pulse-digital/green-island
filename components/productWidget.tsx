@@ -7,6 +7,7 @@ import placeholder from "../images/2.jpg";
 import ReactTooltip from "react-tooltip";
 import { prettyPrice } from "../lib/calc";
 import cn from "classnames";
+import { toast } from "react-hot-toast";
 
 export interface ProductWidgetProps {
   product: Product;
@@ -32,6 +33,8 @@ const ProductWidget = (props: ProductWidgetProps) => {
 
   const inWishlist = wishlistContains(product.id);
   const cartCount = cartContains(product.id);
+
+  const productOutOfStock = product.stock_quantity <= 0;
 
   return (
     <div
@@ -70,9 +73,9 @@ const ProductWidget = (props: ProductWidgetProps) => {
           )}
           <p
             className={cn(
-              { "text-green-500": !product.out_of_stock },
-              { "text-red-500": product.out_of_stock },
-            )}>{product.out_of_stock ? "Out of stock" : "In stock"}</p>
+              { "text-green-500": !productOutOfStock },
+              { "text-red-500": productOutOfStock },
+            )}>{productOutOfStock ? "Out of stock" : "In stock"}</p>
           <p className={"text-primary"}>{prettyPrice(product.price)}</p>
         </div>
 
@@ -111,7 +114,12 @@ const ProductWidget = (props: ProductWidgetProps) => {
           onClick={(event) => {
             event.preventDefault();
             event.stopPropagation();
-            addToCart(product, 1);
+            if (productOutOfStock) {
+              addToWishlist(product);
+              toast("Product out of stock, it was added to your wishlist", { duration: 5000, icon: "😞️" });
+            } else {
+              addToCart(product, 1);
+            }
           }}>
           Add to cart
           <svg

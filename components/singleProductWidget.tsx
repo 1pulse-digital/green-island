@@ -3,6 +3,7 @@ import Image from "next/image";
 import { prettyPrice } from "../lib/calc";
 import { useCartContext } from "../contexts/cartContext";
 import { useState } from "react";
+import { toast } from "react-hot-toast";
 
 export interface ProductWidget1Props {
   product: Product;
@@ -31,6 +32,9 @@ const ProductWidget1 = (props: ProductWidget1Props) => {
       setQuantity(quantity - 1);
     }
   };
+
+  const productOutOfStock = product.stock_quantity <= 0;
+  const productStockToLow = product.stock_quantity <= quantity;
 
   return (
     <div className={"w-full font-karla text-primary"}>
@@ -145,7 +149,16 @@ const ProductWidget1 = (props: ProductWidget1Props) => {
               onClick={(event) => {
                 event.preventDefault();
                 event.stopPropagation();
-                addToCart(product, quantity);
+                if (productStockToLow) {
+                  if (productOutOfStock) {
+                    addToWishlist(product);
+                    toast("Product out of stock, it was added to your wishlist", { duration: 5000, icon: "😞️" });
+                  } else {
+                    toast(`Product stock is low. Only ${product.stock_quantity} items left`, { duration: 5000, icon: "😞️" });
+                  }
+                } else {
+                  addToCart(product, quantity);
+                }
               }}>
               Add to cart
             </button>

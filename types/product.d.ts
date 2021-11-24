@@ -8,7 +8,7 @@ export interface Product {
   meta_description?: string;
   meta_title?: string;
   product_code: string;
-  out_of_stock: boolean;
+  // out_of_stock: boolean;
   price: number;
   slug: string;
   // content: string;
@@ -29,5 +29,6 @@ export interface Product {
   symptoms_indications: string;
   product_form: string;
   supplier: string;
+  stock_quantity: number;
   ingredients?: Ingredient[];
 }

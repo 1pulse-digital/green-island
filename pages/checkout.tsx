@@ -79,7 +79,7 @@ const Checkout = () => {
 
   // auto populate the user address if user is logged in
   useEffect(() => {
-    if (user?.address && user.address) {
+    if (user?.address && user.address && geocodeByAddress) {
 
       geocodeByAddress(user.address).then((geoResultList) => {
         if (!geoResultList || geoResultList.length < 1) {
@@ -275,7 +275,7 @@ const Checkout = () => {
 
     } catch (e) {
       console.error(`Order placement failed, can't proceed to payment: ${e.message ? e.message : e.toString()}`);
-      toast.error("Order placement failed, can't proceed to payment");
+      toast.error(e.toString());
     }
   };
 

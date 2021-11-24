@@ -13,13 +13,20 @@ export interface CartItemProps {
 
 export const CartItem = ({ item, disabled }: CartItemProps) => {
   const { removeFromCart } = useCartContext();
+  const router = useRouter();
+
+  const goToProduct = (item: CartItemType) => () => {
+    router.push(`/products/${item.product.id}`);
+  };
+
   return (
     <div className="grid grid-cols-8 h-24 rounded-lg transition duration-150 ease-in-out hover:bg-gray-50">
-      <div className="relative rounded-lg ring-1 ring-offset-1 ring-primary">
+      <div className="relative rounded-lg ring-1 ring-offset-1 ring-primary cursor-pointer"
+           onClick={goToProduct(item)}>
         <Image
           layout="fill"
           objectFit="contain"
-          src={item.product.image?.formats.thumbnail?.url||
+          src={item.product.image?.formats.thumbnail?.url ||
           "https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg"}
           alt={item.product.image?.alternativeText || item.product.name}
         />
