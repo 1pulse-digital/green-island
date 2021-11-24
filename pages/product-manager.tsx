@@ -18,7 +18,7 @@ interface Filter {
 
 interface SingleItemProps {
   idx: number,
-  item: Product
+  item: ExcelProduct
   filter: Filter
 }
 
@@ -91,7 +91,7 @@ const SingleItem = ({ idx, item, filter }: SingleItemProps) => {
         return;
       }
       const response = await upsertProduct(authToken, item);
-      setProduct(response.entity as Product)
+      setProduct(response.entity as Product);
       setLoading(false);
       if (response.message.toLowerCase() === "created") {
         toast.success(`${item.name} ${response.message.toLowerCase()}`, { duration: 5000, icon: "🌱" });
@@ -106,7 +106,7 @@ const SingleItem = ({ idx, item, filter }: SingleItemProps) => {
   return (
     <tr className={cn("hover:bg-secondary hover:text-white font-medium", { "text-red-400": invalidReason })}>
       <th className={"cursor-pointer"} onClick={handleUpdate}>{isLoading ? "loading" : product ? product.id : "-"}</th>
-      <th className={"pl-4 text-left"}>{idx}</th>
+      <th className={"pl-4 text-left"}>{item.row}</th>
       <th className={"pl-4 text-left"}>{item.name}</th>
       <th className={"pl-4 text-left"}>{item.product_code}</th>
       <th className={"pl-4 text-right"}>{prettyPrice(item.price || 0)}</th>
@@ -124,37 +124,31 @@ const rowMap = {
   "Product Image file name": "A",
   "Main Category": "B",
   "Product Name": "C",
-  "Product Short Description": "D",
-  "Product Variation": "E",
-  "Featured Product": "F",
-  "Benefits": "G",
-  "Serving size": "H",
-  "Membership level": "I",
-  "Product Price": "J",
-  "Sale Price": "K",
-  "Product Code": "L",
-  "Ingredients": "M",
-  "Amount": "N",
-  "Additional Ingredients": "O",
-  "Directions": "P",
-  "Warning": "Q",
-  "Notice/caution": "R",
-  "Storage": "S",
-  "Additional Information": "T",
-  "Symptoms /Indications": "U",
-  "Supplier | Brand": "V",
-  "Product Form": "W",
-  "Disclaimer": "X",
-  "Slug": "Y",
-  "Skip": "Z",
+  "Stock Quantity": "D",
+  "Product Short Description": "E",
+  "Product Variation": "F",
+  "Featured Product": "G",
+  "Benefits": "H",
+  "Serving size": "I",
+  "Membership level": "J",
+  "Product Price": "K",
+  "Sale Price": "L",
+  "Product Code": "M",
+  "Ingredients": "N",
+  "Amount": "O",
+  "Additional Ingredients": "P",
+  "Directions": "Q",
+  "Warning": "R",
+  "Notice/caution": "S",
+  "Storage": "T",
+  "Additional Information": "U",
+  "Symptoms /Indications": "V",
+  "Supplier | Brand": "W",
+  "Product Form": "X",
+  "Disclaimer": "Y",
+  "Slug": "Z",
+  "Skip": "AA",
 };
-//
-// export interface ExcelRow {
-//   [index: string]: string;
-//
-//   A:
-//
-// }
 
 const parseIngredients = (names?: string, amounts?: string): Ingredient[] => {
   const nameList = names?.split(",") || [];
@@ -205,7 +199,7 @@ const parseSlug = (slug?: string, name?: string): string => {
   return encodeURI(name.toLowerCase().replaceAll(" ", "-"));
 };
 
-const parsePrice = (value?: string): number => {
+const parseAsNumber = (value?: string): number => {
   return Number.parseFloat(value || "0");
 };
 
@@ -226,8 +220,7 @@ const parseProduct = (row: RowType): Product => {
     name: row[rowMap["Product Name"]] || "",
     description: row[rowMap["Product Short Description"]] || "",
     product_code: row[rowMap["Product Code"]] || "",
-    out_of_stock: false,
-    price: parsePrice(row[rowMap["Product Price"]]),
+    price: parseAsNumber(row[rowMap["Product Price"]]),
     variation: row[rowMap["Product Variation"]] || "",
     directions: row[rowMap["Directions"]] || "",
     warning: row[rowMap["Warning"]] || "",
@@ -243,6 +236,7 @@ const parseProduct = (row: RowType): Product => {
     ingredients: parseIngredients(row[rowMap["Ingredients"]], row[rowMap["Amount"]]),
     slug: parseSlug(row[rowMap["Slug"]], row[rowMap["Product Name"]]),
     serving_size: parseServingSize(row[rowMap["Serving size"]]),
+    stock_quantity: parseAsNumber(row[rowMap["Stock Quantity"]]),
   };
 
 };
@@ -251,10 +245,14 @@ function sleep(ms: number) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+interface ExcelProduct extends Product {
+  row: number;
+}
+
 const ProductManager = () => {
   const { authToken } = useAuthContext();
   const [error, setError] = useState<string>();
-  const [excelProducts, setExcelProducts] = useState<Product[]>([]);
+  const [excelProducts, setExcelProducts] = useState<ExcelProduct[]>([]);
   const onDrop = useCallback((acceptedFiles) => {
     acceptedFiles.forEach((file: FileWithPath) => {
       const reader = new FileReader();
@@ -263,7 +261,7 @@ const ProductManager = () => {
       reader.onerror = () => console.log("file reading has failed");
       reader.onload = () => {
         let errRow, errProduct;
-        let productList: Product[] = [];
+        let productList: ExcelProduct[] = [];
         try {
           // Do whatever you want with the file contents
           // const binaryStr = reader.result;
@@ -297,7 +295,7 @@ const ProductManager = () => {
 
             const product = parseProduct(row);
             console.log(`[ ${rowIdx} ]`, { row }, { product });
-            productList.push(product);
+            productList.push({ ...product, row: +rowIdx + 1 });
           }
 
           setExcelProducts(productList);
