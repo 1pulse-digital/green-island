@@ -14,7 +14,7 @@ import { PaymentMethod } from "../components/checkout/paymentMethod";
 import payfastLogo from "../components/checkout/PayFast_logo_colour.png";
 import { useCartContext } from "../contexts/cartContext";
 import { useAuthContext } from "../contexts/authContext";
-import { getStrapiURL, saveProfileAddress } from "../lib/api";
+import { cancelOrder, getStrapiURL, saveProfileAddress } from "../lib/api";
 import { parseErrorResponse } from "../utils/strapi";
 import { toast } from "react-hot-toast";
 import { Order } from "../types/order";
@@ -79,7 +79,7 @@ const Checkout = () => {
 
   // auto populate the user address if user is logged in
   useEffect(() => {
-    if (user?.address) {
+    if (user?.address && user.address) {
 
       geocodeByAddress(user.address).then((geoResultList) => {
         if (!geoResultList || geoResultList.length < 1) {
@@ -195,7 +195,7 @@ const Checkout = () => {
       console.warn(`Creating a payment failed`, data);
       const combinedMessage = parseErrorResponse(data.message);
       setLoading(false);
-      throw `Creating a payment failed: ${combinedMessage}`;
+      throw combinedMessage;
     } else {
       // success
       console.debug(`Payment created: `, data);
@@ -279,8 +279,14 @@ const Checkout = () => {
     }
   };
 
+
   const handleProceedToPayment = async () => {
     try {
+      // prepare a function we can use to cancel the order
+      const cancelFunc = async (orderID: number, uuid: string) => {
+        await cancelOrder(orderID, uuid);
+      };
+
       const { payfastPaymentID: uuid } = await createPayment();
 
       console.log(`Loading payfast popup with uuid '${uuid}'`);
@@ -292,19 +298,24 @@ const Checkout = () => {
           // payment success
           setLoading(false);
           setPaymentStatus("paid");
-          clearCart()
+          clearCart();
           toast.success("Payment successful");
         } else {
+          if (order?.id) {
+            // cancel the order
+            cancelFunc(order.id, uuid).finally(() => {
+              setOrder(undefined);
+            });
+          }
           // payment failure
           setPaymentStatus("cancelled");
           toast.error("Payment cancelled");
         }
       });
     } catch (e) {
-      console.error(
-        `Could not create order: ${e.message ? e.message : e.toString()}`,
-      );
-      toast.error("Could not create the payment");
+      const errMsg = `Could not initiate payment: ${e.message ? e.message : e.toString()}`;
+      console.error(errMsg);
+      toast.error(errMsg, { duration: 5000 });
     }
   };
 

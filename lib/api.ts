@@ -299,6 +299,26 @@ export async function upsertProduct(token: string, product: Product) {
   return await response.json();
 }
 
+export async function cancelOrder(orderID: number, paymentID: string) {
+  const headers = {
+    "Content-Type": "application/json",
+  } as { "Content-Type": string; Authorization?: string };
+
+  const requestUrl = getStrapiURL(`/orders/cancel`);
+
+  const response = await fetch(requestUrl, {
+    method: "POST",
+    headers: headers,
+    body: JSON.stringify({ order_id: orderID, payment_id: paymentID }),
+  });
+
+  if (response.status != 200) {
+    const message = await response.text();
+    throw new Error(message);
+  }
+  return await response.json();
+}
+
 export async function updateStrapiWishlist(token: string, products: number[]) {
   const headers = {
     "Content-Type": "application/json",
