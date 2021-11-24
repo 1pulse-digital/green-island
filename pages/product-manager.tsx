@@ -410,76 +410,77 @@ const ProductManager = () => {
 
   return (
     <MainLayout authRequired={false} roleRequired={undefined}>
-      <div className={"grid grid-cols-2"}>
-        <h1 className={"text-xl font-semibold text-primary"}>Product manager</h1>
-        <div  {...getRootProps({ className: "border-dashed border-2 border-secondary p-2 rounded-xl h-[100px] w-[390px] text-gray-600 cursor-pointer" })}>
+      <div className={"grid gap-2 p-8 "}>
+        <h1 className={"text-4xl font-semibold text-primary flex-grow"}>Product manager</h1>
+        <div  {...getRootProps({ className: "border-dashed border-2 border-secondary p-2 rounded-xl h-[100px] text-gray-600 cursor-pointer" })}>
           <input {...getInputProps()} />
           <p>Drag the upload file (.xlsx) here, or click to select the file</p>
         </div>
       </div>
-      <section>
-        {error && (
-          <div className={"text-red-600"}>{error}</div>
-        )}
+      <div className={"px-4 divide-y-2 divide-primary divide-solid"}>
+        <section>
+          {error && (
+            <div className={"text-red-600"}>{error}</div>
+          )}
 
-        <aside className={"flex gap-2"}>
-          <h4 className={"text-lg font-semibold"}>Upload file:</h4>
-          <ul>{fileList(acceptedFiles)}</ul>
-        </aside>
-        <div className={"m-4 flex gap-4"}>
+          <aside className={"flex gap-2"}>
+            <h4 className={"font-semibold text-primary"}>Upload file:</h4>
+            <ul>{fileList(acceptedFiles)}</ul>
+          </aside>
+          <div className={"m-4 flex gap-4"}>
 
-          <Button color={"primary"} onClick={handleUpdate} disabled={loading}>Update</Button>
-          <div>
-            <h4>Filter</h4>
-            <ul>
-              <li>
-                <label className="flex items-center mb-3 space-x-3 hover:cursor-pointer">
-                  <input
-                    type="checkbox"
-                    name={`invalid`}
-                    className="w-6 h-6 bg-white rounded border-gray-300 hover:cursor-pointer bg-check text-primary focus:ring-secondary"
-                    checked={filter.invalidOnly}
-                    onChange={() => setFilter({ ...filter, invalidOnly: !filter.invalidOnly })}
-                    value=""
-                  />
-                  <span className="font-normal text-gray-700 dark:text-white truncate">
+            <Button color={"primary"} onClick={handleUpdate} disabled={loading}>Update</Button>
+            <div>
+              <h4>Filter</h4>
+              <ul>
+                <li>
+                  <label className="flex items-center mb-3 space-x-3 hover:cursor-pointer">
+                    <input
+                      type="checkbox"
+                      name={`invalid`}
+                      className="w-6 h-6 bg-white rounded border-gray-300 hover:cursor-pointer bg-check text-primary focus:ring-secondary"
+                      checked={filter.invalidOnly}
+                      onChange={() => setFilter({ ...filter, invalidOnly: !filter.invalidOnly })}
+                      value=""
+                    />
+                    <span className="font-normal text-gray-700 dark:text-white truncate">
             Show invalid only
             </span>
-                </label>
-              </li>
-            </ul>
+                  </label>
+                </li>
+              </ul>
+            </div>
           </div>
+
+        </section>
+
+        <div className={"bg-gray-50"}>
+          <table className="table-auto">
+            <thead>
+            <tr>
+              <th>ID</th>
+              <th>#</th>
+              <th>Name</th>
+              <th>Code</th>
+              <th>Price</th>
+              <th>Availability</th>
+              <th>Variation</th>
+              <th>Serving Size</th>
+              <th>Slug</th>
+              <th />
+
+            </tr>
+            </thead>
+            <tbody className={"text-gray-500 text-sm "}>
+            {excelProducts.map((p, idx) => {
+              return (
+                <SingleItem key={idx} idx={idx + 1} item={p} filter={filter} />
+              );
+            })}
+            </tbody>
+          </table>
         </div>
-
-      </section>
-
-      <div className={"bg-gray-50"}>
-        <table className="table-auto">
-          <thead>
-          <tr>
-            <th>ID</th>
-            <th>#</th>
-            <th>Name</th>
-            <th>Code</th>
-            <th>Price</th>
-            <th>Availability</th>
-            <th>Variation</th>
-            <th>Serving Size</th>
-            <th>Slug</th>
-            <th />
-
-          </tr>
-          </thead>
-          <tbody className={"text-gray-500 text-sm "}>
-          {excelProducts.map((p, idx) => {
-            return (
-              <SingleItem key={idx} idx={idx + 1} item={p} filter={filter} />
-            );
-          })}
-          </tbody>
-        </table>
       </div>
-
     </MainLayout>
   );
 };
