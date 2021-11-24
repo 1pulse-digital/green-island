@@ -15,6 +15,7 @@ const TableHeaderCell = ({ value }: { value: string }) => {
     </th>
   );
 };
+
 export const Ingredients = (props: IngredientsProps) => {
 
   if (!props.ingredients || props.ingredients.length === 0) {
