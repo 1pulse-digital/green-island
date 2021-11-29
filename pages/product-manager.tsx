@@ -420,7 +420,7 @@ const ProductManager = () => {
           toast.error(`${product.name} invalid: ${invalidReason}`, {
             duration: 5000,
           });
-          await sleep(1500);
+          await sleep(500);
           continue;
         }
         if (product.product_code) {
