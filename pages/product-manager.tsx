@@ -19,9 +19,9 @@ interface Filter {
 }
 
 interface SingleItemProps {
-  idx: number,
-  item: ExcelProduct
-  filter: Filter
+  idx: number;
+  item: ExcelProduct;
+  filter: Filter;
 }
 
 const validateProduct = (product: Product): string | undefined => {
@@ -34,13 +34,21 @@ const validateProduct = (product: Product): string | undefined => {
     invalidReasons.push("product_code is required");
   }
 
-  if (!productForms.find(f => f.label.toLowerCase() === product.product_form?.toLowerCase())) {
-    if (!productForms.find(f => f.value.toLowerCase() === product.product_form?.toLowerCase())) {
+  if (
+    !productForms.find(
+      (f) => f.label.toLowerCase() === product.product_form?.toLowerCase()
+    )
+  ) {
+    if (
+      !productForms.find(
+        (f) => f.value.toLowerCase() === product.product_form?.toLowerCase()
+      )
+    ) {
       invalidReasons.push(`product_form "${product.product_form}" is invalid`);
     }
   }
 
-  if (product.ingredients?.find(i => i.amount === "")) {
+  if (product.ingredients?.find((i) => i.amount === "")) {
     invalidReasons.push(`ingredients and amounts mismatched`);
   }
 
@@ -50,7 +58,7 @@ const validateProduct = (product: Product): string | undefined => {
   }
 
   if (invalidReasons.length > 0) {
-    return (invalidReasons.join("; "));
+    return invalidReasons.join("; ");
   }
   return;
 };
@@ -62,7 +70,6 @@ const SingleItem = ({ idx, item, filter }: SingleItemProps) => {
   const [product, setProduct] = useState<Product>();
 
   useEffect(() => {
-
     const fetch = async () => {
       setLoading(true);
       // const fetchedProducts = await fetchAPI(`/products?product_code=${encodeURI(item.product_code)}`);
@@ -92,7 +99,9 @@ const SingleItem = ({ idx, item, filter }: SingleItemProps) => {
     try {
       const invalidReason = validateProduct(item);
       if (invalidReason) {
-        toast.error(`${item.name} invalid: ${invalidReason}`, { duration: 5000 });
+        toast.error(`${item.name} invalid: ${invalidReason}`, {
+          duration: 5000,
+        });
         setLoading(false);
         return;
       }
@@ -100,7 +109,10 @@ const SingleItem = ({ idx, item, filter }: SingleItemProps) => {
       setProduct(response.entity as Product);
       setLoading(false);
       if (response.message.toLowerCase() === "created") {
-        toast.success(`${item.name} ${response.message.toLowerCase()}`, { duration: 5000, icon: "🌱" });
+        toast.success(`${item.name} ${response.message.toLowerCase()}`, {
+          duration: 5000,
+          icon: "🌱",
+        });
       } else {
         toast.success(`${item.name} ${response.message.toLowerCase()}`);
       }
@@ -110,8 +122,14 @@ const SingleItem = ({ idx, item, filter }: SingleItemProps) => {
   };
 
   return (
-    <tr className={cn("relative hover:bg-secondary hover:text-white font-medium", { "text-red-400": invalidReason })}>
-      <th className={"cursor-pointer"} onClick={handleUpdate}>{isLoading ? "loading" : product ? product.id : "-"}</th>
+    <tr
+      className={cn(
+        "relative hover:bg-secondary hover:text-white font-medium",
+        { "text-red-400": invalidReason }
+      )}>
+      <th className={"cursor-pointer"} onClick={handleUpdate}>
+        {isLoading ? "loading" : product ? product.id : "-"}
+      </th>
       <th className={"pl-4 text-left"}>{item.row}</th>
       <th className={"pl-4 text-left"}>{item.name}</th>
       <th className={"pl-4 text-left"}>{item.product_code}</th>
@@ -124,26 +142,41 @@ const SingleItem = ({ idx, item, filter }: SingleItemProps) => {
       <th className={"pl-4 text-left"}>
         <Popover className="">
           <Popover.Button>
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                 stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-6 h-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+              />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+              />
             </svg>
           </Popover.Button>
 
-          <Popover.Panel className={"absolute right-1/4 z-10 p-10 bg-secondary rounded"}>
-            <h2 className={"text-white text-lg"}>{item.name} [{item.product_code}] ingredients</h2>
+          <Popover.Panel
+            className={"absolute right-1/4 z-10 p-10 bg-secondary rounded"}>
+            <h2 className={"text-white text-lg"}>
+              {item.name} [{item.product_code}] ingredients
+            </h2>
             <Ingredients ingredients={item.ingredients} />
           </Popover.Panel>
         </Popover>
       </th>
-
     </tr>
   );
 };
 
-type RowType = { [key: string]: string }
+type RowType = { [key: string]: string };
 const rowMap = {
   "Product Image file name": "A",
   "Main Category": "B",
@@ -152,26 +185,26 @@ const rowMap = {
   "Product Short Description": "E",
   "Product Variation": "F",
   "Featured Product": "G",
-  "Benefits": "H",
+  Benefits: "H",
   "Serving size": "I",
   "Membership level": "J",
   "Product Price": "K",
   "Sale Price": "L",
   "Product Code": "M",
-  "Ingredients": "N",
-  "Amount": "O",
+  Ingredients: "N",
+  Amount: "O",
   "Additional Ingredients": "P",
-  "Directions": "Q",
-  "Warning": "R",
+  Directions: "Q",
+  Warning: "R",
   "Notice/caution": "S",
-  "Storage": "T",
+  Storage: "T",
   "Additional Information": "U",
   "Symptoms /Indications": "V",
   "Supplier | Brand": "W",
   "Product Form": "X",
-  "Disclaimer": "Y",
-  "Slug": "Z",
-  "Skip": "AA",
+  Disclaimer: "Y",
+  Slug: "Z",
+  Skip: "AA",
 };
 
 const parseIngredients = (names?: string, amounts?: string): Ingredient[] => {
@@ -180,7 +213,11 @@ const parseIngredients = (names?: string, amounts?: string): Ingredient[] => {
   const result: Ingredient[] = [];
 
   if (nameList.length !== amountList.length) {
-    console.warn("Ingredient name list and amount list lengths don't match", { nameList }, { amountList });
+    console.warn(
+      "Ingredient name list and amount list lengths don't match",
+      { nameList },
+      { amountList }
+    );
     // throw Error(`Ingredient name list length (${nameList.length}) and amount list length (${amountList.length}) don't match:\n ` + JSON.stringify({ nameList }) + JSON.stringify({ amountList }));
   }
 
@@ -211,6 +248,10 @@ const parseServingSize = (value?: string | number): string => {
   return value?.toString() || "";
 };
 
+const parseProductCode = (value?: string | number): string => {
+  return value?.toString().trim() || "";
+};
+
 const parseSlug = (slug?: string, name?: string): string => {
   if (slug) {
     return slug.toLowerCase();
@@ -227,7 +268,9 @@ const parseAsNumber = (value?: string): number => {
   return Number.parseFloat(value || "0");
 };
 
-const parseAvailability = (value?: string): "otc" | "prescription" | undefined => {
+const parseAvailability = (
+  value?: string
+): "otc" | "prescription" | undefined => {
   switch (value?.toLowerCase()) {
     case "otc":
       return "otc";
@@ -257,16 +300,18 @@ const parseProduct = (row: RowType): Product => {
     symptoms_indications: row[rowMap["Symptoms /Indications"]] || "",
     product_form: parseProductForm(row[rowMap["Product Form"]]) || "",
     supplier: row[rowMap["Supplier | Brand"]] || "",
-    ingredients: parseIngredients(row[rowMap["Ingredients"]], row[rowMap["Amount"]]),
+    ingredients: parseIngredients(
+      row[rowMap["Ingredients"]],
+      row[rowMap["Amount"]]
+    ),
     slug: parseSlug(row[rowMap["Slug"]], row[rowMap["Product Name"]]),
     serving_size: parseServingSize(row[rowMap["Serving size"]]),
     stock_quantity: parseAsNumber(row[rowMap["Stock Quantity"]]),
   };
-
 };
 
 function sleep(ms: number) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 interface ExcelProduct extends Product {
@@ -332,17 +377,13 @@ const ProductManager = () => {
 
       reader.readAsArrayBuffer(file);
     });
-
   }, []);
-  const {
-    acceptedFiles,
-    getRootProps,
-    getInputProps,
-  } = useDropzone({
-    accept: ["application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"],
+  const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
+    accept: [
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    ],
     onDrop,
   });
-
 
   // const fileRejectionItems = fileRejections.map(({ file, errors }) => (
   //   <li key={file.path}>
@@ -356,13 +397,12 @@ const ProductManager = () => {
   // ));
 
   // This is another component but concise example
-  const fileList = (files: FileWithPath[]): ReactNode => (
-    files.map(file => (
+  const fileList = (files: FileWithPath[]): ReactNode =>
+    files.map((file) => (
       <li key={file.path}>
         {file.path} - {file.size} bytes
       </li>
-    ))
-  );
+    ));
 
   const [loading, setLoading] = useState(false);
   const handleUpdate = async () => {
@@ -373,20 +413,26 @@ const ProductManager = () => {
       return;
     }
 
-
     try {
       for (const product of excelProducts) {
         const invalidReason = validateProduct(product);
         if (invalidReason) {
-          toast.error(`${product.name} invalid: ${invalidReason}`, { duration: 5000 });
+          toast.error(`${product.name} invalid: ${invalidReason}`, {
+            duration: 5000,
+          });
           await sleep(1500);
           continue;
         }
         if (product.product_code) {
           const response = await upsertProduct(authToken, product);
-          newList = newList.filter(p => p.product_code !== product.product_code);
+          newList = newList.filter(
+            (p) => p.product_code !== product.product_code
+          );
           if (response.message.toLowerCase() === "created") {
-            toast.success(`${product.name} ${response.message.toLowerCase()}`, { duration: 5000, icon: "🌱" });
+            toast.success(`${product.name} ${response.message.toLowerCase()}`, {
+              duration: 5000,
+              icon: "🌱",
+            });
           } else {
             toast.success(`${product.name} ${response.message.toLowerCase()}`);
           }
@@ -411,25 +457,30 @@ const ProductManager = () => {
   return (
     <MainLayout authRequired={false} roleRequired={undefined}>
       <div className={"grid gap-2 p-8 "}>
-        <h1 className={"text-4xl font-semibold text-primary flex-grow"}>Product manager</h1>
-        <div  {...getRootProps({ className: "border-dashed border-2 border-secondary p-2 rounded-xl h-[100px] text-gray-600 cursor-pointer" })}>
+        <h1 className={"text-4xl font-semibold text-primary flex-grow"}>
+          Product manager
+        </h1>
+        <div
+          {...getRootProps({
+            className:
+              "border-dashed border-2 border-secondary p-2 rounded-xl h-[100px] text-gray-600 cursor-pointer",
+          })}>
           <input {...getInputProps()} />
           <p>Drag the upload file (.xlsx) here, or click to select the file</p>
         </div>
       </div>
       <div className={"px-4 divide-y-2 divide-primary divide-solid"}>
         <section>
-          {error && (
-            <div className={"text-red-600"}>{error}</div>
-          )}
+          {error && <div className={"text-red-600"}>{error}</div>}
 
           <aside className={"flex gap-2"}>
             <h4 className={"font-semibold text-primary"}>Upload file:</h4>
             <ul>{fileList(acceptedFiles)}</ul>
           </aside>
           <div className={"m-4 flex gap-4"}>
-
-            <Button color={"primary"} onClick={handleUpdate} disabled={loading}>Update</Button>
+            <Button color={"primary"} onClick={handleUpdate} disabled={loading}>
+              Update
+            </Button>
             <div>
               <h4>Filter</h4>
               <ul>
@@ -438,45 +489,53 @@ const ProductManager = () => {
                     <input
                       type="checkbox"
                       name={`invalid`}
-                      className="w-6 h-6 bg-white rounded border-gray-300 hover:cursor-pointer bg-check text-primary focus:ring-secondary"
+                      className="w-6 h-6 bg-white border-gray-300 rounded hover:cursor-pointer bg-check text-primary focus:ring-secondary"
                       checked={filter.invalidOnly}
-                      onChange={() => setFilter({ ...filter, invalidOnly: !filter.invalidOnly })}
+                      onChange={() =>
+                        setFilter({
+                          ...filter,
+                          invalidOnly: !filter.invalidOnly,
+                        })
+                      }
                       value=""
                     />
-                    <span className="font-normal text-gray-700 dark:text-white truncate">
-            Show invalid only
-            </span>
+                    <span className="font-normal text-gray-700 truncate dark:text-white">
+                      Show invalid only
+                    </span>
                   </label>
                 </li>
               </ul>
             </div>
           </div>
-
         </section>
 
         <div className={"bg-gray-50"}>
           <table className="table-auto">
             <thead>
-            <tr>
-              <th>ID</th>
-              <th>#</th>
-              <th>Name</th>
-              <th>Code</th>
-              <th>Price</th>
-              <th>Availability</th>
-              <th>Variation</th>
-              <th>Serving Size</th>
-              <th>Slug</th>
-              <th />
-
-            </tr>
+              <tr>
+                <th>ID</th>
+                <th>#</th>
+                <th>Name</th>
+                <th>Code</th>
+                <th>Price</th>
+                <th>Availability</th>
+                <th>Variation</th>
+                <th>Serving Size</th>
+                <th>Slug</th>
+                <th />
+              </tr>
             </thead>
             <tbody className={"text-gray-500 text-sm "}>
-            {excelProducts.map((p, idx) => {
-              return (
-                <SingleItem key={idx} idx={idx + 1} item={p} filter={filter} />
-              );
-            })}
+              {excelProducts.map((p, idx) => {
+                return (
+                  <SingleItem
+                    key={idx}
+                    idx={idx + 1}
+                    item={p}
+                    filter={filter}
+                  />
+                );
+              })}
             </tbody>
           </table>
         </div>
