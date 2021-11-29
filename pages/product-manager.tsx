@@ -286,7 +286,7 @@ const parseProduct = (row: RowType): Product => {
     id: -1,
     name: row[rowMap["Product Name"]] || "",
     description: row[rowMap["Product Short Description"]] || "",
-    product_code: row[rowMap["Product Code"]] || "",
+    product_code: parseProductCode(row[rowMap["Product Code"]]),
     price: parseAsNumber(row[rowMap["Product Price"]]),
     variation: row[rowMap["Product Variation"]] || "",
     directions: row[rowMap["Directions"]] || "",
