@@ -40,7 +40,7 @@ const ProductWidget1 = (props: ProductWidget1Props) => {
     <div className={"w-full font-karla text-primary"}>
       <div className={"grid lg:grid-cols-2"}>
         {/* Image (* <--> md) */}
-        <div className="md:hidden flex place-content-center">
+        <div className="flex md:hidden place-content-center">
           <Image
             objectFit="contain"
             height={300}
@@ -48,6 +48,7 @@ const ProductWidget1 = (props: ProductWidget1Props) => {
             src={
               product.image?.formats.small?.url ||
               product.image?.formats.medium?.url ||
+              product.image?.formats.thumbnail?.url ||
               "https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg"
             }
             alt={product.image?.alternativeText || product.name}
@@ -63,6 +64,7 @@ const ProductWidget1 = (props: ProductWidget1Props) => {
             src={
               product.image?.formats.small?.url ||
               product.image?.formats.medium?.url ||
+              product.image?.formats.thumbnail?.url ||
               "https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg"
             }
             alt={product.image?.alternativeText || product.name}
@@ -78,6 +80,7 @@ const ProductWidget1 = (props: ProductWidget1Props) => {
             src={
               product.image?.formats.small?.url ||
               product.image?.formats.medium?.url ||
+              product.image?.formats.thumbnail?.url ||
               "https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg"
             }
             alt={product.image?.alternativeText || product.name}
@@ -87,10 +90,12 @@ const ProductWidget1 = (props: ProductWidget1Props) => {
         {/* Name + *Variation + Description + Directions + Warning */}
         <div className="p-4 xl:p-10">
           {/* Name */}
-          <h1 className="text-2xl lg:text-4xl font-semibold truncate">
+          <h1 className="text-2xl font-semibold truncate lg:text-4xl">
             {product.name}
           </h1>
-          <span className={"text-sm text-gray-400"}>{product.product_code}</span>
+          <span className={"text-sm text-gray-400"}>
+            {product.product_code}
+          </span>
           {/* Variations */}
           {product.variation && (
             <span className={"ml-4 text-sm"}>10 Amusja</span>
@@ -122,17 +127,17 @@ const ProductWidget1 = (props: ProductWidget1Props) => {
               <button
                 type="button"
                 onClick={handleDecrease}
-                className="py-2 px-4 w-full text-base font-medium text-black bg-white rounded-l-md border-t border-b border-l hover:bg-gray-300">
+                className="w-full px-4 py-2 text-base font-medium text-black bg-white border-t border-b border-l rounded-l-md hover:bg-gray-300">
                 -
               </button>
               <button
                 type="button"
-                className="py-2 px-4 w-full text-base font-medium text-black bg-white border hover:bg-gray-100">
+                className="w-full px-4 py-2 text-base font-medium text-black bg-white border hover:bg-gray-100">
                 {quantity}
               </button>
               <button
                 type="button"
-                className="py-2 px-4 w-full text-base font-medium text-black bg-white rounded-r-md border-t border-r border-b hover:bg-gray-100"
+                className="w-full px-4 py-2 text-base font-medium text-black bg-white border-t border-b border-r rounded-r-md hover:bg-gray-100"
                 onClick={handleIncrease}>
                 +
               </button>
@@ -152,9 +157,15 @@ const ProductWidget1 = (props: ProductWidget1Props) => {
                 if (productStockToLow) {
                   if (productOutOfStock) {
                     addToWishlist(product);
-                    toast("Product out of stock, it was added to your wishlist", { duration: 5000, icon: "😞️" });
+                    toast(
+                      "Product out of stock, it was added to your wishlist",
+                      { duration: 5000, icon: "😞️" }
+                    );
                   } else {
-                    toast(`Product stock is low. Only ${product.stock_quantity} items left`, { duration: 5000, icon: "😞️" });
+                    toast(
+                      `Product stock is low. Only ${product.stock_quantity} items left`,
+                      { duration: 5000, icon: "😞️" }
+                    );
                   }
                 } else {
                   addToCart(product, quantity);
@@ -169,12 +180,16 @@ const ProductWidget1 = (props: ProductWidget1Props) => {
                 event.stopPropagation();
                 addToWishlist(product);
               }}>
-              <svg xmlns="http://www.w3.org/2000/svg"
-                   className="w-10 h-10 text-primary hover:text-secondary"
-                   viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd"
-                      d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
-                      clipRule="evenodd" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-10 h-10 text-primary hover:text-secondary"
+                viewBox="0 0 20 20"
+                fill="currentColor">
+                <path
+                  fillRule="evenodd"
+                  d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
+                  clipRule="evenodd"
+                />
               </svg>
             </button>
           </div>

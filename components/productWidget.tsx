@@ -48,6 +48,7 @@ const ProductWidget = (props: ProductWidgetProps) => {
             src={
               product.image?.formats.small?.url ||
               product.image?.formats.medium?.url ||
+              product.image?.formats.thumbnail?.url ||
               "https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg"
             }
             alt={product.image?.alternativeText || product.name}
@@ -69,13 +70,17 @@ const ProductWidget = (props: ProductWidgetProps) => {
             {product.name}
           </span>
           {product.variation && (
-            <span className={"text-sm text-gray-400 line-clamp-1"}>{product.variation}</span>
+            <span className={"text-sm text-gray-400 line-clamp-1"}>
+              {product.variation}
+            </span>
           )}
           <p
             className={cn(
               { "text-green-500": !productOutOfStock },
-              { "text-red-500": productOutOfStock },
-            )}>{productOutOfStock ? "Out of stock" : "In stock"}</p>
+              { "text-red-500": productOutOfStock }
+            )}>
+            {productOutOfStock ? "Out of stock" : "In stock"}
+          </p>
           <p className={"text-primary"}>{prettyPrice(product.price)}</p>
         </div>
 
@@ -116,7 +121,10 @@ const ProductWidget = (props: ProductWidgetProps) => {
             event.stopPropagation();
             if (productOutOfStock) {
               addToWishlist(product);
-              toast("Product out of stock, it was added to your wishlist", { duration: 5000, icon: "😞️" });
+              toast("Product out of stock, it was added to your wishlist", {
+                duration: 5000,
+                icon: "😞️",
+              });
             } else {
               addToCart(product, 1);
             }
@@ -127,8 +135,7 @@ const ProductWidget = (props: ProductWidgetProps) => {
             className="self-center w-5 h-5 pl-2 sm:w-7 md:h-7"
             viewBox="0 0 20 20"
             fill="currentColor">
-            <path
-              d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
+            <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
           </svg>
           {cartCount && <span className={"ml-1"}>({cartCount})</span>}
         </Button>
