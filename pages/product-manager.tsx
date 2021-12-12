@@ -5,9 +5,9 @@ import { ReactNode, useCallback, useEffect, useState } from "react";
 import XLSX from "xlsx";
 import { Ingredient } from "../types/ingredients";
 import cn from "classnames";
-import Button from "../components/button";
+import Button, { SmallButton } from "../components/button";
 import { prettyPrice } from "../lib/calc";
-import { upsertProduct } from "../lib/api";
+import { exportProducts, upsertProduct } from "../lib/api";
 import { useAuthContext } from "../contexts/authContext";
 import { toast } from "react-hot-toast";
 import { productForms } from "../types/productForms";
@@ -36,12 +36,12 @@ const validateProduct = (product: Product): string | undefined => {
 
   if (
     !productForms.find(
-      (f) => f.label.toLowerCase() === product.product_form?.toLowerCase()
+      (f) => f.label.toLowerCase() === product.product_form?.toLowerCase(),
     )
   ) {
     if (
       !productForms.find(
-        (f) => f.value.toLowerCase() === product.product_form?.toLowerCase()
+        (f) => f.value.toLowerCase() === product.product_form?.toLowerCase(),
       )
     ) {
       invalidReasons.push(`product_form "${product.product_form}" is invalid`);
@@ -125,7 +125,7 @@ const SingleItem = ({ idx, item, filter }: SingleItemProps) => {
     <tr
       className={cn(
         "relative hover:bg-secondary hover:text-white font-medium",
-        { "text-red-400": invalidReason }
+        { "text-red-400": invalidReason },
       )}>
       <th className={"cursor-pointer"} onClick={handleUpdate}>
         {isLoading ? "loading" : product ? product.id : "-"}
@@ -216,7 +216,7 @@ const parseIngredients = (names?: string, amounts?: string): Ingredient[] => {
     console.warn(
       "Ingredient name list and amount list lengths don't match",
       { nameList },
-      { amountList }
+      { amountList },
     );
     // throw Error(`Ingredient name list length (${nameList.length}) and amount list length (${amountList.length}) don't match:\n ` + JSON.stringify({ nameList }) + JSON.stringify({ amountList }));
   }
@@ -269,7 +269,7 @@ const parseAsNumber = (value?: string): number => {
 };
 
 const parseAvailability = (
-  value?: string
+  value?: string,
 ): "otc" | "prescription" | undefined => {
   switch (value?.toLowerCase()) {
     case "otc":
@@ -302,7 +302,7 @@ const parseProduct = (row: RowType): Product => {
     supplier: row[rowMap["Supplier | Brand"]] || "",
     ingredients: parseIngredients(
       row[rowMap["Ingredients"]],
-      row[rowMap["Amount"]]
+      row[rowMap["Amount"]],
     ),
     slug: parseSlug(row[rowMap["Slug"]], row[rowMap["Product Name"]]),
     serving_size: parseServingSize(row[rowMap["Serving size"]]),
@@ -426,7 +426,7 @@ const ProductManager = () => {
         if (product.product_code) {
           const response = await upsertProduct(authToken, product);
           newList = newList.filter(
-            (p) => p.product_code !== product.product_code
+            (p) => p.product_code !== product.product_code,
           );
           if (response.message.toLowerCase() === "created") {
             toast.success(`${product.name} ${response.message.toLowerCase()}`, {
@@ -454,12 +454,27 @@ const ProductManager = () => {
     invalidOnly: true,
   });
 
+  const handleExport = async () => {
+    try {
+      setLoading(true)
+      await exportProducts();
+      toast.success("Export complete");
+      setLoading(false)
+    } catch (e) {
+      setLoading(false)
+      toast.error("Something went wrong, check the console for more info");
+    }
+  };
+
   return (
     <MainLayout authRequired={false} roleRequired={undefined}>
       <div className={"grid gap-2 p-8 "}>
-        <h1 className={"text-4xl font-semibold text-primary flex-grow"}>
-          Product manager
-        </h1>
+        <div className={"flex"}>
+          <h1 className={"text-4xl font-semibold text-primary flex-grow"}>
+            Product manager
+          </h1>
+          <SmallButton disabled={loading} color={"secondary"} onClick={handleExport}>Export</SmallButton>
+        </div>
         <div
           {...getRootProps({
             className:
@@ -512,30 +527,30 @@ const ProductManager = () => {
         <div className={"bg-gray-50"}>
           <table className="table-auto">
             <thead>
-              <tr>
-                <th>ID</th>
-                <th>#</th>
-                <th>Name</th>
-                <th>Code</th>
-                <th>Price</th>
-                <th>Availability</th>
-                <th>Variation</th>
-                <th>Serving Size</th>
-                <th>Slug</th>
-                <th />
-              </tr>
+            <tr>
+              <th>ID</th>
+              <th>#</th>
+              <th>Name</th>
+              <th>Code</th>
+              <th>Price</th>
+              <th>Availability</th>
+              <th>Variation</th>
+              <th>Serving Size</th>
+              <th>Slug</th>
+              <th />
+            </tr>
             </thead>
             <tbody className={"text-gray-500 text-sm "}>
-              {excelProducts.map((p, idx) => {
-                return (
-                  <SingleItem
-                    key={idx}
-                    idx={idx + 1}
-                    item={p}
-                    filter={filter}
-                  />
-                );
-              })}
+            {excelProducts.map((p, idx) => {
+              return (
+                <SingleItem
+                  key={idx}
+                  idx={idx + 1}
+                  item={p}
+                  filter={filter}
+                />
+              );
+            })}
             </tbody>
           </table>
         </div>

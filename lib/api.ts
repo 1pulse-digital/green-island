@@ -1,5 +1,6 @@
 import { CartItemType } from "../contexts/cartContext";
 import { Product } from "../types/product";
+import * as XLSX from "xlsx";
 
 export function getStrapiURL(path = "") {
   return `${
@@ -276,6 +277,45 @@ export async function submitContactForm(request: submitContactFormRequest, token
     throw new Error(message);
   }
   return;
+}
+
+export async function exportProducts() {
+  const limit = 100;
+  let start = 0;
+  let list: Product[] = [];
+
+  // fetch all the products from strapi
+  while (true) {
+    try {
+      let query = `_start=${start}&_limit=${limit}`;
+      const response = await fetchAPI(`/products?${query}`);
+      list.push(...response);
+      if (response.length === 0 || response.length < limit) {
+        break;
+      }
+      start += limit;
+    } catch (e) {
+      console.error("Could not fetch products", e);
+      throw e;
+    }
+  }
+
+  // create the Excel file with all the products
+  const fileName = `export_${new Date().toISOString()}.xlsx`;
+  const items = list.map(entry => {
+    return {
+      "Name": entry.name,
+      "Product Code": entry.product_code,
+      "Stock Quantity": entry.stock_quantity,
+      "Availability": entry.availability,
+    };
+  });
+
+  const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(items);
+  const wb: XLSX.WorkBook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, "Stock");
+
+  XLSX.writeFile(wb, fileName);
 }
 
 export async function upsertProduct(token: string, product: Product) {
