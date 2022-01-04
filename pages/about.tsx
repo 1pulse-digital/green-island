@@ -246,17 +246,7 @@ const About = () => {
             athletes, his practice offers treatment for the whole family, from
             the young to the elderly. Simon has a special interest in pain
             management and rehabilitation and works closely with other health
-            professionals to ensure a rounded care model.Dr Simon Workman
-            graduated with a Masters Degree in Chiropractic from the University
-            of Johannesburg in 2010. He has completed an International
-            Chiropractic Sports Science Diploma, as well as courses in
-            rehabilitation, Instrument Assisted Soft Tissue Mobilisation (IASTM)
-            and Kinesio-Taping. Although he has studied further in sports and
-            has treated provincial and international athletes, his practice
-            offers treatment for the whole family, from the young to the
-            elderly. Simon has a special interest in pain management and
-            rehabilitation and works closely with other health professionals to
-            ensure a rounded care model.
+            professionals to ensure a rounded care model.
           </Bio>
 
           {/*Bronwyn Kohler Bio */}
