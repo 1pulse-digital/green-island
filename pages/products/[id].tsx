@@ -35,7 +35,7 @@ const SingleProduct = (props: SingleProductProps) => {
 
         <Disclaimer />
 
-        <FeaturedProducts products={featuredProducts} />
+        <FeaturedProducts products={featuredProducts} loading={false} />
       </div>
     </MainLayout>
   );
@@ -59,7 +59,7 @@ export const getStaticProps: GetStaticProps = async (
 
   return {
     props: { product, featuredProducts },
-    revalidate: 1,
+    revalidate: 300,
   };
 };
 
