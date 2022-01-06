@@ -4,13 +4,14 @@ import ProductWidget from "./productWidget";
 
 export interface FeaturedProductsProps {
   products?: Product[];
+  loading: boolean;
 }
 
 export const FeaturedProducts = (props: FeaturedProductsProps) => {
-  const { products } = props;
+  const { products, loading } = props;
 
-  if (!products) {
-    return <div>No featured products at this time. Check back soon</div>;
+  if (!loading && !products) {
+    return <div className={"text-gray-600"}>No featured products at this time. Check back soon</div>;
   }
 
   return (
@@ -24,11 +25,16 @@ export const FeaturedProducts = (props: FeaturedProductsProps) => {
         </h1>
       </div>
       <div className={"flex justify-center"}>
-        <div className="flex flex-wrap gap-4">
-          {products.map((p: Product) => {
-            return <ProductWidget key={p.id} product={p} />;
-          })}
-        </div>
+        {!loading && (
+          <div className="flex flex-wrap gap-4">
+            {products?.map((p: Product) => {
+              return <ProductWidget key={p.id} product={p} />;
+            })}
+          </div>
+        )}
+        {loading && (
+          <div className={"text-gray-600 animate-pulse"}>Fetching featured products</div>
+        )}
       </div>
     </div>
   );

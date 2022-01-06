@@ -15,6 +15,7 @@ import Link from "next/link";
 
 import { Hero } from "../components/home/hero";
 import { TestimonialCarousel } from "../components/home/testimonial";
+import { useEffect, useState } from "react";
 
 export interface HomeProps {
   articles?: Article[];
@@ -22,9 +23,39 @@ export interface HomeProps {
 }
 
 const Home = (props: HomeProps) => {
-  // Use the first 4 articles as featured articles
-  const featuredArticles = props.articles ? props.articles.slice(0, 4) : [];
-  const featuredProducts = props.featuredProducts;
+  const [loading, setLoading] = useState(false);
+
+  const [featuredArticles, setFeaturedArticles] = useState<Article[]>();
+  const [featuredProducts, setFeaturedProducts] = useState<Product[]>();
+
+  const fetchData = async () => {
+    const [featuredArticles, featuredProducts] = await Promise.all([
+      fetchAPI("/articles?featured=true"),
+      fetchAPI("/products?featured=true"),
+    ]);
+
+    return {
+      featuredArticles,
+      featuredProducts,
+    };
+  };
+
+  useEffect(() => {
+    try {
+      setLoading(true);
+      // fetch data
+      fetchData().then((result) => {
+        // Use the first 4 articles as featured articles
+        setFeaturedArticles(result.featuredArticles.slice(0, 4));
+        setFeaturedProducts(result.featuredProducts);
+      }).finally(() => {
+        setLoading(false);
+      });
+    } catch (e) {
+      console.error(`Could not fetch data:`, e);
+    }
+
+  }, []);
 
   return (
     <MainLayout>
@@ -39,7 +70,7 @@ const Home = (props: HomeProps) => {
       <About />
       <Categories />
       {/* FeaturedProducts */}
-      <FeaturedProducts products={featuredProducts} />
+      <FeaturedProducts products={featuredProducts} loading={loading} />
 
       {/* Testimonials (What our clients have to say) */}
       <div className={"bg-primary text-center h-[500px] grid content-center"}>
@@ -61,10 +92,13 @@ const Home = (props: HomeProps) => {
           className={
             "bg-white-800 p-2 md:grid grid-cols-4 gap-8 md:px-28 py-2 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4  "
           }>
-          {featuredArticles.map((entry) => {
+          {featuredArticles && featuredArticles.map((entry) => {
             return <BlogWidget key={entry.id} article={entry} />;
           })}
-          {featuredArticles.length === 0 && (
+          {loading && (
+            <div className={"text-gray-600 animate-pulse"}>Fetching featured articles</div>
+          )}
+          {!loading && (featuredArticles === undefined || featuredArticles.length === 0) && (
             <div>Check back soon for some featured articles</div>
           )}
         </div>
@@ -84,21 +118,3 @@ const Home = (props: HomeProps) => {
 };
 
 export default Home;
-
-export async function getStaticProps() {
-  // Run API calls in parallel
-  const [articles, featuredProducts, categories] = await Promise.all([
-    fetchAPI("/articles?featured=true"),
-    fetchAPI("/products?featured=true"),
-    fetchAPI("/article-categories"),
-  ]);
-
-  // TODO: Is the revalidate value correct here?
-  return {
-    props: { articles, featuredProducts, categories },
-    // Next.js will attempt to re-generate the page:
-    // - When a request comes in
-    // - At most once every 30 seconds
-    revalidate: 30, // In seconds
-  };
-}
