@@ -308,6 +308,7 @@ export async function exportProducts() {
       "Product Code": entry.product_code,
       "Stock Quantity": entry.stock_quantity,
       "Availability": entry.availability,
+      "Image": entry.image?.url,
     };
   });
 

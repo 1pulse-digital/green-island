@@ -1,6 +1,7 @@
 export interface Picture {
   alternativeText: string | undefined;
   formats: Formats;
+  url: string;
 }
 
 export interface Formats {
