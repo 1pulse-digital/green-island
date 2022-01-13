@@ -249,7 +249,7 @@ const parseServingSize = (value?: string | number): string => {
 };
 
 const parseProductCode = (value?: string | number): string => {
-  return value?.toString().trim() || "";
+  return value?.toString().replace(/^\s+/g, ' ').trim() || "";
 };
 
 const parseSlug = (slug?: string, name?: string): string => {
