@@ -7,6 +7,7 @@ import Bio from "../components/team_bios";
 import SimonWorkman from "../images/SimonWorkman.jpg";
 import BronwynKohler from "../images/BronwynKohler.jpg";
 import SindiNtozini from "../images/SindiNtozini.jpg";
+import KhayelihleNgwenya from "../images/KhayelihleNgwenya.jpg";
 import Button from "../components/button";
 import { useRef } from "react";
 
@@ -283,7 +284,7 @@ const About = () => {
             name="Khayelihle Ngwenya"
             education=""
             title="Administrator"
-            profilePicture={SindiNtozini}>
+            profilePicture={KhayelihleNgwenya}>
             Khayelihle, or Lihle as we know her, takes care of the
             behind-the-scenes admin for the practice. Mother of two boys, Lihle
             is always calm under pressure and ready to solve whatever problems
