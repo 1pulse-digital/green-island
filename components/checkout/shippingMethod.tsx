@@ -23,12 +23,14 @@ export const ShippingMethod = (props: ShippingMethodProps) => {
               <input
                 type="checkbox"
                 name={"pickup"}
-                className="w-6 h-6 bg-white rounded border-gray-300 hover:cursor-pointer bg-check text-primary focus:ring-secondary"
+                className="w-6 h-6 bg-white border-gray-300 rounded hover:cursor-pointer bg-check text-primary focus:ring-secondary"
                 checked={!props.shipping}
                 onChange={() => props.setShipping(!props.shipping)}
                 value=""
               />
-              <span className={"ml-2 text-gray-700"}>Pick up in store (Free)</span>
+              <span className={"ml-2 text-gray-700"}>
+                Pick up in store (Free)
+              </span>
             </>
           </RadioGroup.Option>
           <RadioGroup.Option value="courier">
@@ -36,14 +38,12 @@ export const ShippingMethod = (props: ShippingMethodProps) => {
               <input
                 type="checkbox"
                 name={"courier"}
-                className="w-6 h-6 bg-white rounded border-gray-300 hover:cursor-pointer bg-check text-primary focus:ring-secondary"
+                className="w-6 h-6 bg-white border-gray-300 rounded hover:cursor-pointer bg-check text-primary focus:ring-secondary"
                 checked={props.shipping}
                 onChange={() => props.setShipping(!props.shipping)}
                 value=""
               />
-              <span
-                className={"ml-2 text-gray-700 whitespace-nowrap"}
-              >
+              <span className={"ml-2 text-gray-700 whitespace-nowrap"}>
                 Courier
               </span>
             </>
@@ -53,14 +53,19 @@ export const ShippingMethod = (props: ShippingMethodProps) => {
       {props.shipping && (
         <div className={"text-sm text-primary grid gap-2 mt-4"}>
           <div>
-            <p className={"font-semibold"}>Major cities <em className={"font-light"}>+R100</em></p>
+            <p className={"font-semibold"}>
+              Major cities <em className={"font-light"}>+R100</em>
+            </p>
             <ul className={"flex flex-wrap gap-x-2"}>
-              {majorCities.map(city => {
+              {majorCities.map((city) => {
                 return <li key={city.name}>{city.alias}</li>;
               })}
             </ul>
           </div>
-          <p className={"font-semibold"}>Outlying areas <em className={"font-light"}>+R165</em></p>
+          <p className={"font-semibold"}>
+            Outlying areas <em className={"font-light"}>+R165</em>
+          </p>
+          <p>You will be notified when your order is ready for collection.</p>
         </div>
       )}
     </div>
