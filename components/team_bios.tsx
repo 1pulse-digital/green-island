@@ -15,14 +15,14 @@ export interface BioProps {
 
 const Bio = (props: BioProps) => {
   return (
-    <div className={"grid lg:grid-cols-2 gap-x-16 xl:gap-x-10"}>
+    <div className={"grid lg:grid-cols-2 gap-x-10 xl:gap-x-4"}>
       <h2 className={cn("text-2xl 2xl:text-4xl text-primary lg:col-span-2 xl:text-center xl:mb-8", { "lg:text-right": props.reverse })}>{props.name}</h2>
 
       {/* Show the image on the left when reverse is false or the screen is smaller than lg*/}
       <div className={cn("my-4 flex justify-center ", { "lg:hidden": props.reverse })}>
         <div className={"max-w-md xl:max-w-lg"}>
           <Image
-            className={"rounded"}
+            className={"rounded "}
             src={props.profilePicture || RobinKohler}
             objectFit={"contain"}
             placeholder={"blur"}
@@ -31,7 +31,7 @@ const Bio = (props: BioProps) => {
         </div>
       </div>
 
-      <div className={"my-4 text-gray-500"}>
+      <div className={"my-4 text-gray-500 "}>
         <p className={"pb-2 text-gray-400"}>{props.education}</p>
         <p className={"pb-3 font-semibold"}>{props.title}</p>
         <p className={""}>{props.children}</p>
