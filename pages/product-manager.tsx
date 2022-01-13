@@ -254,14 +254,14 @@ const parseProductCode = (value?: string | number): string => {
 
 const parseSlug = (slug?: string, name?: string): string => {
   if (slug) {
-    return slug.toLowerCase();
+    return slug.toLowerCase().trim();
   }
 
   if (!name) {
     return "";
   }
 
-  return encodeURI(name.toLowerCase().replaceAll(" ", "-"));
+  return encodeURI(name.toLowerCase().replaceAll(" ", "-").trim());
 };
 
 const parseAsNumber = (value?: string): number => {
