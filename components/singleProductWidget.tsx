@@ -154,21 +154,21 @@ const ProductWidget1 = (props: ProductWidget1Props) => {
               onClick={(event) => {
                 event.preventDefault();
                 event.stopPropagation();
-                if (productStockToLow) {
-                  if (productOutOfStock) {
-                    addToWishlist(product);
-                    toast(
-                      "Product out of stock, it was added to your wishlist",
-                      { duration: 5000, icon: "😞️" }
-                    );
-                  } else {
-                    toast(
-                      `Product stock is low. Only ${product.stock_quantity} items left`,
-                      { duration: 5000, icon: "😞️" }
-                    );
-                  }
+
+                if (productOutOfStock) {
+                  addToWishlist(product);
+                  toast(
+                    "Product out of stock, it was added to your wishlist",
+                    { duration: 5000, icon: "😞️" },
+                  );
                 } else {
                   addToCart(product, quantity);
+                  if (productStockToLow) {
+                    toast(
+                      `Product stock is low. Only ${product.stock_quantity} items left`,
+                      { duration: 5000, icon: "😞️" },
+                    );
+                  }
                 }
               }}>
               Add to cart
