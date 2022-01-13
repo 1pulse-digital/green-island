@@ -20,8 +20,8 @@ const About = () => {
         <div
           className={"grid lg:grid-cols-2 bg-gray-50 lg:px-32 md:px-10 px-4"}>
           {/* Left column - Text introduction goes here*/}
-          <div className={"grid content-center h-32 lg:h-auto pr-40"}>
-            <h2 className={"text-5xl font-light font-karla text-primary"}>
+          <div className={"grid content-center h-auto lg:h-auto lg:pr-40 py-5"}>
+            <h2 className={"text-3xl xl:text-5xl font-light font-karla text-primary"}>
               Where patients can <b className="font-bold">learn</b> how to <b className="font-bold">restore</b> their own health, and
               <b className="font-bold"> optimise</b> and <b className="font-bold">preserve</b> it far into the future.
             </h2>
