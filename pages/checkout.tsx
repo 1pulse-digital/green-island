@@ -24,11 +24,12 @@ import { Input } from "../components/input";
 import { Disclaimer } from "../components/disclaimer";
 import { MedicalAidDetailsType } from "../types/medicalAid";
 import { geocodeByAddress } from "react-places-autocomplete";
+import { useRouter } from "next/router";
 
 const Checkout = () => {
   const { user, authToken, setLoading } = useAuthContext();
   const { cartItems, clearCart } = useCartContext();
-
+  const router = useRouter();
   const [medicalAidDetails, setMedicalAidDetails] =
     useState<MedicalAidDetailsType>({
       provider: user?.medical_aid_details?.provider || "",
@@ -300,6 +301,7 @@ const Checkout = () => {
           setPaymentStatus("paid");
           clearCart();
           toast.success("Payment successful");
+          router.push("/shop");
         } else {
           if (order?.id) {
             // cancel the order
