@@ -249,19 +249,19 @@ const parseServingSize = (value?: string | number): string => {
 };
 
 const parseProductCode = (value?: string | number): string => {
-  return value?.toString().trim() || "";
+  return value?.toString().replace(/^\s+/g, '').replace(/$\s+/g, '').trim() || "";
 };
 
 const parseSlug = (slug?: string, name?: string): string => {
   if (slug) {
-    return slug.toLowerCase();
+    return slug.toLowerCase().trim();
   }
 
   if (!name) {
     return "";
   }
 
-  return encodeURI(name.toLowerCase().replaceAll(" ", "-"));
+  return encodeURI(name.toLowerCase().replaceAll(" ", "-").trim());
 };
 
 const parseAsNumber = (value?: string): number => {
@@ -288,7 +288,7 @@ const parseProduct = (row: RowType): Product => {
     description: row[rowMap["Product Short Description"]] || "",
     product_code: parseProductCode(row[rowMap["Product Code"]]),
     price: parseAsNumber(row[rowMap["Product Price"]]),
-    variation: row[rowMap["Product Variation"]] || "",
+    variation: row[rowMap["Product Variation"]].toString() || "",
     directions: row[rowMap["Directions"]] || "",
     warning: row[rowMap["Warning"]] || "",
     availability: parseAvailability(row[rowMap["Membership level"]]),
