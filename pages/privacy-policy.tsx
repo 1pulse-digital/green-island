@@ -4,311 +4,194 @@ import MainLayout from "../layouts/MainLayout";
 const PrivacyPolicy = () => {
   return (
     <MainLayout>
-        <div className={"bg-gray-100 lg:h-[4500px] sm:h-[7000px]"}>
-          <div className={"   py-10  px-24   "}>
-            <p className={"grid-cols-1   py-10 text-2xl font-semibold "}>
-              Perfect Health Practice Privacy Policy
+      <div className={"bg-gray-100 lg:h-[2400px] md:h-[4150px] sm:h-[7000px]"}>
+        <div className={"py-10 px-24"}>
+          <p className={"grid-cols-1   py-10 text-2xl font-semibold "}>
+            PAYMENT POLICY, TERMS & CONDITIONS OF VISITING THE PRACTICE AND
+            RECEIVING HEALTH CARE AND RELATED SERVICES AT OR FROM THE PRACTICE
+          </p>
+          <p className={"text-lg "}>
+            <p>
+              Thank you for choosing Robin’s Perfect Health Pty Ltd for your
+              health care needs. The patient financial policy has been developed
+              to assist in answering your questions regarding patient and
+              medical scheme responsibility for services rendered. Your
+              understanding of and compliance with our patient financial policy
+              is important. Please read this notice carefully and feel free to
+              question any item(s) that you do not fully understand. We are
+              dedicated to providing the best possible care and service to you
+              and regard your complete understanding of your financial
+              responsibilities as an essential element of your care and
+              treatment. <br></br>
+              The conditions described herein apply to consultations with all
+              practitioners employed by Robin’s Perfect Health Pty Ltd.
             </p>
-            <p className={"text-lg "}>
-              <p>
-                We have created this privacy statement for online ecommerce in order
-                to demonstrate our firm and continuing commitment to the privacy of
-                personal information provided by those visiting our website. We hold
-                the privacy of your personal information in the highest regard. The
-                following discloses our information gathering and dissemination
-                practices for this website. We recognize the importance of
-                protecting your privacy and our policy is designed to assist you in
-                understanding how we collect, use and safeguard the personal
-                information you provide to us and to assist you in making informed
-                decisions when using our site. This policy will be continuously
-                assessed against new technologies, business practices and our
-                customers’ needs.
-              </p>
-              <br></br>
-              <p className={"font-semibold "}>What Information Do We Collect?</p>
-              <br></br>
-              <p>
-                When you visit this website you may provide us with two types of
-                information: personal information you knowingly choose to disclose
-                that is collected on an individual basis and website use information
-                collected on an aggregate basis as you and others browse our
-                Website.
-              </p>
-              <br></br>
-              <p className={"font-semibold "}>
-                {" "}
-                Personal Information You Choose to Provide{" "}
-              </p>
-              <br></br>
-              <p className={"font-semibold "}>Email Information </p>
-              <br></br>
-              If you choose to correspond with us through email, we may retain the
-              content of your email messages together with your email address and
-              our responses. We provide the same protections for these electronic
-              communications that we employ in the maintenance of information
-              received by mail and telephone.<br></br>
-              <br></br>
-              <p className={"font-semibold "}>Website Use Information</p>
-              <br></br>
-              Similar to other commercial websites, our website utilizes a standard
-              technology called “cookies” (see explanation below, “What Are
-              Cookies?”) and web server log files to collect information about how
-              our website is used. Information gathered through cookies and Web
-              server logs may include the date and time of visits, the pages viewed,
-              time spent at our Website, and the Websites visited just before and
-              just after our Website.<br></br>
-              <br></br>
-              <p className={"font-semibold "}>
-                {" "}
-                How Do We Use the Information That You Provide to Us?
-              </p>
-              <br></br>
-              Broadly speaking, we use personal information for purposes of
-              administering our business activities, providing the products and
-              services you requested, to process your payment, to monitor the use of
-              the service, our marketing and promotional efforts and improve our
-              content and service offerings, and customize our site’s content,
-              layout, services and for other lawful purposes. These uses improve our
-              site and better tailor it to meet your needs.<br></br>
-              Furthermore, such information may be shared with others on an
-              aggregate basis. Personally identifiable information or business
-              information will not be shared with parties except as required by law.
-              <br></br>
-              Occasionally, we may also use the information we collect to notify you
-              about important changes to our Website, new services, and special
-              offers we think you will find valuable. You may notify us at any time
-              if you do not wish to receive these offers by emailing us at the link
-              provided on the newsletter.<br></br>
-              <br></br>
-              <p className={"font-semibold "}>What Are Cookies? </p>
-              <br></br>A cookie is a very small text document, which often includes
-              an anonymous unique identifier. When you visit a website, that site’s
-              computer asks your computer for permission to store this file in a
-              part of your hard drive specifically designated for cookies. Each
-              Website can send its own cookie to your browser if your browser’s
-              preferences allow it, but (to protect your privacy) your browser only
-              permits a Website to access the cookies it has already sent to you,
-              not the cookies sent to you by other sites. Browsers are usually set
-              to accept cookies. However, if you would prefer not to receive
-              cookies, you may alter the configuration of your browser to refuse
-              cookies. If you choose to have your browser refuse cookies, it is
-              possible that some areas of our site will not function as effectively
-              when viewed by the users. A cookie cannot retrieve any other data from
-              your hard drive or pass on computer viruses.<br></br>
-              <br></br>
-              <p className={"font-semibold "}>
-                How Do We Use Information We Collect from Cookies?
-              </p>
-              <br></br>
-              As you visit and browse our Website, the site uses cookies to
-              differentiate you from other users. In some cases, we also use cookies
-              to prevent you from having to log in more than is necessary for
-              security. Cookies, in conjunction with our Web server’s log files,
-              allow us to calculate the aggregate number of people visiting our
-              Website and which parts of the site are most popular. This helps us
-              gather feedback to constantly improve our Website and better serve our
-              clients. Cookies do not allow us to gather any personal information
-              about you and we do not intentionally store any personal information
-              that your browser provided to us in your cookies.<br></br>
-              <br></br>
-              <p className={"font-semibold "}>Who we are</p>
-              <br></br>
-              Our website address is: https://www.perfecthealthpractice.com/
-              <br></br>
-              <br></br>
-              What personal data we collect and why we collect it.<br></br>
-              <br></br>
-              <p className={"font-semibold "}>Comments</p>
-              <br></br>
-              When visitors leave comments on the site we collect the data shown in
-              the comments form, and also the visitor’s IP address and browser user
-              agent string to help spam detection. An anonymized string created from
-              your email address (also called a hash) may be provided to the
-              Gravatar service to see if you are using it. The Gravatar service
-              privacy policy is available here: https://automattic.com/privacy/.
-              After approval of your comment, your profile picture is visible to the
-              public in the context of your comment.<br></br>
-              <br></br>
-              <p className={"font-semibold "}>How long we retain your data</p>
-              <br></br>
-              If you leave a comment, the comment and its metadata are retained
-              indefinitely. This is so we can recognize and approve any follow-up
-              comments automatically instead of holding them in a moderation queue.
-              <br></br>
-              <br></br>
-              For users that register on our website (if any), we also store the
-              personal information they provide in their user profile. All users can
-              see, edit, or delete their personal information at any time (except
-              they cannot change their username). Website administrators can also
-              see and edit that information.<br></br>
-              <br></br>
-              <p className={"font-semibold "}>
-                {" "}
-                What rights you have over your data
-              </p>
-              <br></br>
-              If you have an account on this site, or have left comments, you can
-              request to receive an exported file of the personal data we hold about
-              you, including any data you have provided to us. You can also request
-              that we erase any personal data we hold about you. This does not
-              include any data we are obliged to keep for administrative, legal, or
-              security purposes.<br></br>
-              <br></br>
-              <p className={"font-semibold "}>Where we send your data </p>
-              <br></br>
-              Visitor comments may be checked through an automated spam detection
-              service.<br></br>
-              <br></br>
-              <p className={"font-semibold "}>DoubleClick DART cookies</p>
-              <br></br>
-              We also may use DART cookies for ad serving through Google’s
-              DoubleClick, which places a cookie on your computer when you are
-              browsing the web and visits a site using DoubleClick advertising
-              (including some Google AdSense advertisements). This cookie is used to
-              serve ads specific to you and your interests (”interest based
-              targeting”). The ads served will be targeted based on your previous
-              browsing history (For example, if you have been viewing sites about
-              visiting Las Vegas, you may see Las Vegas hotel advertisements when
-              viewing a non-related site, such as on a site about hockey). DART uses
-              “non personally identifiable information”. It does NOT track personal
-              information about you, such as your name, email address, physical
-              address, telephone number, social security numbers, bank account
-              numbers or credit card numbers. You can opt-out of this ad serving on
-              all sites using this advertising by visiting
-              http://www.doubleclick.com<br></br>
-              <br></br>
-              You can choose to disable or selectively turn off our cookies or
-              third-party cookies in your browser settings, or by managing
-              preferences in programs such as Norton Internet Security. However,
-              this can affect how you are able to interact with our site as well as
-              other websites. This could include the inability to login to services
-              or programs, such as logging into forums or accounts.<br></br>
-              <br></br>
-              Deleting cookies does not mean you are permanently opted out of any
-              advertising program. Unless you have settings that disallow cookies,
-              the next time you visit a site running the advertisements, a new
-              cookie will be added.<br></br>
-              <br></br>
-              <p className={"font-semibold "}>IP Addresses</p>
-              <br></br>
-              IP addresses are used by your computer every time you are connected to
-              the Internet. Your IP address is a number that is used by computers on
-              the network to identify your computer. IP addresses are automatically
-              collected by our web server as part of demographic and profile data
-              known as traffic data so that data (such as the Web pages you request)
-              can be sent to you.<br></br>
-              <br></br>
-              <p className={"font-semibold "}>Sharing and Selling Information</p>
-              <br></br>
-              We do not share, sell, lend or lease any of the information that
-              uniquely identifies a subscriber (such as email addresses or personal
-              details) with anyone except to the extent it is necessary to process
-              transactions or provide services that you have requested.<br></br>
-              <br></br>
-              <p className={"font-semibold "}>
-                How Can You Access and Correct Your Information?
-              </p>
-              <br></br>
-              You may request access to all your personally identifiable information
-              that we collect online and maintain in our database by emailing us at
-              the usual address.<br></br>
-              <br></br>
-              <p className={"font-semibold "}>
-                What About Legally Compelled Disclosure of Information?
-              </p>
-              <br></br>
-              We may disclose information when legally compelled to do so, in other
-              words, when we, in good faith, believe that the law requires it or for
-              the protection of our legal rights. We may also disclose account
-              information when we have reason to believe that disclosing this
-              information is necessary to identify, contact or bring legal action
-              against someone who may be violating our Terms of Service or to
-              protect the safety of our users and the Public.<br></br>
-              <br></br>
-              <p className={"font-semibold "}>
-                What About Other WebSites Linked to Our WebSite?
-              </p>
-              <br></br>
-              We are not responsible for the practices employed by websites linked
-              to or from our website or the information or content contained
-              therein. Often links to other Websites are provided solely as pointers
-              to information on topics that may be useful to the users of our
-              Website.<br></br>
-              <br></br>
-              Please remember that when you use a link to go from our Website to
-              another website, our Privacy Policy is no longer in effect. Your
-              browsing and interaction on any other website, including websites,
-              which have a link on our Website, is subject to that website’s own
-              rules and policies. Please read over those rules and policies before
-              proceeding.<br></br>
-              <br></br>
-              <p className={"font-semibold "}>Your Consent</p>
-              <br></br>
-              By using our website you consent to our collection and use of your
-              personal information as described in this Privacy Policy. We reserve
-              the right to amend this privacy policy at any time with or without
-              notice.
-              <br></br>
-              <br></br>
-              <p className={"font-semibold "}>Our Commitment To Data Security:</p>
-              <br></br>
-              Please note that your information will be stored and processed on our
-              computers in the United States. The laws on holding personal data in
-              the United States may be less stringent than the laws of your Country
-              of residence or citizenship. To prevent unauthorized access, maintain
-              data accuracy, and ensure the correct use of information, we have put
-              in place appropriate physical, electronic, and managerial procedures
-              to safeguard and secure the information we collect online.
-              <br></br>
-              <br></br>
-              <p className={"font-semibold "}>Choice/Opt-In/Opt-Out</p>
-              <br></br>
-              This site allows visitors to unsubscribe so that they will not receive
-              future messages. After unsubscribing we will discontinue sending the
-              particular messages as soon as technically feasible.<br></br>
-              <br></br>
-              <p className={"font-semibold "}>Surveys & Contests</p>
-              <br></br>
-              From time-to-time our site requests information from users via surveys
-              or contests. Participation in these surveys or contests is completely
-              voluntary and the user therefore has a choice whether or not to
-              disclose this information. Information requested may include contact
-              information (such as name and shipping address), and demographic
-              information (such as zip code, age level). Contact information will be
-              used to notify the winners and award prizes. Survey information will
-              be used for purposes of monitoring or improving the use and
-              satisfaction of this site.<br></br>
-              <br></br>
-              <p className={"font-semibold "}>A Special Note About Children</p>
-              <br></br>
-              Children are not eligible to use our services unsupervised and we ask
-              that children (under the age of 14) do not submit any personal
-              information to us. If you are a minor, you can use this service only
-              in conjunction with permission and guidance from your parents or
-              guardians.<br></br>
-              <br></br>
-              <p className={"font-semibold "}>
-                {" "}
-                Acquisition or Changes in Ownership
-              </p>
-              <br></br>
-              In the event that the website (or a substantial portion of its assets)
-              is acquired, your information would be considered part of those
-              assets, and may be part of those assets that are transferred.<br></br>
-              <br></br>
-              <p className={"font-semibold "}>Policy Modifications</p>
-              <br></br>
-              We may change this Privacy Policy from time to time. If/when changes
-              are made to this privacy policy, we will email users who have given us
-              permission to do so. We will post any changes here, so be sure to
-              check back periodically. However, please be assured that if the
-              Privacy Policy changes in the future, we will not use the personal
-              information you have submitted to us under this Privacy Policy in a
-              manner that is materially inconsistent with this Privacy Policy,
-              without your prior consent. <br></br>
+            <br></br>
+            <p className={"font-semibold "}>
+              1. ROBIN’S PERFECT HEALTH IS A CASH PRACTICE:
             </p>
-          </div>
+            <br></br>
+            <p>
+              1.1. Robin’s Perfect Health is not contracted to any medical aid
+              and operates exclusively as a cash practice. Patients may submit
+              invoices for reimbursement by their medical aid, but no warranty
+              is made by the Robin’s Perfect Health for medical aid
+              reimbursement. <br></br> 1.2. Medical aid coverage is an agreement
+              between the patient and the provider and is entirely independent
+              of Robin’s Perfect Health and its policies. <br></br> 1.3. We bill
+              consultations at a rate in excess of NHRPL tariffs, so medical
+              aids may not cover the costs of consultation in full. <br></br>
+              1.4. While the practice may assist in submitting the invoice to
+              Medical Aids on behalf of the patient, it remains the patient’s
+              sole responsibility to follow up with their medical aid regarding
+              reimbursement. <br></br> 1.5. All patients must complete our
+              Patient Information form before seeing the practitioner. It is
+              your responsibility to ensure that we have your correct
+              information. Robin’s Perfect Health takes no responsibility for
+              non-payment by medical aid schemes due to the submission of
+              incorrect or incomplete information. <br></br> 1.6. Under no
+              circumstances will Robin’s Perfect Health backdate invoices for
+              the purposes of claiming from medical aid. <br></br>1.7. We will
+              submit your claims and assist you in any way we can to help get
+              your claims paid. Your medical scheme administrator may request
+              information directly from you. Your failure to comply in good time
+              with your medical scheme’s request may result in your claim’s
+              denial.
+            </p>
+            <br></br>
+            <p className={"font-semibold "}>
+              {" "}
+              2. UPDATED CHANGE OF INFORMATION:{" "}
+            </p>
+            <br></br>
+            <p>
+              2.1. It is the patient’s responsibility to update your information
+              whenever you have a change in address, employment, medical scheme
+              plan, option, benefits, etc. Failure to update information will
+              not exempt the patient from responsibility for all outstanding
+              accounts held with Robin’s Perfect Health.
+            </p>
+            <br></br>
+            <p className={"font-semibold "}>3. PAYMENT: </p>
+            <br></br>
+            3.1. Payment is expected in full at the time of your visit. We will
+            accept cash or credit card. EFTs are only accepted for product
+            orders for delivery or by prior arrangement with the Robin’s Perfect
+            Health management. Robin’s Perfect Health reserves the right to deny
+            the option to pay by EFT.<br></br>
+            3.2. The consultation fee DOES NOT include additional finger-prick
+            blood tests, urine dipstick tests, or injectables. These tests are
+            optional, and the patient is liable for all additional tests
+            accepted.<br></br>
+            3.3. Different consultation fees apply to Initial Consultations,
+            Follow Ups, and Specialised Diagnostic Test consultations, such as
+            Organic Acid Analysis. Ensure that you are familiar with the cost of
+            your consultation before you arrive. <br></br>
+            3.4. A receipt detailing the services and products rendered on the
+            date of service will be issued to the patient immediately after
+            their consultation.
+            <br></br>
+            <br></br>
+            <p className={"font-semibold "}>4. NO SHOW POLICY: </p>
+            <br></br>
+            4.1. A cancellation fee amounting to the full consultation price is
+            payable if an appointment is not cancelled at least 12 hours prior
+            to the consultation. 4.2. If you miss 3 or more visits without
+            canceling or rescheduling 12 hours in advance you may be blocked
+            from our practice.<br></br>
+            4.3. Consideration of this cancellation fee will be given where
+            patients have endured exceptional circumstances relating to their
+            missed appointment entirely at the discretion of Robin’s Perfect
+            Health Management.<br></br>
+            <br></br>
+            <p className={"font-semibold "}>
+              {" "}
+              5. DIVORCED PARENTS OF PATIENTS:
+            </p>
+            <br></br>
+            5.1. Enlisting at Robin’s Perfect Health practice, the adult who
+            signs a minor child into our practice on the day of service accepts
+            responsibility for payment. <br></br>
+            5.2. This office does not promise to send bills or records to the
+            other parent/guardian for issues of payment or communication. We
+            will communicate about treatment and payment with the parent who
+            signs in that day.<br></br>
+            5.3. Parents must communicate with each other about the treatment
+            and payment issues pertaining to their minor children, or supply as
+            with a copy of a Settlement Agreement laying out the terms of
+            payment for the minor’s medical expenses, and which was made an
+            order of the court. Perfect Health will not mediate between parents
+            or other parties for payment of bills.
+            <br></br>
+            <br></br>
+            <p className={"font-semibold "}> 6. NON-PAYMENT:</p>
+            <br></br>
+            6.1. If your account is over 60 days past due, you will receive a
+            statement indicating that you have 30 days to pay your account in
+            full. Partial payments will not be accepted unless you have
+            contacted our office and negotiated a payment arrangement. Please be
+            aware that if a balance remains unpaid, we will turn your account
+            over to a collection agency after the 90th day past due.<br></br>
+            <br></br>
+            <p className={"font-semibold "}>7. WAITING TIMES: </p>
+            <br></br>7.1. Please note that due to complicated cases or
+            emergencies we may run late in attending to your scheduled
+            appointment time. This is an unavoidable feature of medical rooms
+            where serious and difficult medical cases are handled. We will do
+            our best to let you know (at the telephone numbers you have provided
+            to us) when we are running behind schedule. Having an appointment
+            begin late does not exempt you from payment in full for services and
+            products rendered during your consultation. <br></br>
+            7.2. Visits that begin late due to a patient’s late arrival will be
+            charged the full visit fee, regardless of the amount of time spent
+            in consult. Consultations cannot be extended to make up for time
+            lost due to late arrival.<br></br>
+            <br></br>
+            <p className={"font-semibold "}>8. RETURNS POLICY:</p>
+            <br></br>
+            8.1. Returned products will only be refunded if they are returned in
+            perfect condition with all seals intact within 14 days of sale.{" "}
+            <br></br>
+            8.2. You are responsible for checking the ingredients of your
+            medication for known allergies. Reactions to medications will not
+            qualify you for a refund unless the product is found to be
+            defective.
+            <br></br>
+            <br></br>
+            <p className={"font-semibold "}>9. CONFIDENTIALITY: </p>
+            <br></br>
+            9.1. We will keep all of patient information confidential, including
+            information for children 12 years and older. Information pertaining
+            to children younger than 12 will be shared with the legal guardian
+            that brought the child to the consultation.
+            <br></br>
+            9.2. The law prohibits communication with any individual, other than
+            those nominated by the patient or legal guardian in writing.
+            Patient’s information will only be released to other practitioners,
+            individuals or insurance companies if an Authorisation for Release
+            of Personal Information form has been completed.
+            <br></br>
+            9.3. To motivate specific treatments to your medical scheme we may
+            have to provide them with information on your health history and
+            other health information. To submit an account to a medical scheme
+            we must provide, in terms of the law, codes on the account that
+            discloses information to the scheme about your health condition.
+            Your signature on the Patient Information Form you complete prior to
+            your first consultation indicates that you agree to this. If you do
+            not agree, please inform the practice without delay. <br></br>
+            <br></br>
+            <p className={"font-semibold "}>10. PATIENT DUTIES:</p>
+            <br></br>
+            10.1. In terms of the National Health Act you or your family or
+            other persons that comes to the practice with you, should not harass
+            the doctor, nurses or other staff members, and should treat them
+            with respect. Harassment includes rumours, swearing, verbal abuse,
+            arguments, property damage, vandalism, physical assaults,
+            psychological trauma, anger-related incidents. 10.2. This practice
+            follows a zero-tolerance policy against harassment.<br></br>
+          </p>
         </div>
+      </div>
     </MainLayout>
   );
 };
