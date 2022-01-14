@@ -187,7 +187,7 @@ const PrivacyPolicy = () => {
             the doctor, nurses or other staff members, and should treat them
             with respect. Harassment includes rumours, swearing, verbal abuse,
             arguments, property damage, vandalism, physical assaults,
-            psychological trauma, anger-related incidents. 10.2. This practice
+            psychological trauma, anger-related incidents. <br></br>10.2. This practice
             follows a zero-tolerance policy against harassment.<br></br>
           </p>
         </div>
