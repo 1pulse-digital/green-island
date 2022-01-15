@@ -182,7 +182,7 @@ const About = () => {
               education="MTech Hom, Dip. Irid, Cert. Live Blood Analysis, FMCP"
               title="Naturopath, Iridologist, and Functional Medicine Practitioner"
               profilePicture={RobinKohler}>
-              Anyone who knows Dr Kohler will tells you that he eats, sleeps and
+              Anyone who knows Dr Kohler will tell you that he eats, sleeps and
               breaths natural health. Son of a specialist physician, Robin’s
               interest in health began at an early age, but his real passion
               ignited when he discovered Functional Medicine. Solving the puzzle
