@@ -57,6 +57,11 @@ const validateProduct = (product: Product): string | undefined => {
     invalidReasons.push(`slug "${product.slug}" is invalid`);
   }
 
+  const productCodeRegEx = new RegExp("[\r?\n]");
+  if (product.product_code.match(productCodeRegEx)) {
+    invalidReasons.push(`product_code "${product.product_code}" is invalid: can't contain line breaks`);
+  }
+
   if (invalidReasons.length > 0) {
     return invalidReasons.join("; ");
   }
