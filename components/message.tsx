@@ -5,6 +5,7 @@ import { toast } from "react-hot-toast";
 import { submitContactForm } from "../lib/api";
 import { useAuthContext } from "../contexts/authContext";
 import Link from "next/link";
+import { sendEvent } from "../lib/gtag";
 
 export const Message = () => {
   const { authToken } = useAuthContext();
@@ -28,6 +29,7 @@ export const Message = () => {
       e.preventDefault();
       e.stopPropagation();
       await submitContactForm(values, authToken);
+      sendEvent({ action: "generate_lead" });
       toast.success(
         `Your form has been submitted, thank you for getting in touch with us`,
         { icon: "🌿⚕" }

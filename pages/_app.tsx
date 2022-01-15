@@ -6,6 +6,9 @@ import algoliasearch from "algoliasearch/lite";
 import { InstantSearch } from "react-instantsearch-dom";
 import { Toaster } from "react-hot-toast";
 import RefinementContext from "../contexts/refinementContext";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import * as gtag from "../lib/gtag";
 
 // Initialise Algolia
 const searchClient = algoliasearch(
@@ -14,6 +17,19 @@ const searchClient = algoliasearch(
 );
 
 function MyApp({ Component, pageProps }: AppProps) {
+  //tracking gtag start
+  const router = useRouter();
+  useEffect(() => {
+    const handleRouteChange = (url: string) => {
+      gtag.pageview(url);
+    };
+    router.events.on("routeChangeComplete", handleRouteChange);
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChange);
+    };
+  }, [router.events]);
+  ////tracking gtag end
+
   return (
     <AuthContext>
       <Toaster position={"bottom-center"} />

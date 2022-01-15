@@ -4,6 +4,7 @@ import { useAuthContext } from "../contexts/authContext";
 import { useRouter } from "next/router";
 import { toast } from "react-hot-toast";
 import Link from "next/link";
+import { sendEvent } from "../lib/gtag";
 
 export const Login = () => {
   const { signIn, isLoading } = useAuthContext();
@@ -22,6 +23,7 @@ export const Login = () => {
     event.stopPropagation();
     try {
       await signIn(credentials.username, credentials.password);
+      sendEvent({ action: "login" });
       toast(`Welcome to The Perfect Health Practice!`, { icon: "🌿⚕️" });
     } catch (e) {
       toast.error(e, { icon: "😞️" });

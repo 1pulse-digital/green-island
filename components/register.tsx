@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useAuthContext } from "../contexts/authContext";
 import { useRouter } from "next/router";
 import { toast } from "react-hot-toast";
+import { sendEvent } from "../lib/gtag";
 
 export const Register = () => {
   const { register } = useAuthContext();
@@ -57,6 +58,8 @@ export const Register = () => {
         await register(values.email, values.password);
         await router.replace("/");
         toast(`Welcome to The Perfect Health Practice!`, { icon: "🌿⚕️" });
+        sendEvent({ action: "sign_up" });
+
       } catch (e) {
         toast.error(e, { icon: "😞️" });
       }
@@ -103,7 +106,7 @@ export const Register = () => {
                   onChange={handleChange}
                 />
                 {errors.firstName &&
-                <span className="text-xs text-red-600">{errors.firstName}</span>
+                  <span className="text-xs text-red-600">{errors.firstName}</span>
                 }
               </div>
             </div>
@@ -120,7 +123,7 @@ export const Register = () => {
                   onChange={handleChange}
                 />
                 {errors.password &&
-                <span className="text-xs text-red-600">{errors.password}</span>
+                  <span className="text-xs text-red-600">{errors.password}</span>
                 }
               </div>
             </div>
@@ -137,7 +140,7 @@ export const Register = () => {
                   onChange={handleChange}
                 />
                 {errors.lastName &&
-                <span className="text-xs text-red-600">{errors.lastName}</span>
+                  <span className="text-xs text-red-600">{errors.lastName}</span>
                 }
               </div>
             </div>
@@ -168,7 +171,7 @@ export const Register = () => {
                   onChange={handleChange}
                 />
                 {errors.email &&
-                <span className="text-xs text-red-600">{errors.email}</span>
+                  <span className="text-xs text-red-600">{errors.email}</span>
                 }
               </div>
             </div>

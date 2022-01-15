@@ -25,6 +25,7 @@ import { Disclaimer } from "../components/disclaimer";
 import { MedicalAidDetailsType } from "../types/medicalAid";
 import { geocodeByAddress } from "react-places-autocomplete";
 import { useRouter } from "next/router";
+import { sendEvent } from "../lib/gtag";
 
 const Checkout = () => {
   const { user, authToken, setLoading } = useAuthContext();
@@ -200,6 +201,9 @@ const Checkout = () => {
     } else {
       // success
       console.debug(`Payment created: `, data);
+      sendEvent({ action: "add_payment_info" });
+
+
       setLoading(false);
       return data;
     }
@@ -264,6 +268,8 @@ const Checkout = () => {
       const createOrderResult = await createOrder();
       setOrder(createOrderResult);
       toast.success("Your order has been placed, please proceed to payment");
+      sendEvent({ action: "begin_checkout" });
+
 
       if (authToken && shippingAddress.formatted_address) {
         // save the user profile
@@ -300,6 +306,8 @@ const Checkout = () => {
           setLoading(false);
           setPaymentStatus("paid");
           clearCart();
+          sendEvent({ action: "purchase" });
+
           toast.success("Payment successful");
           router.push("/shop");
         } else {

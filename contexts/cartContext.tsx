@@ -10,6 +10,7 @@ import {
   updateStrapiShoppingCart,
   createStrapiShoppingCart,
 } from "../lib/api";
+import { sendEvent } from "../lib/gtag";
 
 interface ContextType {
   addToCart: (product: Product, quantity: number) => void;
@@ -100,6 +101,8 @@ function CartContext({ children }: { children?: React.ReactNode }) {
       toast(`${product.name} added to cart`, { icon: "🛍️" });
     }
 
+    sendEvent({ action: "add_to_cart" });
+
     // remove the product from the wishlist
     removeFromWishlist(product.id);
   };
@@ -182,6 +185,8 @@ function CartContext({ children }: { children?: React.ReactNode }) {
       setWishlistItems(updatedList);
       toast(`${product.name} added to wishlist`, { icon: "🖤️" });
     }
+
+    sendEvent({ action: "add_to_wishlist" });
   };
 
   const removeFromWishlist = (productID: number) => {
