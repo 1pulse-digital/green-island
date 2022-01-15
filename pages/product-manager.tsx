@@ -451,7 +451,7 @@ const ProductManager = () => {
   };
 
   const [filter, setFilter] = useState({
-    invalidOnly: true,
+    invalidOnly: false,
   });
 
   const handleExport = async () => {
