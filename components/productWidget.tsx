@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Button } from "./button";
 import { useCartContext } from "../contexts/cartContext";
 import { useRouter } from "next/router";
-import placeholder from "../images/2.jpg";
+import placeholder from "../images/img-placeholder.jpeg";
 import ReactTooltip from "react-tooltip";
 import { prettyPrice } from "../lib/calc";
 import cn from "classnames";
