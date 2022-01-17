@@ -14,7 +14,7 @@ import { PaymentMethod } from "../components/checkout/paymentMethod";
 import payfastLogo from "../components/checkout/PayFast_logo_colour.png";
 import { useCartContext } from "../contexts/cartContext";
 import { useAuthContext } from "../contexts/authContext";
-import { cancelOrder, getStrapiURL, saveProfileAddress } from "../lib/api";
+import { cancelOrder, getStrapiURL, saveProfileDetails } from "../lib/api";
 import { parseErrorResponse } from "../utils/strapi";
 import { toast } from "react-hot-toast";
 import { Order } from "../types/order";
@@ -273,7 +273,7 @@ const Checkout = () => {
 
       if (authToken && shippingAddress.formatted_address) {
         // save the user profile
-        await saveProfileAddress(authToken, {
+        await saveProfileDetails(authToken, {
           address: shippingAddress.formatted_address,
           first_name: user?.first_name || shippingAddress.first_name,
           last_name: user?.last_name || shippingAddress.last_name,
