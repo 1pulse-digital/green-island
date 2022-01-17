@@ -144,6 +144,7 @@ function AuthContext({ children }: { children?: React.ReactNode }) {
     if (data.error) {
       console.warn(`Registration failed`, data);
       const combinedMessage = parseErrorResponse(data.message);
+      setLoading(false);
       throw `Registration failed: ${combinedMessage}`;
     } else {
       // registration success
