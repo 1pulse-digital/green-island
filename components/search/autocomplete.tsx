@@ -33,7 +33,7 @@ const ProductItem = ({ product }: { product: Product }) => {
           layout="fill"
           objectFit="contain"
           src={
-            product.image?.formats.thumbnail?.url ||
+            product.image?.formats?.thumbnail?.url ||
             "https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg"
           }
           alt={product.image?.alternativeText || product.name}

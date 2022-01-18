@@ -46,9 +46,9 @@ const ProductWidget = (props: ProductWidgetProps) => {
             layout="fill"
             objectFit="cover"
             src={
-              product.image?.formats.small?.url ||
-              product.image?.formats.medium?.url ||
-              product.image?.formats.thumbnail?.url ||
+              product.image?.formats?.small?.url ||
+              product.image?.formats?.medium?.url ||
+              product.image?.formats?.thumbnail?.url ||
               "https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg"
             }
             alt={product.image?.alternativeText || product.name}

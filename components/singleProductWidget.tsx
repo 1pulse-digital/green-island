@@ -46,9 +46,9 @@ const ProductWidget1 = (props: ProductWidget1Props) => {
             height={300}
             width={300}
             src={
-              product.image?.formats.small?.url ||
-              product.image?.formats.medium?.url ||
-              product.image?.formats.thumbnail?.url ||
+              product.image?.formats?.small?.url ||
+              product.image?.formats?.medium?.url ||
+              product.image?.formats?.thumbnail?.url ||
               "https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg"
             }
             alt={product.image?.alternativeText || product.name}
@@ -62,9 +62,9 @@ const ProductWidget1 = (props: ProductWidget1Props) => {
             height={400}
             width={400}
             src={
-              product.image?.formats.small?.url ||
-              product.image?.formats.medium?.url ||
-              product.image?.formats.thumbnail?.url ||
+              product.image?.formats?.small?.url ||
+              product.image?.formats?.medium?.url ||
+              product.image?.formats?.thumbnail?.url ||
               "https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg"
             }
             alt={product.image?.alternativeText || product.name}
@@ -78,9 +78,9 @@ const ProductWidget1 = (props: ProductWidget1Props) => {
             height={600}
             width={600}
             src={
-              product.image?.formats.small?.url ||
-              product.image?.formats.medium?.url ||
-              product.image?.formats.thumbnail?.url ||
+              product.image?.formats?.small?.url ||
+              product.image?.formats?.medium?.url ||
+              product.image?.formats?.thumbnail?.url ||
               "https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg"
             }
             alt={product.image?.alternativeText || product.name}
