@@ -10,7 +10,6 @@ import PlacesAutocomplete, { geocodeByAddress } from "react-places-autocomplete"
 import { Wrapper } from "@googlemaps/react-wrapper";
 import { Input } from "../input";
 import { SmallButton } from "../button";
-import { LuhnAlgorithm } from "../../lib/util";
 
 export const Register = () => {
   const placeRef = useRef<HTMLInputElement>(null);
@@ -76,10 +75,10 @@ export const Register = () => {
       newErrors.rsaID = "Identity number is required";
       valid = false;
     }
-    if (!LuhnAlgorithm(values.rsaID)) {
-      newErrors.rsaID = "Invalid identity number";
-      valid = false;
-    }
+    // if (!LuhnAlgorithm(values.rsaID)) {
+    //   newErrors.rsaID = "Invalid identity number";
+    //   valid = false;
+    // }
     if (values.password !== values.passwordConfirmation) {
       newErrors.password = "Passwords don't match";
       valid = false;

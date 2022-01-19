@@ -10,8 +10,6 @@ import { saveProfileDetails, saveProfileMedicalAid } from "../lib/api";
 import { toast } from "react-hot-toast";
 import { Wrapper } from "@googlemaps/react-wrapper";
 import PlacesAutocomplete, { geocodeByAddress } from "react-places-autocomplete";
-import { LuhnAlgorithm } from "../lib/util";
-
 
 export const UserProfile = () => {
   const placeRef = useRef<HTMLInputElement>(null);
@@ -107,10 +105,10 @@ export const UserProfile = () => {
       newErrors.rsa_id = "Identity number is required";
       valid = false;
     }
-    if (!LuhnAlgorithm(values.rsa_id)) {
-      newErrors.rsa_id = "Invalid identity number";
-      valid = false;
-    }
+    // if (!LuhnAlgorithm(values.rsa_id)) {
+    //   newErrors.rsa_id = "Invalid identity number";
+    //   valid = false;
+    // }
     setErrors(newErrors);
 
     if (valid && authToken && values.address) {
