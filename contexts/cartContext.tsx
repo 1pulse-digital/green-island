@@ -89,8 +89,9 @@ function CartContext({ children }: { children?: React.ReactNode }) {
           toast(`${product.name} added to cart`, { icon: "🛒" });
         })
         .catch(e => {
-          if (e.toString().includes("No prescription")) {
-            toast.error(e.toString(), { icon: "🔒" });
+          const idx = e.toString().indexOf("No prescription");
+          if (idx >= 0) {
+            toast.error(e.toString().slice(idx), { icon: "🔒" });
           } else {
             toast.error(`Something went wrong, we could not add to your cart`, { icon: "😞️" });
             console.error(`Could not add to your cart ${e}`);

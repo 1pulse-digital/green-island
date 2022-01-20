@@ -275,14 +275,16 @@ const parseAsNumber = (value?: string): number => {
 
 const parseAvailability = (
   value?: string,
-): "otc" | "prescription" | undefined => {
+): "otc" | "prescription" | "dro" | undefined => {
   switch (value?.toLowerCase()) {
     case "otc":
       return "otc";
     case "prescription":
       return "prescription";
+    case "dro":
+      return "dro";
     default:
-      return "prescription";
+      return "dro";
   }
 };
 
@@ -461,12 +463,12 @@ const ProductManager = () => {
 
   const handleExport = async () => {
     try {
-      setLoading(true)
+      setLoading(true);
       await exportProducts();
       toast.success("Export complete");
-      setLoading(false)
+      setLoading(false);
     } catch (e) {
-      setLoading(false)
+      setLoading(false);
       toast.error("Something went wrong, check the console for more info");
     }
   };
