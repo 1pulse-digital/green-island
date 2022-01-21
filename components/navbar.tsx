@@ -6,7 +6,7 @@ import { Fragment } from "react";
 import { Menu, Popover, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import { ShoppingCart } from "./shoppingCart";
-import { ProductWishlist } from "./ProductWishlist";
+import { ProductWishlist } from "./productWishlist";
 import { useAuthContext } from "../contexts/authContext";
 import cn from "classnames";
 import { useRouter } from "next/router";
@@ -154,7 +154,7 @@ export const Navbar = () => {
             </div>
 
             {/* Right hand menu items */}
-            <div className="flex items-center justify-end gap-x-4">
+            <div className="flex items-center justify-end gap-x-2 sm:gap-x-4">
               <ShoppingCart />
               <ProductWishlist />
 

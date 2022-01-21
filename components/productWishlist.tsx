@@ -6,14 +6,21 @@ import {
 } from "../contexts/cartContext";
 import Image from "next/image";
 import { prettyPrice } from "../lib/calc";
+import { useRouter } from "next/router";
 
 
 const WishlistItem = ({ item }: { item: WishlistItemType }) => {
   const { removeFromWishlist, addToCart } = useCartContext();
+  const router = useRouter();
+
+  const goToProduct = (item: WishlistItemType) => () => {
+    router.push(`/products/${item.product.id}`);
+  };
 
   return (
     <div className="grid grid-cols-8 h-24 rounded-lg transition duration-150 ease-in-out hover:bg-gray-50">
-      <div className="relative rounded-lg ring-1 ring-offset-1 ring-primary">
+      <div className="relative rounded-lg ring-1 ring-offset-1 ring-primary/20 sm:ring-primary cursor-pointer"
+           onClick={goToProduct(item)}>
         <Image
           layout="fill"
           objectFit="contain"
@@ -60,11 +67,11 @@ export const ProductWishlist = () => {
   const { wishlistItems } = useCartContext();
 
   return (
-    <div className="relative max-w-sm">
-      <Popover className="relative">
+    <div className="max-w-sm">
+      <Popover className="">
         <>
           <Popover.Button
-            className={`p-2 inline-flex`}>
+            className={"relative p-2 inline-flex rounded-sm"}>
             <svg xmlns="http://www.w3.org/2000/svg"
                  className="w-6 h-6 text-primary hover:text-secondary"
                  viewBox="0 0 20 20" fill="currentColor">
@@ -89,11 +96,10 @@ export const ProductWishlist = () => {
             leave="transition ease-in duration-150"
             leaveFrom="opacity-100 translate-y-0"
             leaveTo="opacity-0 translate-y-1">
-            <Popover.Panel
-              className="absolute z-10 px-4 mt-3 w-screen max-w-sm -translate-x-3/4 sm:px-0 lg:max-w-3xl">
-              <div className="overflow-hidden rounded-lg ring-1 ring-black ring-opacity-5 shadow-lg">
+            <Popover.Panel className="absolute z-50 px-4 right-0 sm:right-8 top-20 sm:px-0 mt-3 w-screen max-w-sm lg:max-w-3xl ">
+              <div className="overflow-hidden sm:rounded-lg sm:ring-1 ring-black ring-opacity-5 shadow-lg">
                 {/* Cart Items */}
-                <div className="grid relative gap-4 p-4 bg-white">
+                <div className="grid relative gap-4 p-2 sm:p-4 bg-white ">
                   {wishlistItems.map((item, idx) => (
                     <WishlistItem key={idx} item={item} />
                   ))}
@@ -107,7 +113,7 @@ export const ProductWishlist = () => {
                 )}
 
                 {/*  Cart summary */}
-                <div className="p-4 bg-gray-50">
+                <div className="flex p-4 bg-gray-100">
                   <div
                     className="flow-root py-2 px-2 rounded-md transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50">
                       <span className="flex items-center">

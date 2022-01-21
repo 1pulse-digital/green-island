@@ -248,7 +248,7 @@ const Checkout = () => {
       setLoading(false);
       toast.error(`Applying coupon failed: ${combinedMessage}`);
     } else {
-      // order placement success
+      // apply coupon success
       toast.success(`Coupon applied`);
       console.debug(`Coupon applied: `, data);
       setOrder(data);
