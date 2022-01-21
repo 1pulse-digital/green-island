@@ -101,7 +101,7 @@ export const ShoppingCart = () => {
             leaveFrom="opacity-100 translate-y-0"
             leaveTo="opacity-0 translate-y-1">
             <Popover.Panel
-              className="absolute z-10 px-4 mt-3 w-screen max-w-sm -translate-x-3/4 sm:px-0 lg:max-w-3xl">
+              className="absolute z-50 px-4 mt-3 w-screen max-w-sm -translate-x-3/4 sm:px-0 lg:max-w-3xl max-h-[500px] sm:max-h-screen overflow-y-scroll">
               <div className="overflow-hidden rounded-lg ring-1 ring-black ring-opacity-5 shadow-lg">
                 {/* Cart Items */}
                 <div className="grid relative gap-4 p-4 bg-white">

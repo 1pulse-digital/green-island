@@ -348,7 +348,7 @@ const Checkout = () => {
     <MainLayout>
       {/* Include the payfast script */}
       <Script src="https://www.payfast.co.za/onsite/engine.js" />
-      <div className={"bg-gray-100 px-10 lg:px-20 xl:px-28 py-4 grid gap-4"}>
+      <div className={"bg-gray-100 px-4 sm:px-10 lg:px-20 xl:px-28 py-4 grid gap-4"}>
         <h6 className={"text-4xl"}>Checkout</h6>
         <p className={""}>
           Please enter your details below to complete your purchase.
@@ -407,7 +407,7 @@ const Checkout = () => {
               <div className={"bg-white grid place-items-center "}>
                 <div className={"space-y-8 grid place-items-center"}>
                   {!user && (
-                    <div>
+                    <div className={"p-4"}>
                       <Input
                         id={"email"}
                         label={"Enter your email address"}
@@ -428,7 +428,7 @@ const Checkout = () => {
                     disabled={!email}>
                     Proceed
                   </Button>
-                  <span className={"text-primary"}>
+                  <span className={"text-primary p-4"}>
                     Orders are processed within 7 working days
                   </span>
                 </div>
