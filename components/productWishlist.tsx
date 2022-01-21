@@ -99,7 +99,7 @@ export const ProductWishlist = () => {
             <Popover.Panel className="absolute z-50 px-4 right-0 sm:right-8 top-20 sm:px-0 mt-3 w-screen max-w-sm lg:max-w-3xl ">
               <div className="overflow-hidden sm:rounded-lg sm:ring-1 ring-black ring-opacity-5 shadow-lg">
                 {/* Cart Items */}
-                <div className="grid relative gap-4 p-2 sm:p-4 bg-white ">
+                <div className="grid relative gap-4 p-2 sm:p-4 bg-white overflow-y-scroll max-h-[400px] sm:max-h-[650px]">
                   {wishlistItems.map((item, idx) => (
                     <WishlistItem key={idx} item={item} />
                   ))}

@@ -122,7 +122,6 @@ export const ShoppingCart = () => {
                     <span className="block text-sm font-medium text-gray-900">Cart Total</span>
                     <span className="block text-sm text-gray-500">{prettyPrice(cartTotal)}</span>
                     <Button onClick={(e) => {
-                      e.stopPropagation()
                       router.push("/checkout");
                     }} color={"primary"} className={"h-12 text-base mt-4 "}>Checkout</Button>
                   </div>
