@@ -4,8 +4,8 @@ import contacts from "../images/contacts.jpg";
 
 export const Contact = () => {
   return (
-    <div className={"sm:grid-cols-1 grid  h-[700px]  w-full bg-gray-50 z-0  "}>
-      <div className={"relative px-[100px] grid content-center"}>
+    <div className={"grid h-[250px] sm:h-[700px] w-full bg-gray-50"}>
+      <div className={"relative sm:px-[100px] grid content-center"}>
         <div className={" top-0 bottom-0 right-0 left-0 "}>
           <Image
             layout="fill"

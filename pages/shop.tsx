@@ -23,7 +23,7 @@ const Shop = (props: ShopProps) => {
 
         {/* Product grid */}
         <div className="relative w-full bg-gray-50">
-          <div className={"sm:p-5 md:p-7 mb-[38px] mx-auto"}>
+          <div className={"py-4 sm:px-4 md:p-7 mb-[38px] mx-auto"}>
             <Hits hitComponent={ProductHit} />
           </div>
           {/* Pagination */}

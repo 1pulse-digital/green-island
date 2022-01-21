@@ -38,7 +38,6 @@ const PageButton = (props: PageButtonProps) => {
 
 const Pagination = (props: PaginationProps) => {
 
-
   const pageButtons = new Array(props.nbPages).fill(null).map((_, idx) => {
     const maxNumberOfButtons = 7;
     const siblings = 3;
@@ -65,7 +64,7 @@ const Pagination = (props: PaginationProps) => {
       {/* Configure Algolia hits per page */}
       <Configure hitsPerPage={props.hitsPerPage} />
 
-      <div className=" px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
+      <div className="px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
 
         {/* Mobile pagination */}
         <div className="flex-1 flex justify-between sm:hidden">

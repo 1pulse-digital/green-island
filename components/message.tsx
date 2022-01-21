@@ -19,9 +19,9 @@ export const Message = () => {
 
   const handleChange =
     (name: string) =>
-    (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      setValues({ ...values, [name]: event.target.value });
-    };
+      (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        setValues({ ...values, [name]: event.target.value });
+      };
 
   const handleSubmit = async (e: MouseEvent<HTMLButtonElement>) => {
     try {
@@ -32,7 +32,7 @@ export const Message = () => {
       sendEvent({ action: "generate_lead" });
       toast.success(
         `Your form has been submitted, thank you for getting in touch with us`,
-        { icon: "🌿⚕" }
+        { icon: "🌿⚕" },
       );
     } catch (e) {
       console.error(`Could not submit the form ${e}`);
@@ -43,11 +43,11 @@ export const Message = () => {
   };
 
   return (
-    <div className={" sm:grid  grid-cols-2 h-[700px]  w-full  font-karla   "}>
+    <div className={"bg-gray-50 py-4 grid sm:grid-cols-2 md:h-[700px] w-full font-karla"}>
       {/* Left column */}
       <div
         className={
-          "grid content-center bg-gray-50 lg:px-24  text-primary text-lg pl-4 md:px-5  md:py-8  "
+          "grid content-center lg:px-24 text-primary text-lg pl-4 md:px-5 md:py-8"
         }>
         <h2 className={"font-bold"}>Contact details</h2>
         <p className={"text-md"}>
@@ -56,7 +56,7 @@ export const Message = () => {
           </a>
           <br />
         </p>
-        <p className={"text-md mt-2"}>
+        <p className={"text-md"}>
           <a
             className={"hover:text-primary text-secondary "}
             href="mailto:reception@perfecthealthpractice.com">
@@ -99,7 +99,7 @@ export const Message = () => {
       {/* Right column */}
       <div>
         <form className="relative grid w-full space-x-3">
-          <div className="w-full max-w-2xl px-12 py-10 mt-10 bg-white dark:bg-gray-800">
+          <div className="w-full max-w-2xl p-4 sm:px-12 sm:py-10 sm:mt-10 bg-white dark:bg-gray-800">
             <div className="mb-6 text-3xl font-light text-center dark:text-white text-primary">
               <h1 className={"text-1xl pb-4 font-bold text-left text-primary "}>
                 Send us a message
@@ -158,26 +158,32 @@ export const Message = () => {
                   {"Message here"}
                 </label>
               </div>
-              <Button onClick={handleSubmit} color={"primary"}>
-                Submit
-              </Button>
+              <div className={"grid xl:grid-cols-2 gap-4 xl:gap-8"}>
+                <div className={""}>
+                  <Button
+                    onClick={handleSubmit}
+                    color={"primary"}
+                    className={"w-full md:w-auto"}
+                  >
+                    Submit
+                  </Button>
+                </div>
+                <div className={""}>
+                  <Button
+                    color={"secondary"}
+                    className={"w-full md:w-auto border-1"}
+                    onClick={(event) => {
+                      event.preventDefault();
+                      event.stopPropagation();
+                      window.open("https://robins-perfect-health.cliniko.com/bookings", "_blank");
+                    }}>
+                    Book Appointment
+                  </Button>
+                </div>
+              </div>
             </div>
           </div>
         </form>
-        <div className={"px-12"}>
-          <a
-            target="_blank"
-            href="https://robins-perfect-health.cliniko.com/bookings"
-            rel="noreferrer">
-            <Button
-              color={"primary"}
-              className={
-                "absolute justify-self-center self-center bg-secondary hover:bg-primary"
-              }>
-              Book Appointment
-            </Button>
-          </a>
-        </div>
       </div>
     </div>
   );
