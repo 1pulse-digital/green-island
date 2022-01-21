@@ -70,13 +70,23 @@ const Pagination = (props: PaginationProps) => {
         {/* Mobile pagination */}
         <div className="flex-1 flex justify-between sm:hidden">
           <a
-            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              if (props.currentRefinement > 1) {
+                props.refine(props.currentRefinement - 1);
+              }
+            }}
             className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
           >
             Previous
           </a>
           <a
-            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              if (props.currentRefinement < props.nbPages) {
+                props.refine(props.currentRefinement + 1);
+              }
+            }}
             className="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
           >
             Next
