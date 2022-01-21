@@ -81,20 +81,24 @@ const Checkout = () => {
 
   // auto populate the user address if user is logged in
   useEffect(() => {
-    if (user?.address && user.address && geocodeByAddress) {
+    try {
+      if (user && user.address && geocodeByAddress) {
 
-      geocodeByAddress(user.address).then((geoResultList) => {
-        if (!geoResultList || geoResultList.length < 1) {
-          return;
-        }
-        const geoResult = geoResultList[0];
-        breakdownGeoResult(geoResult);
-        const addressBreakdown = breakdownGeoResult(geoResult);
+        geocodeByAddress(user.address).then((geoResultList) => {
+          if (!geoResultList || geoResultList.length < 1) {
+            return;
+          }
+          const geoResult = geoResultList[0];
+          breakdownGeoResult(geoResult);
+          const addressBreakdown = breakdownGeoResult(geoResult);
 
-        setShippingAddress(prev => ({ ...prev, ...addressBreakdown }));
-      }).catch(e => {
-        console.error("Could not parse user address:", e);
-      });
+          setShippingAddress(prev => ({ ...prev, ...addressBreakdown }));
+        }).catch(e => {
+          console.error("Could not parse user address:", e);
+        });
+      }
+    } catch (e) {
+      console.error("Could not run use effect to parse user address:", e);
     }
   }, [user]);
 
