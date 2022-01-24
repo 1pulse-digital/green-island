@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Input } from "./input";
 import { useAuthContext } from "../contexts/authContext";
 import Button from "./button";
@@ -6,11 +6,14 @@ import cn from "classnames";
 import { MedicalAidDetails } from "./checkout/medicalAidDetails";
 import { MedicalAidDetailsType } from "../types/medicalAid";
 import { OrderHistory } from "./orderHistory";
-import { saveProfileAddress, saveProfileMedicalAid } from "../lib/api";
+import { saveProfileDetails, saveProfileMedicalAid } from "../lib/api";
 import { toast } from "react-hot-toast";
-
+import { Wrapper } from "@googlemaps/react-wrapper";
+import PlacesAutocomplete, { geocodeByAddress } from "react-places-autocomplete";
 
 export const UserProfile = () => {
+  const placeRef = useRef<HTMLInputElement>(null);
+
   const { user, authToken } = useAuthContext();
 
   const [
@@ -18,12 +21,35 @@ export const UserProfile = () => {
     setSelectedSection,
   ] = useState<"myDetails" | "orderHistory" | "medicalAidDetails">("myDetails");
 
+  const [addressText, setAddressText] = useState(user?.address);
+
   const [values, setValues] = useState({
     first_name: user?.first_name || "",
     last_name: user?.last_name || "",
     email: user?.email || "",
     address: user?.address || "",
+    rsa_id: user?.rsa_id || "",
   });
+
+  const handleAddressChange = (value: string) => {
+    setAddressText(value);
+    if (value === "") {
+      setValues({ ...values, address: value });
+    }
+  };
+
+  const handleSelectAddress = async (address: string) => {
+    const geoResultList = await geocodeByAddress(address);
+    if (!geoResultList || geoResultList.length < 1) {
+      return;
+    }
+
+    const geoResult = geoResultList[0];
+    const formatted_address = geoResult.formatted_address;
+
+    setValues({ ...values, address: formatted_address });
+    setAddressText(formatted_address);
+  };
 
   const handleChange = (name: string) => (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setValues({ ...values, [name]: event.target.value });
@@ -40,13 +66,58 @@ export const UserProfile = () => {
     setMedicalAidDetails({ ...medicalAidDetails, [name]: event.target.value });
   };
 
+  const [errors, setErrors] = useState({
+    first_name: "",
+    last_name: "",
+    email: "",
+    rsa_id: "",
+    address: "",
+  });
+
   const handleUpdate = async () => {
-    if (authToken && values.address) {
+    // validate the fields
+    let valid = true;
+    let newErrors = {
+      first_name: "",
+      last_name: "",
+      email: "",
+      rsa_id: "",
+      address: "",
+    };
+
+    if (values.first_name === "") {
+      newErrors.first_name = "First Name is required";
+      valid = false;
+    }
+    if (values.last_name === "") {
+      newErrors.last_name = "Last Name is required";
+      valid = false;
+    }
+    if (values.email === "") {
+      newErrors.email = "Email is required";
+      valid = false;
+    }
+    if (values.address == "") {
+      newErrors.address = "Address is required";
+      valid = false;
+    }
+    if (values.rsa_id === "") {
+      newErrors.rsa_id = "Identity number is required";
+      valid = false;
+    }
+    // if (!LuhnAlgorithm(values.rsa_id)) {
+    //   newErrors.rsa_id = "Invalid identity number";
+    //   valid = false;
+    // }
+    setErrors(newErrors);
+
+    if (valid && authToken && values.address) {
       try {
-        await saveProfileAddress(authToken, {
+        await saveProfileDetails(authToken, {
           address: values.address,
           last_name: values.last_name,
           first_name: values.first_name,
+          rsa_id: values.rsa_id,
         });
         toast.success("Profile updated");
       } catch (e) {
@@ -73,6 +144,7 @@ export const UserProfile = () => {
       toast.error("Please fill in all your details");
     }
   };
+
 
   return (
     <div className={"font-karla bg-gray-50 text-primary px-12 xl:px-24 pb-10"}>
@@ -128,14 +200,16 @@ export const UserProfile = () => {
                 label={"First Name"}
                 value={values.first_name}
                 onChange={handleChange("first_name")}
+                error={errors.first_name}
               />
+
               <Input
                 id={"last-name"}
                 label={"Last Name"}
                 value={values.last_name}
                 onChange={handleChange("last_name")}
+                error={errors.last_name}
               />
-
               <Input
                 id={"email"}
                 label={"Email"}
@@ -143,21 +217,78 @@ export const UserProfile = () => {
                 type={"email"}
                 disabled
               />
-              {/*<div className={"grid w-full justify-centser"}>*/}
-              {/*  <h2 className={"text-sm text-gray-600 -mt-4"}>Last used shipping address</h2>*/}
+              <Input
+                id={"rsa-id"}
+                label={"Identity number"}
+                onChange={handleChange("rsa_id")}
+                value={values.rsa_id}
+                error={errors.rsa_id}
+              />
 
-              {/*  <p className={"text-gray-900"}>*/}
-              {/*    {user?.address?.split(",").map((line, idx) =>*/}
-              {/*      <p key={idx}>{line}</p>,*/}
-              {/*    )}*/}
-              {/*  </p>*/}
-              {/*</div>*/}
-              {/*<Input id={"address"}*/}
-              {/*       label={"Address"}*/}
-              {/*       value={values.address}*/}
-              {/*       onChange={handleChange("address")}*/}
-              {/*/>*/}
+              <div className={"lg:col-span-2"}>
+                <Wrapper
+                  apiKey={process.env.NEXT_PUBLIC_GOOGLE_API_KEY || ""}
+                  libraries={["places"]}>
+                  <PlacesAutocomplete
+                    value={addressText}
+                    onChange={handleAddressChange}
+                    onSelect={handleSelectAddress}
+                    searchOptions={{
+                      componentRestrictions: {
+                        country: "ZA",
+                      },
+                    }}>
+                    {({
+                        getInputProps,
+                        suggestions,
+                        getSuggestionItemProps,
+                        loading,
+                      }) => (
+                      <div className={"relative"}>
+                        <input
+                          {...getInputProps({
+                            placeholder: "Address",
+                            className:
+                              "w-full h-10 placeholder-transparent text-gray-900 rounded border-gray-300 focus:ring-0 focus:outline-none peer focus:border-secondary",
+                            disabled: false,
+                            id: "google_maps_address",
+                            ref: placeRef,
 
+                          })}
+                          autoComplete={"off"}
+                        />
+                        <label
+                          htmlFor={"google_maps_address"}
+                          className="absolute text-sm text-gray-600 transition-all left-2 -top-5 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-focus:text-gray-600 peer-focus:-top-5 peer-focus:text-sm">
+                          Address
+                        </label>
+                        <div className="grid gap-1 shadow">
+                          {loading && <div>Loading...</div>}
+                          {suggestions.map((suggestion, idx) => {
+                            const className = cn(
+                              "p-2 hover:ring-2 ring-primary ring-inset cursor-pointer",
+                              { "bg-gray-100": suggestion.active },
+                            );
+                            return (
+                              <div
+                                {...getSuggestionItemProps(suggestion, {
+                                  className,
+                                })}
+                                key={idx}>
+                                <span>{suggestion.description}</span>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    )}
+                  </PlacesAutocomplete>
+
+                </Wrapper>
+                {errors.address &&
+                  <span className="text-xs text-red-600">{errors.address}</span>
+                }
+              </div>
 
               <div className="mx-auto col-span-full">
                 <Button color={"primary"} onClick={handleUpdate}>Update</Button>

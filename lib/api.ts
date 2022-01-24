@@ -167,17 +167,18 @@ export async function resetPassword(code: string, password: string, passwordConf
   return;
 }
 
-export async function saveProfileAddress(token: string, {
+export async function saveProfileDetails(token: string, {
   address,
   first_name,
   last_name,
-}: { address: string, first_name: string, last_name: string }) {
+  rsa_id,
+}: { address: string, first_name: string, last_name: string, rsa_id?: string }) {
   const headers = {
     "Content-Type": "application/json",
     Authorization: `Bearer ${token}`,
   } as { "Content-Type": string; Authorization?: string };
 
-  const requestUrl = getStrapiURL("/profiles/me/address");
+  const requestUrl = getStrapiURL("/profiles/me/details");
   console.debug(`updating: ${requestUrl}`);
 
   const response = await fetch(requestUrl, {
@@ -187,6 +188,7 @@ export async function saveProfileAddress(token: string, {
       address,
       first_name,
       last_name,
+      rsa_id,
     }),
   });
   if (response.status != 200) {

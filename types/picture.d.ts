@@ -1,6 +1,6 @@
 export interface Picture {
   alternativeText: string | undefined;
-  formats: Formats;
+  formats?: Formats;
   url: string;
 }
 

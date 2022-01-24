@@ -14,7 +14,7 @@ import { PaymentMethod } from "../components/checkout/paymentMethod";
 import payfastLogo from "../components/checkout/PayFast_logo_colour.png";
 import { useCartContext } from "../contexts/cartContext";
 import { useAuthContext } from "../contexts/authContext";
-import { cancelOrder, getStrapiURL, saveProfileAddress } from "../lib/api";
+import { cancelOrder, getStrapiURL, saveProfileDetails } from "../lib/api";
 import { parseErrorResponse } from "../utils/strapi";
 import { toast } from "react-hot-toast";
 import { Order } from "../types/order";
@@ -81,20 +81,24 @@ const Checkout = () => {
 
   // auto populate the user address if user is logged in
   useEffect(() => {
-    if (user?.address && user.address && geocodeByAddress) {
+    try {
+      if (user && user.address && geocodeByAddress) {
 
-      geocodeByAddress(user.address).then((geoResultList) => {
-        if (!geoResultList || geoResultList.length < 1) {
-          return;
-        }
-        const geoResult = geoResultList[0];
-        breakdownGeoResult(geoResult);
-        const addressBreakdown = breakdownGeoResult(geoResult);
+        geocodeByAddress(user.address).then((geoResultList) => {
+          if (!geoResultList || geoResultList.length < 1) {
+            return;
+          }
+          const geoResult = geoResultList[0];
+          breakdownGeoResult(geoResult);
+          const addressBreakdown = breakdownGeoResult(geoResult);
 
-        setShippingAddress(prev => ({ ...prev, ...addressBreakdown }));
-      }).catch(e => {
-        console.error("Could not parse user address:", e);
-      });
+          setShippingAddress(prev => ({ ...prev, ...addressBreakdown }));
+        }).catch(e => {
+          console.error("Could not parse user address:", e);
+        });
+      }
+    } catch (e) {
+      console.error("Could not run use effect to parse user address:", e);
     }
   }, [user]);
 
@@ -248,7 +252,7 @@ const Checkout = () => {
       setLoading(false);
       toast.error(`Applying coupon failed: ${combinedMessage}`);
     } else {
-      // order placement success
+      // apply coupon success
       toast.success(`Coupon applied`);
       console.debug(`Coupon applied: `, data);
       setOrder(data);
@@ -273,7 +277,7 @@ const Checkout = () => {
 
       if (authToken && shippingAddress.formatted_address) {
         // save the user profile
-        await saveProfileAddress(authToken, {
+        await saveProfileDetails(authToken, {
           address: shippingAddress.formatted_address,
           first_name: user?.first_name || shippingAddress.first_name,
           last_name: user?.last_name || shippingAddress.last_name,
@@ -348,7 +352,7 @@ const Checkout = () => {
     <MainLayout>
       {/* Include the payfast script */}
       <Script src="https://www.payfast.co.za/onsite/engine.js" />
-      <div className={"bg-gray-100 px-10 lg:px-20 xl:px-28 py-4 grid gap-4"}>
+      <div className={"bg-gray-100 px-4 sm:px-10 lg:px-20 xl:px-28 py-4 grid gap-4"}>
         <h6 className={"text-4xl"}>Checkout</h6>
         <p className={""}>
           Please enter your details below to complete your purchase.
@@ -407,7 +411,7 @@ const Checkout = () => {
               <div className={"bg-white grid place-items-center "}>
                 <div className={"space-y-8 grid place-items-center"}>
                   {!user && (
-                    <div>
+                    <div className={"p-4"}>
                       <Input
                         id={"email"}
                         label={"Enter your email address"}
@@ -428,7 +432,7 @@ const Checkout = () => {
                     disabled={!email}>
                     Proceed
                   </Button>
-                  <span className={"text-primary"}>
+                  <span className={"text-primary p-4"}>
                     Orders are processed within 7 working days
                   </span>
                 </div>

@@ -28,9 +28,9 @@ export const BlogWidget = (props: BlogWidgetProps) => {
             layout="fill"
             objectFit="cover"
             src={
-              props.article.image?.formats.small?.url ||
-              props.article.image?.formats.medium?.url ||
-              props.article.image?.formats.thumbnail?.url ||
+              props.article.image?.formats?.small?.url ||
+              props.article.image?.formats?.medium?.url ||
+              props.article.image?.formats?.thumbnail?.url ||
               "https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg"
             }
             alt={props.article.image?.alternativeText || props.article.title}

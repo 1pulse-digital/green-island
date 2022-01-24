@@ -39,16 +39,16 @@ const ProductWidget = (props: ProductWidgetProps) => {
   return (
     <div
       onClick={goToProduct}
-      className="relative  w-[190px] sm:w-[255px] mb-5 bg-white rounded-lg border-gray-50 cursor-pointer hover:shadow-xl font-karla ">
+      className="relative w-[180px] sm:w-[255px] mb-5 bg-white rounded-lg border-gray-50 cursor-pointer hover:shadow-xl font-karla ">
       <div className={"relative h-[170px] w-full md:h-[240px]"}>
         {product.image && (
           <Image
             layout="fill"
             objectFit="cover"
             src={
-              product.image?.formats.small?.url ||
-              product.image?.formats.medium?.url ||
-              product.image?.formats.thumbnail?.url ||
+              product.image?.formats?.small?.url ||
+              product.image?.formats?.medium?.url ||
+              product.image?.formats?.thumbnail?.url ||
               "https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg"
             }
             alt={product.image?.alternativeText || product.name}

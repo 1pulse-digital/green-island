@@ -21,7 +21,7 @@ export const OrderSummary = (props: OrderSummaryProps) => {
   }
 
   return (
-    <div className={"bg-white p-10  "}>
+    <div className={"bg-white p-4 sm:p-10  "}>
       <p className={"text-2xl font-semibold"}>Order Summary</p>
       <p className={"text-sm"}>Please review your order below</p>
       <div className={"bg-gray-50 mt-4 p-4 flex flex-col gap-4 shadow-lg rounded-lg h-[460px] overflow-auto"}>

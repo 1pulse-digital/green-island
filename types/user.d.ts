@@ -11,6 +11,7 @@ export interface User {
   first_name?: string;
   last_name?: string;
   address?: string;
+  rsa_id?: string;
   medical_aid_details?: MedicalAidDetailsType;
 }
 

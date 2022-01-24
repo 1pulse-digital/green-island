@@ -19,7 +19,7 @@ export interface Product {
   image?: Picture;
   directions: string;
   warning: string;
-  availability: "otc" | "prescription" | undefined;
+  availability: "otc" | "prescription" | "dro" | undefined;
   benefits: string;
   serving_size: string;
   additional_ingredients: string;

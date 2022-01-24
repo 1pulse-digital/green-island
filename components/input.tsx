@@ -13,6 +13,7 @@ export interface InputProps {
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   inputClassName?: string;
   labelClassName?: string;
+  error?: string;
 }
 
 export const Input = (props: InputProps) => {
@@ -40,6 +41,9 @@ export const Input = (props: InputProps) => {
       >
         {props.label}
       </label>
+      {props.error &&
+        <span className="text-xs text-red-600">{props.error}</span>
+      }
     </div>
 
   );

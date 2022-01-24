@@ -21,12 +21,12 @@ export const CartItem = ({ item, disabled }: CartItemProps) => {
 
   return (
     <div className="grid grid-cols-8 h-24 rounded-lg transition duration-150 ease-in-out hover:bg-gray-50">
-      <div className="relative rounded-lg ring-1 ring-offset-1 ring-primary cursor-pointer"
+      <div className="relative rounded-lg ring-1 ring-offset-1 ring-primary/20 sm:ring-primary cursor-pointer"
            onClick={goToProduct(item)}>
         <Image
           layout="fill"
           objectFit="contain"
-          src={item.product.image?.formats.thumbnail?.url ||
+          src={item.product.image?.formats?.thumbnail?.url ||
           "https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg"}
           alt={item.product.image?.alternativeText || item.product.name}
         />
@@ -73,11 +73,11 @@ export const ShoppingCart = () => {
     .reduce((total, item) => (total += item), 0);
 
   return (
-    <div className="relative max-w-sm">
-      <Popover className="relative">
+    <div className="max-w-sm">
+      <Popover className="">
         <>
           <Popover.Button
-            className={`p-2 inline-flex rounded-sm`}>
+            className={"relative p-2 inline-flex rounded-sm"}>
             <svg xmlns="http://www.w3.org/2000/svg"
                  className="w-6 h-6 text-primary hover:text-secondary"
                  viewBox="0 0 20 20" fill="currentColor">
@@ -100,11 +100,10 @@ export const ShoppingCart = () => {
             leave="transition ease-in duration-150"
             leaveFrom="opacity-100 translate-y-0"
             leaveTo="opacity-0 translate-y-1">
-            <Popover.Panel
-              className="absolute z-10 px-4 mt-3 w-screen max-w-sm -translate-x-3/4 sm:px-0 lg:max-w-3xl">
-              <div className="overflow-hidden rounded-lg ring-1 ring-black ring-opacity-5 shadow-lg">
+            <Popover.Panel className="absolute z-50 px-4 right-0 sm:right-8 top-20 sm:px-0 mt-3 w-screen max-w-sm lg:max-w-3xl ">
+              <div className="overflow-hidden sm:rounded-lg sm:ring-1 ring-black ring-opacity-5 shadow-lg">
                 {/* Cart Items */}
-                <div className="grid relative gap-4 p-4 bg-white">
+                <div className="grid relative gap-4 p-2 sm:p-4 bg-white overflow-y-scroll max-h-[400px] sm:max-h-[650px]">
                   {cartItems.map((item, idx) => (
                     <CartItem key={idx} item={item} />
                   ))}
