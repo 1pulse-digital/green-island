@@ -98,7 +98,7 @@ const ProductWidget1 = (props: ProductWidget1Props) => {
           </span>
           {/* Variations */}
           {product.variation && (
-            <span className={"ml-4 text-sm"}>10 Amusja</span>
+            <span className={"ml-4 text-sm"}></span>
           )}
           {/* Product Rating Starts */}
           {/* TODO: Add product ratings */}
