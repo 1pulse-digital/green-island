@@ -3,10 +3,15 @@ import { Input } from "../components/input";
 import Button from "../components/button";
 import { forgotPassword } from "../lib/api";
 import { toast } from "react-hot-toast";
+import { useRouter } from "next/router";
 
 const ResetPasswordPage = () => {
+  const router = useRouter();
+
+  // check if this was a forced redirect from strapi
+  const type = router.query.t as string;
   const [values, setValues] = useState({
-    email: "",
+    email: (router.query.email as string) || "",
     result: "",
   });
 
@@ -25,21 +30,29 @@ const ResetPasswordPage = () => {
     try {
       setLoading(true);
       await forgotPassword(values.email);
-      setLoading(false)
+      setLoading(false);
       setValues({ email: "", result: "A password reset link has been sent to your email. Please check your mailbox" });
     } catch (e) {
-      setLoading(false)
+      setLoading(false);
       toast.error("Something went wrong, we could reset your password");
     }
 
   };
 
   return (
-    <div className={"h-screen w-full bg-white grid place-items-center"}>
+    <div className={"h-screen w-full bg-white grid place-items-center p-8"}>
       <div className={"container grid justify-center gap-6"}>
         {values.result === "" && (
           <>
-            <h1 className={"text-5xl text-primary"}>Forgot password?</h1>
+            {type === "redirect" && (
+              <>
+                <h1 className={"text-4xl text-primary"}>Please reset your password</h1>
+                <span className={"text-xl text-primary"}>Your account requires a password reset to be activated</span>
+              </>
+            )}
+            {type !== "redirect" && (
+              <h1 className={"text-5xl text-primary"}>Forgot password?</h1>
+            )}
             <Input
               id={"email"}
               label={"Email"}
