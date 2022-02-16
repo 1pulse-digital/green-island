@@ -77,6 +77,7 @@ const Checkout = () => {
     area: "",
     province: "",
     street: "",
+    apartment_complex_info: "",
   });
 
   // auto populate the user address if user is logged in
@@ -273,7 +274,6 @@ const Checkout = () => {
       setOrder(createOrderResult);
       toast.success("Your order has been placed, please proceed to payment");
       sendEvent({ action: "begin_checkout" });
-
 
       if (authToken && shippingAddress.formatted_address) {
         // save the user profile

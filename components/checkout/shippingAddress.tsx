@@ -84,6 +84,7 @@ export const ShippingAddress = (props: ShippingAddressProps) => {
       street: "",
       street_number: "",
       formatted_address: value,
+      apartment_complex_info: "",
     } as Address;
     setValues({ ...values, ...addressBreakdown });
   };
@@ -146,11 +147,11 @@ export const ShippingAddress = (props: ShippingAddressProps) => {
               },
             }}>
             {({
-              getInputProps,
-              suggestions,
-              getSuggestionItemProps,
-              loading,
-            }) => (
+                getInputProps,
+                suggestions,
+                getSuggestionItemProps,
+                loading,
+              }) => (
               <div className={"relative"}>
                 <input
                   {...getInputProps({
@@ -172,7 +173,7 @@ export const ShippingAddress = (props: ShippingAddressProps) => {
                   {suggestions.map((suggestion, idx) => {
                     const className = cn(
                       "p-2 hover:ring-2 ring-primary ring-inset cursor-pointer",
-                      { "bg-gray-100": suggestion.active }
+                      { "bg-gray-100": suggestion.active },
                     );
                     return (
                       <div
@@ -190,31 +191,57 @@ export const ShippingAddress = (props: ShippingAddressProps) => {
           </PlacesAutocomplete>
         </div>
 
-        <div className={"grid w-full "}>
-          <h2 className={"text-lg text-gray-800 text-primary w-min"}>
-            {values.country ? "Address" : ""}
-          </h2>
-          <p
-            className={"text-md text-gray-600 cursor-pointer"}
-            onClick={() => {
-              handleAddressChange("");
-              placeRef.current?.focus();
-            }}>
-            <span className={""}>
+        {values.country && (
+          <div className={"grid w-full relative"}>
+
+            <button
+              className={"absolute top-0 right-0 text-primary hover:text-secondary"}
+              onClick={() => {
+                handleAddressChange("");
+                placeRef.current?.focus();
+              }}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd"
+                      d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                      clipRule="evenodd" />
+              </svg>
+            </button>
+            <h2 className={"text-lg text-gray-800 text-primary w-min"}>
+              {values.country ? "Address" : ""}
+            </h2>
+            <p className={"text-md text-gray-600"}>
+              {values.apartment_complex_info && (
+                <>
+                  <span className={""}>{values.apartment_complex_info}</span>
+                  <br />
+                </>
+              )}
+
+              <span className={""}>
               {values.street_number
                 ? `${values.street_number} ${values.street}`
                 : ""}
             </span>
-            <br />
-            <span className={""}>{values.suburb} </span>
-            <br />
-            {renderCity(values.city)}
-            <br />
-            <span className={""}>{values.country}</span>
-            <br />
-            <span className={""}>{values.postal_code}</span>
-          </p>
-        </div>
+
+              <br />
+              <span className={""}>{values.suburb} </span>
+              <br />
+              {renderCity(values.city)}
+              <br />
+              <span className={""}>{values.country}</span>
+              <br />
+              <span className={""}>{values.postal_code}</span>
+              <Input
+                id={"complexAptInfo"}
+                label={"Apartment/Complex details"}
+                onChange={handleChange("apartment_complex_info")}
+                value={values.apartment_complex_info}
+                className={"mt-8"}
+              />
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -232,7 +259,7 @@ type addressComponentType =
 
 export const isMajorCity = (value: string): boolean => {
   return Boolean(
-    majorCities.find((c) => c.name === value || c.alias === value)
+    majorCities.find((c) => c.name === value || c.alias === value),
   );
 };
 
@@ -263,7 +290,7 @@ const renderCity = (city: string) => {
   if (isMajorCity(city)) {
     return (
       <span className={""}>
-        {city} <em className={"text-xs font-semibold"}>*Major City</em>
+    {city} <em className={"text-xs font-semibold"}>*Major City</em>
       </span>
     );
   }
@@ -271,7 +298,7 @@ const renderCity = (city: string) => {
 };
 
 const convertAddressComponentType = (
-  types: string[]
+  types: string[],
 ): addressComponentType | undefined => {
   if (types.includes("postal_code")) {
     return "postalCode";
