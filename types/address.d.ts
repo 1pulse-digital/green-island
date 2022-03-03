@@ -8,5 +8,6 @@ export interface Address {
   suburb: string,
   street: string,
   street_number: string
-  apartment_complex_info: string
+  apt_floor_number: string
+  complex_building_name: string
 }
