@@ -16,6 +16,12 @@ export interface ShippingAddress extends Address {
 export interface ShippingAddressProps {
   values: ShippingAddress;
   setValues: (values: ShippingAddress) => void;
+  errors: {
+    first_name: string,
+    last_name: string,
+    phone_number: string,
+    email: string,
+  };
 }
 
 export const breakdownGeoResult = (geoResult: google.maps.GeocoderResult) => {
@@ -64,10 +70,9 @@ export const breakdownGeoResult = (geoResult: google.maps.GeocoderResult) => {
   return addressBreakdown;
 };
 
-export const ShippingAddress = (props: ShippingAddressProps) => {
-  const { values, setValues } = props;
+export const ShippingAddressCard = (props: ShippingAddressProps) => {
+  const { errors, values, setValues } = props;
   const placeRef = useRef<HTMLInputElement>(null);
-
   const handleChange =
     (name: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
       setValues({ ...values, [name]: event.target.value });
@@ -84,7 +89,8 @@ export const ShippingAddress = (props: ShippingAddressProps) => {
       street: "",
       street_number: "",
       formatted_address: value,
-      apartment_complex_info: "",
+      apt_floor_number: values.apt_floor_number,
+      complex_building_name: values.complex_building_name,
     } as Address;
     setValues({ ...values, ...addressBreakdown });
   };
@@ -107,12 +113,13 @@ export const ShippingAddress = (props: ShippingAddressProps) => {
   return (
     <div className={"bg-white p-10 "}>
       <p className={"text-2xl font-semibold "}>Shipping Address</p>
-      <div className={"grid gap-8 mt-6"}>
+      <div className={"grid gap-6 mt-6"}>
         <Input
           id={"first-name"}
           label={"First name"}
           value={values.first_name}
           onChange={handleChange("first_name")}
+          error={errors.first_name}
         />
 
         <Input
@@ -120,13 +127,7 @@ export const ShippingAddress = (props: ShippingAddressProps) => {
           label={"Last name"}
           onChange={handleChange("last_name")}
           value={values.last_name}
-        />
-
-        <Input
-          id={"company-name"}
-          label={"Company name (Optional)"}
-          onChange={handleChange("company_name")}
-          value={values.company_name}
+          error={errors.last_name}
         />
 
         <Input
@@ -134,9 +135,25 @@ export const ShippingAddress = (props: ShippingAddressProps) => {
           label={"Phone number"}
           onChange={handleChange("phone_number")}
           value={values.phone_number}
+          error={errors.phone_number}
         />
 
         <div className={cn("duration-1000", { hidden: values.postal_code })}>
+          <Input
+            id={"apt_floor_number"}
+            label={"Apt, Floor number"}
+            onChange={handleChange("apt_floor_number")}
+            value={values.apt_floor_number}
+            className={"mt-8"}
+          />
+          <Input
+            id={"complex_building_name"}
+            label={"Complex or Building name"}
+            onChange={handleChange("complex_building_name")}
+            value={values.complex_building_name}
+            className={"mt-8"}
+          />
+          <br />
           <PlacesAutocomplete
             value={values.formatted_address}
             onChange={handleAddressChange}
@@ -207,13 +224,20 @@ export const ShippingAddress = (props: ShippingAddressProps) => {
                       clipRule="evenodd" />
               </svg>
             </button>
+
             <h2 className={"text-lg text-gray-800 text-primary w-min"}>
-              {values.country ? "Address" : ""}
+              Address
             </h2>
             <p className={"text-md text-gray-600"}>
-              {values.apartment_complex_info && (
+              {values.apt_floor_number && (
                 <>
-                  <span className={""}>{values.apartment_complex_info}</span>
+                  <span>{values.apt_floor_number}</span>
+                  <br />
+                </>
+              )}
+              {values.complex_building_name && (
+                <>
+                  <span>{values.complex_building_name}</span>
                   <br />
                 </>
               )}
@@ -232,13 +256,6 @@ export const ShippingAddress = (props: ShippingAddressProps) => {
               <span className={""}>{values.country}</span>
               <br />
               <span className={""}>{values.postal_code}</span>
-              <Input
-                id={"complexAptInfo"}
-                label={"Apartment/Complex details"}
-                onChange={handleChange("apartment_complex_info")}
-                value={values.apartment_complex_info}
-                className={"mt-8"}
-              />
             </p>
           </div>
         )}

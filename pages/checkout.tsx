@@ -5,6 +5,7 @@ import {
   breakdownGeoResult,
   isMajorCity,
   ShippingAddress,
+  ShippingAddressCard,
 } from "../components/checkout/shippingAddress";
 import { ShippingMethod } from "../components/checkout/shippingMethod";
 import MainLayout from "../layouts/MainLayout";
@@ -77,10 +78,11 @@ const Checkout = () => {
     area: "",
     province: "",
     street: "",
-    apartment_complex_info: "",
+    apt_floor_number: "",
+    complex_building_name: "",
   });
 
-  // auto populate the user address if user is logged in
+  // populate the user address if user is logged in
   useEffect(() => {
     try {
       if (user && user.address && geocodeByAddress) {
@@ -103,10 +105,17 @@ const Checkout = () => {
     }
   }, [user]);
 
-  // auto populate the user detials if user is logged in
+  // populate the user details if user is logged in
   useEffect(() => {
     setShippingAddress(prev => ({ ...prev, first_name: user?.first_name || "", last_name: user?.last_name || "" }));
   }, [user]);
+
+  const [errors, setErrors] = useState({
+    first_name: "",
+    last_name: "",
+    phone_number: "",
+    email: "",
+  });
 
   const createOrder = async (): Promise<Order> => {
     const requestUrl = getStrapiURL("/orders");
@@ -117,10 +126,12 @@ const Checkout = () => {
       const headers = {
         "Content-Type": "application/json",
       };
+
       if (authToken) {
         // @ts-ignore
         headers.Authorization = `Bearer ${authToken}`;
       }
+
 
       const response = await fetch(requestUrl, {
         method: "POST",
@@ -265,28 +276,60 @@ const Checkout = () => {
   };
 
   const handlePlaceOrder = async () => {
-    try {
-      if (!cartItems || cartItems.length <= 0) {
-        toast.error("You don't have any items in your cart");
-        return;
-      }
-      const createOrderResult = await createOrder();
-      setOrder(createOrderResult);
-      toast.success("Your order has been placed, please proceed to payment");
-      sendEvent({ action: "begin_checkout" });
+    // validate the fields
+    if (!cartItems || cartItems.length <= 0) {
+      toast.error("You don't have any items in your cart");
+      return;
+    }
 
-      if (authToken && shippingAddress.formatted_address) {
-        // save the user profile
-        await saveProfileDetails(authToken, {
-          address: shippingAddress.formatted_address,
-          first_name: user?.first_name || shippingAddress.first_name,
-          last_name: user?.last_name || shippingAddress.last_name,
-        }).finally();
+    let newErrors = {
+      first_name: "",
+      last_name: "",
+      phone_number: "",
+      email: "",
+    };
+    let valid = true;
+
+    if (shippingAddress.first_name === "") {
+      newErrors.first_name = "First name is required";
+      valid = false;
+    }
+
+    if (shippingAddress.last_name === "") {
+      newErrors.last_name = "Last name is required";
+      valid = false;
+    }
+    if (shippingAddress.phone_number === "") {
+      newErrors.phone_number = "Phone number is required";
+      valid = false;
+    }
+    if (email === "") {
+      newErrors.email = "Email is required";
+      valid = false;
+    }
+
+    setErrors(newErrors);
+    if (valid) {
+      try {
+        const createOrderResult = await createOrder();
+        setOrder(createOrderResult);
+        toast.success("Your order has been placed, please proceed to payment");
+        sendEvent({ action: "begin_checkout" });
+
+        if (authToken && shippingAddress.formatted_address) {
+          // save the user profile
+          await saveProfileDetails(authToken, {
+            address: shippingAddress.formatted_address,
+            first_name: user?.first_name || shippingAddress.first_name,
+            last_name: user?.last_name || shippingAddress.last_name,
+          }).finally();
+        }
+
+      } catch (e) {
+        console.error(`Order placement failed, can't proceed to payment: ${e.message ? e.message : e.toString()}`);
+        toast.error(e.toString());
       }
 
-    } catch (e) {
-      console.error(`Order placement failed, can't proceed to payment: ${e.message ? e.message : e.toString()}`);
-      toast.error(e.toString());
     }
   };
 
@@ -369,7 +412,8 @@ const Checkout = () => {
               <Wrapper
                 apiKey={process.env.NEXT_PUBLIC_GOOGLE_API_KEY || ""}
                 libraries={["places"]}>
-                <ShippingAddress
+                <ShippingAddressCard
+                  errors={errors}
                   values={shippingAddress}
                   setValues={setShippingAddress}
                 />
