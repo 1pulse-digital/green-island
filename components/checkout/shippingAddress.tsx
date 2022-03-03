@@ -13,14 +13,13 @@ export interface ShippingAddress extends Address {
   phone_number: string;
 }
 
-export interface ShippingAddressProps {
+export interface ShippingAddressCardProps {
   values: ShippingAddress;
   setValues: (values: ShippingAddress) => void;
   errors: {
     first_name: string,
     last_name: string,
     phone_number: string,
-    email: string,
   };
 }
 
@@ -70,7 +69,7 @@ export const breakdownGeoResult = (geoResult: google.maps.GeocoderResult) => {
   return addressBreakdown;
 };
 
-export const ShippingAddressCard = (props: ShippingAddressProps) => {
+export const ShippingAddressCard = (props: ShippingAddressCardProps) => {
   const { errors, values, setValues } = props;
   const placeRef = useRef<HTMLInputElement>(null);
   const handleChange =

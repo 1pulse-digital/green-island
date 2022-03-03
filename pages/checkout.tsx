@@ -27,6 +27,7 @@ import { MedicalAidDetailsType } from "../types/medicalAid";
 import { geocodeByAddress } from "react-places-autocomplete";
 import { useRouter } from "next/router";
 import { sendEvent } from "../lib/gtag";
+import { ContactDetailsCard } from "../components/checkout/contactDetails";
 
 const Checkout = () => {
   const { user, authToken, setLoading } = useAuthContext();
@@ -114,7 +115,6 @@ const Checkout = () => {
     first_name: "",
     last_name: "",
     phone_number: "",
-    email: "",
   });
 
   const createOrder = async (): Promise<Order> => {
@@ -286,7 +286,6 @@ const Checkout = () => {
       first_name: "",
       last_name: "",
       phone_number: "",
-      email: "",
     };
     let valid = true;
 
@@ -294,17 +293,12 @@ const Checkout = () => {
       newErrors.first_name = "First name is required";
       valid = false;
     }
-
     if (shippingAddress.last_name === "") {
       newErrors.last_name = "Last name is required";
       valid = false;
     }
     if (shippingAddress.phone_number === "") {
       newErrors.phone_number = "Phone number is required";
-      valid = false;
-    }
-    if (email === "") {
-      newErrors.email = "Email is required";
       valid = false;
     }
 
@@ -418,6 +412,13 @@ const Checkout = () => {
                   setValues={setShippingAddress}
                 />
               </Wrapper>
+            )}
+            {!shipping && (
+              <ContactDetailsCard
+                errors={errors}
+                values={shippingAddress}
+                setValues={setShippingAddress}
+              />
             )}
           </div>
 
