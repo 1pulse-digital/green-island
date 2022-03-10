@@ -150,16 +150,26 @@ export default Blogs;
 
 export async function getStaticProps() {
   // Run API calls in parallel
-  const [articles, articleCategories] = await Promise.all([
-    fetchAPI("/articles?_sort=updated_at:DESC"),
-    fetchAPI("/article-categories"),
-  ]);
-
-  return {
-    props: {
-      articles,
-      articleCategories,
-    },
-    revalidate: 1,
-  };
+  try {
+    const [articles, articleCategories] = await Promise.all([
+      fetchAPI("/articles?_sort=updated_at:DESC"),
+      fetchAPI("/article-categories"),
+    ]);
+    return {
+      props: {
+        articles,
+        articleCategories,
+      },
+      revalidate: 1,
+    };
+  } catch (e) {
+    console.error("Could not getStaticProps for blogs page: ", e);
+    return {
+      props: {
+        articles: [],
+        articleCategories: [],
+      },
+      revalidate: 1,
+    };
+  }
 }
