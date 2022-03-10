@@ -14,7 +14,7 @@ import PlacesAutocomplete, { geocodeByAddress } from "react-places-autocomplete"
 export const UserProfile = () => {
   const placeRef = useRef<HTMLInputElement>(null);
 
-  const { user, authToken } = useAuthContext();
+  const { user, authToken, fetchMe } = useAuthContext();
 
   const [
     selectedSection,
@@ -29,6 +29,7 @@ export const UserProfile = () => {
     email: user?.email || "",
     address: user?.address || "",
     rsa_id: user?.rsa_id || "",
+    phone_number: user?.phone_number || "",
   });
 
   const handleAddressChange = (value: string) => {
@@ -66,14 +67,17 @@ export const UserProfile = () => {
     setMedicalAidDetails({ ...medicalAidDetails, [name]: event.target.value });
   };
 
+  // initialise user profile details errors
   const [errors, setErrors] = useState({
     first_name: "",
     last_name: "",
     email: "",
     rsa_id: "",
     address: "",
+    phone_number: "",
   });
 
+  // save user profile details
   const handleUpdate = async () => {
     // validate the fields
     let valid = true;
@@ -83,6 +87,7 @@ export const UserProfile = () => {
       email: "",
       rsa_id: "",
       address: "",
+      phone_number: "",
     };
 
     if (values.first_name === "") {
@@ -105,6 +110,10 @@ export const UserProfile = () => {
       newErrors.rsa_id = "Identity number is required";
       valid = false;
     }
+    if (values.phone_number === "") {
+      newErrors.phone_number = "Phone number is required";
+      valid = false;
+    }
     // if (!LuhnAlgorithm(values.rsa_id)) {
     //   newErrors.rsa_id = "Invalid identity number";
     //   valid = false;
@@ -118,8 +127,10 @@ export const UserProfile = () => {
           last_name: values.last_name,
           first_name: values.first_name,
           rsa_id: values.rsa_id,
+          phone_number: values.phone_number,
         });
         toast.success("Profile updated");
+        fetchMe();
       } catch (e) {
         toast.error(`Something went wrong, we could not update your profile`, { icon: "😞️" });
         console.error(`Could not update your profile ${e}`);
@@ -136,6 +147,7 @@ export const UserProfile = () => {
       try {
         await saveProfileMedicalAid(authToken, medicalAidDetails);
         toast.success("Medical aid details updated");
+        fetchMe();
       } catch (e) {
         toast.error(`Something went wrong, we could not update your medical aid details`, { icon: "😞️" });
         console.error(`Could not update your medical aid details ${e}`);
@@ -223,6 +235,14 @@ export const UserProfile = () => {
                 onChange={handleChange("rsa_id")}
                 value={values.rsa_id}
                 error={errors.rsa_id}
+              />
+              <Input
+                id={"phone_number"}
+                label={"Phone number"}
+                onChange={handleChange("phone_number")}
+                value={values.phone_number}
+                error={errors.phone_number}
+                type={"tel"}
               />
 
               <div className={"lg:col-span-2"}>

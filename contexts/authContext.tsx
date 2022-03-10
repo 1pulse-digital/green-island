@@ -1,14 +1,16 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useCallback, useContext, useEffect, useState } from "react";
 import { User } from "../types/user";
 import { fetchAPI, getStrapiURL } from "../lib/api";
 import { parseErrorResponse } from "../utils/strapi";
 import { useRouter } from "next/router";
+import { useLocalStorage } from "usehooks-ts";
 
 interface ContextType {
   user?: User;
   logout: () => void;
   signIn: (username: string, password: string) => Promise<void>;
-  register: (username: string, password: string) => Promise<void>;
+  register: (username: string, password: string) => Promise<string>;
+  fetchMe: (token?: string) => void;
   isLoading: boolean;
   authToken?: string;
   setLoading: (isLoading: boolean) => void;
@@ -16,25 +18,41 @@ interface ContextType {
 
 const Context = createContext({} as ContextType);
 
-const retrieveToken = (): string | undefined => {
-  return localStorage.getItem("token") || undefined;
-};
-
-const saveToken = (token: string) => {
-  return localStorage.setItem("token", token);
-};
-
-const clearToken = () => {
-  return localStorage.removeItem("token");
-};
-
 function AuthContext({ children }: { children?: React.ReactNode }) {
   const router = useRouter();
-
   const [user, setUser] = useState<User>();
-  const [authToken, setAuthToken] = useState<string>();
+  const [savedAuthToken, setSavedAuthToken] = useLocalStorage<string | undefined>("token", undefined);
+  const [authToken, setAuthToken] = useState<string | undefined>(savedAuthToken);
+  const [isLoading, setLoading] = useState<boolean>(false);
+  const [autoLogin, setAutoLogin] = useState<boolean>(true);
 
-  // Handle router loading
+  // create a function that can be used to (re)fetch the user
+  const fetchMe = useCallback((token?: string) => {
+    (async () => {
+      if (token || authToken) {
+        try {
+          setLoading(true);
+          const response = await fetchAPI("/users/me", token || authToken);
+          setUser(response);
+          setLoading(false);
+        } catch (e) {
+          console.error(`Could not fetch user: ${e.message ? e.message : e.toString()}`);
+          logout();
+          setLoading(false);
+        }
+      }
+    })();
+  }, [authToken]);
+
+  // auto login only once
+  useEffect(() => {
+    if (autoLogin) {
+      setAutoLogin(false);
+      fetchMe();
+    }
+  }, [autoLogin, fetchMe]);
+
+  // handle router loading
   useEffect(() => {
     const handleStart = (url: string) => {
       console.log(`Loading: ${url}`);
@@ -55,30 +73,13 @@ function AuthContext({ children }: { children?: React.ReactNode }) {
     };
   }, [router]);
 
-  // auto login the user if there is still a valid token
+  // save the auth token in local storage whenever the state is updated
   useEffect(() => {
-    // create a function that can be used to fetch the user (me)
-    const fetchMe = async (token: string) => {
-      try {
-        const response = await fetchAPI("/users/me", token);
-        setUser(response);
-        setAuthToken(token);
-      } catch (e) {
-        console.error(`Could not fetch user: ${e.message ? e.message : e.toString()}`);
-        logout();
-      }
-    };
-
-    const cachedToken = retrieveToken();
-    if (cachedToken) {
-      fetchMe(cachedToken).finally(() => {
-        setLoading(false);
-      });
-    }
-
-  }, []);
-
-  const [isLoading, setLoading] = useState<boolean>(false);
+    setSavedAuthToken(authToken);
+  }, [
+    authToken,
+    setSavedAuthToken,
+  ]);
 
   const signIn = async (username: string, password: string) => {
     const requestUrl = getStrapiURL("/auth/local");
@@ -110,16 +111,14 @@ function AuthContext({ children }: { children?: React.ReactNode }) {
       throw `Login failed: ${combinedMessage}`;
     } else {
       // login success
-      const { user, jwt } = data as { user: User, jwt: string };
+      const { jwt } = data as { user: User, jwt: string };
+      fetchMe(jwt);
       // console.debug(`User signed in: ${user.username}`);
       setAuthToken(jwt);
-      saveToken(jwt);
-      setUser(user);
     }
-
   };
 
-  const register = async (username: string, password: string) => {
+  const register = async (username: string, password: string): Promise<string> => {
     const requestUrl = getStrapiURL("/auth/local/register");
     setLoading(true);
     let data;
@@ -136,7 +135,9 @@ function AuthContext({ children }: { children?: React.ReactNode }) {
         }),
       });
       data = await response.json();
+      setLoading(false);
     } catch (e) {
+      setLoading(false);
       console.error(`Could not register user: ${e.message ? e.message : e.toString()}`);
       throw `Something went wrong with the registration`;
     }
@@ -144,21 +145,16 @@ function AuthContext({ children }: { children?: React.ReactNode }) {
     if (data.error) {
       console.warn(`Registration failed`, data);
       const combinedMessage = parseErrorResponse(data.message);
-      setLoading(false);
       throw `Registration failed: ${combinedMessage}`;
     } else {
       // registration success
-      const { user, jwt } = data as { user: User, jwt: string };
-      // console.debug(`User registered: ${user.username}`);
+      const { jwt } = data as { user: User, jwt: string };
       setAuthToken(jwt);
-      saveToken(jwt);
-      setUser(user);
+      return jwt;
     }
-    setLoading(false);
   };
 
   const logout = () => {
-    clearToken();
     setUser(undefined);
     setAuthToken(undefined);
   };
@@ -169,6 +165,7 @@ function AuthContext({ children }: { children?: React.ReactNode }) {
         user,
         logout,
         signIn,
+        fetchMe,
         register,
         isLoading,
         setLoading,

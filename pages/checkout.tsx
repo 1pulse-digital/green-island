@@ -15,7 +15,7 @@ import { PaymentMethod } from "../components/checkout/paymentMethod";
 import payfastLogo from "../components/checkout/PayFast_logo_colour.png";
 import { useCartContext } from "../contexts/cartContext";
 import { useAuthContext } from "../contexts/authContext";
-import { cancelOrder, getStrapiURL, saveProfileDetails } from "../lib/api";
+import { cancelOrder, getStrapiURL } from "../lib/api";
 import { parseErrorResponse } from "../utils/strapi";
 import { toast } from "react-hot-toast";
 import { Order } from "../types/order";
@@ -108,7 +108,14 @@ const Checkout = () => {
 
   // populate the user details if user is logged in
   useEffect(() => {
-    setShippingAddress(prev => ({ ...prev, first_name: user?.first_name || "", last_name: user?.last_name || "" }));
+    setShippingAddress(prev => (
+      {
+        ...prev,
+        first_name: user?.first_name || "",
+        last_name: user?.last_name || "",
+        phone_number: user?.phone_number || "",
+      }
+    ));
   }, [user]);
 
   const [errors, setErrors] = useState({
@@ -310,14 +317,14 @@ const Checkout = () => {
         toast.success("Your order has been placed, please proceed to payment");
         sendEvent({ action: "begin_checkout" });
 
-        if (authToken && shippingAddress.formatted_address) {
-          // save the user profile
-          await saveProfileDetails(authToken, {
-            address: shippingAddress.formatted_address,
-            first_name: user?.first_name || shippingAddress.first_name,
-            last_name: user?.last_name || shippingAddress.last_name,
-          }).finally();
-        }
+        // if (authToken && shippingAddress.formatted_address) {
+        //   // save the user profile
+        //   await saveProfileDetails(authToken, {
+        //     address: shippingAddress.formatted_address,
+        //     first_name: user?.first_name || shippingAddress.first_name,
+        //     last_name: user?.last_name || shippingAddress.last_name,
+        //   }).finally();
+        // }
 
       } catch (e) {
         console.error(`Order placement failed, can't proceed to payment: ${e.message ? e.message : e.toString()}`);
@@ -326,7 +333,6 @@ const Checkout = () => {
 
     }
   };
-
 
   const handleProceedToPayment = async () => {
     try {

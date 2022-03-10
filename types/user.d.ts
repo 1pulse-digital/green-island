@@ -13,6 +13,7 @@ export interface User {
   address?: string;
   rsa_id?: string;
   medical_aid_details?: MedicalAidDetailsType;
+  phone_number?: string;
 }
 
 export interface Role {
