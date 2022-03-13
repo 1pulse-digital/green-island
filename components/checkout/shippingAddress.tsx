@@ -5,6 +5,8 @@ import PlacesAutocomplete, {
 } from "react-places-autocomplete";
 import { Address } from "../../types/address";
 import cn from "classnames";
+import { useAuthContext } from "../../contexts/authContext";
+import Link from "next/link";
 
 export interface ShippingAddress extends Address {
   first_name: string;
@@ -70,6 +72,7 @@ export const breakdownGeoResult = (geoResult: google.maps.GeocoderResult) => {
 };
 
 export const ShippingAddressCard = (props: ShippingAddressCardProps) => {
+  const { user } = useAuthContext();
   const { errors, values, setValues } = props;
   const placeRef = useRef<HTMLInputElement>(null);
   const handleChange =
@@ -209,7 +212,6 @@ export const ShippingAddressCard = (props: ShippingAddressCardProps) => {
 
         {values.country && (
           <div className={"grid w-full relative"}>
-
             <button
               className={"absolute top-0 right-0 text-primary hover:text-secondary"}
               onClick={() => {
@@ -256,6 +258,13 @@ export const ShippingAddressCard = (props: ShippingAddressCardProps) => {
               <br />
               <span className={""}>{values.postal_code}</span>
             </p>
+          </div>
+        )}
+        {user && (
+          <div className={"grid place-content-end"}>
+            <Link href={"/my-account"}>
+              <a className={"text-xs text-gray-600 hover:text-secondary hover:underline"}>Save a default</a>
+            </Link>
           </div>
         )}
       </div>
