@@ -114,6 +114,8 @@ const Checkout = () => {
         first_name: user?.first_name || "",
         last_name: user?.last_name || "",
         phone_number: user?.phone_number || "",
+        apt_floor_number: user?.apt_floor_number || "",
+        complex_building_name: user?.complex_building_name || "",
       }
     ));
   }, [user]);

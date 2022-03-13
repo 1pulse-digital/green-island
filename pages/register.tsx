@@ -26,6 +26,8 @@ const Register = () => {
     address: "",
     passwordConfirmation: "",
     phoneNumber: "",
+    apt_floor_number: "",
+    complex_building_name: "",
   });
 
   const [addressText, setAddressText] = useState("");
@@ -38,6 +40,8 @@ const Register = () => {
     password: "",
     address: "",
     phoneNumber: "",
+    apt_floor_number: "",
+    complex_building_name: "",
   });
 
   const handleRegister = async (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -51,6 +55,8 @@ const Register = () => {
       address: "",
       password: "",
       phoneNumber: "",
+      apt_floor_number: "",
+      complex_building_name: "",
     };
 
     if (values.firstName === "") {
@@ -102,6 +108,8 @@ const Register = () => {
           last_name: values.lastName,
           rsa_id: values.rsaID,
           phone_number: values.phoneNumber,
+          apt_floor_number: values.apt_floor_number,
+          complex_building_name: values.complex_building_name,
         });
 
         // refresh the user details
@@ -226,6 +234,22 @@ const Register = () => {
                   label={"Confirm Password"}
                   value={values.passwordConfirmation}
                   onChange={handleChange("passwordConfirmation")}
+                />
+              </div>
+              <div className="col-span-2 xl:col-span-1">
+                <Input
+                  id={"apt_floor_number"}
+                  label={"Apt, Floor number"}
+                  onChange={handleChange("apt_floor_number")}
+                  value={values.apt_floor_number}
+                />
+              </div>
+              <div className="col-span-2 xl:col-span-1">
+                <Input
+                  id={"complex_building_name"}
+                  label={"Complex or Building name"}
+                  onChange={handleChange("complex_building_name")}
+                  value={values.complex_building_name}
                 />
               </div>
 

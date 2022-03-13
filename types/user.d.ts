@@ -14,6 +14,8 @@ export interface User {
   rsa_id?: string;
   medical_aid_details?: MedicalAidDetailsType;
   phone_number?: string;
+  apt_floor_number?: string;
+  complex_building_name?: string;
 }
 
 export interface Role {

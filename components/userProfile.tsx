@@ -30,6 +30,8 @@ export const UserProfile = () => {
     address: user?.address || "",
     rsa_id: user?.rsa_id || "",
     phone_number: user?.phone_number || "",
+    apt_floor_number: user?.apt_floor_number || "",
+    complex_building_name: user?.complex_building_name || "",
   });
 
   const handleAddressChange = (value: string) => {
@@ -75,6 +77,8 @@ export const UserProfile = () => {
     rsa_id: "",
     address: "",
     phone_number: "",
+    apt_floor_number: "",
+    complex_building_name: "",
   });
 
   // save user profile details
@@ -88,6 +92,8 @@ export const UserProfile = () => {
       rsa_id: "",
       address: "",
       phone_number: "",
+      apt_floor_number: "",
+      complex_building_name: "",
     };
 
     if (values.first_name === "") {
@@ -128,6 +134,8 @@ export const UserProfile = () => {
           first_name: values.first_name,
           rsa_id: values.rsa_id,
           phone_number: values.phone_number,
+          apt_floor_number: values.apt_floor_number,
+          complex_building_name: values.complex_building_name,
         });
         toast.success("Profile updated");
         fetchMe();
@@ -244,6 +252,20 @@ export const UserProfile = () => {
                 error={errors.phone_number}
                 type={"tel"}
               />
+              <Input
+                id={"apt_floor_number"}
+                label={"Apt, Floor number"}
+                onChange={handleChange("apt_floor_number")}
+                value={values.apt_floor_number}
+                className={"lg:col-span-2"}
+              />
+              <Input
+                id={"complex_building_name"}
+                label={"Complex or Building name"}
+                onChange={handleChange("complex_building_name")}
+                value={values.complex_building_name}
+                className={"lg:col-span-2"}
+              />
 
               <div className={"lg:col-span-2"}>
                 <Wrapper
@@ -273,7 +295,6 @@ export const UserProfile = () => {
                             disabled: false,
                             id: "google_maps_address",
                             ref: placeRef,
-
                           })}
                           autoComplete={"off"}
                         />

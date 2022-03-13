@@ -173,7 +173,17 @@ export async function saveProfileDetails(token: string, {
   last_name,
   rsa_id,
   phone_number,
-}: { address: string, first_name: string, last_name: string, rsa_id?: string, phone_number?: string }) {
+  apt_floor_number,
+  complex_building_name,
+}: {
+  address: string,
+  first_name: string,
+  last_name: string,
+  rsa_id?: string,
+  phone_number?: string,
+  apt_floor_number?: string,
+  complex_building_name?: string
+}) {
   const headers = {
     "Content-Type": "application/json",
     Authorization: `Bearer ${token}`,
@@ -191,6 +201,8 @@ export async function saveProfileDetails(token: string, {
       last_name,
       rsa_id,
       phone_number,
+      apt_floor_number,
+      complex_building_name,
     }),
   });
   if (response.status != 200) {
