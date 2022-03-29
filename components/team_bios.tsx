@@ -34,7 +34,7 @@ const Bio = (props: BioProps) => {
       <div className={"my-4 text-gray-500 "}>
         <p className={"pb-2 text-gray-400"}>{props.education}</p>
         <p className={"pb-3 font-semibold"}>{props.title}</p>
-        <p className={""}>{props.children}</p>
+        <div className={""}>{props.children}</div>
       </div>
 
       {/* Show the image on the right when reverse is true and the screen size is lg */}
