@@ -9,6 +9,7 @@ import RefinementContext from "../contexts/refinementContext";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import * as gtag from "../lib/gtag";
+import LogRocket from "logrocket";
 
 // Initialise Algolia
 const searchClient = algoliasearch(
@@ -17,7 +18,7 @@ const searchClient = algoliasearch(
 );
 
 function MyApp({ Component, pageProps }: AppProps) {
-  //tracking gtag start
+  // tracking gtag start
   const router = useRouter();
   useEffect(() => {
     const handleRouteChange = (url: string) => {
@@ -28,7 +29,13 @@ function MyApp({ Component, pageProps }: AppProps) {
       router.events.off("routeChangeComplete", handleRouteChange);
     };
   }, [router.events]);
-  ////tracking gtag end
+  // tracking gtag end
+
+
+  // logrocket monitoring
+  useEffect(() => {
+    LogRocket.init("vuqsu2/perfect-health-practice");
+  }, []);
 
   return (
     <AuthContext>
