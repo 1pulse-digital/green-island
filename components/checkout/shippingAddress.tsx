@@ -22,6 +22,7 @@ export interface ShippingAddressCardProps {
     first_name: string,
     last_name: string,
     phone_number: string,
+    address: string,
   };
 }
 
@@ -187,6 +188,9 @@ export const ShippingAddressCard = (props: ShippingAddressCardProps) => {
                   className="absolute text-sm text-gray-600 transition-all left-2 -top-5 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-focus:text-gray-600 peer-focus:-top-5 peer-focus:text-sm">
                   Address
                 </label>
+                {errors.address &&
+                  <span className="text-xs text-red-600">{errors.address}</span>
+                }
                 <div className="grid gap-1 shadow">
                   {loading && <div>Loading...</div>}
                   {suggestions.map((suggestion, idx) => {

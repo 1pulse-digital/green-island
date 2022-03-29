@@ -124,6 +124,7 @@ const Checkout = () => {
     first_name: "",
     last_name: "",
     phone_number: "",
+    address: "",
   });
 
   const createOrder = async (): Promise<Order> => {
@@ -295,6 +296,7 @@ const Checkout = () => {
       first_name: "",
       last_name: "",
       phone_number: "",
+      address: "",
     };
     let valid = true;
 
@@ -309,6 +311,16 @@ const Checkout = () => {
     if (shippingAddress.phone_number === "") {
       newErrors.phone_number = "Phone number is required";
       valid = false;
+    }
+    if (shipping) {
+      if (shippingAddress.country == "") {
+        newErrors.address = "Please select your address from the dropdown list";
+        valid = false;
+      }
+      if (shippingAddress.formatted_address == "") {
+        newErrors.address = "Shipping address is required for shipping";
+        valid = false;
+      }
     }
 
     setErrors(newErrors);
