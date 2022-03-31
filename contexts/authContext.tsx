@@ -4,6 +4,7 @@ import { fetchAPI, getStrapiURL } from "../lib/api";
 import { parseErrorResponse } from "../utils/strapi";
 import { useRouter } from "next/router";
 import { useLocalStorage } from "usehooks-ts";
+import LogRocket from "logrocket";
 
 interface ContextType {
   user?: User;
@@ -32,9 +33,18 @@ function AuthContext({ children }: { children?: React.ReactNode }) {
       if (token || authToken) {
         try {
           setLoading(true);
-          const response = await fetchAPI("/users/me", token || authToken);
+          const response = await fetchAPI("/users/me", token || authToken) as User;
           setUser(response);
           setLoading(false);
+
+          // Set LogRocket identity
+          LogRocket.identify(String(response.id), {
+            name: (response.first_name + " " + response.last_name).trim() || response.username,
+            email: response.email,
+
+            // Custom user variables
+            role: response.role.name,
+          });
         } catch (e) {
           console.error(`Could not fetch user: ${e.message ? e.message : e.toString()}`);
           logout();
