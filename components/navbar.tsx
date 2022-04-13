@@ -42,16 +42,15 @@ export const Navbar = () => {
 
   return (
     <div className={"z-30 relative h-[93px]"}>
-      <Popover className="fixed w-full shadow-sm bg-white/80 backdrop-blur lg:px-20">
+      <Popover className="fixed w-full shadow-sm bg-white/80 backdrop-blur lg:px-10">
         {({ open }) => (
-          <div className="grid w-full grid-cols-3 px-4 py-2 sm:px-6 lg:px-8">
+          <div className="grid w-full grid-cols-3 px-4 py-2 sm:px-6 lg:px-4">
             {/* Menu wrapper */}
             <div className={"my-auto"}>
               {/* Mobile menu */}
               <div className="lg:hidden">
                 {/* Mobile menu button */}
-                <Popover.Button
-                  className="inline-flex items-center justify-center p-2 text-gray-400 rounded-md hover:text-white focus:ring-2 focus:ring-inset focus:ring-gray-500 focus:outline-none hover:bg-secondary">
+                <Popover.Button className="inline-flex items-center justify-center p-2 text-gray-400 rounded-md hover:text-white focus:ring-2 focus:ring-inset focus:ring-gray-500 focus:outline-none hover:bg-secondary">
                   <span className="sr-only">Open menu</span>
                   <MenuIcon className="w-6 h-6" aria-hidden="true" />
                 </Popover.Button>
@@ -70,13 +69,11 @@ export const Navbar = () => {
                     focus
                     static
                     className="absolute inset-x-0 top-0 p-2 transition origin-top-right transform">
-                    <div
-                      className="bg-white divide-y-2 rounded-lg shadow-lg divide-gray-50 ring-1 ring-black ring-opacity-5">
+                    <div className="bg-white divide-y-2 rounded-lg shadow-lg divide-gray-50 ring-1 ring-black ring-opacity-5">
                       <div className="px-5 pt-5 pb-6">
                         <div className="flex items-center justify-between">
                           <div className="-mr-2">
-                            <Popover.Button
-                              className="inline-flex items-center justify-center p-2 text-gray-400 bg-white rounded-md hover:text-gray-500 hover:bg-gray-100 focus:ring-2 focus:ring-inset focus:ring-indigo-500 focus:outline-none">
+                            <Popover.Button className="inline-flex items-center justify-center p-2 text-gray-400 bg-white rounded-md hover:text-gray-500 hover:bg-gray-100 focus:ring-2 focus:ring-inset focus:ring-indigo-500 focus:outline-none">
                               <span className="sr-only">Close menu</span>
                               <XIcon className="w-6 h-6" aria-hidden="true" />
                             </Popover.Button>
@@ -100,18 +97,24 @@ export const Navbar = () => {
 
                       <div className="px-5 py-6 space-y-6">
                         <div>
+                            <a
+                              href="https://robins-perfect-health.cliniko.com/bookings"
+                              target={"_blank"}
+                              className="flex items-center justify-center w-full px-4 py-2 mb-2 text-base font-medium text-white border border-transparent rounded-md shadow-sm bg-secondary hover:bg-primary">
+                              Book an appointment
+                            </a>
                           <Link href={"/register"}>
                             <a
                               href="#"
-                              className="flex items-center justify-center w-full px-4 py-2 text-base font-medium text-white bg-gray-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700">
+                              className="flex items-center justify-center w-full px-4 py-2 text-base font-medium text-white bg-gray-600 border border-transparent rounded-md shadow-sm hover:bg-secondary">
                               Sign up
                             </a>
                           </Link>
 
                           <p className="mt-6 text-base font-medium text-center text-gray-500">
-                            Existing customer?{" "}
+                            Existing customer?
                             <Link href={"/login"}>
-                              <a className="text-secondary hover:text-indigo-500">
+                              <a className="pl-1 text-secondary hover:text-indigo-500">
                                 Sign in
                               </a>
                             </Link>
@@ -134,7 +137,7 @@ export const Navbar = () => {
                           router.pathname === item.href
                             ? "font-bold"
                             : "font-medium",
-                          "hover:font-bold w-[70px]",
+                          "hover:font-bold w-[70px]"
                         )}>
                         {item.name}
                       </a>
@@ -168,7 +171,14 @@ export const Navbar = () => {
                   Sign in
                 </SmallButton>
               )}
-
+              
+              
+                <a
+                  href="https://robins-perfect-health.cliniko.com/bookings"
+                  target={"_blank"}
+                  className="items-center justify-center hidden px-4 py-2 text-base font-medium text-center text-white border border-transparent rounded-full shadow-sm lg:flex bg-secondary">
+                  Book an appointment
+                </a>
               {/* Logged in */}
               {user && (
                 // <button
@@ -192,15 +202,14 @@ export const Navbar = () => {
                       />
                     </svg>
                   </Menu.Button>
-                  <Menu.Items
-                    className="absolute right-0 grid w-auto gap-2 py-4 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                  <Menu.Items className="absolute right-0 grid w-auto gap-2 py-4 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                     <Menu.Item>
                       {({ active }) => (
                         <Link href={"/my-account"}>
                           <a
                             className={cn(
                               "px-2 py-1  hover:bg-gray-100 cursor-pointer",
-                              { "bg-gray-300": active },
+                              { "bg-gray-300": active }
                             )}>
                             Account settings
                           </a>
@@ -214,7 +223,7 @@ export const Navbar = () => {
                             <a
                               className={cn(
                                 "px-2 py-1  hover:bg-gray-100 cursor-pointer",
-                                { "bg-gray-300": active },
+                                { "bg-gray-300": active }
                               )}>
                               Manage products
                             </a>

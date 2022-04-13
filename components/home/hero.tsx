@@ -9,7 +9,7 @@ const MobileBanner = () => {
   return (
     <div
       className={
-        " grid py-10 sm:py-0 h-full relative px-[20px] sm:px-[50px] content-center"
+        " grid py-10 sm:py-0 h-full relative px-5 sm:px-[50px] content-center"
       }>
       <div className={"absolute inset-0"}>
         <Image
