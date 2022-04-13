@@ -100,6 +100,7 @@ export const Navbar = () => {
                             <a
                               href="https://robins-perfect-health.cliniko.com/bookings"
                               target={"_blank"}
+                              rel="noreferrer"
                               className="flex items-center justify-center w-full px-4 py-2 mb-2 text-base font-medium text-white border border-transparent rounded-md shadow-sm bg-secondary hover:bg-primary">
                               Book an appointment
                             </a>
@@ -176,6 +177,7 @@ export const Navbar = () => {
                 <a
                   href="https://robins-perfect-health.cliniko.com/bookings"
                   target={"_blank"}
+                  rel="noreferrer"
                   className="items-center justify-center hidden px-4 py-2 text-base font-medium text-center text-white border border-transparent rounded-full shadow-sm lg:flex bg-secondary">
                   Book an appointment
                 </a>
