@@ -97,14 +97,12 @@ export const Navbar = () => {
 
                       <div className="px-5 py-6 space-y-6">
                         <div>
-                          <Link href={"#"}>
                             <a
                               href="https://robins-perfect-health.cliniko.com/bookings"
                               target={"_blank"}
                               className="flex items-center justify-center w-full px-4 py-2 mb-2 text-base font-medium text-white border border-transparent rounded-md shadow-sm bg-secondary hover:bg-primary">
                               Book an appointment
                             </a>
-                          </Link>
                           <Link href={"/register"}>
                             <a
                               href="#"
@@ -175,14 +173,12 @@ export const Navbar = () => {
               )}
               
               
-              <Link href={"#"}>
                 <a
                   href="https://robins-perfect-health.cliniko.com/bookings"
                   target={"_blank"}
                   className="items-center justify-center hidden px-4 py-2 text-base font-medium text-center text-white border border-transparent rounded-full shadow-sm lg:flex bg-secondary">
                   Book an appointment
                 </a>
-              </Link>
               {/* Logged in */}
               {user && (
                 // <button
