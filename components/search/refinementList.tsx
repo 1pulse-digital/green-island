@@ -18,16 +18,16 @@ const RefinementList = ({
       {items.map((item, idx) => (
         (idx < limit || extended) && (
           <li key={item.label}>
-            <label className="flex items-center mb-3 space-x-3 hover:cursor-pointer">
+            <label className="flex items-center mb-3 space-x-3 text-sm hover:cursor-pointer">
               <input
                 type="checkbox"
                 name={`${item.label}`}
-                className="w-6 h-6 bg-white rounded border-gray-300 hover:cursor-pointer bg-check text-primary focus:ring-secondary"
+                className="w-6 h-6 bg-white border-gray-300 rounded hover:cursor-pointer bg-check text-primary focus:ring-secondary"
                 checked={item.isRefined}
                 onChange={() => refine(item.value)}
                 value=""
               />
-              <span className="font-normal text-gray-700 dark:text-white truncate">
+              <span className="font-normal text-gray-700 truncate dark:text-white">
             {startCase(item.label)} ({item.count})
             </span>
             </label>

@@ -22,7 +22,7 @@ export const ShopSidebar = (props: ShopSidebarProps) => {
           <div>
             {/* Shop by category */}
             <div>
-              <p className="w-full mb-4 text-2xl font-bold text-primary font-karla">
+              <p className="w-full mb-4 text-lg font-bold text-primary font-karla">
                 Category
               </p>
               <AlgoliaRefinementList
@@ -45,7 +45,7 @@ export const ShopSidebar = (props: ShopSidebarProps) => {
 
             {/* Shop by product form */}
             <div>
-              <p className="w-full mb-4 text-2xl font-bold text-primary font-karla">
+              <p className="w-full mb-4 text-lg font-bold text-primary font-karla">
                 Product Form
               </p>
               <div>

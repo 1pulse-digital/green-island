@@ -17,13 +17,13 @@ const Shop = (props: ShopProps) => {
       {/* We use a 12 column grid system to fine tune the breakpoints */}
       <div className={"relative grid md:flex lg:min-h-[768px]"}>
         {/* Sidebar */}
-        <div className={"max-w-full bg-red-500"}>
+        <div className={"max-w-full"}>
           <ShopSidebar />
         </div>
 
         {/* Product grid */}
         <div className="relative w-full bg-gray-50">
-          <div className={"py-4 sm:px-4 md:p-7 mb-[38px] mx-auto"}>
+          <div className={"py-4 sm:px-4  mb-[38px] mx-auto"}>
             <Hits hitComponent={ProductHit} />
           </div>
           {/* Pagination */}
