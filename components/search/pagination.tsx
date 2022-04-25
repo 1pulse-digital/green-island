@@ -16,6 +16,12 @@ interface PageButtonProps {
   onClick: (page: number) => void;
 }
 
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 200,
+    behavior: "smooth",
+  });
+};
 const PageButton = (props: PageButtonProps) => {
   return (
     <li
@@ -23,6 +29,7 @@ const PageButton = (props: PageButtonProps) => {
       onClick={(e) => {
         e.preventDefault();
         props.onClick(props.page);
+        scrollToTop();
       }}
       className={cn({
         "relative w-[50px] inline-flex justify-center items-center py-2 border text-sm font-medium": true,
@@ -37,7 +44,6 @@ const PageButton = (props: PageButtonProps) => {
 };
 
 const Pagination = (props: PaginationProps) => {
-
   const pageButtons = new Array(props.nbPages).fill(null).map((_, idx) => {
     const maxNumberOfButtons = 7;
     const siblings = 3;
@@ -67,23 +73,31 @@ const Pagination = (props: PaginationProps) => {
       <div className="px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
 
         {/* Mobile pagination */}
-        <div className="flex-1 flex justify-between sm:hidden">
+        <div className="flex-1 flex justify-between lg:hidden ">
           <a
             onClick={(e) => {
               e.preventDefault();
               if (props.currentRefinement > 1) {
                 props.refine(props.currentRefinement - 1);
+                scrollToTop();
               }
             }}
             className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
           >
             Previous
           </a>
+          <p className="flex text-sm text-gray-700 items-center">
+            Page&nbsp;
+            <span className="font-bold">{props.currentRefinement}</span>
+            &nbsp;of&nbsp;
+            <span className="font-medium">{props.nbPages}</span>
+          </p>
           <a
             onClick={(e) => {
               e.preventDefault();
               if (props.currentRefinement < props.nbPages) {
                 props.refine(props.currentRefinement + 1);
+                scrollToTop();
               }
             }}
             className="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
@@ -93,11 +107,11 @@ const Pagination = (props: PaginationProps) => {
         </div>
 
         {/* Desktop pagination */}
-        <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+        <div className="hidden lg:flex-1 lg:flex lg:items-center lg:justify-between">
           <div>
             <p className="text-sm text-gray-700">
               Page <span
-              className="font-medium">{props.currentRefinement}</span> of <span
+              className="font-bold">{props.currentRefinement}</span> of <span
               className="font-medium">{props.nbPages}</span>
             </p>
           </div>
@@ -108,6 +122,7 @@ const Pagination = (props: PaginationProps) => {
                   e.preventDefault();
                   if (props.currentRefinement > 1) {
                     props.refine(props.currentRefinement - 1);
+                    scrollToTop();
                   }
                 }}
                 className="relative hover:cursor-pointer hover:bg-secondary inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
@@ -122,6 +137,7 @@ const Pagination = (props: PaginationProps) => {
                   e.preventDefault();
                   if (props.currentRefinement < props.nbPages) {
                     props.refine(props.currentRefinement + 1);
+                    scrollToTop();
                   }
                 }}
                 className="relative hover:cursor-pointer hover:bg-secondary inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"

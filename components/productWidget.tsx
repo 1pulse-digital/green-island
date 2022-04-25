@@ -39,8 +39,8 @@ const ProductWidget = (props: ProductWidgetProps) => {
   return (
     <div
       onClick={goToProduct}
-      className="relative w-[180px] sm:w-[255px] mb-5 bg-white rounded-lg border-gray-50 cursor-pointer hover:shadow-xl font-karla ">
-      <div className={"relative h-[170px] w-full md:h-[240px]"}>
+      className="relative w-[180px] md:w-48 lg:w-44 mb-5  rounded-lg border-gray-50 cursor-pointer hover:shadow-xl font-karla ">
+      <div className={"relative h-[170px] w-full md:h-[200px]"}>
         {product.image && (
           <Image
             layout="fill"
@@ -66,7 +66,7 @@ const ProductWidget = (props: ProductWidgetProps) => {
 
       <div className={"h-32 grid grid-cols-3"}>
         <div className={" px-4 py-6 text-left col-span-2"}>
-          <span className={"text-primary text-xl leading-tight line-clamp-2"}>
+          <span className={"text-primary text-md md:text-lg leading-tight line-clamp-2"}>
             {product.name}
           </span>
           {product.variation && (
