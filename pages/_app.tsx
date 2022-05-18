@@ -31,6 +31,12 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, [router.events]);
   // tracking gtag end
 
+  // clear Algolia cache on first load
+  useEffect(() => {
+    console.log("Clearing Algolia cache");
+    searchClient.clearCache();
+  }, []);
+
 
   // logrocket monitoring
   useEffect(() => {
