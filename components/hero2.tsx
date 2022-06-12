@@ -33,7 +33,7 @@ export default function Hero2() {
                     className="flex relative justify-between items-center sm:h-10 lg:justify-start"
                     aria-label="Global"
                   >
-                    <div className="flex flex-grow flex-shrink-0 items-center lg:flex-grow-0">
+                    <div className="flex flex-grow flex-shrink-0 items-center lg:grow-0">
                       <div className="flex justify-between items-center w-full md:w-auto">
                         <Image src={hero} alt="facebook" />
 
