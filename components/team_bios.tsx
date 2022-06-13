@@ -1,6 +1,6 @@
 import React from "react";
 import RobinKohler from "../images/drrobinkohler.jpg";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import cn from "classnames";
 
 export interface BioProps {

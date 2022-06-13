@@ -1,5 +1,5 @@
 import React, { MouseEvent, useState } from "react";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import infection from "../images/infection_management.jpg";
 import digestive from "../images/digestive_health.jpg";
 import daily from "../images/daily-self-care.jpg";

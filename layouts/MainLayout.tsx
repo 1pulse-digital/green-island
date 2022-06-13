@@ -1,6 +1,6 @@
+import React, { ReactNode } from "react";
 import { Footer } from "../components/footer";
 import { Navbar } from "../components/navbar";
-import { ReactNode } from "react";
 import { SecondFooter } from "../components/secondFooter";
 import Head from "next/head";
 import { useAuthContext } from "../contexts/authContext";
@@ -23,29 +23,37 @@ const MainLayout = (props: MainLayoutProps) => {
     accessAllowed = Boolean(user || !props.authRequired);
   }
 
-
   return (
     <div className={"flex flex-col min-h-screen"}>
       <Head>
         <title>Perfect Health Practice</title>
-        <meta name="description" content="Live a natural, healthy and organic life" />
+        <meta
+          name="description"
+          content="Live a natural, healthy and organic life"
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <Navbar />
 
-
-      {!accessAllowed &&
+      {!accessAllowed && (
         <>
-          <div className={"py-20 text-center"}>You need to be logged in to view this page</div>
+          <div className={"py-20 text-center"}>
+            You need to be logged in to view this page
+          </div>
           <Link href="/login">
-            <a className={"py-20 text-center hover:text-secondary hover:underline"}>Go to login page</a>
+            <a
+              className={
+                "py-20 text-center hover:text-secondary hover:underline"
+              }>
+              Go to login page
+            </a>
           </Link>
         </>
-      }
-      {accessAllowed &&
+      )}
+      {accessAllowed && (
         <div className={"flex flex-col flex-grow"}>{props.children}</div>
-      }
+      )}
 
       <Footer />
       <SecondFooter />

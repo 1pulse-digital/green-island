@@ -53,11 +53,10 @@ const Checkout = () => {
   const [order, setOrder] = useState<Order>();
   const [email, setEmail] = useState(user?.email || "");
 
-  // auto populate the user email if user is logged in
+  // populate the user email if user is logged in
   useEffect(() => {
     setEmail(user?.email || "");
   }, [user]);
-
 
   const [couponCode, setCouponCode] = useState("");
   const [appliedCoupons, setAppliedCoupons] = useState<string[]>([]);
@@ -168,7 +167,7 @@ const Checkout = () => {
         }),
       });
       data = await response.json();
-    } catch (e) {
+    } catch (e: any) {
       console.error(
         `Could not create order: ${e.message ? e.message : e.toString()}`,
       );
@@ -211,7 +210,7 @@ const Checkout = () => {
         }),
       });
       data = await response.json();
-    } catch (e) {
+    } catch (e: any) {
       console.error(
         `Could not create payment: ${e.message ? e.message : e.toString()}`,
       );
@@ -259,7 +258,7 @@ const Checkout = () => {
         }),
       });
       data = await response.json();
-    } catch (e) {
+    } catch (e: any) {
       console.error(
         `Could not apply coupon: ${e.message ? e.message : e.toString()}`,
       );
@@ -340,7 +339,7 @@ const Checkout = () => {
         //   }).finally();
         // }
 
-      } catch (e) {
+      } catch (e: any) {
         console.error(`Order placement failed, can't proceed to payment: ${e.message ? e.message : e.toString()}`);
         toast.error(e.toString());
       }
@@ -383,7 +382,7 @@ const Checkout = () => {
           toast.error("Payment cancelled");
         }
       });
-    } catch (e) {
+    } catch (e: any) {
       const errMsg = `Could not initiate payment: ${e.message ? e.message : e.toString()}`;
       console.error(errMsg);
       toast.error(errMsg, { duration: 5000 });
