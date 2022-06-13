@@ -28,10 +28,12 @@ import { geocodeByAddress } from "react-places-autocomplete";
 import { useRouter } from "next/router";
 import { sendEvent } from "../lib/gtag";
 import { ContactDetailsCard } from "../components/checkout/contactDetails";
+import { usePrescriptionDisclaimerContext } from "../contexts/prescriptionDisclaimerContext";
 
 const Checkout = () => {
   const { user, authToken, setLoading } = useAuthContext();
   const { cartItems, clearCart } = useCartContext();
+  const { showCheckoutDisclaimer } = usePrescriptionDisclaimerContext();
   const router = useRouter();
   const [medicalAidDetails, setMedicalAidDetails] =
     useState<MedicalAidDetailsType>({
@@ -49,7 +51,7 @@ const Checkout = () => {
       });
     };
 
-  const [paymentStatus, setPaymentStatus] = useState<"paid" | "cancelled">();
+  const [, setPaymentStatus] = useState<"paid" | "cancelled">();
   const [order, setOrder] = useState<Order>();
   const [email, setEmail] = useState(user?.email || "");
 
@@ -324,6 +326,10 @@ const Checkout = () => {
 
     setErrors(newErrors);
     if (valid) {
+      // show disclaimer if any products are not "otc"
+      if (cartItems.find(item => item.product.availability !== "otc")) {
+        showCheckoutDisclaimer();
+      }
       try {
         const createOrderResult = await createOrder();
         setOrder(createOrderResult);

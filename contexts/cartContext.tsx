@@ -2,15 +2,16 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { Product } from "../types/product";
 import { toast } from "react-hot-toast";
 import { useAuthContext } from "./authContext";
-import { unionWith, differenceWith } from "lodash";
+import { differenceWith, unionWith } from "lodash";
 import {
-  updateStrapiWishlist,
-  fetchAPI,
-  createStrapiWishlist,
-  updateStrapiShoppingCart,
   createStrapiShoppingCart,
+  createStrapiWishlist,
+  fetchAPI,
+  updateStrapiShoppingCart,
+  updateStrapiWishlist,
 } from "../lib/api";
 import { sendEvent } from "../lib/gtag";
+import { usePrescriptionDisclaimerContext } from "./prescriptionDisclaimerContext";
 
 interface ContextType {
   addToCart: (product: Product, quantity: number) => void;
@@ -38,6 +39,7 @@ export interface WishlistItemType {
 }
 
 function CartContext({ children }: { children?: React.ReactNode }) {
+  const { showCartDisclaimer } = usePrescriptionDisclaimerContext();
   const { user, authToken } = useAuthContext();
 
   const [cartItems, setCartItems] = useState<CartItemType[]>([]);
@@ -55,17 +57,14 @@ function CartContext({ children }: { children?: React.ReactNode }) {
     const isPrescription = product.availability !== "otc";
 
     if (isPrescription) {
-      if (!user) {
-        toast(`${product.name} is a prescription only product. Please login to add this to your cart`, { icon: "⚠️" });
-        return;
-      }
-      if (user.role.name !== "Patient") {
-        toast(`${product.name} is a prescription only product. Please contact us to find out how to become a patient`, {
-          icon: "⚡",
-          duration: 8000,
-        });
-        return;
-      }
+      showCartDisclaimer();
+      // if (user.role.name !== "Patient") {
+      //   toast(`${product.name} is a prescription only product. Please contact us to find out how to become a patient`, {
+      //     icon: "⚡",
+      //     duration: 8000,
+      //   });
+      //   return;
+      // }
     }
 
     // check if the item is already in the list
@@ -89,13 +88,13 @@ function CartContext({ children }: { children?: React.ReactNode }) {
           toast(`${product.name} added to cart`, { icon: "🛒" });
         })
         .catch(e => {
-          const idx = e.toString().indexOf("No prescription");
-          if (idx >= 0) {
-            toast.error(e.toString().slice(idx), { icon: "🔒" });
-          } else {
-            toast.error(`Something went wrong, we could not add to your cart`, { icon: "😞️" });
-            console.error(`Could not add to your cart ${e}`);
-          }
+          // const idx = e.toString().indexOf("No prescription");
+          // if (idx >= 0) {
+          //   toast.error(e.toString().slice(idx), { icon: "🔒" });
+          // } else {
+          toast.error(`Something went wrong, we could not add to your cart`, { icon: "😞️" });
+          console.error(`Could not add to your cart ${e}`);
+          // }
         });
     } else {
       setCartItems(updatedList);
