@@ -3,17 +3,6 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 var Carousel = require("react-responsive-carousel").Carousel;
 
-const Item = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <p
-      className={
-        "italic lg:text-2xl md:text-2xl sm:text-1xl  text-white font-light"
-      }>
-      {children}
-    </p>
-  );
-};
-
 export const TestimonialCarousel = () => {
   return (
     <div className="w-8/12 ml-2 md:w-10/12 lg:w-full lg:px-20 ">
@@ -65,17 +54,16 @@ export const TestimonialCarousel = () => {
           </p>
         </div>
 
-        <div>
-          <p
-            className={
-              "italic lg:text-2xl md:text-2xl sm:text-1xl text-white font-light"
-            }>
+        <div className={
+          "italic lg:text-2xl md:text-2xl sm:text-1xl text-white font-light"
+        }>
+          <p>
             “My experience with Dr. Robin Kohler can best be described as
             "transformative".
-            <p>
-              I feel like FINALLY someone has the intelligence and capability to
-              treat the whole person. I highly recommend his practice.”
-            </p>
+          </p>
+          <p>
+            I feel like FINALLY someone has the intelligence and capability to
+            treat the whole person. I highly recommend his practice.”
           </p>
         </div>
       </Carousel>
