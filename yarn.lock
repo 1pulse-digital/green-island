@@ -2819,10 +2819,10 @@ use-persisted-state@^0.3.3:
   dependencies:
     "@use-it/event-listener" "^0.1.2"
 
-usehooks-ts@2.5.4:
-  version "2.5.4"
-  resolved "https://registry.yarnpkg.com/usehooks-ts/-/usehooks-ts-2.5.4.tgz#e28ce0c1140e3ae172d9b8d2fca07dff68a476ab"
-  integrity sha512-NG4XKLh7csTFFtUgtUuR72zlJ1Bpt4+nDAnKQqcQcpxYnwAZZv3RpksKvxBIusPCHUL3NuC0xLwwJCpPxIuknQ==
+usehooks-ts@2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/usehooks-ts/-/usehooks-ts-2.2.1.tgz#9bb9af81d4680cf9cdb9234331a37e4be39d1183"
+  integrity sha512-n6Rat52iF+Tz9CFU2IIuaFsm9uCXX4dU565lKaAKMEXLLGTg9qYwzDSpXkCPRnx9lTdkm8M+W+YJ36Lb13zjEA==
 
 util-deprecate@^1.0.2:
   version "1.0.2"
