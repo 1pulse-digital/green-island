@@ -521,7 +521,7 @@ const ProductManager = () => {
                       }
                       value=""
                     />
-                    <span className="font-normal text-gray-700 truncate dark:text-white">
+                    <span className="font-normal text-gray-700 truncate">
                       Show invalid only
                     </span>
                   </label>
