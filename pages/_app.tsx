@@ -50,7 +50,6 @@ function MyApp({ Component, pageProps }: AppProps) {
       <PrescriptionDisclaimerContext>
         <CartContext>
           <RefinementContext>
-            {/* @ts-ignore */}
             <InstantSearch
               indexName="perfect_health_products"
               searchClient={searchClient}
