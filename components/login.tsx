@@ -25,7 +25,7 @@ export const Login = () => {
       await signIn(credentials.username, credentials.password);
       sendEvent({ action: "login" });
       toast(`Welcome to The Perfect Health Practice!`, { icon: "🌿⚕️" });
-    } catch (e) {
+    } catch (e: any) {
 
       if (e?.includes("This user never set a local password, please login with the provider used during account creation.")) {
         await router.push(`/forgot-password?email=${credentials.username}&t=redirect`);
@@ -48,7 +48,7 @@ export const Login = () => {
       <div className={"p-10 md:p-20 bg-white rounded-lg xl:mr-5"}>
         <h6 className={"text-4xl grid pb-7 "}>Login or create an account</h6>
         <div className={""}>
-          <p className={"text-lg "}>
+          <div className={"text-lg "}>
             By creating an account with our store, you will be able to move
             through the checkout process faster, store multiple shipping
             addresses, view and track your orders in your account and more.
@@ -72,7 +72,7 @@ export const Login = () => {
                 CREATE AN ACCOUNT
               </Button>
             </div>
-          </p>
+          </div>
         </div>
       </div>
 

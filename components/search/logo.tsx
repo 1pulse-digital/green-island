@@ -2,7 +2,6 @@ import React from "react";
 import { connectPoweredBy } from "react-instantsearch-dom";
 import { useIsClient } from "usehooks-ts";
 
-// TODO: This must not be rendered on the server, it throws a console error because the href differs from client side
 const Logo = ({ url }: { url: string }) => {
   return (
     <div className={"flex"}>
