@@ -1,7 +1,8 @@
+import React from "react";
 import { connectPoweredBy } from "react-instantsearch-dom";
+import { useIsClient } from "usehooks-ts";
 
-// TODO: This must not be rendered on the server, it throws a console error because the href differs from client side
-export const Logo = ({ url }: { url: string }) => {
+const Logo = ({ url }: { url: string }) => {
   return (
     <div className={"flex"}>
       <span className={"text-sm text-gray-900"}>Search by</span>
@@ -40,4 +41,9 @@ export const Logo = ({ url }: { url: string }) => {
   );
 };
 
-export const AlgoliaLogo = connectPoweredBy(Logo);
+const AlgoliaLogoHOC = connectPoweredBy(Logo);
+
+export const AlgoliaLogo = () => {
+  const isClient = useIsClient();
+  return isClient ? <AlgoliaLogoHOC /> : null;
+};

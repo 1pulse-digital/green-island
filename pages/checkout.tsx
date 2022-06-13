@@ -28,10 +28,12 @@ import { geocodeByAddress } from "react-places-autocomplete";
 import { useRouter } from "next/router";
 import { sendEvent } from "../lib/gtag";
 import { ContactDetailsCard } from "../components/checkout/contactDetails";
+import { usePrescriptionDisclaimerContext } from "../contexts/prescriptionDisclaimerContext";
 
 const Checkout = () => {
   const { user, authToken, setLoading } = useAuthContext();
   const { cartItems, clearCart } = useCartContext();
+  const { showCheckoutDisclaimer } = usePrescriptionDisclaimerContext();
   const router = useRouter();
   const [medicalAidDetails, setMedicalAidDetails] =
     useState<MedicalAidDetailsType>({
@@ -49,15 +51,14 @@ const Checkout = () => {
       });
     };
 
-  const [paymentStatus, setPaymentStatus] = useState<"paid" | "cancelled">();
+  const [, setPaymentStatus] = useState<"paid" | "cancelled">();
   const [order, setOrder] = useState<Order>();
   const [email, setEmail] = useState(user?.email || "");
 
-  // auto populate the user email if user is logged in
+  // populate the user email if user is logged in
   useEffect(() => {
     setEmail(user?.email || "");
   }, [user]);
-
 
   const [couponCode, setCouponCode] = useState("");
   const [appliedCoupons, setAppliedCoupons] = useState<string[]>([]);
@@ -168,7 +169,7 @@ const Checkout = () => {
         }),
       });
       data = await response.json();
-    } catch (e) {
+    } catch (e: any) {
       console.error(
         `Could not create order: ${e.message ? e.message : e.toString()}`,
       );
@@ -211,7 +212,7 @@ const Checkout = () => {
         }),
       });
       data = await response.json();
-    } catch (e) {
+    } catch (e: any) {
       console.error(
         `Could not create payment: ${e.message ? e.message : e.toString()}`,
       );
@@ -259,7 +260,7 @@ const Checkout = () => {
         }),
       });
       data = await response.json();
-    } catch (e) {
+    } catch (e: any) {
       console.error(
         `Could not apply coupon: ${e.message ? e.message : e.toString()}`,
       );
@@ -325,6 +326,10 @@ const Checkout = () => {
 
     setErrors(newErrors);
     if (valid) {
+      // show disclaimer if any products are not "otc"
+      if (cartItems.find(item => item.product.availability !== "otc")) {
+        showCheckoutDisclaimer();
+      }
       try {
         const createOrderResult = await createOrder();
         setOrder(createOrderResult);
@@ -340,7 +345,7 @@ const Checkout = () => {
         //   }).finally();
         // }
 
-      } catch (e) {
+      } catch (e: any) {
         console.error(`Order placement failed, can't proceed to payment: ${e.message ? e.message : e.toString()}`);
         toast.error(e.toString());
       }
@@ -383,7 +388,7 @@ const Checkout = () => {
           toast.error("Payment cancelled");
         }
       });
-    } catch (e) {
+    } catch (e: any) {
       const errMsg = `Could not initiate payment: ${e.message ? e.message : e.toString()}`;
       console.error(errMsg);
       toast.error(errMsg, { duration: 5000 });

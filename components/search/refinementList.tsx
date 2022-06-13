@@ -27,7 +27,7 @@ const RefinementList = ({
                 onChange={() => refine(item.value)}
                 value=""
               />
-              <span className="font-normal text-gray-700 truncate dark:text-white">
+              <span className="font-normal text-gray-700 truncate">
             {startCase(item.label)} ({item.count})
             </span>
             </label>

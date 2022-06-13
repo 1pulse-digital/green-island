@@ -97,11 +97,11 @@ const ProductWidget1 = (props: ProductWidget1Props) => {
           <span className={"text-sm text-gray-400"}>
             {product.product_code}
           </span>
-           {/* Variations */}
-           {product.variation && (
+          {/* Variations */}
+          {product.variation && (
             <span className={"ml-4 text-sm"}>{product.variation}</span>
           )}
-          {/* Availibility (lock icon) */}
+          {/* Availability (lock icon) */}
           {product.availability !== "otc" && (
             <>
               <div
@@ -109,7 +109,6 @@ const ProductWidget1 = (props: ProductWidget1Props) => {
                 data-tip="Prescription only product">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  
                   className="w-5 h-5"
                   viewBox="0 0 20 20"
                   fill="currentColor">
@@ -124,10 +123,6 @@ const ProductWidget1 = (props: ProductWidget1Props) => {
             </>
           )}
 
-         
-          {/* Product Rating Starts */}
-          {/* TODO: Add product ratings */}
-          {/*<ReactStars activeColor="blue" size={30} isHalf={true} />*/}
           {/* Description */}
           <p className={"mt-6 lg:mt-8 font-semibold "}>Description</p>
           <h3 className={"my-2 "}>{product.description}</h3>

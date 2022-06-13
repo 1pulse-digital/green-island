@@ -99,8 +99,8 @@ export const Message = () => {
       {/* Right column */}
       <div>
         <form className="relative grid w-full space-x-3">
-          <div className="w-full max-w-2xl p-4 sm:px-12 sm:py-10 sm:mt-10 bg-white dark:bg-gray-800">
-            <div className="mb-6 text-3xl font-light text-center dark:text-white text-primary">
+          <div className="w-full max-w-2xl p-4 sm:px-12 sm:py-10 sm:mt-10 bg-white">
+            <div className="mb-6 text-3xl font-light text-center text-primary">
               <h1 className={"text-1xl pb-4 font-bold text-left text-primary "}>
                 Send us a message
               </h1>

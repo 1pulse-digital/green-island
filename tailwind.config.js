@@ -1,7 +1,12 @@
+/** @type {import("tailwindcss").Config} */
 module.exports = {
-  mode: "jit",
-  purge: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
-  darkMode: false, // or 'media' or 'class'
+  content: [
+    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
+    "./layouts/**/*.{js,ts,jsx,tsx}",
+    "./contexts/**/*.{js,ts,jsx,tsx}",
+  ],
+  darkMode: "media",
   theme: {
     extend: {
       colors: {
@@ -13,13 +18,10 @@ module.exports = {
       },
     },
   },
-  variants: {
-    extend: {},
-  },
   plugins: [
     require("@tailwindcss/typography"),
     require("@tailwindcss/line-clamp"),
-    require('@tailwindcss/forms'),
-    require('tailwindcss-debug-screens'),
+    require("@tailwindcss/forms"),
+    require("tailwindcss-debug-screens"),
   ],
 };
