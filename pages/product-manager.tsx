@@ -121,7 +121,7 @@ const SingleItem = ({ idx, item, filter }: SingleItemProps) => {
       } else {
         toast.success(`${item.name} ${response.message.toLowerCase()}`);
       }
-    } catch (e) {
+    } catch (e: any) {
       toast.error("Failed: " + e.toString());
     }
   };
@@ -254,7 +254,7 @@ const parseServingSize = (value?: string | number): string => {
 };
 
 const parseProductCode = (value?: string | number): string => {
-  return value?.toString().replace(/^\s+/g, '').replace(/$\s+/g, '').trim() || "";
+  return value?.toString().replace(/^\s+/g, "").replace(/$\s+/g, "").trim() || "";
 };
 
 const parseSlug = (slug?: string, name?: string): string => {
@@ -329,7 +329,7 @@ const ProductManager = () => {
   const { authToken } = useAuthContext();
   const [error, setError] = useState<string>();
   const [excelProducts, setExcelProducts] = useState<ExcelProduct[]>([]);
-  const onDrop = useCallback((acceptedFiles) => {
+  const onDrop = useCallback((acceptedFiles: FileWithPath[]) => {
     acceptedFiles.forEach((file: FileWithPath) => {
       const reader = new FileReader();
 
@@ -377,7 +377,7 @@ const ProductManager = () => {
 
           setExcelProducts(productList);
           console.log({ sheetNames });
-        } catch (e) {
+        } catch (e: any) {
           setError(`[${errRow} ${errProduct}] ${e.toString()}`);
         }
       };
@@ -451,7 +451,7 @@ const ProductManager = () => {
         }
       }
       setLoading(false);
-    } catch (e) {
+    } catch (e: any) {
       setLoading(false);
       toast.error("Failed: " + e.toString());
     }
@@ -467,7 +467,7 @@ const ProductManager = () => {
       await exportProducts();
       toast.success("Export complete");
       setLoading(false);
-    } catch (e) {
+    } catch (e: any) {
       setLoading(false);
       toast.error("Something went wrong, check the console for more info");
     }

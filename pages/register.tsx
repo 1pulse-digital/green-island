@@ -118,7 +118,7 @@ const Register = () => {
         toast(`Welcome to The Perfect Health Practice!`, { icon: "🌿⚕️" });
         sendEvent({ action: "sign_up" });
         router.replace("/").finally();
-      } catch (e) {
+      } catch (e: any) {
         toast.error(e, { icon: "😞️" });
       }
     }

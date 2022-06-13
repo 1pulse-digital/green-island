@@ -29,7 +29,7 @@ const OrderHistory = (props: OrderHistoryProps) => {
         duration: 5000,
       });
       setLoading(false);
-    } catch (e) {
+    } catch (e: any) {
       setLoading(false);
       console.error(`Could not request invoice: ${e.message ? e.message : e.toString()}`);
       toast.error("Something went wrong, we could not request your invoice");

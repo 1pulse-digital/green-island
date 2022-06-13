@@ -45,7 +45,7 @@ function AuthContext({ children }: { children?: React.ReactNode }) {
             // Custom user variables
             role: response.role.name,
           });
-        } catch (e) {
+        } catch (e: any) {
           console.error(`Could not fetch user: ${e.message ? e.message : e.toString()}`);
           logout();
           setLoading(false);
@@ -108,7 +108,7 @@ function AuthContext({ children }: { children?: React.ReactNode }) {
         }),
       });
       data = await response.json();
-    } catch (e) {
+    } catch (e: any) {
       setLoading(false);
       console.error(`Could not sign in: ${e.message ? e.message : e.toString()}`, e);
       throw `Something went wrong with the sign in process`;
@@ -146,7 +146,7 @@ function AuthContext({ children }: { children?: React.ReactNode }) {
       });
       data = await response.json();
       setLoading(false);
-    } catch (e) {
+    } catch (e: any) {
       setLoading(false);
       console.error(`Could not register user: ${e.message ? e.message : e.toString()}`);
       throw `Something went wrong with the registration`;

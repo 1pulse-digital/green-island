@@ -1,8 +1,6 @@
 import React, { useRef } from "react";
 import { Input } from "../input";
-import PlacesAutocomplete, {
-  geocodeByAddress,
-} from "react-places-autocomplete";
+import PlacesAutocomplete, { geocodeByAddress } from "react-places-autocomplete";
 import { Address } from "../../types/address";
 import cn from "classnames";
 import { useAuthContext } from "../../contexts/authContext";

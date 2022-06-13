@@ -10,7 +10,7 @@ const MapComponent = () => {
   const [marketLatLng, setMarketLatLng] = useState<google.maps.LatLngLiteral>(latLng);
 
 
-  const onLoad = React.useCallback(function callback(map) {
+  const onLoad = React.useCallback(function callback(map: google.maps.Map) {
     setMap(map);
   }, []);
 
@@ -28,7 +28,7 @@ const MapComponent = () => {
     }
   }, [map, markerBounce]);
 
-  const onUnmount = React.useCallback(function callback(map) {
+  const onUnmount = React.useCallback(function callback(map: google.maps.Map) {
     setMap(undefined);
   }, []);
 
