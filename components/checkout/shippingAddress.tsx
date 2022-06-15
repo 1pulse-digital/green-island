@@ -311,6 +311,7 @@ export const majorCities = [
   { alias: "Midrand", name: "Midrand" },
   { alias: "Sandton", name: "Sandton" },
   { alias: "Krugersdorp", name: "Krugersdorp" },
+  { alias: "Roodepoort", name: "Roodepoort" },
 ];
 
 const renderCity = (city: string) => {
