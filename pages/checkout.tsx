@@ -403,7 +403,7 @@ const Checkout = () => {
     }
 
     if (isMajorCity(shippingAddress.city)) {
-      setShippingCost(100);
+      setShippingCost(110);
       return;
     }
 

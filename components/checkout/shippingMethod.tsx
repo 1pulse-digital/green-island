@@ -54,7 +54,7 @@ export const ShippingMethod = (props: ShippingMethodProps) => {
         <div className={"text-sm text-primary grid gap-2 mt-4"}>
           <div>
             <p className={"font-semibold"}>
-              Major cities <em className={"font-light"}>+R100</em>
+              Major cities <em className={"font-light"}>+R110</em>
             </p>
             <ul className={"flex flex-wrap gap-x-2"}>
               {majorCities.map((city) => {
