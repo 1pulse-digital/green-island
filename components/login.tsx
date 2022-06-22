@@ -26,13 +26,21 @@ export const Login = () => {
       sendEvent({ action: "login" });
       toast(`Welcome to The Perfect Health Practice!`, { icon: "🌿⚕️" });
     } catch (e: any) {
-
-      if (e?.includes("This user never set a local password, please login with the provider used during account creation.")) {
-        await router.push(`/forgot-password?email=${credentials.username}&t=redirect`);
-        toast("We have made some security updates, please reset your password before logging in", {
-          icon: "🔒",
-          duration: 10000,
-        });
+      if (
+        e?.includes(
+          "This user never set a local password, please login with the provider used during account creation."
+        )
+      ) {
+        await router.push(
+          `/forgot-password?email=${credentials.username}&t=redirect`
+        );
+        toast(
+          "We have made some security updates, please reset your password before logging in",
+          {
+            icon: "🔒",
+            duration: 10000,
+          }
+        );
       } else {
         toast.error(e, { icon: "😞️" });
       }
@@ -42,43 +50,11 @@ export const Login = () => {
   return (
     <div
       className={
-        " grid md:grid-col-1 xl:grid-cols-2 md:h-full xl:h-[650px] w-full bg-gray-100 content-center font-karla p-5 sm:p-10 md:px-20 text-primary"
+        " grid md:grid-col-1 xl:grid-cols-2 justify-items-center  md:h-full xl:h-[650px] w-full bg-gray-100 content-center font-karla p-5 sm:p-10 md:px-20 text-primary"
       }>
-      {/* First column - Create account*/}
-      <div className={"p-10 md:p-20 bg-white rounded-lg xl:mr-5"}>
-        <h6 className={"text-4xl grid pb-7 "}>Login or create an account</h6>
-        <div className={""}>
-          <div className={"text-lg "}>
-            By creating an account with our store, you will be able to move
-            through the checkout process faster, store multiple shipping
-            addresses, view and track your orders in your account and more.
-            <div className="py-7">
-              <Button
-                color={"primary"}
-                onClick={() => router.push("/register")}
-                className={
-                  "flex flex-row items-center hover:bg-secondary hover:text-white"
-                }>
-                <svg
-                  className="w-6 h-6 pr-1"
-                  viewBox="0 0 20 20"
-                  fill="currentColor">
-                  <path
-                    fillRule="evenodd"
-                    d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                CREATE AN ACCOUNT
-              </Button>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Second column - Sign in */}
-      <div>
-        <div className={"my-10 xl:my-0"}>
+      <div className="grid col-span-2">
+        <div className={"my-10 xl:my-0 col-span-3"}>
           <form className="mt-10 sm:mt-10 md:ml-0 xl:ml-5 lg:mt-0 text-primary">
             <div className="p-10 bg-white rounded-lg md:p-20">
               <div className="">
@@ -120,12 +96,11 @@ export const Login = () => {
                       className={
                         "hover:text-secondary text-red-500 cursor-pointer"
                       }>
-                      {" "}
                       Forgot password?
                     </a>
                   </Link>
                 </div>
-                <div className="text-left">
+                <div className="flex flex-row gap-4 text-left">
                   <Button
                     color={"primary"}
                     className={"flex flex-row items-center"}
@@ -136,11 +111,19 @@ export const Login = () => {
                       className="w-5 h-5"
                       viewBox="0 0 20 20"
                       fill="currentColor">
-                      <path
-                        d="M10 2a5 5 0 00-5 5v2a2 2 0 00-2 2v5a2 2 0 002 2h10a2 2 0 002-2v-5a2 2 0 00-2-2H7V7a3 3 0 015.905-.75 1 1 0 001.937-.5A5.002 5.002 0 0010 2z" />
+                      <path d="M10 2a5 5 0 00-5 5v2a2 2 0 00-2 2v5a2 2 0 002 2h10a2 2 0 002-2v-5a2 2 0 00-2-2H7V7a3 3 0 015.905-.75 1 1 0 001.937-.5A5.002 5.002 0 0010 2z" />
                     </svg>
                     LOGIN
                   </Button>
+
+                  <Link href={"/register"}>
+                    <a
+                      className={
+                        "hover:text-secondary text-red-500 cursor-pointer pt-4 "
+                      }>
+                      Create an Account
+                    </a>
+                  </Link>
                 </div>
               </div>
             </div>

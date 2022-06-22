@@ -5,7 +5,9 @@ import { useRouter } from "next/router";
 import { sendEvent } from "../lib/gtag";
 import { toast } from "react-hot-toast";
 import { saveProfileDetails } from "../lib/api";
-import PlacesAutocomplete, { geocodeByAddress } from "react-places-autocomplete";
+import PlacesAutocomplete, {
+  geocodeByAddress,
+} from "react-places-autocomplete";
 import { Input } from "../components/input";
 import { Wrapper } from "@googlemaps/react-wrapper";
 import cn from "classnames";
@@ -39,6 +41,7 @@ const Register = () => {
     rsaID: "",
     password: "",
     address: "",
+    passwordConfirmation: "",
     phoneNumber: "",
     apt_floor_number: "",
     complex_building_name: "",
@@ -54,6 +57,7 @@ const Register = () => {
       rsaID: "",
       address: "",
       password: "",
+      passwordConfirmation: "",
       phoneNumber: "",
       apt_floor_number: "",
       complex_building_name: "",
@@ -79,6 +83,10 @@ const Register = () => {
       newErrors.password = "Password is required";
       valid = false;
     }
+    if (values.passwordConfirmation === "") {
+      newErrors.passwordConfirmation = "Password is required";
+      valid = false;
+    }
     if (values.rsaID === "") {
       newErrors.rsaID = "Identity number is required";
       valid = false;
@@ -87,10 +95,10 @@ const Register = () => {
       newErrors.phoneNumber = "Phone number is required";
       valid = false;
     }
-    // if (!LuhnAlgorithm(values.rsaID)) {
-    //   newErrors.rsaID = "Invalid identity number";
-    //   valid = false;
-    // }
+    /*  if (!LuhnAlgorithm(values.rsaID)) {
+      newErrors.rsaID = "Invalid identity number";
+      valid = false;
+    } */
     if (values.password !== values.passwordConfirmation) {
       newErrors.password = "Passwords don't match";
       valid = false;
@@ -144,31 +152,66 @@ const Register = () => {
     setAddressText(formatted_address);
   };
 
-  const handleChange = (name: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newValues = { ...values, [name]: event.target.value };
-    setValues(newValues);
-    // password validation
-    if (name === "passwordConfirmation" || errors.password) {
-      // validate the password field
-      if (newValues.password !== newValues.passwordConfirmation) {
-        setErrors({ ...errors, password: "Passwords don't match" });
-      } else {
-        setErrors({ ...errors, password: "" });
+  const handleChange =
+    (name: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
+      const newValues = { ...values, [name]: event.target.value };
+      setValues(newValues);
+      // password validation
+      if (name === "passwordConfirmation" || errors.password) {
+        // validate the password field
+        if (newValues.password !== newValues.passwordConfirmation) {
+          setErrors({ ...errors, password: "Passwords don't match" });
+        } else {
+          setErrors({ ...errors, password: "" });
+        }
       }
-    }
-  };
+    };
 
   return (
     <MainLayout>
       <div
         className={
-          "grid lg:grid-cols-2 w-full bg-gray-100 lg:h-[800px] content-center font-karla px-8 lg:px-16 text-primary "
+          "grid lg:grid-cols-5  w-full  bg-gray-100 lg:h-[1100px] content-center font-karla px-8 lg:px-16 text-primary"
         }>
         {/* Left column */}
-        <div className={"lg:px-10  grid-cols-2 overflow-y-scroll"}>
+        <div className={"lg:px-10 col-span-3 col-start-2"}>
           <h6 className={"text-4xl mb-8"}>Create an Account</h6>
-          <div>
-            <div className="grid xl:grid-cols-2 gap-6 py-12 px-10 m-auto bg-white">
+          <div className="col-span-3 py-10 text-lg font-medium bg-white justify-items-center">
+            <p className="px-10">1. Username and Password</p>
+            <div className="grid gap-6 px-10 py-6 m-auto bg-white xl:grid-cols-2">
+              <div className="col-span-2 xl:col-span-1">
+                <Input
+                  type={"email"}
+                  id={"email"}
+                  label={"Email"}
+                  onChange={handleChange("email")}
+                  value={values.email}
+                  error={errors.email}
+                />
+              </div>
+              <div className="col-span-2 xl:col-span-1">
+                <Input
+                  id={"password"}
+                  type={"password"}
+                  label={"Password"}
+                  value={values.password}
+                  error={errors.password}
+                  onChange={handleChange("password")}
+                />
+              </div>
+              <div className="col-span-2 xl:col-span-1">
+                <Input
+                  id={"confirm-password"}
+                  type={"password"}
+                  label={"Confirm Password"}
+                  value={values.passwordConfirmation}
+                  onChange={handleChange("passwordConfirmation")}
+                />
+              </div>
+            </div>
+            {/* Personal Details */}
+            <p className="px-10">2. Personal Details</p>
+            <div className="grid gap-6 px-10 py-6 m-auto bg-white xl:grid-cols-2">
               <div className="col-span-2 xl:col-span-1">
                 <Input
                   id={"first-name"}
@@ -207,35 +250,12 @@ const Register = () => {
                   error={errors.phoneNumber}
                 />
               </div>
-              <div className="col-span-2 xl:col-span-1">
-                <Input
-                  type={"email"}
-                  id={"email"}
-                  label={"Email"}
-                  onChange={handleChange("email")}
-                  value={values.email}
-                  error={errors.email}
-                />
-              </div>
-              <div className="col-span-2 xl:col-span-1">
-                <Input
-                  id={"password"}
-                  type={"password"}
-                  label={"Password"}
-                  value={values.password}
-                  error={errors.password}
-                  onChange={handleChange("password")}
-                />
-              </div>
-              <div className="col-span-2 xl:col-span-1">
-                <Input
-                  id={"confirm-password"}
-                  type={"password"}
-                  label={"Confirm Password"}
-                  value={values.passwordConfirmation}
-                  onChange={handleChange("passwordConfirmation")}
-                />
-              </div>
+            </div>
+            {/*  end */}
+            {/* Shipping/Delivery Details */}
+
+            <p className="px-10">3. Delivery Details</p>
+            <div className="grid gap-6 px-10 py-6 m-auto bg-white xl:grid-cols-2">
               <div className="col-span-2 xl:col-span-1">
                 <Input
                   id={"apt_floor_number"}
@@ -267,11 +287,11 @@ const Register = () => {
                       },
                     }}>
                     {({
-                        getInputProps,
-                        suggestions,
-                        getSuggestionItemProps,
-                        loading,
-                      }) => (
+                      getInputProps,
+                      suggestions,
+                      getSuggestionItemProps,
+                      loading,
+                    }) => (
                       <form className={"relative"}>
                         <input
                           {...getInputProps({
@@ -281,7 +301,6 @@ const Register = () => {
                             disabled: false,
                             id: "google_maps_address",
                             ref: placeRef,
-
                           })}
                           autoComplete={"off"}
                         />
@@ -295,7 +314,7 @@ const Register = () => {
                           {suggestions.map((suggestion, idx) => {
                             const className = cn(
                               "p-2 hover:ring-2 ring-primary ring-inset cursor-pointer",
-                              { "bg-gray-100": suggestion.active },
+                              { "bg-gray-100": suggestion.active }
                             );
                             return (
                               <div
@@ -311,15 +330,14 @@ const Register = () => {
                       </form>
                     )}
                   </PlacesAutocomplete>
-
                 </Wrapper>
 
-                {errors.address &&
+                {errors.address && (
                   <span className="text-xs text-red-600">{errors.address}</span>
-                }
+                )}
               </div>
             </div>
-
+            {/* end */}
             <div className={"bg-white py-4 px-12"}>
               <div className={"border border-gray-700 w-full py-2 px-4 "}>
                 <p className={"text-opacity-100 font-bold"}>
@@ -327,56 +345,28 @@ const Register = () => {
                   before you click on the "register" button below.{" "}
                 </p>
                 <p className="mt-1">
-                  By clicking on the "register" button you agree to you
-                  personal data being used in accordance with the privacy notice and
+                  By clicking on the "register" button you agree to you personal
+                  data being used in accordance with the privacy notice and
                   cookie notice. We will use your personal data to manage your
-                  account, fulfill your order, and dispatch goods via our courier
-                  service. Your phone number is required for delivery contact from
-                  the courier.
+                  account, fulfill your order, and dispatch goods via our
+                  courier service. Your phone number is required for delivery
+                  contact from the courier.
                 </p>
               </div>
             </div>
-
-            <div className="col-span-2 py-8 px-10 bg-white">
-              <SmallButton
-                onClick={handleRegister}
-                color={"primary"}
-              >
+            <div className="col-span-2 px-10 py-8 bg-white">
+              <SmallButton onClick={handleRegister} color={"primary"}>
                 Register
               </SmallButton>
               <Link href={"/terms-and-conditions"}>
-                <a rel={"noopener"} target={"_blank"} className={"pl-2 duration-300 hover:text-secondary"}>
+                <a
+                  rel={"noopener"}
+                  target={"_blank"}
+                  className={"pl-2 duration-300 hover:text-secondary"}>
                   Terms and Conditions
                 </a>
               </Link>
             </div>
-          </div>
-        </div>
-
-        {/* Right column */}
-        <div className={"lg:px-10  text-lg py-16 lg:py-20 "}>
-          <div className={"bg-white py-10 px-10 "}>
-            <p className={"font-bold text-2xl "}>
-              Benefits of Creating an Account{" "}
-            </p>
-            <br />
-            <p className={"font-bold"}>
-              News and exclusive offers!<br />
-            </p>
-            Sign up to receive email updates on promotions, launches, gift ideas
-            and more. <br />
-            <br />
-            <p className={"font-bold"}>
-              {" "}
-              Order History <br />
-            </p>
-            Receive important information about your order.<br />
-            <br />
-            <p className={"font-bold"}>
-              Faster Checkout<br />
-            </p>
-            Save your billing and shipping information to make repeat purchases
-            easier.
           </div>
         </div>
       </div>
