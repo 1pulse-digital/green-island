@@ -54,7 +54,17 @@ const SingleBlogPost = (props: SingleBlogPostProps) => {
         <div className={""}>
           <div className="prose-sm">
             <article className="px-10 py-10 sm:py-10 md:py-20">
-              <Markdown>{props.article.content}</Markdown>
+              <Markdown options={{
+                overrides: {
+                  a: {
+                    props: {
+                      className: 'text-primary underline',
+                    },
+                  },
+                },
+              }}>
+                {props.article.content}
+              </Markdown>
             </article>
           </div>
         </div>
