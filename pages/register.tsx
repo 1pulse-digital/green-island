@@ -171,15 +171,14 @@ const Register = () => {
     <MainLayout>
       <div
         className={
-          "grid lg:grid-cols-5  w-full  bg-gray-100 lg:h-[1100px] content-center font-karla px-8 lg:px-16 text-primary"
+          "grid lg:grid-cols-3 xl:grid-cols-5 w-full bg-gray-100 content-center font-karla px-4 lg:px-16 text-primary py-8"
         }>
-        {/* Left column */}
-        <div className={"lg:px-10 col-span-3 col-start-2"}>
+        <div className={"lg:px-10 col-span-3 xl:col-start-2"}>
           <h6 className={"text-4xl mb-8"}>Create an Account</h6>
           <div className="col-span-3 py-10 text-lg font-medium bg-white justify-items-center">
-            <p className="px-10">1. Username and Password</p>
-            <div className="grid gap-6 px-10 py-6 m-auto bg-white xl:grid-cols-2">
-              <div className="col-span-2 xl:col-span-1">
+            <p className="px-4 lg:px-10">1. Username and Password</p>
+            <div className="grid gap-6 px-4 py-6 m-auto lg:px-10 lg:grid-cols-2">
+              <div className="col-span-2 lg:col-span-1">
                 <Input
                   type={"email"}
                   id={"email"}
@@ -189,7 +188,7 @@ const Register = () => {
                   error={errors.email}
                 />
               </div>
-              <div className="col-span-2 xl:col-span-1">
+              <div className="col-span-2 lg:col-span-1">
                 <Input
                   id={"password"}
                   type={"password"}
@@ -199,20 +198,21 @@ const Register = () => {
                   onChange={handleChange("password")}
                 />
               </div>
-              <div className="col-span-2 xl:col-span-1">
+              <div className="col-span-2 lg:col-span-1">
                 <Input
                   id={"confirm-password"}
                   type={"password"}
                   label={"Confirm Password"}
                   value={values.passwordConfirmation}
+                  error={errors.passwordConfirmation}
                   onChange={handleChange("passwordConfirmation")}
                 />
               </div>
             </div>
             {/* Personal Details */}
-            <p className="px-10">2. Personal Details</p>
-            <div className="grid gap-6 px-10 py-6 m-auto bg-white xl:grid-cols-2">
-              <div className="col-span-2 xl:col-span-1">
+            <p className="px-4 lg:px-10">2. Personal Details</p>
+            <div className="grid gap-6 px-4 py-6 m-auto bg-white lg:px-10 lg:grid-cols-2">
+              <div className="col-span-2 lg:col-span-1">
                 <Input
                   id={"first-name"}
                   label={"First name"}
@@ -221,7 +221,7 @@ const Register = () => {
                   error={errors.firstName}
                 />
               </div>
-              <div className="col-span-2 xl:col-span-1">
+              <div className="col-span-2 lg:col-span-1">
                 <Input
                   id={"last-name"}
                   label={"Last name"}
@@ -230,7 +230,7 @@ const Register = () => {
                   error={errors.lastName}
                 />
               </div>
-              <div className="col-span-2 xl:col-span-1">
+              <div className="col-span-2 lg:col-span-1">
                 <Input
                   type={"text"}
                   id={"rsa-id"}
@@ -240,7 +240,7 @@ const Register = () => {
                   error={errors.rsaID}
                 />
               </div>
-              <div className="col-span-2 xl:col-span-1">
+              <div className="col-span-2 lg:col-span-1">
                 <Input
                   type={"tel"}
                   id={"phone-number"}
@@ -254,20 +254,20 @@ const Register = () => {
             {/*  end */}
             {/* Shipping/Delivery Details */}
 
-            <p className="px-10">3. Delivery Details</p>
-            <div className="grid gap-6 px-10 py-6 m-auto bg-white xl:grid-cols-2">
-              <div className="col-span-2 xl:col-span-1">
+            <p className="px-4 lg:px-10">3. Delivery Details</p>
+            <div className="grid gap-6 px-4 py-6 m-auto bg-white lg:px-10 lg:grid-cols-2">
+              <div className="col-span-2 lg:col-span-1">
                 <Input
                   id={"apt_floor_number"}
-                  label={"Apt, Floor number"}
+                  label={"Apt, floor number"}
                   onChange={handleChange("apt_floor_number")}
                   value={values.apt_floor_number}
                 />
               </div>
-              <div className="col-span-2 xl:col-span-1">
+              <div className="col-span-2 lg:col-span-1">
                 <Input
                   id={"complex_building_name"}
-                  label={"Complex or Building name"}
+                  label={"Complex or building name"}
                   onChange={handleChange("complex_building_name")}
                   value={values.complex_building_name}
                 />
@@ -295,7 +295,7 @@ const Register = () => {
                       <form className={"relative"}>
                         <input
                           {...getInputProps({
-                            placeholder: "Address",
+                            placeholder: "Physical address",
                             className:
                               "w-full h-10 placeholder-transparent text-gray-900 rounded border-gray-300 focus:ring-0 focus:outline-none peer focus:border-secondary",
                             disabled: false,
@@ -307,7 +307,7 @@ const Register = () => {
                         <label
                           htmlFor={"google_maps_address"}
                           className="absolute text-sm text-gray-600 transition-all left-2 -top-5 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-focus:text-gray-600 peer-focus:-top-5 peer-focus:text-sm">
-                          Address
+                          Physical address
                         </label>
                         <div className="grid gap-1 shadow">
                           {loading && <div>Loading...</div>}
@@ -337,11 +337,21 @@ const Register = () => {
                 )}
               </div>
             </div>
-            {/* end */}
-            <div className={"bg-white py-4 px-12"}>
-              <div className={"border border-gray-700 w-full py-2 px-4 "}>
+            {/* Terms and Conditions */}
+            <div className={"bg-white py-4 px-4 lg:px-10"}>
+              <div className={"text-xs sm:text-sm"}>
                 <p className={"text-opacity-100 font-bold"}>
-                  To create an account, please review our terms and conditions
+                  To create an account, please review our
+                  <Link href={"/terms-and-conditions"}>
+                    <a
+                      rel={"noopener"}
+                      target={"_blank"}
+                      className={
+                        "pl-2 duration-300 text-secondary hover:underline"
+                      }>
+                      Terms and Conditions
+                    </a>
+                  </Link>{" "}
                   before you click on the "register" button below.{" "}
                 </p>
                 <p className="mt-1">
@@ -354,18 +364,10 @@ const Register = () => {
                 </p>
               </div>
             </div>
-            <div className="col-span-2 px-10 py-8 bg-white">
+            <div className="col-span-2 px-4 py-8 bg-white lg:px-10">
               <SmallButton onClick={handleRegister} color={"primary"}>
                 Register
               </SmallButton>
-              <Link href={"/terms-and-conditions"}>
-                <a
-                  rel={"noopener"}
-                  target={"_blank"}
-                  className={"pl-2 duration-300 hover:text-secondary"}>
-                  Terms and Conditions
-                </a>
-              </Link>
             </div>
           </div>
         </div>

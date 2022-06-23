@@ -105,7 +105,6 @@ export const Navbar = () => {
                           </a>
                           <Link href={"/register"}>
                             <a
-                              href="#"
                               className="flex items-center justify-center w-full px-4 py-2 text-base font-medium text-white bg-gray-600 border border-transparent rounded-md shadow-sm hover:bg-secondary">
                               Register
                             </a>

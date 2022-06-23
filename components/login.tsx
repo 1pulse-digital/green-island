@@ -52,10 +52,10 @@ export const Login = () => {
       className={
         " grid md:grid-col-1 xl:grid-cols-2 justify-items-center  md:h-full xl:h-[650px] w-full bg-gray-100 content-center font-karla p-5 sm:p-10 md:px-20 text-primary"
       }>
-      {/* Second column - Sign in */}
+      
       <div className="grid col-span-2">
-        <div className={"my-10 xl:my-0 col-span-3"}>
-          <form className="mt-10 sm:mt-10 md:ml-0 xl:ml-5 lg:mt-0 text-primary">
+        <div className={" xl:my-0 col-span-3"}>
+          <form className="text-primary">
             <div className="p-10 bg-white rounded-lg md:p-20">
               <div className="">
                 <h6 className={"text-4xl grid pb-7"}>Sign in</h6>
@@ -115,13 +115,13 @@ export const Login = () => {
                     </svg>
                     LOGIN
                   </Button>
-
+                      
                   <Link href={"/register"}>
                     <a
                       className={
-                        "hover:text-secondary text-red-500 cursor-pointer pt-4 "
+                        "hover:text-secondary text-primary cursor-pointer pt-4 "
                       }>
-                      Create an Account
+                      Register an account
                     </a>
                   </Link>
                 </div>
