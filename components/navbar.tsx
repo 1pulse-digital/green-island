@@ -1,5 +1,4 @@
 import Link from "next/link";
-
 import Image from "next/image";
 import logo from "../images/logo.png";
 import { Fragment } from "react";
@@ -97,18 +96,17 @@ export const Navbar = () => {
 
                       <div className="px-5 py-6 space-y-6">
                         <div>
-                            <a
-                              href="https://robins-perfect-health.cliniko.com/bookings"
-                              target={"_blank"}
-                              rel="noreferrer"
-                              className="flex items-center justify-center w-full px-4 py-2 mb-2 text-base font-medium text-white border border-transparent rounded-md shadow-sm bg-secondary hover:bg-primary">
-                              Book an appointment
-                            </a>
+                          <a
+                            href="https://robins-perfect-health.cliniko.com/bookings"
+                            target={"_blank"}
+                            rel="noreferrer"
+                            className="flex items-center justify-center w-full px-4 py-2 mb-2 text-base font-medium text-white border border-transparent rounded-md shadow-sm bg-secondary hover:bg-primary">
+                            Book an appointment
+                          </a>
                           <Link href={"/register"}>
                             <a
-                              href="#"
                               className="flex items-center justify-center w-full px-4 py-2 text-base font-medium text-white bg-gray-600 border border-transparent rounded-md shadow-sm hover:bg-secondary">
-                              Sign up
+                              Register
                             </a>
                           </Link>
 
@@ -116,7 +114,7 @@ export const Navbar = () => {
                             Existing customer?
                             <Link href={"/login"}>
                               <a className="pl-1 text-secondary hover:text-indigo-500">
-                                Sign in
+                                Login
                               </a>
                             </Link>
                           </p>
@@ -150,11 +148,13 @@ export const Navbar = () => {
 
             {/* LOGO */}
             <div className={"mx-auto"}>
-              <Image
-                className={cn({ "animate-spin": isLoading })}
-                alt={"Perfect Health Practice logo"}
-                src={logo}
-              />
+              <Link href={"https://www.perfecthealthpractice.com/"}>
+                <Image
+                  className={cn({ "animate-spin": isLoading })}
+                  alt={"Perfect Health Practice logo"}
+                  src={logo}
+                />
+              </Link>
             </div>
 
             {/* Right hand menu items */}
@@ -162,25 +162,44 @@ export const Navbar = () => {
               <ShoppingCart />
               <ProductWishlist />
 
-              {/* Not logged in */}
-              {!user && !isLoginPage && (
-                // TODO: Replace this with a <Link /> component not <a />
-                <SmallButton
-                  className={"hidden lg:block"}
-                  color={"primary"}
-                  onClick={() => router.push("/login")}>
-                  Sign in
-                </SmallButton>
-              )}
-              
-              
-                <a
-                  href="https://robins-perfect-health.cliniko.com/bookings"
-                  target={"_blank"}
-                  rel="noreferrer"
-                  className="items-center justify-center hidden px-4 py-2 text-base font-medium text-center text-white border border-transparent rounded-full shadow-sm lg:flex bg-secondary">
-                  Book an appointment
-                </a>
+              <div className="flex gap-x-2">
+                {/* Not logged in */}
+                {!user && !isLoginPage && (
+                  // TODO: Replace this with a <Link /> component not <a />
+                  <div className="hidden lg:block">
+                    <Link href={"/login"}>
+                      <a className="pl-1 font-medium text-primary hover:text-secondary ">
+                        Login
+                      </a>
+                    </Link>
+                  </div>
+                )}
+
+                {!user && !isLoginPage && (
+                  <div className="hidden lg:block">
+                    <p className="pl-1 text-primary hover:text-secondary">|</p>
+                  </div>
+                )}
+                {/* Not logged in */}
+                {!user && !isLoginPage && (
+                  // TODO: Replace this with a <Link /> component not <a />
+                  <div className="hidden lg:block">
+                    <Link href={"/register"}>
+                      <a className="pl-1 font-semibold text-primary hover:text-secondary">
+                        Register
+                      </a>
+                    </Link>
+                  </div>
+                )}
+              </div>
+
+              <a
+                href="https://robins-perfect-health.cliniko.com/bookings"
+                target={"_blank"}
+                rel="noreferrer"
+                className="items-center justify-center hidden px-4 py-2 text-base font-medium text-center text-white border border-transparent rounded-full shadow-sm lg:flex bg-secondary">
+                Book an appointment
+              </a>
               {/* Logged in */}
               {user && (
                 // <button

@@ -5,7 +5,9 @@ import { useRouter } from "next/router";
 import { sendEvent } from "../lib/gtag";
 import { toast } from "react-hot-toast";
 import { saveProfileDetails } from "../lib/api";
-import PlacesAutocomplete, { geocodeByAddress } from "react-places-autocomplete";
+import PlacesAutocomplete, {
+  geocodeByAddress,
+} from "react-places-autocomplete";
 import { Input } from "../components/input";
 import { Wrapper } from "@googlemaps/react-wrapper";
 import cn from "classnames";
@@ -39,6 +41,7 @@ const Register = () => {
     rsaID: "",
     password: "",
     address: "",
+    passwordConfirmation: "",
     phoneNumber: "",
     apt_floor_number: "",
     complex_building_name: "",
@@ -54,6 +57,7 @@ const Register = () => {
       rsaID: "",
       address: "",
       password: "",
+      passwordConfirmation: "",
       phoneNumber: "",
       apt_floor_number: "",
       complex_building_name: "",
@@ -79,6 +83,10 @@ const Register = () => {
       newErrors.password = "Password is required";
       valid = false;
     }
+    if (values.passwordConfirmation === "") {
+      newErrors.passwordConfirmation = "Password is required";
+      valid = false;
+    }
     if (values.rsaID === "") {
       newErrors.rsaID = "Identity number is required";
       valid = false;
@@ -87,10 +95,10 @@ const Register = () => {
       newErrors.phoneNumber = "Phone number is required";
       valid = false;
     }
-    // if (!LuhnAlgorithm(values.rsaID)) {
-    //   newErrors.rsaID = "Invalid identity number";
-    //   valid = false;
-    // }
+    /*  if (!LuhnAlgorithm(values.rsaID)) {
+      newErrors.rsaID = "Invalid identity number";
+      valid = false;
+    } */
     if (values.password !== values.passwordConfirmation) {
       newErrors.password = "Passwords don't match";
       valid = false;
@@ -144,70 +152,33 @@ const Register = () => {
     setAddressText(formatted_address);
   };
 
-  const handleChange = (name: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newValues = { ...values, [name]: event.target.value };
-    setValues(newValues);
-    // password validation
-    if (name === "passwordConfirmation" || errors.password) {
-      // validate the password field
-      if (newValues.password !== newValues.passwordConfirmation) {
-        setErrors({ ...errors, password: "Passwords don't match" });
-      } else {
-        setErrors({ ...errors, password: "" });
+  const handleChange =
+    (name: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
+      const newValues = { ...values, [name]: event.target.value };
+      setValues(newValues);
+      // password validation
+      if (name === "passwordConfirmation" || errors.password) {
+        // validate the password field
+        if (newValues.password !== newValues.passwordConfirmation) {
+          setErrors({ ...errors, password: "Passwords don't match" });
+        } else {
+          setErrors({ ...errors, password: "" });
+        }
       }
-    }
-  };
+    };
 
   return (
     <MainLayout>
       <div
         className={
-          "grid lg:grid-cols-2 w-full bg-gray-100 lg:h-[800px] content-center font-karla px-8 lg:px-16 text-primary "
+          "grid lg:grid-cols-3 xl:grid-cols-5 w-full bg-gray-100 content-center font-karla px-4 lg:px-16 text-primary py-8"
         }>
-        {/* Left column */}
-        <div className={"lg:px-10  grid-cols-2 overflow-y-scroll"}>
+        <div className={"lg:px-10 col-span-3 xl:col-start-2"}>
           <h6 className={"text-4xl mb-8"}>Create an Account</h6>
-          <div>
-            <div className="grid xl:grid-cols-2 gap-6 py-12 px-10 m-auto bg-white">
-              <div className="col-span-2 xl:col-span-1">
-                <Input
-                  id={"first-name"}
-                  label={"First name"}
-                  value={values.firstName}
-                  onChange={handleChange("firstName")}
-                  error={errors.firstName}
-                />
-              </div>
-              <div className="col-span-2 xl:col-span-1">
-                <Input
-                  id={"last-name"}
-                  label={"Last name"}
-                  onChange={handleChange("lastName")}
-                  value={values.lastName}
-                  error={errors.lastName}
-                />
-              </div>
-              <div className="col-span-2 xl:col-span-1">
-                <Input
-                  type={"text"}
-                  id={"rsa-id"}
-                  label={"Identity number"}
-                  onChange={handleChange("rsaID")}
-                  value={values.rsaID}
-                  error={errors.rsaID}
-                />
-              </div>
-              <div className="col-span-2 xl:col-span-1">
-                <Input
-                  type={"tel"}
-                  id={"phone-number"}
-                  label={"Phone number"}
-                  onChange={handleChange("phoneNumber")}
-                  value={values.phoneNumber}
-                  error={errors.phoneNumber}
-                />
-              </div>
-              <div className="col-span-2 xl:col-span-1">
+          <div className="col-span-3 py-10 text-lg font-medium bg-white justify-items-center">
+            <p className="px-4 lg:px-10">1. Username and Password</p>
+            <div className="grid gap-6 px-4 py-6 m-auto lg:px-10 lg:grid-cols-2">
+              <div className="col-span-2 lg:col-span-1">
                 <Input
                   type={"email"}
                   id={"email"}
@@ -217,7 +188,7 @@ const Register = () => {
                   error={errors.email}
                 />
               </div>
-              <div className="col-span-2 xl:col-span-1">
+              <div className="col-span-2 lg:col-span-1">
                 <Input
                   id={"password"}
                   type={"password"}
@@ -227,27 +198,76 @@ const Register = () => {
                   onChange={handleChange("password")}
                 />
               </div>
-              <div className="col-span-2 xl:col-span-1">
+              <div className="col-span-2 lg:col-span-1">
                 <Input
                   id={"confirm-password"}
                   type={"password"}
                   label={"Confirm Password"}
                   value={values.passwordConfirmation}
+                  error={errors.passwordConfirmation}
                   onChange={handleChange("passwordConfirmation")}
                 />
               </div>
-              <div className="col-span-2 xl:col-span-1">
+            </div>
+            {/* Personal Details */}
+            <p className="px-4 lg:px-10">2. Personal Details</p>
+            <div className="grid gap-6 px-4 py-6 m-auto bg-white lg:px-10 lg:grid-cols-2">
+              <div className="col-span-2 lg:col-span-1">
+                <Input
+                  id={"first-name"}
+                  label={"First name"}
+                  value={values.firstName}
+                  onChange={handleChange("firstName")}
+                  error={errors.firstName}
+                />
+              </div>
+              <div className="col-span-2 lg:col-span-1">
+                <Input
+                  id={"last-name"}
+                  label={"Last name"}
+                  onChange={handleChange("lastName")}
+                  value={values.lastName}
+                  error={errors.lastName}
+                />
+              </div>
+              <div className="col-span-2 lg:col-span-1">
+                <Input
+                  type={"text"}
+                  id={"rsa-id"}
+                  label={"Identity number"}
+                  onChange={handleChange("rsaID")}
+                  value={values.rsaID}
+                  error={errors.rsaID}
+                />
+              </div>
+              <div className="col-span-2 lg:col-span-1">
+                <Input
+                  type={"tel"}
+                  id={"phone-number"}
+                  label={"Phone number"}
+                  onChange={handleChange("phoneNumber")}
+                  value={values.phoneNumber}
+                  error={errors.phoneNumber}
+                />
+              </div>
+            </div>
+            {/*  end */}
+            {/* Shipping/Delivery Details */}
+
+            <p className="px-4 lg:px-10">3. Delivery Details</p>
+            <div className="grid gap-6 px-4 py-6 m-auto bg-white lg:px-10 lg:grid-cols-2">
+              <div className="col-span-2 lg:col-span-1">
                 <Input
                   id={"apt_floor_number"}
-                  label={"Apt, Floor number"}
+                  label={"Apt, floor number"}
                   onChange={handleChange("apt_floor_number")}
                   value={values.apt_floor_number}
                 />
               </div>
-              <div className="col-span-2 xl:col-span-1">
+              <div className="col-span-2 lg:col-span-1">
                 <Input
                   id={"complex_building_name"}
-                  label={"Complex or Building name"}
+                  label={"Complex or building name"}
                   onChange={handleChange("complex_building_name")}
                   value={values.complex_building_name}
                 />
@@ -267,35 +287,34 @@ const Register = () => {
                       },
                     }}>
                     {({
-                        getInputProps,
-                        suggestions,
-                        getSuggestionItemProps,
-                        loading,
-                      }) => (
+                      getInputProps,
+                      suggestions,
+                      getSuggestionItemProps,
+                      loading,
+                    }) => (
                       <form className={"relative"}>
                         <input
                           {...getInputProps({
-                            placeholder: "Address",
+                            placeholder: "Physical address",
                             className:
                               "w-full h-10 placeholder-transparent text-gray-900 rounded border-gray-300 focus:ring-0 focus:outline-none peer focus:border-secondary",
                             disabled: false,
                             id: "google_maps_address",
                             ref: placeRef,
-
                           })}
                           autoComplete={"off"}
                         />
                         <label
                           htmlFor={"google_maps_address"}
                           className="absolute text-sm text-gray-600 transition-all left-2 -top-5 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-focus:text-gray-600 peer-focus:-top-5 peer-focus:text-sm">
-                          Address
+                          Physical address
                         </label>
                         <div className="grid gap-1 shadow">
                           {loading && <div>Loading...</div>}
                           {suggestions.map((suggestion, idx) => {
                             const className = cn(
                               "p-2 hover:ring-2 ring-primary ring-inset cursor-pointer",
-                              { "bg-gray-100": suggestion.active },
+                              { "bg-gray-100": suggestion.active }
                             );
                             return (
                               <div
@@ -311,72 +330,45 @@ const Register = () => {
                       </form>
                     )}
                   </PlacesAutocomplete>
-
                 </Wrapper>
 
-                {errors.address &&
+                {errors.address && (
                   <span className="text-xs text-red-600">{errors.address}</span>
-                }
+                )}
               </div>
             </div>
-
-            <div className={"bg-white py-4 px-12"}>
-              <div className={"border border-gray-700 w-full py-2 px-4 "}>
+            {/* Terms and Conditions */}
+            <div className={"bg-white py-4 px-4 lg:px-10"}>
+              <div className={"text-xs sm:text-sm"}>
                 <p className={"text-opacity-100 font-bold"}>
-                  To create an account, please review our terms and conditions
+                  To create an account, please review our
+                  <Link href={"/terms-and-conditions"}>
+                    <a
+                      rel={"noopener"}
+                      target={"_blank"}
+                      className={
+                        "pl-2 duration-300 text-secondary hover:underline"
+                      }>
+                      Terms and Conditions
+                    </a>
+                  </Link>{" "}
                   before you click on the "register" button below.{" "}
                 </p>
                 <p className="mt-1">
-                  By clicking on the "register" button you agree to you
-                  personal data being used in accordance with the privacy notice and
+                  By clicking on the "register" button you agree to you personal
+                  data being used in accordance with the privacy notice and
                   cookie notice. We will use your personal data to manage your
-                  account, fulfill your order, and dispatch goods via our courier
-                  service. Your phone number is required for delivery contact from
-                  the courier.
+                  account, fulfill your order, and dispatch goods via our
+                  courier service. Your phone number is required for delivery
+                  contact from the courier.
                 </p>
               </div>
             </div>
-
-            <div className="col-span-2 py-8 px-10 bg-white">
-              <SmallButton
-                onClick={handleRegister}
-                color={"primary"}
-              >
+            <div className="col-span-2 px-4 py-8 bg-white lg:px-10">
+              <SmallButton onClick={handleRegister} color={"primary"}>
                 Register
               </SmallButton>
-              <Link href={"/terms-and-conditions"}>
-                <a rel={"noopener"} target={"_blank"} className={"pl-2 duration-300 hover:text-secondary"}>
-                  Terms and Conditions
-                </a>
-              </Link>
             </div>
-          </div>
-        </div>
-
-        {/* Right column */}
-        <div className={"lg:px-10  text-lg py-16 lg:py-20 "}>
-          <div className={"bg-white py-10 px-10 "}>
-            <p className={"font-bold text-2xl "}>
-              Benefits of Creating an Account{" "}
-            </p>
-            <br />
-            <p className={"font-bold"}>
-              News and exclusive offers!<br />
-            </p>
-            Sign up to receive email updates on promotions, launches, gift ideas
-            and more. <br />
-            <br />
-            <p className={"font-bold"}>
-              {" "}
-              Order History <br />
-            </p>
-            Receive important information about your order.<br />
-            <br />
-            <p className={"font-bold"}>
-              Faster Checkout<br />
-            </p>
-            Save your billing and shipping information to make repeat purchases
-            easier.
           </div>
         </div>
       </div>
