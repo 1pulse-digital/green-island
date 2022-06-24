@@ -104,8 +104,7 @@ export const Navbar = () => {
                             Book an appointment
                           </a>
                           <Link href={"/register"}>
-                            <a
-                              className="flex items-center justify-center w-full px-4 py-2 text-base font-medium text-white bg-gray-600 border border-transparent rounded-md shadow-sm hover:bg-secondary">
+                            <a className="flex items-center justify-center w-full px-4 py-2 text-base font-medium text-white bg-gray-600 border border-transparent rounded-md shadow-sm hover:bg-secondary">
                               Register
                             </a>
                           </Link>
@@ -149,11 +148,13 @@ export const Navbar = () => {
             {/* LOGO */}
             <div className={"mx-auto"}>
               <Link href={"https://www.perfecthealthpractice.com/"}>
-                <Image
-                  className={cn({ "animate-spin": isLoading })}
-                  alt={"Perfect Health Practice logo"}
-                  src={logo}
-                />
+                <a>
+                  <Image
+                    className={cn({ "animate-spin": isLoading })}
+                    alt={"Perfect Health Practice logo"}
+                    src={logo}
+                  />
+                </a>
               </Link>
             </div>
 
