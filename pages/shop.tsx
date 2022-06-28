@@ -5,15 +5,82 @@ import { ShopSidebar } from "../components/shopSidebar";
 import { Hits } from "react-instantsearch-dom";
 import { ProductHit } from "../components/search/productHit";
 import { AlgoliaPagination } from "../components/search/pagination";
+import { ShopBannerFeatured } from "../components/shopBannerFeatured";
+import { FeaturedProducts } from "../components/featuredProducts";
+import { useEffect, useState } from "react";
+import { Product } from "../types/product";
+import { fetchAPI, requestCoupon } from "../lib/api";
+import useCouponRequested from "../hooks/useCouponRequested";
+import toast from "react-hot-toast";
 
-export interface ShopProps {
+export interface ShopProps {}
+
+//const Shop = (props: ShopProps) => {
+export interface HomeProps {
+  featuredProducts?: Product[];
 }
 
 const Shop = (props: ShopProps) => {
+  const { couponRequested, setCouponRequested } = useCouponRequested(true);
+
+  const [values, setValues] = useState({
+    fullName: "",
+    email: "",
+  });
+
+  const handleCouponRequest = async () => {
+    try {
+      await requestCoupon(values.email, values.fullName);
+      toast.success("You should receive your coupon shortly");
+      setCouponRequested(true);
+    } catch (e) {
+      console.error(`Could not request coupon ${e}`);
+      toast.error("Something went wrong, we could not send the coupon");
+    }
+  };
+
+  const handleChange =
+    (name: string) =>
+    (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      setValues({ ...values, [name]: event.target.value });
+    };
+  const [loading, setLoading] = useState(false);
+
+  const [featuredProducts, setFeaturedProducts] = useState<Product[]>();
+
+  const fetchData = async () => {
+    const [featuredProducts] = await Promise.all([
+      fetchAPI("/products?featured=true"),
+    ]);
+
+    return {
+      featuredProducts,
+    };
+  };
+
+  useEffect(() => {
+    try {
+      setLoading(true);
+      // fetch data
+      fetchData()
+        .then((result) => {
+          // Use the first 4 articles as featured articles
+
+          setFeaturedProducts(result.featuredProducts);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    } catch (e) {
+      console.error(`Could not fetch data:`, e);
+    }
+  }, []);
 
   return (
     <MainLayout>
       <ShopBanner />
+      {/* <ShopBannerFeatured /> */}
+      <FeaturedProducts products={featuredProducts} loading={loading} />
       {/* We use a 12 column grid system to fine tune the breakpoints */}
       <div className={"relative grid md:flex lg:min-h-[768px]"}>
         {/* Sidebar */}

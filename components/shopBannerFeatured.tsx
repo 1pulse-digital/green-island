@@ -6,8 +6,8 @@ import { requestCoupon } from "../lib/api";
 import { toast } from "react-hot-toast";
 import useCouponRequested from "../hooks/useCouponRequested";
 
-export const ShopBanner = () => {
-  const { couponRequested, setCouponRequested } = useCouponRequested(true);
+export const ShopBannerFeatured = () => {
+  const { couponRequested, setCouponRequested } = useCouponRequested(false);
 
   const [values, setValues] = useState({
     fullName: "",
