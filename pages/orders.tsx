@@ -9,6 +9,7 @@ import { AlgoliaPagination } from "../components/search/pagination";
 export interface ShopProps {
 }
 
+// Note that is "route" was renamed to "/orders" on a change request from client
 const Shop = (props: ShopProps) => {
 
   return (

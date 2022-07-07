@@ -20,8 +20,8 @@ const navigationItems = [
     href: "/about",
   },
   {
-    name: "Shop",
-    href: "/shop",
+    name: "Orders",
+    href: "/orders",
   },
   {
     name: "Blogs",

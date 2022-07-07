@@ -379,7 +379,7 @@ const Checkout = () => {
           sendEvent({ action: "purchase" });
 
           toast.success("Payment successful");
-          router.push("/shop");
+          router.push("/orders");
         } else {
           if (order?.id) {
             // cancel the order

@@ -5,6 +5,7 @@ import Button from "./button";
 import { requestCoupon } from "../lib/api";
 import { toast } from "react-hot-toast";
 import useCouponRequested from "../hooks/useCouponRequested";
+import Link from "next/link";
 
 export const ShopBanner = () => {
   const { couponRequested, setCouponRequested } = useCouponRequested(false);
@@ -71,20 +72,6 @@ export const ShopBanner = () => {
                 value={values.email}
                 onChange={handleChange("email")}
               />
-              {/*<Input*/}
-              {/*  inputClassName={"rounded-full"}*/}
-              {/*  id={"full-name"}*/}
-              {/*  label={"Full Name"}*/}
-              {/*  value={values.fullName}*/}
-              {/*  onChange={handleChange("fullName")}*/}
-              {/*/>*/}
-              {/*<Input*/}
-              {/*  id={"email"}*/}
-              {/*  type={"email"}*/}
-              {/*  label={"Email Address"}*/}
-              {/*  value={values.email}*/}
-              {/*  onChange={handleChange("email")}*/}
-              {/*/>*/}
               <Button color={"primary"} onClick={handleCouponRequest}>
                 Submit
               </Button>

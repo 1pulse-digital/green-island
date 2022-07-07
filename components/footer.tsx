@@ -78,8 +78,8 @@ export const Footer = (props: FooterProps) => {
 
       {/* Shop & My Account */}
       <div className={"md:col-span-2"}>
-        <Link href={"/shop"}>
-          <a className="font-medium duration-300 hover:text-secondary">Shop</a>
+        <Link href={"/orders"}>
+          <a className="font-medium duration-300 hover:text-secondary">Orders</a>
         </Link>
         <ul className="">
           <li>
@@ -87,14 +87,6 @@ export const Footer = (props: FooterProps) => {
               <a className="duration-300 hover:text-secondary">My Account</a>
             </Link>
           </li>
-          {/* TODO: Where should this point to? */}
-          {/*<li>*/}
-          {/*  <Link href={"/shop?"}>*/}
-          {/*    <a className="duration-300 hover:text-secondary">*/}
-          {/*      COVID-19 Kit*/}
-          {/*    </a>*/}
-          {/*  </Link>*/}
-          {/*</li>*/}
         </ul>
       </div>
 

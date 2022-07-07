@@ -40,9 +40,9 @@ const MobileBanner = () => {
 
         {/* Shop all button */}
         <div className="z-10 py-5 text-right justify-self-start">
-          <Link href="/shop">
+          <Link href="/orders">
             <a>
-              <Button color="primary">Shop all</Button>
+              <Button color="primary">Browse all</Button>
             </a>
           </Link>
         </div>
@@ -91,12 +91,13 @@ const DesktopBanner = () => {
 
           {/* Shop all button */}
           <div className="z-10 text-right justify-self-start">
-            <Link href={"/shop"} passHref>
+            <Link href={"/orders"} passHref>
               {/*TODO: Use the Button component */}
               <button
                 type="submit"
-                className="px-8 py-2 text-base font-normal text-center text-white transition duration-200 ease-in rounded-full shadow-md sm:w-full hover:text-white focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-200 focus:outline-none bg-primary hover:bg-secondary focus:ring-secondary">
-                Shop all
+                className="px-8 py-2 text-base font-normal text-center text-white transition duration-200 ease-in rounded-full shadow-md sm:w-full hover:text-white focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-200 focus:outline-none bg-primary hover:bg-secondary focus:ring-secondary"
+              >
+                Browse all
               </button>
             </Link>
           </div>

@@ -38,7 +38,7 @@ const CategoryWidget = (props: CategoryWidgetProps) => {
 
   const handleSelect = (e: MouseEvent<HTMLDivElement>): void => {
     setDefaultRefinementCategories([props.title]);
-    router.push("/shop");
+    router.push("/orders");
   };
 
   return (
