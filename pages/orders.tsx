@@ -6,12 +6,7 @@ import { Hits } from "react-instantsearch-dom";
 import { ProductHit } from "../components/search/productHit";
 import { AlgoliaPagination } from "../components/search/pagination";
 
-export interface ShopProps {
-}
-
-// Note that is "route" was renamed to "/orders" on a change request from client
-const Shop = (props: ShopProps) => {
-
+const Orders = () => {
   return (
     <MainLayout>
       <ShopBanner />
@@ -40,4 +35,4 @@ const Shop = (props: ShopProps) => {
   );
 };
 
-export default Shop;
+export default Orders;
