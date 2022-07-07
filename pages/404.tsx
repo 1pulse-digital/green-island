@@ -18,8 +18,8 @@ const Custom404 = () => {
           </p>
 
           <div className="flex justify-center items-center py-20">
-            <a href="/shop">
-              <Button color={"primary"}>Continue Shopping</Button>
+            <a href="/orders">
+              <Button color={"primary"}>Browse products</Button>
             </a>
           </div>
         </div>

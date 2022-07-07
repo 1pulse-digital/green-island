@@ -5,6 +5,7 @@ import Button from "./button";
 import { requestCoupon } from "../lib/api";
 import { toast } from "react-hot-toast";
 import useCouponRequested from "../hooks/useCouponRequested";
+import Link from "next/link";
 
 export const ShopBanner = () => {
   const { couponRequested, setCouponRequested } = useCouponRequested(false);
@@ -46,13 +47,31 @@ export const ShopBanner = () => {
             className={
               "lg:text-5xl  md:text-4xl text-3xl text-primary sm:grid-cols-1 md:grid-cols-1  font-karla"
             }>
-            {couponRequested ? "Perfect Health Practice" : "Get 15% off your first purchase."}
+            Patient Product Portal
           </h1>
-          <p className={"text-2xl my-8 text-gray-600 font-light font-karla"}>
-            <span className="inline bg-white/90 xl:bg-transparent">
-              {couponRequested ? "Welcome to our online store" : "Fill in your details below to receive your 15% off coupon code."}
-            </span>
+          <p
+            className={"text-lg mt-8 text-gray-600 font-light font-karla bg-white/90 xl:bg-transparent max-w-screen-md"}>
+            This online product portal allows patients to order their prescribed products easily online. Orders can be
+            collected from the practice or delivered via courier.<br />
+
+            Please note that Doctor's Range products are only available to patients of Dr Kohler. Products ordered
+            without Dr Kohler's recommendation will not be released.<br />
+
+            Please make note of our{" "}
+            <Link href="/privacy-policy">
+              <a className={"hover:text-primary text-secondary px-[4px]"}>
+                payment and privacy policy
+              </a>
+            </Link>
+            before ordering.
           </p>
+          {!couponRequested &&
+            <p className={"text-xl my-8 text-gray-600 font-light font-karla"}>
+            <span className="inline bg-white/90 xl:bg-transparent">
+               Fill in your details below to receive your 15% off coupon code.
+            </span>
+            </p>
+          }
           {!couponRequested && (
             <div className={"flex flex-wrap gap-4"}>
               <input
@@ -71,20 +90,6 @@ export const ShopBanner = () => {
                 value={values.email}
                 onChange={handleChange("email")}
               />
-              {/*<Input*/}
-              {/*  inputClassName={"rounded-full"}*/}
-              {/*  id={"full-name"}*/}
-              {/*  label={"Full Name"}*/}
-              {/*  value={values.fullName}*/}
-              {/*  onChange={handleChange("fullName")}*/}
-              {/*/>*/}
-              {/*<Input*/}
-              {/*  id={"email"}*/}
-              {/*  type={"email"}*/}
-              {/*  label={"Email Address"}*/}
-              {/*  value={values.email}*/}
-              {/*  onChange={handleChange("email")}*/}
-              {/*/>*/}
               <Button color={"primary"} onClick={handleCouponRequest}>
                 Submit
               </Button>
