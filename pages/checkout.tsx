@@ -248,6 +248,10 @@ const Checkout = () => {
       if (authToken) {
         // @ts-ignore
         headers.Authorization = `Bearer ${authToken}`;
+      } else {
+        toast.error(`You must be logged in to apply a coupon`);
+        setLoading(false);
+        return;
       }
 
       const response = await fetch(requestUrl, {
@@ -255,7 +259,7 @@ const Checkout = () => {
         headers,
         body: JSON.stringify({
           orderID: order?.id,
-          couponCode: couponCode,
+          couponCode,
           email,
         }),
       });
