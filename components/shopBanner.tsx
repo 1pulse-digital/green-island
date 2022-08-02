@@ -50,14 +50,14 @@ export const ShopBanner = () => {
             Patient Product Portal
           </h1>
           <p
-            className={"text-lg mt-8 text-gray-600 font-light font-karla bg-white/90 xl:bg-transparent max-w-screen-md"}>
+            className={"text-lg mt-8 text-gray-600 font-light font-karla bg-white/90 2xl:bg-transparent max-w-screen-md"}>
             This online product portal allows patients to order their prescribed products easily online. Orders can be
             collected from the practice or delivered via courier.<br />
 
             Please note that Doctor's Range products are only available to patients of Dr Kohler. Products ordered
             without Dr Kohler's recommendation will not be released.<br />
 
-            Please make note of our{" "}
+            Please make note of our
             <Link href="/privacy-policy">
               <a className={"hover:text-primary text-secondary px-[4px]"}>
                 payment and privacy policy
