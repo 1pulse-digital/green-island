@@ -16,7 +16,7 @@ const SingleBlogPost = (props: SingleBlogPostProps) => {
   }
   return (
     <MainLayout>
-      <div className={""}>
+      <div>
         <div
           className={
             "grid sm:grid-col-1 lg:grid-cols-2 px-10 sm:px-10  bg-gray-50 lg:px-2  "
