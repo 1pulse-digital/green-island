@@ -19,15 +19,15 @@ const SingleBlogPost = (props: SingleBlogPostProps) => {
       <div className={""}>
         <div
           className={
-            "grid sm:grid-col-1 lg:grid-cols-2 h-screen px-10 sm:px-10 lg:h-[550px] bg-gray-50 lg:px-2  "
+            "grid sm:grid-col-1 lg:grid-cols-2 px-10 sm:px-10  bg-gray-50 lg:px-2  "
           }>
           {/* Left column - Text introduction goes here*/}
 
-          <div className={"grid  sm:px-0 md:px-24 content-center  max-h-full"}>
+          <div className={"grid  sm:px-0 md:px-24 content-center py-14 max-h-full"}>
             <h1 className={"lg:text-5xl  md:text-4xl text-2xl text-primary"}>
               <h1 className="text-4xl font-bold">{props.article.title}</h1>
               <h1 className="text-4xl font-bold">{props.article.category.name}</h1>
-              <h1 className="pt-10 pb-5 text-lg">
+              <h1 className="pt-10 pb-5 text-lg ">
                 {props.article.description}
               </h1>
             </h1>
@@ -51,9 +51,9 @@ const SingleBlogPost = (props: SingleBlogPostProps) => {
             </div>
           </div>
         </div>
-        <div className={""}>
+        <div className={"px-10 "}>
           <div className="prose-sm">
-            <article className="px-10 py-10 sm:py-10 md:py-20">
+            <article className="px-10 py-10 sm:py-10 md:py-20 ">
               <Markdown options={{
                 overrides: {
                   a: {
