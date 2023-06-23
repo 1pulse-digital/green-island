@@ -4,9 +4,9 @@ import running from "../images/running.jpeg";
 import Service from "../components/service";
 import RobinKohler from "../images/drrobinkohler.jpg";
 import Bio from "../components/team_bios";
-import SimonWorkman from "../images/SimonWorkman.jpg";
+import KelsiHolz from "../images/Kelsi-Holz.jpg";
 import BronwynKohler from "../images/BronwynKohler.jpg";
-import SindiNtozini from "../images/SindiNtozini.jpg";
+import BridgetteDolker from "../images/Bridgette-Dolker.jpg";
 import KhayelihleNgwenya from "../images/KhayelihleNgwenya.jpg";
 import Button from "../components/button";
 import { useRef } from "react";
@@ -21,9 +21,14 @@ const About = () => {
           className={"grid lg:grid-cols-2 bg-gray-50 lg:px-32 md:px-10 px-4"}>
           {/* Left column - Text introduction goes here*/}
           <div className={"grid content-center h-auto lg:h-auto lg:pr-40 py-5"}>
-            <h2 className={"text-3xl xl:text-5xl font-light font-karla text-primary"}>
-              Where patients can <b className="font-bold">learn</b> how to <b className="font-bold">restore</b> their own health, and
-              <b className="font-bold"> optimise</b> and <b className="font-bold">preserve</b> it far into the future.
+            <h2
+              className={
+                "text-3xl xl:text-5xl font-light font-karla text-primary"
+              }>
+              Where patients can <b className="font-bold">learn</b> how to{" "}
+              <b className="font-bold">restore</b> their own health, and
+              <b className="font-bold"> optimise</b> and{" "}
+              <b className="font-bold">preserve</b> it far into the future.
             </h2>
           </div>
 
@@ -115,7 +120,7 @@ const About = () => {
         <section
           ref={serviceRef}
           className={"mt-8 md:mt-16 bg-gray-50 px-4 md:px-10 lg:px-32"}>
-          <h1 className={"text-4xl text-primary py-10"}>Our Services</h1>
+          <h1 className={"text-4xl text-center text-primary py-10"}>Our Services</h1>
 
           <div className={"mt-8 space-y-16 lg:space-y-14 "}>
             <Service title="Functional Medical Assessment">
@@ -173,9 +178,10 @@ const About = () => {
         <section
           ref={teamRef}
           className={
-            "mt-8 md:mt-32 px-4 md:px-10 lg:px-32 space-y-12 lg:space-y-32 xl:space-y-44"
+            " px-4 md:px-10 lg:px-32 space-y-12 mb-10 0"
           }>
           {/* Robin Kohler Bio */}
+
           <div>
             <Bio
               name="Dr Robin Kohler"
@@ -234,21 +240,33 @@ const About = () => {
 
           {/* Simon Workman Bio */}
           <Bio
-            name="Dr Simon Workman"
-            education="MSc. Chiropractic, Dip Sports ScienceMSc. Chiropractic, Dip Sports Science"
+            name="Dr Kelsi Holz"
+            education="Master's Degree in Chiropractic"
             title="Sports and Family Chiropractor"
-            profilePicture={SimonWorkman}
+            profilePicture={KelsiHolz}
             reverse>
-            Dr Simon Workman graduated with a Masters Degree in Chiropractic
-            from the University of Johannesburg in 2010. He has completed an
-            International Chiropractic Sports Science Diploma, as well as
-            courses in rehabilitation, Instrument Assisted Soft Tissue
-            Mobilisation (IASTM) and Kinesio-Taping. Although he has studied
-            further in sports and has treated provincial and international
-            athletes, his practice offers treatment for the whole family, from
-            the young to the elderly. Simon has a special interest in pain
-            management and rehabilitation and works closely with other health
-            professionals to ensure a rounded care model.
+            Dr Kelsi Holz completed her Master's Degree in Chiropractic (Summa
+            cum laude) at the University of Johannesburg in 2019. While at
+            University she served as Chairperson on the Student Chiropractic
+            Sports Council and as Student Representative for Chirosport SA.
+            <br />
+            <br /> In 2019, Dr Kelsi became the first University of Johannesburg
+            student to win the Federation Internationale de Chiropratique du
+            Sport (FICS) Student Scholarship Award. She also serves as
+            Vice-Chairperson on the FICS Student Commission, bringing
+            collaboration opportunities between chiropractic students and
+            qualified chiropractic doctors. After graduating she joined the
+            Golden Key International Honour Society, the world’s largest
+            collegiate honour society comprising of the top 15% of college and
+            university students as well as top-performing graduate students,
+            based on academic performance. <br />
+            <br />
+            For the past 3 years, Kelsi has gained extensive experience in busy
+            practices in Parkmore and Benoni. She is passionate about
+            complimenting chiropractic treatment with lifestyle education and
+            pursuing wellness through regular exercise, recovery and healthy
+            diet. She is an avid hockey player and amateur triathlete. Kelsi
+            loves the outdoors and has a minor bird watching obsession.
           </Bio>
 
           {/*Bronwyn Kohler Bio */}
@@ -268,17 +286,15 @@ const About = () => {
 
           {/*Sindi Ntozini Bio */}
           <Bio
-            profilePicture={SindiNtozini}
-            name="Sindi Ntozini"
+            profilePicture={BridgetteDolker}
+            name="Bridgette Dolker"
             title="Receptionist"
             reverse>
-            Sindi is a Soweto girl, born and raised. A fashionista with a
-            passion for looking and feeling good inside and out, she has been
-            the beating heart of our practice since its earliest days. She makes
-            sure that everyone gets what they need when they need it, whether
-            its an appointment, medication or a kind word. Her warmth and
-            friendliness are part of what make Perfect Health a welcoming family
-            practice.
+            Our newest member of the team Bridgette Doelker is the ultimate
+            ‘people person’! She thrives on helping others and putting a smile
+            on everyone’s dial. A bubbly polyglot with a wealth of experience in
+            the travel industry, Bridgette brings her worldly-wise insight to
+            helping patients from all walks of life get what they need.
           </Bio>
           {/*Khayelihle Ngwenya */}
           <Bio
