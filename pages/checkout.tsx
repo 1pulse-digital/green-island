@@ -407,11 +407,11 @@ const Checkout = () => {
     }
 
     if (isMajorCity(shippingAddress.city)) {
-      setShippingCost(110);
+      setShippingCost(115);
       return;
     }
 
-    setShippingCost(165);
+    setShippingCost(170);
   }, [shipping, shippingAddress.city]);
 
   return (

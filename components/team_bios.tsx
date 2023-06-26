@@ -15,11 +15,11 @@ export interface BioProps {
 
 const Bio = (props: BioProps) => {
   return (
-    <div className={"grid lg:grid-cols-2 gap-x-10 xl:gap-x-4"}>
-      <h2 className={cn("text-2xl 2xl:text-4xl text-primary lg:col-span-2 xl:text-center xl:mb-8", { "lg:text-right": props.reverse })}>{props.name}</h2>
-
+    <div
+      className={"grid lg:grid-cols-2 gap-x-10 my-10 items-center "}>
       {/* Show the image on the left when reverse is false or the screen is smaller than lg*/}
-      <div className={cn("my-4 flex justify-center ", { "lg:hidden": props.reverse })}>
+      <div
+        className={cn(" flex justify-center ", { "lg:hidden": props.reverse })}>
         <div className={"max-w-md xl:max-w-lg"}>
           <Image
             className={"rounded "}
@@ -31,14 +31,22 @@ const Bio = (props: BioProps) => {
         </div>
       </div>
 
-      <div className={"my-4 text-gray-500 "}>
+      <div className={" text-gray-500  "}>
+        <h2
+          className={cn("text-2xl 2xl:text-4xl text-primary pt-4 md:pt-0 xl:mb-2", {
+            "lg:text-left": props.reverse,
+          })}>
+          {props.name}
+        </h2>
+
         <p className={"pb-2 text-gray-400"}>{props.education}</p>
         <p className={"pb-3 font-semibold"}>{props.title}</p>
         <div className={""}>{props.children}</div>
       </div>
 
       {/* Show the image on the right when reverse is true and the screen size is lg */}
-      <div className={cn("my-4 hidden", { "lg:flex justify-center": props.reverse })}>
+      <div
+        className={cn("hidden ", { "lg:flex justify-center": props.reverse })}>
         <div className={"max-w-md xl:max-w-lg"}>
           <Image
             className={"rounded"}

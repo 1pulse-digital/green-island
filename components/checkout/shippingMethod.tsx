@@ -54,7 +54,7 @@ export const ShippingMethod = (props: ShippingMethodProps) => {
         <div className={"text-sm text-primary grid gap-2 mt-4"}>
           <div>
             <p className={"font-semibold"}>
-              Major cities <em className={"font-light"}>+R110</em>
+              Major cities <em className={"font-light"}>+R115</em>
             </p>
             <ul className={"flex flex-wrap gap-x-2"}>
               {majorCities.map((city) => {
@@ -63,7 +63,7 @@ export const ShippingMethod = (props: ShippingMethodProps) => {
             </ul>
           </div>
           <p className={"font-semibold"}>
-            Outlying areas <em className={"font-light"}>+R165</em>
+            Outlying areas <em className={"font-light"}>+R170</em>
           </p>
           <p>You will be notified when your order is ready for collection.</p>
         </div>
