@@ -5,9 +5,9 @@ import Service from "../components/service";
 import RobinKohler from "../images/drrobinkohler.jpg";
 import Bio from "../components/team_bios";
 import KelsiHolz from "../images/Kelsi-Holz.jpg";
-import BronwynKohler from "../images/BronwynKohler.jpg";
+import JadeTun from "../images/Jade-Tun.jpg";
 import BridgetteDolker from "../images/Bridgette-Dolker.jpg";
-import KhayelihleNgwenya from "../images/KhayelihleNgwenya.jpg";
+import KhayelihleNgwenya from "../images/Lihle-Ngwenya.jpg";
 import Button from "../components/button";
 import { useRef } from "react";
 
@@ -120,7 +120,9 @@ const About = () => {
         <section
           ref={serviceRef}
           className={"mt-8 md:mt-16 bg-gray-50 px-4 md:px-10 lg:px-32"}>
-          <h1 className={"text-4xl text-center text-primary py-10"}>Our Services</h1>
+          <h1 className={"text-4xl text-center text-primary py-10"}>
+            Our Services
+          </h1>
 
           <div className={"mt-8 space-y-16 lg:space-y-14 "}>
             <Service title="Functional Medical Assessment">
@@ -177,9 +179,7 @@ const About = () => {
 
         <section
           ref={teamRef}
-          className={
-            " px-4 md:px-10 lg:px-32 space-y-12 mb-10 0"
-          }>
+          className={" px-4 md:px-10 lg:px-32 space-y-12 mb-10 0"}>
           {/* Robin Kohler Bio */}
 
           <div>
@@ -238,7 +238,7 @@ const About = () => {
             </div>
           </div>
 
-          {/* Simon Workman Bio */}
+          {/* Dr Kelsi Holz Bio */}
           <Bio
             name="Dr Kelsi Holz"
             education="Master's Degree in Chiropractic"
@@ -269,44 +269,54 @@ const About = () => {
             loves the outdoors and has a minor bird watching obsession.
           </Bio>
 
-          {/*Bronwyn Kohler Bio */}
+          {/*Dr Jade Tun */}
+
           <Bio
-            name="Bronwyn Kohler"
+            name="Dr Jade Tun"
             education=""
-            title="Practice Manager"
-            profilePicture={BronwynKohler}>
-            Bronwyn is a certified Functional Health Coach with an honours
-            degree in Microbiology and Environmental Science and a Diploma in
-            Nutrition . Her particular passion is the hidden world that
-            co-habits our human bodies: the microbiome. She uses her training
-            and skills to offer optimum care and support to the patients of
-            Perfect Health, and author our health-related blog articles and
-            newsletters.
+            title="Homeopath"
+            profilePicture={JadeTun}>
+            My journey towards becoming a doctor began with the realization that
+            my highest purpose is to nurture and heal others. This revelation
+            propelled me towards a career dedicated to the noble art of
+            medicine. As a loving mother, I understand the importance of
+            nurturing both body and mind for optimal health and vitality.
+            <br />
+            <br />
+            Beyond the examination room, my passions for literature and
+            exploration serve as guiding lights, enriching not only my
+            understanding of medicine but also my connection to the world. Join
+            me on a journey towards holistic wellness, where we embrace the
+            power of homeopathy and compassionate care to achieve perfect health
+            together.
           </Bio>
 
-          {/*Sindi Ntozini Bio */}
-          <Bio
-            profilePicture={BridgetteDolker}
-            name="Bridgette Dolker"
-            title="Receptionist"
-            reverse>
-            Our newest member of the team Bridgette Doelker is the ultimate
-            ‘people person’! She thrives on helping others and putting a smile
-            on everyone’s dial. A bubbly polyglot with a wealth of experience in
-            the travel industry, Bridgette brings her worldly-wise insight to
-            helping patients from all walks of life get what they need.
-          </Bio>
           {/*Khayelihle Ngwenya */}
+
           <Bio
-            name="Khayelihle Ngwenya"
-            education=""
-            title="Administrator"
-            profilePicture={KhayelihleNgwenya}>
+            profilePicture={KhayelihleNgwenya}
+            name="Lihle Ngwenya"
+            title="Practice Manager"
+            reverse>
             Khayelihle, or Lihle as we know her, takes care of the
             behind-the-scenes admin for the practice. Mother of two boys, Lihle
             is always calm under pressure and ready to solve whatever problems
             come her way. She can always be depended on for a friendly smile and
             a helping hand.
+          </Bio>
+
+          {/*Bridgette Dolker Bio */}
+
+          <Bio
+            name="Bridgette Dolker"
+            education=""
+            title="Receptionist"
+            profilePicture={BridgetteDolker}>
+            Our newest member of the team Bridgette Doelker is the ultimate
+            ‘people person’! She thrives on helping others and putting a smile
+            on everyone’s dial. A bubbly polyglot with a wealth of experience in
+            the travel industry, Bridgette brings her worldly-wise insight to
+            helping patients from all walks of life get what they need.
           </Bio>
         </section>
       </div>
