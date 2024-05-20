@@ -312,6 +312,7 @@ export const majorCities = [
   { alias: "Sandton", name: "Sandton" },
   { alias: "Krugersdorp", name: "Krugersdorp" },
   { alias: "Roodepoort", name: "Roodepoort" },
+  { alias: "Kempton Park", name: "Kempton Park" },
 ];
 
 const renderCity = (city: string) => {
