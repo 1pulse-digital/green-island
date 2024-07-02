@@ -43,7 +43,7 @@ export const Message = () => {
   };
 
   return (
-    <div className={"bg-gray-50 py-4 grid sm:grid-cols-2 md:h-[700px] w-full font-karla"}>
+    <div className={"bg-gray-50 py-4 grid sm:grid-cols-2 md:h-[840px] w-full font-karla"}>
       {/* Left column */}
       <div
         className={
@@ -72,6 +72,8 @@ export const Message = () => {
         </p>
         <h2 className={"mt-8 font-bold"}>Address</h2>
         <p className={"text-md "}>
+        <span>Bryanston Practice:</span>
+        <br />
           <span>33 Highland Avenue</span>
           <br />
           <span>Bryanston Ext 8 </span>
@@ -79,6 +81,18 @@ export const Message = () => {
           <span>Johannesburg</span>
           <br />
           <span>Gauteng</span>
+        </p>
+       <br />
+        <p className={"text-md "}>
+        <span>Hermanus Practice:</span>
+        <br />
+          <span>13 17th Avenue</span>
+          <br />
+          <span>Voelklip</span>
+          <br />
+          <span>Hermanus</span>
+          <br />
+          <span> Western Cape</span>
         </p>
         <h2 className={"font-bold mt-8"}>Operating hours</h2>
         <p className={"text-md"}>
@@ -93,6 +107,7 @@ export const Message = () => {
           They are awarded on a first come first serve basis, and bookings open
           at 8am.
         </p>
+        <br />
         <br />
       </div>
 
